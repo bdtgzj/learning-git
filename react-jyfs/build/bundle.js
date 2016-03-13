@@ -19699,7 +19699,10 @@
 	  function App(props) {
 	    _classCallCheck(this, App);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
+
+	    _this.state = { data: [{ url: 'http://google.com', title: 'google' }, { url: 'http://baidu.com', title: 'baidu' }] };
+	    return _this;
 	  }
 
 	  _createClass(App, [{
@@ -19708,7 +19711,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_ContentList2.default, null)
+	        _react2.default.createElement(_ContentList2.default, { data: this.state.data })
 	      );
 	    }
 	  }]);
@@ -19749,19 +19752,23 @@
 	var ContentList = function (_React$Component) {
 	  _inherits(ContentList, _React$Component);
 
-	  function ContentList() {
+	  function ContentList(props) {
 	    _classCallCheck(this, ContentList);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ContentList).apply(this, arguments));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ContentList).call(this, props));
 	  }
 
 	  _createClass(ContentList, [{
 	    key: 'render',
 	    value: function render() {
+	      var contents = this.props.data.map(function (v, k) {
+	        return _react2.default.createElement(_Content2.default, { url: v.url, title: v.title });
+	      });
+
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_Content2.default, null)
+	        contents
 	      );
 	    }
 	  }]);
@@ -19775,7 +19782,7 @@
 /* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -19798,19 +19805,23 @@
 	var Content = function (_React$Component) {
 	  _inherits(Content, _React$Component);
 
-	  function Content() {
+	  function Content(props) {
 	    _classCallCheck(this, Content);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Content).apply(this, arguments));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Content).call(this, props));
 	  }
 
 	  _createClass(Content, [{
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        "a",
-	        { href: "http://baidu.com" },
-	        "Content1"
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'a',
+	          { href: this.props.url },
+	          this.props.title
+	        )
 	      );
 	    }
 	  }]);
