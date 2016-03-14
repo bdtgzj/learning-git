@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './components/App.jsx';
 
 ReactDOM.render(
-  <App />,
+  <App url={'http://localhost'} />,
   document.body.appendChild(document.createElement('div'))
 );
 
