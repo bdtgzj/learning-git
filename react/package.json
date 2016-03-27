@@ -1,0 +1,29 @@
+{
+  "name": "react-learning",
+  "version": "0.0.0",
+  "description": "react-learning",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "learning"
+  ],
+  "author": "bdtgzj",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.6.5",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "webpack": "^1.12.14"
+  },
+  "dependencies": {
+    "jquery": "^2.2.1",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-router": "^2.0.1"
+  }
+}

@@ -60,3 +60,7 @@ p, ul {
 ul {
   padding-left: 30px;
 }
+
+.commentAuthor {
+  color: #ff0000;
+}

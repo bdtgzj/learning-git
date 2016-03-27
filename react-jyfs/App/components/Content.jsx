@@ -8,7 +8,7 @@ export default class Content extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="content">
         <a href={this.props.url}>{this.props.title}</a>
       </div>
     );
