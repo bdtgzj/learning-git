@@ -12,7 +12,7 @@
         SELECT * FROM Student;
     </select>
 
-    <select id="getById" resultMap="result">
+    <select id="getByID" parameterType="int" resultMap="result">
         SELECT * FROM Student WHERE ID=#{id};
     </select>
 
@@ -25,5 +25,17 @@
 
     </insert>
 
+    <update id="update" parameterType="Student">
+        UPDATE Student SET NAME = #{name},
+            BRANCH = #{branch},
+            PERCENTAGE = #{percentage},
+            PHONE = #{phone},
+            EMAIL = #{email}
+        WHERE ID = #{id};
+    </update>
+
+    <delete id="deleteByID" parameterType="int">
+        DELETE FROM Student WHERE ID=#{id};
+    </delete>
 
 </mapper>
