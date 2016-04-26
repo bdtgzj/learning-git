@@ -6,6 +6,11 @@
 
     <resultMap id="result" type="Student">
         <result property="id" column="ID" />
+        <result property = "name" column = "NAME"/>
+        <result property = "branch" column = "BRANCH"/>
+        <result property = "percentage" column = "PERCENTAGE"/>
+        <result property = "phone" column = "PHONE"/>
+        <result property = "email" column = "EMAIL"/>
     </resultMap>
 
     <select id = "getAll" resultMap = "result">
@@ -18,6 +23,21 @@
 
     <select id="callByID" parameterType="int" resultMap="result" statementType="CALLABLE">
         {call spSelectByID(#{id, jdbcType=INTEGER, mode=IN})}
+    </select>
+
+    <select id="getByNamePhoneEmail" parameterType="Student" resultMap="result">
+        SELECT * FROM STUDENT
+        <where>
+            <if test="name != null">
+                NAME = #{name}
+            </if>
+            <if test="phone != null">
+                OR PHONE = #{phone}
+            </if>
+            <if test="email != null">
+                OR EMAIL = #{email}
+            </if>
+        </where>
     </select>
 
     <insert id = "insert" parameterType = "Student">

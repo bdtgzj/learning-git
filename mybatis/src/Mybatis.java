@@ -10,7 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class Mybatis {
 
-    private final static String commandHit = "Please input one of parameters[select/selectByID [id]/spSelectByID [id]/insert/update/delete].";
+    private final static String commandHit = "Please input one of parameters[select/selectByID [id]/spSelectByID [id]/selectByNamePhoneEmail/insert/update/delete].";
 
     public static void main(String[] args) throws IOException {
 
@@ -32,6 +32,10 @@ public class Mybatis {
             case "spSelectByID":
                 if (args.length > 1) arg1 = new Integer(args[1]);
                 spSelectByID(arg1);
+                break;
+            case "selectByNamePhoneEmail":
+                //if (args.length > 1) arg1 = new Integer(args[1]);
+                getByNamePhoneEmail();
                 break;
             case "insert":
                 insert();
@@ -109,6 +113,30 @@ public class Mybatis {
         }
 
         System.out.println("spSelectByID successfully!");
+        session.commit();
+        session.close();
+    }
+
+    public static void getByNamePhoneEmail() throws IOException {
+        SqlSession session = getSession();
+
+        Student student = new Student();
+        student.setName("bdtgzj");
+        student.setPhone(999999999);
+        student.setEmail("bdtgzj@gmail.com");
+
+        List<Student> students = session.selectList("Student.getByNamePhoneEmail", student);
+
+        for (Student stu : students) {
+            System.out.println(stu.getId());
+            System.out.println(stu.getName());
+            System.out.println(stu.getBranch());
+            System.out.println(stu.getPercentage());
+            System.out.println(stu.getEmail());
+            System.out.println(stu.getPhone());
+        }
+
+        System.out.println("getByNamePhoneEmail successfully!");
         session.commit();
         session.close();
     }
