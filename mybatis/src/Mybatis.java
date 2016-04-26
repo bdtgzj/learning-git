@@ -10,7 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class Mybatis {
 
-    private final static String commandHit = "Please input one of parameters[select/selectByID [id]/insert/update/delete].";
+    private final static String commandHit = "Please input one of parameters[select/selectByID [id]/spSelectByID [id]/insert/update/delete].";
 
     public static void main(String[] args) throws IOException {
 
@@ -28,6 +28,10 @@ public class Mybatis {
             case "selectByID":
                 if (args.length > 1) arg1 = new Integer(args[1]);
                 selectByID(arg1);
+                break;
+            case "spSelectByID":
+                if (args.length > 1) arg1 = new Integer(args[1]);
+                spSelectByID(arg1);
                 break;
             case "insert":
                 insert();
@@ -87,6 +91,24 @@ public class Mybatis {
         }
 
         System.out.println("selectByID successfully!");
+        session.commit();
+        session.close();
+    }
+
+    public static void spSelectByID(int id) throws IOException {
+        SqlSession session = getSession();
+        Student student = session.selectOne("Student.callByID", id);
+
+        if (student != null) {
+            System.out.println(student.getId());
+            System.out.println(student.getName());
+            System.out.println(student.getBranch());
+            System.out.println(student.getPercentage());
+            System.out.println(student.getEmail());
+            System.out.println(student.getPhone());
+        }
+
+        System.out.println("spSelectByID successfully!");
         session.commit();
         session.close();
     }
