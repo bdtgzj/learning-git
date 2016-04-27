@@ -12,7 +12,7 @@
             <property name = "driver" value = "com.mysql.jdbc.Driver"/>
             <property name = "url" value = "jdbc:mysql://localhost:3306/db_mybatis?useSSL=false"/>
             <property name = "username" value = "root"/>
-            <property name = "password" value = "joy2008"/>
+            <property name = "password" value = "Ehomeguruc002"/>
          </dataSource>
          
       </environment>
