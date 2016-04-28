@@ -9,7 +9,7 @@ public class MessagePrinter {
   final private MessageService service;
 
   @Autowired
-  public MessagePriter(MessageService service;) {
+  public MessagePrinter(MessageService service) {
     this.service = service;
   }
 
