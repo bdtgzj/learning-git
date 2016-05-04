@@ -1,4 +1,4 @@
-package com.bdtgzj.spring.StudentEnrollment.controller;
+package com.bdtgzj.spring.studentnrollment.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +17,25 @@ public class StudentController {
 	
 	@Autowired
 	private StudentService studentService;
+	
+	@RequestMapping(path="/signin1", method=RequestMethod.GET)
+	public String signin1() {
+		System.out.println("signin1");
+		return "signin1";
+	}
+	
+	@RequestMapping(value="/signin", method=RequestMethod.GET)
+	public String signin() {
+		System.out.println("dd");
+		return "signin";
+	}
+	
+	@RequestMapping(value="/signup", method=RequestMethod.GET)
+	public String signup(Model model) {
+		Student student = new Student();
+		model.addAttribute("student", student);
+		return "signup";
+	}
 	
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
 	public String signup(@ModelAttribute("student") Student student, Model model) {
