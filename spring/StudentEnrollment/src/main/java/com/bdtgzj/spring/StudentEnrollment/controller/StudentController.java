@@ -18,11 +18,6 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 	
-	@RequestMapping(path="/signin1", method=RequestMethod.GET)
-	public String signin1() {
-		return "signin1";
-	}
-	
 	@RequestMapping(value="/signin", method=RequestMethod.GET)
 	public String signin() {
 		return "signin";
@@ -38,8 +33,8 @@ public class StudentController {
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
 	public String signup(@ModelAttribute("student") Student student, Model model) {
 		studentService.insertStudent(student);
-		model.addAttribute("message", "Saved student details.");
-		return "Insert Successfully!";
+		model.addAttribute("message", "Saved student details Successfully.");
+		return "signup";
 	}
 	
 }
