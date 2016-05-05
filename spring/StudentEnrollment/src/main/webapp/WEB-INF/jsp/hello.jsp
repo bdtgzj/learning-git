@@ -9,6 +9,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-${message}
+  ${message}
 </body>
 </html>

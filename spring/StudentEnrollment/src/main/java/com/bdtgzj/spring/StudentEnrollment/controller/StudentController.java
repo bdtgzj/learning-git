@@ -1,4 +1,4 @@
-package com.bdtgzj.spring.studentnrollment.controller;
+package com.bdtgzj.spring.StudentEnrollment.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,13 +20,11 @@ public class StudentController {
 	
 	@RequestMapping(path="/signin1", method=RequestMethod.GET)
 	public String signin1() {
-		System.out.println("signin1");
 		return "signin1";
 	}
 	
 	@RequestMapping(value="/signin", method=RequestMethod.GET)
 	public String signin() {
-		System.out.println("dd");
 		return "signin";
 	}
 	

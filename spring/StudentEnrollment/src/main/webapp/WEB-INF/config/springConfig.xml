@@ -13,7 +13,7 @@
   <mvc:annotation-driven />
   
   <!-- base package for the context component scan. -->
-  <context:component-scan base-package="com.bdtgzj.spring.studentenrollment" />
+  <context:component-scan base-package="com.bdtgzj.spring.StudentEnrollment" />
   
   <!-- locate the jsp files -->
   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -24,7 +24,7 @@
   <!-- data source -->
   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-    <property name="url" value="jdbc:mysql//localhost:3306/studentenrollment?autoReconnect=true" />
+    <property name="url" value="jdbc:mysql//localhost:3306/db_StudentEnrollment?autoReconnect=true" />
     <property name="username" value="root" />
     <property name="password" value="Ehomeguruc002" />
   </bean>
@@ -38,8 +38,8 @@
   <!-- MyBatis specific configurations -->
   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="dataSource" />
-    <property name="typeAliasesPackage" value="com.bdtgzj.spring.studentenrollment.model" />
-    <property name="mapperLocations" value="classpath*:com/bdtgzj/spring/studentenrollment/mappers/*.xml" />
+    <property name="typeAliasesPackage" value="com.bdtgzj.spring.StudentEnrollment.model" />
+    <property name="mapperLocations" value="classpath*:com/bdtgzj/spring/StudentEnrollment/mappers/*.xml" />
   </bean>
   
   <!-- sqlSession -->
@@ -49,7 +49,7 @@
   
   <!-- Mapper Scanner -->
   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-    <property name="basePackage" value="com.bdtgzj.spring.studentenrollment.mapper" />
+    <property name="basePackage" value="com.bdtgzj.spring.StudentEnrollment.mapper" />
   </bean>
 
 </beans>
