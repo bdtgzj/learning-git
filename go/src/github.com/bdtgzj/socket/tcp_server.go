@@ -26,7 +26,7 @@ func main() {
     fmt.Println("Error listening:", err.Error())
     os.Exit(1)
   }
-  // Close the listener when the application closes.
+  // Close the listener when the application exit.
   defer listener.Close()
 
   fmt.Println("Listening on " + CONN_HOST + ":" + CONN_PORT)
@@ -87,7 +87,7 @@ func handleRequest(conn net.Conn) {
     // SN packet
     if bytes.Contains([]byte("SN"), buf[0:2]) {
       // get SN
-      sn = string(buf[2:dataLen])
+      sn = string(buf[2:dataLen-1])
       // add SN-Conn to map
       _, ok := mSNConn[sn]
       if !ok {
@@ -97,13 +97,16 @@ func handleRequest(conn net.Conn) {
     // Non-SN packet
     } else {
       if len(sn) > 0 {
-        id, err := c.Put([]byte("hello:" + sn), 1, 0, 120*time.Second)
+        tube := &beanstalk.Tube{c, sn}
+        id, err := tube.Put([]byte(sn + string(buf[:dataLen])), 1, 0, 120*time.Second)
         if err != nil {
           fmt.Println("Error produce beanstalk:", err.Error())
+          continue
         }
         fmt.Printf("Job id %d inserted\n", id)
       } else {
-
+        // request for SN
+        conn.Write([]byte("SN"))
       }
       
     }
@@ -116,7 +119,7 @@ func handleRequest(conn net.Conn) {
 
 func manageSNConn() {
   for {
-    time.Sleep(2000 * time.Millisecond)
+    time.Sleep(20000 * time.Millisecond)
     fmt.Println(len(mSNConn))
   }
 }
@@ -124,6 +127,7 @@ func manageSNConn() {
 func consumer() {
   var c *beanstalk.Conn = nil
   for {
+    // connect to beanstalkd, infinite loop, 
     if c == nil {
       var err error = nil
       c, err = beanstalk.Dial("tcp", "127.0.0.1:11300")
@@ -133,16 +137,28 @@ func consumer() {
         fmt.Println("Consumer connect to beanstalkd successfully.")
       }
     }
+
+    /*
+    keys := make([]string, 0, len(mSNConn))
+    for k := range mSNConn {
+      keys = append(keys, k)
+    }
+    tubeSet := beanstalk.NewTubeSet(c, keys...)
+    id, body, err := tubeSet.Reserve(5*time.Second)
+    */
+    // blocking api
     id, body, err := c.Reserve(5*time.Second)
     if err != nil {
-      fmt.Println("Error comsume beanstalk:", err.Error())
+      // this err indicate the job queue is empty
+      //fmt.Println("Error comsume beanstalk:", err.Error())
     } else {
       // 
-      val, ok := mSNConn["SN\n"]
+      val, ok := mSNConn[string(body[:3])]
       if ok {
         val.Write(body)
       }
-      
+      // delete job
+      c.Delete(id)
       fmt.Printf("task id is: 【%d】; task content is 【%s】\n", id, string(body))
     }
   }
