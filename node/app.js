@@ -1,51 +1,28 @@
 var express = require('express');
 var app = express();
 
-var fivebeans = require('fivebeans');
-var client = new fivebeans.client('127.0.0.1', 11300);
+var bs = require('nodestalker');
+var client = bs.Client('127.0.0.1:11300');
 
-app.get('/', function (req, res) {
-  client
-    .on('connect', function()
-    {
-      // produce
-      client.put(0, 0, 120, '123456', function(err, jobid) {
-        if (err) {
-          console.log('put error');
-          res.send('put error');
-          return;
-        }
-        // consume, watch tube
-        client.watch('123', function(err, numwatched) {
-          if (err) {
-            console.log('consume error');
-            return;
-          }
-          // consume, reserve
-          client.reserve_with_timeout(5, function(err, jobid, payload) {
-            if (err) {
-              console.log('consume error');
-              res.send(err);
-              return;
-            }
-            client.destroy(jobid, function(err) {
-              res.send(err);
-              return;
-            });
-            res.send(payload);
-          });
+app.get('/', function(req, res) {
+  client.put('123456', 0, 0, 100000).onSuccess(function(jobid) {
+    console.log(jobid);
+    client.watch('123').onSuccess(function(data) {
+      client.reserve_with_timeout(5).onSuccess(function(job) {
+        console.log('reserved', job);
+
+        client.deleteJob(job.id).onSuccess(function(del_msg) {
+          console.log('deleted', job);
+          console.log('message', del_msg);
+          client.disconnect();
+          res.send(job.data);
         });
+      }).onError(function() {
+        client.disconnect();
+        res.send("timeout");
       });
-    })
-    .on('error', function(err)
-    {
-        // connection failure
-    })
-    .on('close', function()
-    {
-        // underlying connection has closed
-    })
-    .connect();
+    });
+  });
 });
 
 app.listen(3000, function () {

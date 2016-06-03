@@ -41,3 +41,9 @@ start-socket:
 
 start-nc:
 	nc 127.0.0.1 502
+
+start-node:
+	node ../node/app.js
+
+start-curl:
+	curl http://127.0.0.1:3000
