@@ -1,27 +1,22 @@
 var express = require('express');
 var app = express();
 
-var bs = require('nodestalker');
-var client = bs.Client('127.0.0.1:11300');
+var net = require('net');
+var client = new net.Socket();
+client.connect(11502, '127.0.0.1', function() {
+  console.log('Connected to FamilyScreen');
+  //client.write('Hello, server! Love, Client.');
+});
+client.on('close', function() {
+  console.log('Connection closed');
+});
 
 app.get('/', function(req, res) {
-  client.put('123456', 0, 0, 100000).onSuccess(function(jobid) {
-    console.log(jobid);
-    client.watch('123').onSuccess(function(data) {
-      client.reserve_with_timeout(5).onSuccess(function(job) {
-        console.log('reserved', job);
-
-        client.deleteJob(job.id).onSuccess(function(del_msg) {
-          console.log('deleted', job);
-          console.log('message', del_msg);
-          client.disconnect();
-          res.send(job.data);
-        });
-      }).onError(function() {
-        client.disconnect();
-        res.send("timeout");
-      });
-    });
+  client.write('123456');
+  client.on('data', function(data) {
+    console.log('Received: ' + data);
+    //client.destroy(); // kill client after server's response
+    res.send(data)
   });
 });
 

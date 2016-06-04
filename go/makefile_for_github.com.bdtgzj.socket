@@ -1,5 +1,5 @@
 # makefile
-package:=ehomeguru.com.cn/cloud/familyscreen/
+package:=github.com/bdtgzj/socket/
 export GOPATH:=$(HOME)/Learning/learning-git/go
 
 all: install-all
@@ -37,8 +37,8 @@ start-beanstalkd:
 start-beanstalkd-cli:
 	beanstalkd-cli monitor
 
-start-familyscreen:
-	sudo familyscreen
+start-socket:
+	sudo socket
 
 start-nc:
 	nc 127.0.0.1 502

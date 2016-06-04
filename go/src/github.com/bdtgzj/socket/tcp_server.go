@@ -14,6 +14,10 @@ const (
   CONN_HOST = ""
   CONN_PORT = "502"
   CONN_TYPE = "tcp"
+
+  // CONN_Beanstalkd
+  CONN_BS_HOST = "192.168.8.101"
+  CONN_BS_PORT = "11300"
 )
 
 // key=SN val=net.conn
@@ -70,7 +74,7 @@ func handleRequest(conn net.Conn) {
     // get a connection, prepare for produce
     if c == nil {
       var err error = nil
-      c, err = beanstalk.Dial("tcp", "127.0.0.1:11300")
+      c, err = beanstalk.Dial("tcp", CONN_BS_HOST + ":" + CONN_BS_PORT)
       if err != nil {
         fmt.Println("Error connect to beanstalkd:", err.Error())
       } else {
@@ -130,7 +134,7 @@ func consumer() {
     // connect to beanstalkd, infinite loop, 
     if c == nil {
       var err error = nil
-      c, err = beanstalk.Dial("tcp", "127.0.0.1:11300")
+      c, err = beanstalk.Dial("tcp", CONN_BS_HOST + ":" + CONN_BS_PORT)
       if err != nil {
         fmt.Println("Error connect to beanstalkd:", err.Error())
       } else {
@@ -147,7 +151,7 @@ func consumer() {
     id, body, err := tubeSet.Reserve(5*time.Second)
     */
     // blocking api
-    id, body, err := c.Reserve(5*time.Second)
+    id, body, err := c.Reserve(120*time.Second)
     if err != nil {
       // this err indicate the job queue is empty
       //fmt.Println("Error comsume beanstalk:", err.Error())
