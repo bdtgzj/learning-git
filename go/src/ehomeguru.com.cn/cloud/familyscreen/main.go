@@ -6,6 +6,7 @@ import (
   "os"
   "time"
   "bytes"
+  "io"
 )
 
 const (
@@ -89,9 +90,24 @@ func createFamilyConn(conn net.Conn) {
     // blocking api, the thead is blocked, the code after this api will not be executed immediately.
     dataLen, err := conn.Read(buf)
     if err != nil {
-      fmt.Println("Error reading for family:", err.Error())
-      continue
-      //os.Exit(1)
+      // received a FIN packet from family client.
+      if err == io.EOF {
+        fmt.Println("Close connection by family client: ", err.Error())
+      } else {
+        fmt.Println("Error reading for family:", err.Error())
+      }
+      // send FIN packet
+      conn.Close()
+      conn = nil
+      // remove conn from mapSocket
+      if len(sn) > 0 {
+        _, ok := mapSocket[sn]
+        if ok {
+          delete(mapSocket, sn)
+        }
+      }
+      // exit thread
+      return
     }
 
     // SN packet
@@ -104,17 +120,14 @@ func createFamilyConn(conn net.Conn) {
         mapSocket[sn] = []net.Conn{conn, nil}
         fmt.Println("family socket have added to map by family: ", sn)
       }
-    // Non-SN packet
+    // Non-SN packet, Forward to Screen
     } else {
       if len(sn) > 0 {
         val, ok := mapSocket[sn]
         if ok {
-          fmt.Println("1")
           if val[1] != nil {
-            fmt.Println("2")
             connScreen, ok := val[1].(net.Conn)
             if ok {
-              fmt.Println("3")
               connScreen.Write(buf[:dataLen-1])
             }
           }
@@ -125,8 +138,6 @@ func createFamilyConn(conn net.Conn) {
       }
       
     }
-    // Send a response back to person contacting us.
-    //conn.Write([]byte("Message received." + string(dataLen) + string(buf) + "\n"))
   }
   // Close the connection when you're done with it.
   // conn.Close()
@@ -143,9 +154,27 @@ func createScreenConn(conn net.Conn) {
     // blocking api, the thead is blocked, the code after this api will not be executed immediately.
     dataLen, err := conn.Read(buf)
     if err != nil {
-      fmt.Println("Error reading for screen:", err.Error())
-      //continue
-      os.Exit(1)
+      // received a FIN packet from screen client.
+      if err == io.EOF {
+        fmt.Println("Close connection by screen client: ", err.Error())
+        // send FIN packet
+        conn.Close()
+        conn = nil
+      } else {
+        fmt.Println("Error reading for screen:", err.Error())
+      }
+      
+      // remove conn from mapSocket
+      if len(sn) > 0 {
+        _, ok := mapSocket[sn]
+        if ok {
+          // delete(mapSocket, sn)
+          // not create mapSocket[sn], neither delete mapSocket, just set.
+          mapSocket[sn][1] = nil
+        }
+      }
+      // exit thread
+      return
     }
 
     // get SN
@@ -163,6 +192,11 @@ func createScreenConn(conn net.Conn) {
     if mapSocket[sn][1] == nil {
       mapSocket[sn][1] = conn
       fmt.Println("screen socket have added to map by screen: ", sn)
+    } else {
+      // kick off the former
+      //mapSocket[sn][1].Close()
+      //mapSocket[sn][1] = conn
+      //fmt.Println("the former have been kicked off")
     }
     // send to family
     if mapSocket[sn][0] != nil {

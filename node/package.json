@@ -12,6 +12,6 @@
   "author": "bdtgzj@163.com",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.13.4",
+    "express": "^4.13.4"
   }
 }
