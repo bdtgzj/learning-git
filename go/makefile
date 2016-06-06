@@ -43,6 +43,9 @@ start-familyscreen:
 start-nc:
 	nc 127.0.0.1 502
 
+start-nc1:
+	nc 127.0.0.1 11502
+
 start-node:
 	node ../node/app.js
 

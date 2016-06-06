@@ -7,6 +7,7 @@ import (
   "time"
   "bytes"
   "io"
+  "encoding/binary"
 )
 
 const (
@@ -19,9 +20,22 @@ const (
   SERVER_SCREEN_TYPE = "tcp"
 )
 
-// [0]:family socket [1]:screen socket
+type FamilyScreen struct {
+  Family net.Conn
+  // uint32: user id string: screen device id;
+  Screen map[uint32]map[string]net.Conn
+}
+
+func (fs FamilyScreen) getScreens() {
+  for k, _ := range fs.Screen {
+    //fmt.Printf("", k, v)
+    fmt.Println(k)
+  }
+}
+
+// uint32 == family SN
 var (
-  mapSocket map[string][]net.Conn = make(map[string][]net.Conn)
+  familyScreen map[uint32]FamilyScreen = make(map[uint32]FamilyScreen)
 )
 
 func main() {
@@ -80,7 +94,7 @@ func createFamilyConn(conn net.Conn) {
   // Make a buffer to hold incoming data
   buf := make([]byte, 1024)
   // hold SN
-  sn := ""
+  sn := uint32(0)
 
   // request for SN
   conn.Write([]byte("SN"))
@@ -99,12 +113,12 @@ func createFamilyConn(conn net.Conn) {
       // send FIN packet
       conn.Close()
       conn = nil
-      // remove conn from mapSocket
-      if len(sn) > 0 {
-        _, ok := mapSocket[sn]
-        if ok {
-          delete(mapSocket, sn)
-        }
+      // remove conn from familyScreen
+      if sn > 0 {
+        tmp := familyScreen[sn]
+        tmp.Family = nil
+        familyScreen[sn] = tmp
+        // delete(familyScreen, sn)
       }
       // exit thread
       return
@@ -112,24 +126,36 @@ func createFamilyConn(conn net.Conn) {
 
     // SN packet
     if bytes.Contains([]byte("SN"), buf[0:2]) {
-      // get SN
-      sn = string(buf[2:dataLen-1])
+      // get SN, buf[] must 4 bytes, otherwise return err
+      err := binary.Read(bytes.NewReader(buf[2:dataLen-1]), binary.BigEndian, &sn)
+      if err != nil {
+        fmt.Println("binary.Read failed by family:", err)
+      }
       // add to map
-      _, ok := mapSocket[sn]
+      _, ok := familyScreen[sn]
       if !ok {
-        mapSocket[sn] = []net.Conn{conn, nil}
+        familyScreen[sn] = FamilyScreen{conn, make(map[uint32]map[string]net.Conn)} //
+        fmt.Println("FamilyScreen is created & family socket have added to map by family: ", sn)
+      } else {
+        tmp := familyScreen[sn]
+        tmp.Family = conn
+        familyScreen[sn] = tmp
         fmt.Println("family socket have added to map by family: ", sn)
       }
     // Non-SN packet, Forward to Screen
     } else {
-      if len(sn) > 0 {
-        val, ok := mapSocket[sn]
+      if sn > 0 {
+        _, ok := familyScreen[sn]
         if ok {
-          if val[1] != nil {
-            connScreen, ok := val[1].(net.Conn)
-            if ok {
-              connScreen.Write(buf[:dataLen-1])
+          if len(familyScreen[sn].Screen) > 0 {
+            if string(buf[:2]) != "@@" {
+              // for single user mode
+              familyScreen[sn].Screen[0]["default"].Write(buf[:dataLen])
+            } else {
+              // for multi user mode
             }
+          } else {
+            fmt.Println("Screen is not exist.")
           }
         }
       } else {
@@ -147,7 +173,11 @@ func createScreenConn(conn net.Conn) {
   // Make a buffer to hold incoming data
   buf := make([]byte, 1024)
   // hold SN
-  sn := ""
+  sn := uint32(0)
+  // hold userid
+  uid := uint32(0)
+  // hold screenid
+  //sid := ""
 
   // Read the incoming connection into the buffer
   for {
@@ -165,12 +195,13 @@ func createScreenConn(conn net.Conn) {
       }
       
       // remove conn from mapSocket
-      if len(sn) > 0 {
-        _, ok := mapSocket[sn]
+      if sn > 0 {
+        val, ok := familyScreen[sn]
         if ok {
           // delete(mapSocket, sn)
           // not create mapSocket[sn], neither delete mapSocket, just set.
-          mapSocket[sn][1] = nil
+          val.Screen[sn] = nil
+          familyScreen[sn] = val
         }
       }
       // exit thread
@@ -178,9 +209,17 @@ func createScreenConn(conn net.Conn) {
     }
 
     // get SN
-    sn = string(buf[:3])
+    err = binary.Read(bytes.NewReader(buf[:4]), binary.BigEndian, &sn)
+    if err != nil {
+      fmt.Println("binary.Read SN failed by screen:", err)
+    }
+    // get uid
+    err = binary.Read(bytes.NewReader(buf[4:8]), binary.BigEndian, &uid)
+    if err != nil {
+      fmt.Println("binary.Read UID failed by screen:", err)
+    }
     // add to map
-    _, ok := mapSocket[sn]
+    _, ok := familyScreen[sn]
     if !ok {
       // mapSocket[sn] = [2]net.Conn{conn}
       // fmt.Println("SN have added to map by screen:", sn)
@@ -189,21 +228,31 @@ func createScreenConn(conn net.Conn) {
       continue
     }
     // add screen socket
-    if mapSocket[sn][1] == nil {
-      mapSocket[sn][1] = conn
+    _, ok = familyScreen[sn].Screen[uid]["default"]
+    if !ok {
+      tmp := familyScreen[sn]
+      // kick off the former & remove
+      val, ok := tmp.Screen[0]["default"]
+      if ok {
+        val.Close()
+        for k, _ := range tmp.Screen {
+          if k == 0 {
+            continue
+          }
+          delete(tmp.Screen, k)
+        }
+        fmt.Println("the former have been kicked off")
+      }
+      //
+      tmp.Screen[uid] = map[string]net.Conn{ "default": conn }
+      // default screen socket
+      tmp.Screen[0] = tmp.Screen[uid]
+      familyScreen[sn] = tmp
       fmt.Println("screen socket have added to map by screen: ", sn)
-    } else {
-      // kick off the former
-      //mapSocket[sn][1].Close()
-      //mapSocket[sn][1] = conn
-      //fmt.Println("the former have been kicked off")
     }
     // send to family
-    if mapSocket[sn][0] != nil {
-      connFamily, ok := mapSocket[sn][0].(net.Conn)
-      if ok {
-        connFamily.Write((buf[:dataLen-1]))
-      }
+    if familyScreen[sn].Family != nil {
+      familyScreen[sn].Family.Write(buf[:dataLen-1])
     }
 
   }
@@ -214,6 +263,6 @@ func createScreenConn(conn net.Conn) {
 func manageMapSocket() {
   for {
     time.Sleep(30000 * time.Millisecond)
-    fmt.Println(len(mapSocket))
+    fmt.Println(len(familyScreen))
   }
 }
