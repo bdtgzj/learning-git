@@ -43,6 +43,14 @@ start-familyscreen:
 start-nc:
 	nc 127.0.0.1 502
 
+start-nc-sn:
+	#R_GET_SN:=echo -e '\x00\x01\x00\x00\x00\x07\x01\x03\x04\x00\x00\x00\x11'
+	#cat <$(R_GET_SN) - | nc 127.0.0.1 502
+# cat <(echo -e '\x00\x01\x00\x00\x00\x07\x01\x03\x04\x00\x00\x00\x11') - | nc 127.0.0.1 502
+
+start-tcpdump:
+	sudo tcpdump -nvXi lo0 tcp src port 502
+
 start-nc1:
 	nc 127.0.0.1 11502
 

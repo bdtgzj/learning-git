@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- meta -->
+    <meta charset="UTF-8">
+    <meta name="description" content='<%= config.description %>'>
+    <%-: config.site_metas | join:'\n    ' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= config.name %></title>
+    <!-- link -->
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="stylesheet" href='/libs/bootstrap/css/bootstrap.css' />
+    <link rel="stylesheet" href='/libs/bootstrap/css/bootstrap-responsive.css' />
+    <link rel="stylesheet" href='/stylesheets/style.css' />
+    <!-- script -->
+    <script src="/libs/jquery/jquery.js"></script>
+  </head>
+  <body>

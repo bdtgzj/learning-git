@@ -221,7 +221,6 @@ func createScreenConn(conn net.Conn) {
     }
 
     // get SN
-    fmt.Println(buf)
     err = binary.Read(bytes.NewReader(buf[:4]), binary.BigEndian, &sn)
     if err != nil {
       fmt.Println("binary.Read SN failed by screen:", err)
@@ -265,7 +264,7 @@ func createScreenConn(conn net.Conn) {
     }
     // send to family
     if familyScreen[sn].Family != nil {
-      familyScreen[sn].Family.Write(buf[:dataLen-1])
+      familyScreen[sn].Family.Write(buf[:dataLen])
     }
 
   }

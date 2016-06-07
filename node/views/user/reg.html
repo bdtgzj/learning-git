@@ -1,0 +1,31 @@
+<% include ../header.html %>
+<div class="container">
+  <form class="form-horizontal" action="/user" method="post">
+    <h4>加入筑智，讨论共同关注的话题！</h4>
+    <div class="control-group">
+      <label class="control-label" for="inputEmail">邮箱</label>
+      <div class="controls">
+        <input type="text" id="inputEmail" placeholder="邮箱" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputPassword">密码</label>
+      <div class="controls">
+        <input type="password" id="inputPassword" placeholder="密码" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputPasswordRep">确认密码</label>
+      <div class="controls">
+        <input type="password" id="inputPasswordRep" placeholder="确认密码" />
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <label class="checkbox"><input type="checkbox" checked="checked" />我已阅读并同意<a href="">《筑智服务协议》</a></label>
+        <button type="submit" class="btn btn-success">注册</button>
+      </div>
+    </div>
+  </form>
+</div>
+<% include ../footer.html %>
