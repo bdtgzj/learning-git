@@ -20,6 +20,15 @@ const (
   SERVER_SCREEN_TYPE = "tcp"
 )
 
+var (
+  IS_SET_SN = []byte{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x0B,
+                      0x01, 0x10, 0x00, 0x00, 0x00, 0x02, 0x04, 0x00, 0x00, 0x00, 0x01 }
+  T_GET_SN = []byte{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x06,
+                      0x01, 0x03, 0x00, 0x00, 0x00, 0x02 }
+  R_GET_SN = []byte{ 0x00, 0x01, 0x00, 0x00, 0x00, 0x07,
+                      0x01, 0x03, 0x04 }
+)
+
 type FamilyScreen struct {
   Family net.Conn
   // uint32: user id string: screen device id;
@@ -97,7 +106,8 @@ func createFamilyConn(conn net.Conn) {
   sn := uint32(0)
 
   // request for SN
-  conn.Write([]byte("SN"))
+  //conn.Write([]byte("SN"))
+  conn.Write(T_GET_SN)
 
   // Read the incoming connection into the buffer
   for {
@@ -125,9 +135,10 @@ func createFamilyConn(conn net.Conn) {
     }
 
     // SN packet
-    if bytes.Contains([]byte("SN"), buf[0:2]) {
+    //if bytes.Contains([]byte("SN"), buf[0:2]) {
+    if bytes.Contains(R_GET_SN, buf[0:9]) {
       // get SN, buf[] must 4 bytes, otherwise return err
-      err := binary.Read(bytes.NewReader(buf[2:dataLen-1]), binary.BigEndian, &sn)
+      err := binary.Read(bytes.NewReader(buf[9:13]), binary.BigEndian, &sn)
       if err != nil {
         fmt.Println("binary.Read failed by family:", err)
       }
@@ -160,7 +171,8 @@ func createFamilyConn(conn net.Conn) {
         }
       } else {
         // request for SN
-        conn.Write([]byte("SN"))
+        //conn.Write([]byte("SN"))
+        conn.Write(T_GET_SN)
       }
       
     }
@@ -194,13 +206,13 @@ func createScreenConn(conn net.Conn) {
         fmt.Println("Error reading for screen:", err.Error())
       }
       
-      // remove conn from mapSocket
+      // remove conn from FamilyScreen
       if sn > 0 {
         val, ok := familyScreen[sn]
         if ok {
           // delete(mapSocket, sn)
           // not create mapSocket[sn], neither delete mapSocket, just set.
-          val.Screen[sn] = nil
+          val.Screen[uid] = nil
           familyScreen[sn] = val
         }
       }
@@ -209,6 +221,7 @@ func createScreenConn(conn net.Conn) {
     }
 
     // get SN
+    fmt.Println(buf)
     err = binary.Read(bytes.NewReader(buf[:4]), binary.BigEndian, &sn)
     if err != nil {
       fmt.Println("binary.Read SN failed by screen:", err)
