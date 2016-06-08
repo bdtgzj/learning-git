@@ -11,7 +11,9 @@ var userSchema = new Schema({
   modified: {type: Date, default: Date.now},
   state: {type: Number, default: 0},
   retrieveToken: {type: String},
-  retrieveTime: {type: Number}
+  retrieveTime: {type: Number},
+  familyID: {type: Number},
+  screenID: {type: Number}
 });
 
 userSchema.index({loginName: 1}, {unique: true});
@@ -21,4 +23,4 @@ userSchema.index({mphone: 1}, {unique: true});
 mongoose.model('User', userSchema);
 
 // admin6 = 16b4d433eeef71946e93341822786a196549c2c5
-// db.users.save({name:'admin', loginName:'admin', password:'16b4d433eeef71946e93341822786a196549c2c5', email:'admin@xuezhile.cn, mphone: '13222880055'});
+// db.users.save({name:'俞晓东', loginName:'yxdc002', password:'16b4d433eeef71946e93341822786a196549c2c5', email:'yxdc002@ehomeguru.com.cn', mphone: '13222880055', familyID: 17});

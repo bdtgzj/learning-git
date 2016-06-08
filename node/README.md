@@ -1,4 +1,4 @@
-XueZhiLe
+eHomeGuru Screen
 ==========
 
 ## 介绍
@@ -8,3 +8,4 @@ XueZhiLe
 ## 测试
 
 ## License
+MIT

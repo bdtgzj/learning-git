@@ -16,7 +16,7 @@ var config = {
   // site settings
   site_metas: [
     '<meta name="keywords" content="易家智">',
-    '<meta name="author" content="service@xuezhile.cn">',
+    '<meta name="author" content="service@ehomeguru.com.cn">',
   ],
   site_logo: '', // default is 'name'
   site_navs: [
@@ -31,15 +31,6 @@ var config = {
   tokenId: 'tokenId',
   tokenStatus: 'tokenStatus',
 
-    /*
-  mysql: {
-    host: 'sqld.duapp.com',
-    port: '4050',
-    user: 'zRzmPmhC4KV7t9gDzATQoEkS',
-    password: 'IGApgf97oKG5yuy2dvferma70d8DZPGy',
-    database: 'OskyCstjfIIpyPnkvUYw'
-  },
-  */
   mysql: {
     host: '127.0.0.1', // 172.16.5.31
     port: '3306',
@@ -49,9 +40,7 @@ var config = {
   },
 
   //db: 'mongodb://zRzmPmhC4KV7t9gDzATQoEkS:IGApgf97oKG5yuy2dvferma70d8DZPGy@mongo.duapp.com:8908/FdirTQHYpEulyHiMValI',
-  db: 'mongodb://127.0.0.1/db_xuezhile',
-  hostname: process.env.HOSTNAME || '0.0.0.0',
-  port: process.env.PORT || 1337,
+  db: 'mongodb://127.0.0.1/db_ehomeguru',
 
   //weixin
   weixinToken: 'xuezhile', //joy_bdtgzj
@@ -80,7 +69,14 @@ var config = {
       balance: '/sdkproxy/querybalance.action',
       report: '/sdkproxy/getreport.action'
     }
-  }
+  },
+
+  // Host Info
+  hostname: process.env.HOSTNAME || '0.0.0.0',
+  port: process.env.PORT || 3000,
+  screenHostName: process.env.SCREENHOSTNAME || '0.0.0.0',
+  screenHostPort: process.env.SCREENHOSTPORT || 11502
+
 };
 
 module.exports = config;
