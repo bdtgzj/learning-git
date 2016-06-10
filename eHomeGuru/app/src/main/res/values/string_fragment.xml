@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- fragment_name -->
+    <string name="fragment_home">fragment_home</string>
+    <string name="fragment_setting">fragment_setting</string>
+    <!-- fragment_setting -->
+    <string name="textview_ip">IP地址</string>
+    <string name="edittext_ip">192.168.8.200</string>
+    <string name="textview_port">端口号</string>
+    <string name="edittext_port">502</string>
+    <string name="button_connect">连接</string>
+    <!-- fragment_home -->
+    <string name="tv_y0">Y0</string>
+    <string name="tv_y1">Y1</string>
+    <string name="tv_y2">Y2</string>
+    <string name="tv_y3">Y3</string>
+    <string name="tv_y4">Y4</string>
+    <string name="tv_y5">Y5</string>
+</resources>
