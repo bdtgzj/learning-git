@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var Counter = require('./counter');
 
 var userSchema = new Schema({
   name: {type: String},
@@ -22,5 +23,16 @@ userSchema.index({mphone: 1}, {unique: true});
 
 mongoose.model('User', userSchema);
 
+// auto-incremented fields implementation
+userSchema.pre('save', function(next) {
+  var doc = this;
+  Counter.findByIdAndUpdate({_id: 'userid'}, {$inc: {seq: 1}}, function(error, counter) {
+    if (error)
+      return next(error)
+    doc._id = counter.seq;
+    next();
+  });
+});
+
 // admin6 = 16b4d433eeef71946e93341822786a196549c2c5
-// db.users.save({name:'俞晓东', loginName:'yxdc002', password:'16b4d433eeef71946e93341822786a196549c2c5', email:'yxdc002@ehomeguru.com.cn', mphone: '13222880055', familyID: 17});
+// db.users.save({_id: 1, name:'俞晓东', loginName:'yxdc002', password:'16b4d433eeef71946e93341822786a196549c2c5', email:'yxdc002@ehomeguru.com.cn', mphone: '13222880055', familyID: 17});

@@ -17,7 +17,5 @@ mongoose.connection.on('disconnected', function() {
 });
 
 require('./user');
-require('./counter');
 
 exports.User = mongoose.model('User');
-exports.Counter = mongoose.model('Counter');
