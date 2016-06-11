@@ -34,7 +34,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/logo"
-                android:src="@drawable/ic_activity_logo" />
+                android:src="@drawable/activity_logo"
+                android:layout_gravity="center_horizontal" />
 
             <AutoCompleteTextView
                 android:id="@+id/uname"
