@@ -35,19 +35,21 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/logo"
                 android:src="@drawable/activity_logo"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:clickable="false"
+                android:layout_marginTop="20dp" />
 
             <AutoCompleteTextView
-                android:id="@+id/uname"
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/prompt_uname"
-                android:inputType="textEmailAddress|phone|text"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:layout_marginTop="20dp" />
 
             <EditText
-                android:id="@+id/upassword"
+                android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/prompt_upassword"
@@ -56,7 +58,8 @@
                 android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:layout_marginTop="16dp" />
 
 
             <Button
