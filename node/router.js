@@ -21,20 +21,20 @@ var router = express.Router();
 /**
  * user.
  */
-router.get('/api/user', user.retrieve);
-router.get('/api/init', user.init);
+router.get('/user', user.retrieve);
+router.get('/init', user.init);
 //signup
-router.get('/api/username_available', user.nameAvailable);
-router.get('/api/email_available', user.emailAvailable);
-router.post('/api/signup', user.signup);
+router.get('/username_available', user.nameAvailable);
+router.get('/email_available', user.emailAvailable);
+router.post('/signup', user.signup);
 //signin
-router.post('/api/user/signin', user.signin);
-router.get('/api/user/is_signin', user.isSignin);
+router.post('/user/signin', user.signin);
+router.get('/user/is_signin', user.isSignin);
 //account relative
-router.get('/api/active_account', user.activeAccount);
-router.post('/api/retrieve_password', user.retrievePassword);
-router.get('/api/reset_password', user.resetPassword);
-router.post('/api/reset_password', user.updatePassword);
+router.get('/active_account', user.activeAccount);
+router.post('/retrieve_password', user.retrievePassword);
+router.get('/reset_password', user.resetPassword);
+router.post('/reset_password', user.updatePassword);
 // topic
 //app.post('/api/topic', topic.create);
 //app.get('/api/topic', topic.retrieve);
