@@ -26,8 +26,8 @@ exports.getUserByName = function(name, callback) {
   User.findOne({name: name}, callback);
 };
 
-exports.getUserByNameEmailPass = function(name, password, callback) {
-  User.find({$or: [{name: name}, {email: name}], password: password}, callback);
+exports.getUserByNameEmailMPhonePass = function(name, password, callback) {
+  User.find({$or: [{loginName: name}, {email: name}, {mphone: name}], password: password}, callback);
   //此条件查询mongoose只支持find，不支持findOne，mongo shell中是支持findOne的。
   //注：find返回数组[]，不能直接对象操作；findOne返回对象null
 };

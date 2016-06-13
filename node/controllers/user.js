@@ -112,6 +112,11 @@ exports.signup = function(req, res, next) {
  * User authentication.
  */
 exports.signin = function(req, res, next) {
+  console.log(req.body.name + req.body.password + req);
+  res.json({name: req.body.name, password: req.body.password});
+};
+
+exports.signin1 = function(req, res, next) {
   var name = validator.trim(req.body.name);
   var password = validator.trim(req.body.password);
 

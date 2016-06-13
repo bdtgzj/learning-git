@@ -12,6 +12,7 @@
   "author": "bdtgzj@163.com",
   "license": "MIT",
   "dependencies": {
+    "basic-auth": "^1.0.4",
     "body-parser": "^1.15.1",
     "eventproxy": "^0.3.4",
     "express": "^4.13.4",

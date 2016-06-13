@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.com.ehomeguru.bean.User;
+import cn.com.ehomeguru.service.ServiceGenerator;
 import cn.com.ehomeguru.service.UserService;
 import retrofit2.Call;
 
@@ -311,11 +312,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-            User user = new User();
-            user.setLoginName(name);
-            user.setPassword(password);
-            UserService userService = UserService.retrofit.create(UserService.class);
-            Call<User> call = userService.signIn(user);
+            UserService userService = ServiceGenerator.createService(UserService.class, name, password);
+            Call<User> call = userService.signIn();
             try {
                 //Toast.makeText(getApplicationContext(), call.execute().body().getName(), Toast.LENGTH_LONG);
                 //String dd = call.execute().

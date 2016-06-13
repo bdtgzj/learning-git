@@ -2,11 +2,12 @@ var express = require('express');
 var path = require('path');
 var config = require('./config');
 var router = require('./router');
-//var tokenAuth = require('./libs/middleware').tokenAuth;
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 // var cookieParser = require('cookie-parser');
 var errorhandler = require('errorhandler');
+//var tokenAuth = require('./libs/middleware').tokenAuth;
+var basicAuth = require('./libs/basicauth');
 var app = express();
 
 var net = require('net');
@@ -39,14 +40,12 @@ app.use(methodOverride());
 //app.use(cookieParser());//req.cookies To get cookie
 //app.use(express.static(path.join(__dirname, 'public')));
 //custom middleware, can't tokenAuth().
-/*
 app.use(function(req, res, next) {
-  if (req.path === '/api/user/signin') {
+  if (req.path === '1user/signin') {
     return next();
   }
-  tokenAuth(req, res, next);
+  basicAuth(req, res, next);
 });
-*/
 
 //static helpers(for the lifetime of the application.)
 // how to use? `req.app.locals`
