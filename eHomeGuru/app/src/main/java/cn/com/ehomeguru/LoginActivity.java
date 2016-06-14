@@ -3,6 +3,7 @@ package cn.com.ehomeguru;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -28,7 +29,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -173,13 +173,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             cancel = true;
         }
 
-        // Check for a valid email address.
+        // Check for a valid name.
         if (TextUtils.isEmpty(name)) {
             nameView.setError(getString(R.string.error_field_required));
             focusView = nameView;
             cancel = true;
         } else if (!isNameValid(name)) {
-            nameView.setError(getString(R.string.error_invalid_email));
+            nameView.setError(getString(R.string.error_invalid_name));
             focusView = nameView;
             cancel = true;
         }
@@ -197,8 +197,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
-    private boolean isNameValid(String email) {
-        return email.length() > 4;
+    private boolean isNameValid(String name) {
+        return name.length() > 4;
     }
 
     private boolean isPasswordValid(String password) {
@@ -344,6 +344,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
+                Intent i=new Intent();
+                startActivity(i);
                 finish();
             } else {
                 passwordView.setError(getString(R.string.error_incorrect_password));
