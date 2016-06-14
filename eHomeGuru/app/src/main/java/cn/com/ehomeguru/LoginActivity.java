@@ -312,8 +312,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-            UserService userService = ServiceGenerator.createService(UserService.class, name, password);
-            Call<User> call = userService.signIn();
+            User user = new User(name, password);
+            UserService userService = ServiceGenerator.createService(UserService.class);
+            Call<User> call = userService.signIn(user);
             try {
                 //Toast.makeText(getApplicationContext(), call.execute().body().getName(), Toast.LENGTH_LONG);
                 //String dd = call.execute().
@@ -344,7 +345,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
-                Intent i=new Intent();
+                Intent i=new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();
             } else {

@@ -116,24 +116,16 @@ exports.signin = function(req, res, next) {
   res.json({name: req.body.name, password: req.body.password});
 };
 
-exports.signin1 = function(req, res, next) {
+exports.signin = function(req, res, next) {
   var name = validator.trim(req.body.name);
   var password = validator.trim(req.body.password);
 
-  User.getUserByNameEmailPass(name, password, function(err, users) {
+  User.getUserByNameEmailMPhonePass(name, password, function(err, users) {
     if (err) {
       return next(err);
     }
     var user = users.length > 0 ? users[0] : null;
     if (user) {
-      if (user.state) {
-        //重新发送激活邮件
-        mail.sendActiveMail(user.name, user.email, md5(user.email + config.cookieSecret));
-        res.json({desc: '此帐号还没有被激活，激活链接已发送到 ' + user.email + ' 邮箱，请查收。' , msg: '', valid: false});
-        return;
-      }
-      // store cookie
-      setCookie(user, res);
       res.json({desc: '', valid: true, data: {name: user.name, email: user.email}});
     } else {
       res.json({desc: '用户名或密码不正确，请重新输入！', valid: false});

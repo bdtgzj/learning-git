@@ -41,7 +41,7 @@ app.use(methodOverride());
 //app.use(express.static(path.join(__dirname, 'public')));
 //custom middleware, can't tokenAuth().
 app.use(function(req, res, next) {
-  if (req.path === '1user/signin') {
+  if (req.path === '/user/signin') {
     return next();
   }
   basicAuth(req, res, next);
