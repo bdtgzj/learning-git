@@ -5,7 +5,8 @@ var config = require('../config');
 var User = require('../proxy').User;
 var mail = require('../services/mail');
 var crypto = require('crypto');
-var validator = require('../libs/validator_ext');
+var validator = require('validator');
+var hashcrypt = require('../libs/hashcrypt');
 
 exports.retrieve = function(req, res, next) {
   var type = req.query.type;
@@ -112,18 +113,14 @@ exports.signup = function(req, res, next) {
  * User authentication.
  */
 exports.signin = function(req, res, next) {
-  console.log(req.body.name + req.body.password + req);
-  res.json({name: req.body.name, password: req.body.password});
-};
-
-exports.signin = function(req, res, next) {
   var name = validator.trim(req.body.name);
   var password = validator.trim(req.body.password);
 
-  User.getUserByNameEmailMPhonePass(name, password, function(err, users) {
+  User.getUserByNameEmailMPhonePass(name, hashcrypt.sha1(password), function(err, users) {
     if (err) {
       return next(err);
     }
+    console.log(users);
     var user = users.length > 0 ? users[0] : null;
     if (user) {
       res.json({desc: '', valid: true, data: {name: user.name, email: user.email}});

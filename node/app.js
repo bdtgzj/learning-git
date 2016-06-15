@@ -2,8 +2,8 @@ var express = require('express');
 var path = require('path');
 var config = require('./config');
 var router = require('./router');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
+var bodyParser = require('body-parser'); // the base for parsing http body
+//var methodOverride = require('method-override'); // use PUT or DELETE for the client doesn't support it.
 // var cookieParser = require('cookie-parser');
 var errorhandler = require('errorhandler');
 //var tokenAuth = require('./libs/middleware').tokenAuth;
@@ -34,9 +34,9 @@ var ismap = require('./ismap');
 //app.set('jsonp callback name', 'jsonpcb');
 
 // use(middleware)
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(methodOverride());
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: false })); // not for parsing application/x-www-form-urlencoded
+//app.use(methodOverride());
 //app.use(cookieParser());//req.cookies To get cookie
 //app.use(express.static(path.join(__dirname, 'public')));
 //custom middleware, can't tokenAuth().

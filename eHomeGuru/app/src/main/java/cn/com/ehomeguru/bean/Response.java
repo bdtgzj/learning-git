@@ -16,7 +16,7 @@ public class Response {
         this.desc = desc;
     }
 
-    public Boolean getValid() {
+    public Boolean isValid() {
         return valid;
     }
 
