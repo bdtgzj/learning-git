@@ -52,11 +52,6 @@ import static android.Manifest.permission.READ_CONTACTS;
 public class LoginActivity extends AppCompatActivity {
 
     /**
-     * Id to identity READ_CONTACTS permission request.
-     */
-    private static final int REQUEST_READ_CONTACTS = 0;
-
-    /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
@@ -79,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
         realm = Realm.getInstance(realmConfiguration);
         // Set up the login form.
         nameView = (AutoCompleteTextView) findViewById(R.id.name);
-        populateAutoComplete(realm);
+        populateAutoComplete();
         //
         passwordView = (EditText) findViewById(R.id.password);
         // add keyboard action listener
@@ -106,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
         progressView = findViewById(R.id.login_progress);
     }
 
-    private void populateAutoComplete(Realm realm) {
+    private void populateAutoComplete() {
         // Starting a Loader, LoaderManager manages one or more Loader instances
         // this: A LoaderManager.LoaderCallbacks implementation
         // LoaderManager.LoaderCallbacks is a callback interface that lets a client interact with the LoaderManager
@@ -269,6 +264,18 @@ public class LoginActivity extends AppCompatActivity {
             showProgress(false);
 
             if (success) {
+                // add to realm
+                RealmResults<UserHint> userHints =  realm.where(UserHint.class).equalTo("name", name).findAll();
+                if (userHints.size() < 1) {
+                    realm.executeTransaction(new Realm.Transaction() {
+                        @Override
+                        public void execute(Realm realm) {
+                            UserHint userHint = realm.createObject(UserHint.class);
+                            userHint.setName(name);
+                        }
+                    });
+                }
+                // open MainActivity
                 Intent i=new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();
