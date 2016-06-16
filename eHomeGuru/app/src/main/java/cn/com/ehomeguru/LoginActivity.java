@@ -75,13 +75,25 @@ public class LoginActivity extends AppCompatActivity {
         // Set up the login form.
         nameView = (AutoCompleteTextView) findViewById(R.id.name);
         populateAutoComplete();
+        // add keyboard action button event listener
+        nameView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    passwordView.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
         //
         passwordView = (EditText) findViewById(R.id.password);
-        // add keyboard action listener
+        // add keyboard action button event listener
         passwordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                // fullscreen mode: R.id.login; normal mode: IME_NULL
+                if (actionId == R.id.login || actionId == EditorInfo.IME_NULL) {
                     attemptLogin();
                     return true;
                 }
@@ -244,6 +256,8 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 res = call.execute().body();
                 System.out.println(res);
+                System.out.println(res.isValid());
+                System.out.println(res.getDesc());
                 System.out.println(res.getData());
             } catch (IOException e) {
                 System.out.println(e);
