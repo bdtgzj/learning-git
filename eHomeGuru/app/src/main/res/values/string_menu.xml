@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="menu_home">首页</string>
-    <string name="menu_scene">场景</string>
     <string name="menu_region">区域</string>
-    <string name="menu_device">设备</string>
-    <string name="menu_setting">设置</string>
+    <string name="menu_scene">场景</string>
+    <string name="menu_me">我</string>
 </resources>
