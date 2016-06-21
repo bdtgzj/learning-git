@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,8 +77,26 @@ public class RegionFragment extends Fragment {
         //
         tabLayout = (TabLayout) v.findViewById(R.id.tabs);
         viewPager = (ViewPager) v.findViewById(R.id.viewpager);
-        //
-        //viewPagerAdapter = new ViewPagerAdapter();
+        // set ViewPager's datasource
+        viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
+        viewPager.setAdapter(viewPagerAdapter);
+        // set tab
+        final TabLayout.Tab tab = tabLayout.newTab();
+        final TabLayout.Tab tab1 = tabLayout.newTab();
+        final TabLayout.Tab tab2 = tabLayout.newTab();
+        tab.setText("Tab");
+        tab1.setText("Tab1");
+        tab2.setText("Tab2");
+        tabLayout.addTab(tab, 0, true);
+        tabLayout.addTab(tab1, 1);
+        tabLayout.addTab(tab2, 2);
+        tabLayout.setTabTextColors(ContextCompat.getColorStateList(v.getContext(), R.color.tab_selector));
+        tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(v.getContext(), R.color.indicator));
+        // on click on TabLayout
+        tabLayout.setupWithViewPager(viewPager);
+
+        // on slide on viewPager
+        //viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
         return v;
     }

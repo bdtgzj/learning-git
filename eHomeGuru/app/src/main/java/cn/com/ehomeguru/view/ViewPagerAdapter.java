@@ -15,11 +15,16 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return null;
+        return new TabFragment();
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return 3;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return "Page " + position;
     }
 }
