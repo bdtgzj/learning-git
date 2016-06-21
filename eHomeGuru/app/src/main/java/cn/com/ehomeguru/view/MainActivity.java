@@ -1,22 +1,31 @@
 package cn.com.ehomeguru.view;
 
+import android.net.Uri;
 import android.support.annotation.IdRes;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
 
 import cn.com.ehomeguru.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements HomeFragment.OnFragmentInteractionListener, RegionFragment.OnFragmentInteractionListener {
 
     private BottomBar bottomBar;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Add ToolBar
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         // Add Default Fragment
         if (findViewById(R.id.fragment_container) != null) {
@@ -29,12 +38,12 @@ public class MainActivity extends AppCompatActivity {
             homeFragment.setArguments(getIntent().getExtras());
 
             // Add the fragment to the 'fragment_container' FrameLayout
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, homeFragment, getResources().getString(R.string.fragment_home))
                     .commit();
         }
 
-        // BottomBar init
+        // Add BottomBar
         bottomBar = BottomBar.attach(this, savedInstanceState);
         // Show all titles even when there's more than three tabs.
         bottomBar.useFixedMode();
@@ -45,9 +54,34 @@ public class MainActivity extends AppCompatActivity {
         bottomBar.setOnMenuTabClickListener(new OnMenuTabClickListener() {
             @Override
             public void onMenuTabSelected(@IdRes int menuItemId) {
-                switch (menuItemId) {
-                    case R.id.bottomBarHome:
-                        break;
+                if (menuItemId == R.id.bottomBarHome) {
+                    HomeFragment homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag(getResources().getString(R.string.fragment_home));
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    if (null == homeFragment) {
+                        homeFragment = new HomeFragment();
+                        // 根据Fragment的生命周期, 会把被替换的Fragment添加到BackStack堆栈
+                        // 1. 堆栈计数值会加1 `getSupportFragmentManager().getBackStackEntryCount()`
+                        // 2. Fragment会被添加到Fragment堆栈 `getSupportFragmentManager().getFragments()`
+                        ft.addToBackStack(null);
+                    }
+                    ft.replace(R.id.fragment_container, homeFragment, getResources().getString(R.string.fragment_home));
+                    ft.commit();
+                } else if (menuItemId == R.id.bottomBarRegion) {
+                    RegionFragment regionFragment = (RegionFragment) getSupportFragmentManager().findFragmentByTag(getResources().getString(R.string.fragment_region));
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    if (null == regionFragment) {
+                        regionFragment = new RegionFragment();
+                        // 根据Fragment的生命周期, 会把被替换的Fragment添加到BackStack堆栈
+                        // 1. 堆栈计数值会加1 `getSupportFragmentManager().getBackStackEntryCount()`
+                        // 2. Fragment会被添加到Fragment堆栈 `getSupportFragmentManager().getFragments()`
+                        ft.addToBackStack(null);
+                    }
+                    ft.replace(R.id.fragment_container, regionFragment, getResources().getString(R.string.fragment_region));
+                    ft.commit();
+                } else if (menuItemId == R.id.bottomBarScene) {
+
+                } else if (menuItemId == R.id.bottomBarMe) {
+
                 }
             }
 
@@ -69,6 +103,12 @@ public class MainActivity extends AppCompatActivity {
         // Necessary to restore the BottomBar's state, otherwise we would
         // lose the current tab on orientation change.
         bottomBar.onSaveInstanceState(outState);
+    }
+
+    // HomeFragment
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 
 }

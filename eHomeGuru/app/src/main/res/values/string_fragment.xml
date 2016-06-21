@@ -2,5 +2,5 @@
 <resources>
     <!-- fragment_name -->
     <string name="fragment_home">fragment_home</string>
-    <string name="fragment_setting">fragment_setting</string>
+    <string name="fragment_region">fragment_region</string>
 </resources>
