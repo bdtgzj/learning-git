@@ -1,14 +1,22 @@
 package cn.com.ehomeguru.view;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.com.ehomeguru.R;
+import cn.com.ehomeguru.adapter.HomeAdapter;
+import cn.com.ehomeguru.bean.HomeCard;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +37,11 @@ public class HomeFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    //
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView.Adapter mAdapter;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -65,7 +78,29 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View v = inflater.inflate(R.layout.fragment_home, container, false);
+        // init RecyclerView
+        mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_home);
+        //
+        SpacesItemDecoration spacesItemDecoration = new SpacesItemDecoration(16);
+        mRecyclerView.addItemDecoration(spacesItemDecoration);
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        // mRecyclerView.setHasFixedSize(true);
+        // use a linear layout manager
+        //mLayoutManager = new LinearLayoutManager(getContext());
+        mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        // specify an adapter
+        List<HomeCard> listHomeCard = new ArrayList<HomeCard>();
+        listHomeCard.add(new HomeCard("ic_menu_home", "#FF0000", "Home", 1));
+        listHomeCard.add(new HomeCard("ic_menu_region", "#00FF00", "Region", 2));
+        listHomeCard.add(new HomeCard("ic_menu_scene", "#0000FF", "Secne", 3));
+        mAdapter = new HomeAdapter(listHomeCard);
+        mRecyclerView.setAdapter(mAdapter);
+
+        return v;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -106,4 +141,27 @@ public class HomeFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    // set spacing between items in RecyclerView.
+    public static class SpacesItemDecoration extends RecyclerView.ItemDecoration {
+
+        private final int mSpace;
+
+        public SpacesItemDecoration(int space) {
+            this.mSpace = space;
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+            super.getItemOffsets(outRect, view, parent, state);
+            outRect.left = mSpace;
+            outRect.right = mSpace;
+            outRect.bottom = mSpace;
+            // Add top margin only for the first item to avoid double space between items
+            if (parent.getChildAdapterPosition(view) == 0 || parent.getChildAdapterPosition(view) == 1) {
+                outRect.top = mSpace;
+            }
+        }
+    }
+
 }
