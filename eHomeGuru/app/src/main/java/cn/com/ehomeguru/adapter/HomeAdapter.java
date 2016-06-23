@@ -1,8 +1,11 @@
 package cn.com.ehomeguru.adapter;
 
+import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.VectorDrawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -45,11 +48,21 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
+        Context context = holder.mImageView.getContext();
         Resources resources = holder.mImageView.getResources();
         String packageName = holder.mImageView.getContext().getPackageName();
+
+        Resources.Theme theme = context.getTheme();
         int drawID = resources.getIdentifier(listHomeCard.get(position).getIcon(), "drawable", packageName);
 
-        holder.mImageView.setImageResource(drawID);
+        Drawable drawable = ContextCompat.getDrawable(context, drawID);
+        drawable.setColorFilter(Color.RED, PorterDuff.Mode.DARKEN);
+
+        //VectorDrawableCompat vectorDrawableCompat = VectorDrawableCompat.create(resources, drawID, theme);
+        //VectorDrawableCompat vectorDrawableCompat = new VectorDrawableCompat();
+        //vectorDrawableCompat.setTint(Color.RED);
+
+        holder.mImageView.setImageDrawable(drawable);
         holder.mTextView.setText(listHomeCard.get(position).getText());
     }
 
