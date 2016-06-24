@@ -22,11 +22,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.com.ehomeguru.R;
-import cn.com.ehomeguru.bean.Response;
+import cn.com.ehomeguru.bean.Answer;
 import cn.com.ehomeguru.bean.User;
 import cn.com.ehomeguru.model.UserHint;
 import cn.com.ehomeguru.service.ServiceGenerator;
@@ -241,8 +242,8 @@ public class LoginActivity extends AppCompatActivity {
             // attempt authentication against a network service.
             User user = new User(name, password);
             UserService userService = ServiceGenerator.createService(UserService.class);
-            Call<Response> call = userService.signIn(user);
-            Response res;
+            Call<Answer> call = userService.signIn(user);
+            Answer res;
             try {
                 res = call.execute().body();
                 System.out.println(res);
@@ -280,7 +281,9 @@ public class LoginActivity extends AppCompatActivity {
                     });
                 }
                 // open MainActivity
-                Intent i=new Intent(LoginActivity.this, MainActivity.class);
+                Intent intent=new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("user", );
+                intent.put
                 startActivity(i);
                 finish();
             } else {

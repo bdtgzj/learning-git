@@ -4,7 +4,11 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.VectorDrawable;
+import android.os.Build;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -51,19 +55,25 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         Context context = holder.mImageView.getContext();
         Resources resources = holder.mImageView.getResources();
         String packageName = holder.mImageView.getContext().getPackageName();
-
         Resources.Theme theme = context.getTheme();
+        // get resource id according resource name
         int drawID = resources.getIdentifier(listHomeCard.get(position).getIcon(), "drawable", packageName);
-
+        // get resource according resource, and set color.
         Drawable drawable = ContextCompat.getDrawable(context, drawID);
-        drawable.setColorFilter(Color.RED, PorterDuff.Mode.DARKEN);
-
-        //VectorDrawableCompat vectorDrawableCompat = VectorDrawableCompat.create(resources, drawID, theme);
-        //VectorDrawableCompat vectorDrawableCompat = new VectorDrawableCompat();
-        //vectorDrawableCompat.setTint(Color.RED);
-
+        drawable.setColorFilter(Color.parseColor(listHomeCard.get(position).getColor()), PorterDuff.Mode.SRC_ATOP);
+        //
         holder.mImageView.setImageDrawable(drawable);
         holder.mTextView.setText(listHomeCard.get(position).getText());
+        /*
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            VectorDrawable vectorDrawable = (VectorDrawable) drawable;
+            vectorDrawable.setTint(Color.RED);
+            //VectorDrawableCompat vectorDrawableCompat = VectorDrawableCompat.create(resources, drawID, theme);
+            //vectorDrawableCompat.setTint(Color.RED);
+        } else {
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+        }
+        */
     }
 
     // Return the size of your dataset (invoked by the layout manager)

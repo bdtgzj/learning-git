@@ -3,7 +3,7 @@ package cn.com.ehomeguru.bean;
 /**
  * Created by yuxiaodong on 6/15/16.
  */
-public class Response {
+public class Answer {
     private String desc;
     private Boolean valid;
     private Object data;

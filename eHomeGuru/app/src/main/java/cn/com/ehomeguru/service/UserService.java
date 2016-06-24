@@ -1,6 +1,6 @@
 package cn.com.ehomeguru.service;
 
-import cn.com.ehomeguru.bean.Response;
+import cn.com.ehomeguru.bean.Answer;
 import cn.com.ehomeguru.bean.User;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -12,7 +12,7 @@ import retrofit2.http.POST;
 public interface UserService {
     @POST("user/signin")
     // Call<User> signIn();
-    Call<Response> signIn(@Body User user);
+    Call<Answer> signIn(@Body User user);
 
     /*
     public static final Retrofit retrofit = new Retrofit.Builder()

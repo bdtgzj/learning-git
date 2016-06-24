@@ -17,6 +17,12 @@ import java.util.List;
 import cn.com.ehomeguru.R;
 import cn.com.ehomeguru.adapter.HomeAdapter;
 import cn.com.ehomeguru.bean.HomeCard;
+import cn.com.ehomeguru.bean.Answer;
+import cn.com.ehomeguru.service.HomeCardService;
+import cn.com.ehomeguru.service.ServiceGenerator;
+import okhttp3.Response;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -91,11 +97,31 @@ public class HomeFragment extends Fragment {
         //mLayoutManager = new LinearLayoutManager(getContext());
         mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        // specify an adapter
+        // request for HomeCard data.
+        HomeCardService homeCardService = ServiceGenerator.createService(HomeCardService.class, null, null);
+        Call<Answer> call = homeCardService.getHomeCard();
+        call.enqueue(new Callback<Answer>() {
+            @Override
+            public void onResponse(Call<Answer> call, retrofit2.Response<Answer> response) {
+                if (response.isSuccessful()) {
+
+                } else {
+
+                }
+                // get raw response
+                //Response raw = response.raw();
+            }
+
+            @Override
+            public void onFailure(Call<Answer> call, Throwable t) {
+                System.out.println(t.getMessage());
+            }
+        });
         List<HomeCard> listHomeCard = new ArrayList<HomeCard>();
         listHomeCard.add(new HomeCard("ic_menu_home", "#FF0000", "Home", 1));
         listHomeCard.add(new HomeCard("ic_menu_region", "#00FF00", "Region", 2));
         listHomeCard.add(new HomeCard("ic_menu_scene", "#0000FF", "Secne", 3));
+        // specify an adapter
         mAdapter = new HomeAdapter(listHomeCard);
         mRecyclerView.setAdapter(mAdapter);
 
