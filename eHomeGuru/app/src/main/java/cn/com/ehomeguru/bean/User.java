@@ -1,11 +1,15 @@
 package cn.com.ehomeguru.bean;
 
+import com.gustavofao.jsonapi.Annotations.Type;
+import com.gustavofao.jsonapi.Models.Resource;
+
 import java.util.Date;
 
 /**
  * Created by xiaodongyu on 6/12/2016 AD.
  */
-public class User {
+@Type("user")
+public class User extends Resource {
 
     private String name;
     private String loginName;

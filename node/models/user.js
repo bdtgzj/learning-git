@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 var Counter = require('./counter');
 
 var userSchema = new Schema({
+  _id: {type: Number},
   name: {type: String},
   loginName: {type: String},
   password: {type: String},

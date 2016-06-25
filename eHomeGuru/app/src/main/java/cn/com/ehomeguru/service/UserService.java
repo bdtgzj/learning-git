@@ -1,5 +1,7 @@
 package cn.com.ehomeguru.service;
 
+import com.gustavofao.jsonapi.Models.JSONApiObject;
+
 import cn.com.ehomeguru.bean.Answer;
 import cn.com.ehomeguru.bean.User;
 import retrofit2.Call;
@@ -12,7 +14,7 @@ import retrofit2.http.POST;
 public interface UserService {
     @POST("user/signin")
     // Call<User> signIn();
-    Call<Answer> signIn(@Body User user);
+    Call<JSONApiObject> signIn(@Body User user);
 
     /*
     public static final Retrofit retrofit = new Retrofit.Builder()

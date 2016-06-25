@@ -21,6 +21,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.gustavofao.jsonapi.Models.JSONApiObject;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -242,20 +245,20 @@ public class LoginActivity extends AppCompatActivity {
             // attempt authentication against a network service.
             User user = new User(name, password);
             UserService userService = ServiceGenerator.createService(UserService.class);
-            Call<Answer> call = userService.signIn(user);
-            Answer res;
+            Call<JSONApiObject> call = userService.signIn(user);
+            JSONApiObject res;
             try {
                 res = call.execute().body();
                 System.out.println(res);
-                System.out.println(res.isValid());
-                System.out.println(res.getDesc());
                 System.out.println(res.getData());
+                //System.out.println(res.getDesc());
+                //System.out.println(res.getData());
             } catch (IOException e) {
                 System.out.println(e);
                 return false;
             }
 
-            if (res.isValid()) {
+            if (res.getData().size() > 0) {
                 return true;
             } else {
                 return false;
@@ -282,10 +285,10 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 // open MainActivity
                 Intent intent=new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtra("user", );
-                intent.put
-                startActivity(i);
-                finish();
+                intent.putExtra("user", "1");
+
+                //startActivity(intent);
+                //finish();
             } else {
                 passwordView.setError(getString(R.string.error_incorrect_password));
                 passwordView.requestFocus();

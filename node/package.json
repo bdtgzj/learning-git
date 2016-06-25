@@ -17,6 +17,7 @@
     "eventproxy": "^0.3.4",
     "express": "^4.13.4",
     "jackpot": "^0.0.6",
+    "jsonapi-serializer": "^3.2.1",
     "method-override": "^2.3.6",
     "mongoose": "^4.4.20",
     "nodemailer": "^2.4.2",

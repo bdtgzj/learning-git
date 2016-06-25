@@ -7,6 +7,8 @@ var mail = require('../services/mail');
 var crypto = require('crypto');
 var validator = require('validator');
 var hashcrypt = require('../libs/hashcrypt');
+var JSONAPIDeserializer = require('jsonapi-serializer').Deserializer;
+var UserSerializer = require('../serializers/user');
 
 exports.retrieve = function(req, res, next) {
   var type = req.query.type;
@@ -113,21 +115,22 @@ exports.signup = function(req, res, next) {
  * User authentication.
  */
 exports.signin = function(req, res, next) {
-  var name = validator.trim(req.body.name);
-  var password = validator.trim(req.body.password);
-
-  User.getUserByNameEmailMPhonePass(name, hashcrypt.sha1(password), function(err, users) {
-    if (err) {
-      return next(err);
-    }
-    console.log(users);
-    var user = users.length > 0 ? users[0] : null;
-    if (user) {
-      res.json({desc: '', valid: true, data: {name: user.name, email: user.email}});
-    } else {
+  new JSONAPIDeserializer().deserialize(req.body)
+    .then(function(user) {
+      var name = validator.trim(user.name);
+      var password = validator.trim(user.password);
+      User.getUserByNameEmailMPhonePass(name, hashcrypt.sha1(password), function(err, users) {
+        if (err) {
+          return next(err);
+        }
+        var user = users.length > 0 ? users[0] : null;
+        res.json(UserSerializer.serialize(user));
+        //res.json({desc: '用户名或密码不正确，请重新输入！', valid: false});
+      });
+    })
+    .catch(function(err) {
       res.json({desc: '用户名或密码不正确，请重新输入！', valid: false});
-    }
-  });
+    });
 };
 
 /**

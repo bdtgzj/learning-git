@@ -15,3 +15,6 @@ init-mongod:
 
 start-curl:
 	curl http://localhost:3000/water
+
+start-jmeter:
+	jmeter.sh &

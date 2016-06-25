@@ -6,3 +6,6 @@ other/data
 
 # Ignore Windows desktop setting file
 desktop.ini
+
+# Ignore JMeter's log
+jmeter.log
