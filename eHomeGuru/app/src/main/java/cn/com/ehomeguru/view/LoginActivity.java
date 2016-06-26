@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.gustavofao.jsonapi.Models.ErrorModel;
 import com.gustavofao.jsonapi.Models.JSONApiObject;
 
 import java.io.IOException;
@@ -39,6 +40,7 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 import retrofit2.Call;
+import retrofit2.Response;
 
 /**
  * A login screen that offers login via name/password.
@@ -230,7 +232,7 @@ public class LoginActivity extends AppCompatActivity {
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    public class UserLoginTask extends AsyncTask<Void, Void, JSONApiObject> {
 
         private final String name;
         private final String password;
@@ -241,57 +243,63 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         @Override
-        protected Boolean doInBackground(Void... params) {
+        protected JSONApiObject doInBackground(Void... params) {
             // attempt authentication against a network service.
             User user = new User(name, password);
             UserService userService = ServiceGenerator.createService(UserService.class);
             Call<JSONApiObject> call = userService.signIn(user);
-            JSONApiObject res;
             try {
-                res = call.execute().body();
-                System.out.println(res);
-                System.out.println(res.getData());
-                //System.out.println(res.getDesc());
-                //System.out.println(res.getData());
+                JSONApiObject jsonApiObject = call.execute().body();
+                // System.out.println(jsonApiObject.getData());
+                return jsonApiObject;
             } catch (IOException e) {
                 System.out.println(e);
-                return false;
+                return null;
             }
-
-            if (res.getData().size() > 0) {
-                return true;
-            } else {
-                return false;
-            }
-
         }
 
         @Override
-        protected void onPostExecute(final Boolean success) {
+        protected void onPostExecute(final JSONApiObject jsonApiObject) {
             mAuthTask = null;
             showProgress(false);
 
-            if (success) {
-                // add to realm
-                RealmResults<UserHint> userHints =  realm.where(UserHint.class).equalTo("name", name).findAll();
-                if (userHints.size() < 1) {
-                    realm.executeTransaction(new Realm.Transaction() {
-                        @Override
-                        public void execute(Realm realm) {
-                            UserHint userHint = realm.createObject(UserHint.class);
-                            userHint.setName(name);
+            if (jsonApiObject != null) {
+                if (jsonApiObject.hasErrors()) {
+                    List<ErrorModel> errorList = jsonApiObject.getErrors();
+                    System.out.println(errorList);
+                } else {
+                    if (jsonApiObject.getData().size() > 0) {
+                        // add to realm
+                        RealmResults<UserHint> userHints =  realm.where(UserHint.class).equalTo("name", name).findAll();
+                        if (userHints.size() < 1) {
+                            realm.executeTransaction(new Realm.Transaction() {
+                                @Override
+                                public void execute(Realm realm) {
+                                    UserHint userHint = realm.createObject(UserHint.class);
+                                    userHint.setName(name);
+                                }
+                            });
                         }
-                    });
-                }
-                // open MainActivity
-                Intent intent=new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtra("user", "1");
+                        // open MainActivity
+                        Intent intent=new Intent(LoginActivity.this, MainActivity.class);
+                        intent.putExtra("user", "1");
 
-                //startActivity(intent);
-                //finish();
+                        //startActivity(intent);
+                        //finish();
+                    } else {
+                        passwordView.setError(getString(R.string.error_incorrect_password));
+                        passwordView.requestFocus();
+                    }
+                }
             } else {
-                passwordView.setError(getString(R.string.error_incorrect_password));
-                passwordView.requestFocus();
+                /*
+                try {
+                    JSONApiObject object = App.getConverter().fromJson(response.errorBody().string());
+                    handleErrors(object.getErrors());
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                }
+                */
             }
         }
 

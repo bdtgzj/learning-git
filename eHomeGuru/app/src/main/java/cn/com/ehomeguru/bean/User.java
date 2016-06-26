@@ -12,13 +12,13 @@ import java.util.Date;
 public class User extends Resource {
 
     private String name;
-    private String loginName;
     private String password;
+    private String nickName;
     private String email;
     private String mphone;
+    private int familyId;
+    private int screenId;
     private Date created;
-    private int familyID;
-    private int screenID;
 
     public User() {
     }
@@ -36,12 +36,12 @@ public class User extends Resource {
         this.name = name;
     }
 
-    public String getLoginName() {
-        return loginName;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public String getPassword() {
@@ -76,20 +76,20 @@ public class User extends Resource {
         this.created = created;
     }
 
-    public int getFamilyID() {
-        return familyID;
+    public int getFamilyId() {
+        return familyId;
     }
 
-    public void setFamilyID(int familyID) {
-        this.familyID = familyID;
+    public void setFamilyId(int familyId) {
+        this.familyId = familyId;
     }
 
-    public int getScreenID() {
-        return screenID;
+    public int getScreenId() {
+        return screenId;
     }
 
-    public void setScreenID(int screenID) {
-        this.screenID = screenID;
+    public void setScreenId(int screenId) {
+        this.screenId = screenId;
     }
 
 }

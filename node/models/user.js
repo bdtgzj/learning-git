@@ -5,8 +5,8 @@ var Counter = require('./counter');
 var userSchema = new Schema({
   _id: {type: Number},
   name: {type: String},
-  loginName: {type: String},
   password: {type: String},
+  nickName: {type: String},
   email: {type: String},
   mphone: {type: String},
   created: {type: Date, default: Date.now},
@@ -14,8 +14,8 @@ var userSchema = new Schema({
   state: {type: Number, default: 0},
   retrieveToken: {type: String},
   retrieveTime: {type: Number},
-  familyID: {type: Number},
-  screenID: {type: Number}
+  familyId: {type: Number},
+  screenId: {type: Number}
 });
 
 userSchema.index({loginName: 1}, {unique: true});
@@ -36,4 +36,4 @@ userSchema.pre('save', function(next) {
 });
 
 // admin6 = 16b4d433eeef71946e93341822786a196549c2c5
-// db.users.save({_id: 1, name:'俞晓东', loginName:'yxdc002', password:'16b4d433eeef71946e93341822786a196549c2c5', email:'yxdc002@ehomeguru.com.cn', mphone: '13222880055', familyID: 17});
+// db.users.save({_id: 1, name:'yxdc002', nickName:'俞晓东', password:'16b4d433eeef71946e93341822786a196549c2c5', email:'yxdc002@ehomeguru.com.cn', mphone: '13222880055', familyId: 17});

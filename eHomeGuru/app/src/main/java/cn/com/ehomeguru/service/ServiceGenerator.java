@@ -6,6 +6,7 @@ import com.gustavofao.jsonapi.Retrofit.JSONConverterFactory;
 
 import java.io.IOException;
 
+import cn.com.ehomeguru.bean.User;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -18,14 +19,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ServiceGenerator {
 
-    public static final String API_BASE_URL = "http://192.168.8.66:3000";
+    public static final String API_BASE_URL = "http://192.168.1.66:3000";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
     private static Retrofit.Builder builder = new Retrofit.Builder()
             .baseUrl(API_BASE_URL)
             //.addConverterFactory(GsonConverterFactory.create());
-            .addConverterFactory(JSONConverterFactory.create());
+            .addConverterFactory(JSONConverterFactory.create(User.class));
 
     public static <S> S createService(Class<S> serviceClass) {
         return createService(serviceClass, null, null);
