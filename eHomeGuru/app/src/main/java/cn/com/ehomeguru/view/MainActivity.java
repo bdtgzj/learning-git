@@ -7,10 +7,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import com.google.gson.Gson;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
 
 import cn.com.ehomeguru.R;
+import cn.com.ehomeguru.bean.User;
 
 public class MainActivity extends AppCompatActivity
         implements HomeFragment.OnFragmentInteractionListener, RegionFragment.OnFragmentInteractionListener {

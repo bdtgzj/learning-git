@@ -1,6 +1,7 @@
 package cn.com.ehomeguru.service;
 
-import cn.com.ehomeguru.bean.Answer;
+import com.gustavofao.jsonapi.Models.JSONApiObject;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 
@@ -9,7 +10,7 @@ import retrofit2.http.GET;
  */
 public interface HomeCardService {
 
-    @GET("home")
-    Call<Answer> getHomeCard();
+    @GET("homecard")
+    Call<JSONApiObject> getHomeCard();
 
 }

@@ -20,19 +20,18 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.gustavofao.jsonapi.Models.ErrorModel;
 import com.gustavofao.jsonapi.Models.JSONApiObject;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.com.ehomeguru.R;
-import cn.com.ehomeguru.bean.Answer;
 import cn.com.ehomeguru.bean.User;
+import cn.com.ehomeguru.model.GlobalData;
 import cn.com.ehomeguru.model.UserHint;
 import cn.com.ehomeguru.service.ServiceGenerator;
 import cn.com.ehomeguru.service.UserService;
@@ -40,7 +39,6 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 import retrofit2.Call;
-import retrofit2.Response;
 
 /**
  * A login screen that offers login via name/password.
@@ -153,8 +151,13 @@ public class LoginActivity extends AppCompatActivity {
         boolean cancel = false;
         View focusView = null;
 
+
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        if (TextUtils.isEmpty(password)) {
+            passwordView.setError(getString(R.string.error_password_field_required));
+            focusView = passwordView;
+            cancel = true;
+        } else if (!isPasswordValid(password)) {
             passwordView.setError(getString(R.string.error_invalid_password));
             focusView = passwordView;
             cancel = true;
@@ -162,7 +165,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // Check for a valid name.
         if (TextUtils.isEmpty(name)) {
-            nameView.setError(getString(R.string.error_field_required));
+            nameView.setError(getString(R.string.error_name_field_required));
             focusView = nameView;
             cancel = true;
         } else if (!isNameValid(name)) {
@@ -185,11 +188,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean isNameValid(String name) {
-        return name.length() > 4;
+        return name.length() >= 6;
     }
 
     private boolean isPasswordValid(String password) {
-        return password.length() > 4;
+        return password.length() >= 6;
     }
 
     /**
@@ -253,6 +256,7 @@ public class LoginActivity extends AppCompatActivity {
                 // System.out.println(jsonApiObject.getData());
                 return jsonApiObject;
             } catch (IOException e) {
+                // network error.
                 System.out.println(e);
                 return null;
             }
@@ -266,7 +270,7 @@ public class LoginActivity extends AppCompatActivity {
             if (jsonApiObject != null) {
                 if (jsonApiObject.hasErrors()) {
                     List<ErrorModel> errorList = jsonApiObject.getErrors();
-                    System.out.println(errorList);
+                    Toast.makeText(getApplicationContext(), errorList.get(0).getStatus(), Toast.LENGTH_LONG).show();
                 } else {
                     if (jsonApiObject.getData().size() > 0) {
                         // add to realm
@@ -280,26 +284,23 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             });
                         }
+                        // init User
+                        User user = (User) jsonApiObject.getData(0);
+                        // save to global data
+                        GlobalData.addObjectForKey("user", user);
                         // open MainActivity
                         Intent intent=new Intent(LoginActivity.this, MainActivity.class);
-                        intent.putExtra("user", "1");
-
-                        //startActivity(intent);
-                        //finish();
+                        //intent.putExtra("user", new Gson().toJson(user));
+                        startActivity(intent);
+                        finish();
                     } else {
-                        passwordView.setError(getString(R.string.error_incorrect_password));
-                        passwordView.requestFocus();
+                        //passwordView.setError(getString(R.string.error_incorrect_password));
+                        //passwordView.requestFocus();
+                        Toast.makeText(getApplicationContext(), R.string.error_user_nonexistent, Toast.LENGTH_SHORT).show();
                     }
                 }
             } else {
-                /*
-                try {
-                    JSONApiObject object = App.getConverter().fromJson(response.errorBody().string());
-                    handleErrors(object.getErrors());
-                } catch (IOException e) {
-                    System.out.println(e.getMessage());
-                }
-                */
+                Toast.makeText(getApplicationContext(), R.string.error_network, Toast.LENGTH_LONG).show();
             }
         }
 

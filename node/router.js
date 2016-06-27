@@ -9,9 +9,21 @@
 
 var express = require('express');
 var user = require('./controllers/user');
+var homecard = require('./controllers/homecard');
+var region = require('./controllers/region');
 var water = require('./controllers/water');
 
 var router = express.Router();
+
+/**
+ * homecard
+ */
+ router.get('/homecard', homecard.retrieve);
+
+ /**
+ * region
+ */
+ router.get('/region', region.retrieve);
 
 /**
  * water.

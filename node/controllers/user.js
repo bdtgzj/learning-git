@@ -8,7 +8,7 @@ var crypto = require('crypto');
 var validator = require('validator');
 var hashcrypt = require('../libs/hashcrypt');
 var JSONAPIDeserializer = require('jsonapi-serializer').Deserializer;
-var UserSerializer = require('../serializers/user');
+var UserSerializer = require('../serializers').UserSerializer;
 
 exports.retrieve = function(req, res, next) {
   var type = req.query.type;
@@ -129,7 +129,7 @@ exports.signin = function(req, res, next) {
       });
     })
     .catch(function(err) {
-      res.json({desc: '用户名或密码不正确，请重新输入！', valid: false});
+      return next(err);
     });
 };
 

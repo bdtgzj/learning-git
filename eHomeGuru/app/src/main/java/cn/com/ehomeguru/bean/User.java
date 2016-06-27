@@ -1,5 +1,6 @@
 package cn.com.ehomeguru.bean;
 
+import com.gustavofao.jsonapi.Annotations.Excluded;
 import com.gustavofao.jsonapi.Annotations.Type;
 import com.gustavofao.jsonapi.Models.Resource;
 
@@ -16,7 +17,9 @@ public class User extends Resource {
     private String nickName;
     private String email;
     private String mphone;
+    @Excluded
     private int familyId;
+    @Excluded
     private int screenId;
     private Date created;
 

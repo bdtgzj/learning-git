@@ -7,18 +7,20 @@
     <string name="action_settings">Settings</string>
 
 
-    <!-- Strings related to login -->
+    <!-- Strings related to LoginActivity -->
     <string name="title_activity_login">登录</string>
     <string name="prompt_uname">手机号/用户名/邮箱</string>
     <string name="prompt_upassword">密码</string>
     <string name="action_sign_in">登录</string>
     <string name="action_sign_in_short">登录</string>
-    <string name="error_invalid_name">This name is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="error_invalid_name">登录名至少需要六个字符</string>
+    <string name="error_invalid_password">密码至少需要六个字符</string>
+    <string name="error_incorrect_password">密码不正确</string>
+    <string name="error_name_field_required">请输入登录名</string>
+    <string name="error_password_field_required">请输入密码</string>
+    <string name="error_user_nonexistent">抱歉,用户名或密码不存在!</string>
 
+    <!-- Common error -->
+    <string name="error_network">抱歉,网络错误!</string>
+    <string name="error_system">抱歉,系统错误!</string>
 </resources>

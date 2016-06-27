@@ -2,7 +2,6 @@ package cn.com.ehomeguru.service;
 
 import com.gustavofao.jsonapi.Models.JSONApiObject;
 
-import cn.com.ehomeguru.bean.Answer;
 import cn.com.ehomeguru.bean.User;
 import retrofit2.Call;
 import retrofit2.http.Body;

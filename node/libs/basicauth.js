@@ -23,6 +23,7 @@ var basicAuth = function(req, res, next) {
         res.status(401).end('Access denied.');
         //res.json({desc: '', valid: false});
       } else {
+        req.uid = user._id;
         next();
       }
     }

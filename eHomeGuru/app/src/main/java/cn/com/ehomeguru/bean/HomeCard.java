@@ -1,14 +1,19 @@
 package cn.com.ehomeguru.bean;
 
+import com.gustavofao.jsonapi.Annotations.Type;
+import com.gustavofao.jsonapi.Models.Resource;
+
 /**
  * Created by xiaodongyu on 6/23/2016 AD.
  */
-public class HomeCard {
+
+@Type("homecard")
+public class HomeCard extends Resource {
 
     private String icon;
     private String color;
     private String text;
-    private int deviceID;
+    private int deviceId;
 
     public HomeCard() {
 
@@ -18,7 +23,7 @@ public class HomeCard {
         this.icon = icon;
         this.color = color;
         this.text = text;
-        this.deviceID = deviceID;
+        this.deviceId = deviceId;
     }
 
     public String getIcon() {
@@ -45,11 +50,11 @@ public class HomeCard {
         this.text = text;
     }
 
-    public int getDeviceID() {
-        return deviceID;
+    public int getDeviceId() {
+        return deviceId;
     }
 
-    public void setDeviceID(int deviceID) {
-        this.deviceID = deviceID;
+    public void setDeviceId(int deviceId) {
+        this.deviceId = deviceId;
     }
 }

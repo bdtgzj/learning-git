@@ -10,6 +10,11 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.gustavofao.jsonapi.Models.ErrorModel;
+import com.gustavofao.jsonapi.Models.JSONApiObject;
+import com.gustavofao.jsonapi.Models.Resource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +22,10 @@ import java.util.List;
 import cn.com.ehomeguru.R;
 import cn.com.ehomeguru.adapter.HomeAdapter;
 import cn.com.ehomeguru.bean.HomeCard;
-import cn.com.ehomeguru.bean.Answer;
+import cn.com.ehomeguru.bean.User;
+import cn.com.ehomeguru.model.GlobalData;
 import cn.com.ehomeguru.service.HomeCardService;
 import cn.com.ehomeguru.service.ServiceGenerator;
-import okhttp3.Response;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -48,6 +53,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
+    private List<HomeCard> listHomeCard;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -87,40 +93,60 @@ public class HomeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
         // init RecyclerView
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_home);
-        //
+        // spacings between Items.
         SpacesItemDecoration spacesItemDecoration = new SpacesItemDecoration(16);
         mRecyclerView.addItemDecoration(spacesItemDecoration);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         // mRecyclerView.setHasFixedSize(true);
-        // use a linear layout manager
+
+        // use a layout manager
         //mLayoutManager = new LinearLayoutManager(getContext());
         mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
+
+        // data for adapter
+        listHomeCard = new ArrayList<HomeCard>();
+
         // request for HomeCard data.
-        HomeCardService homeCardService = ServiceGenerator.createService(HomeCardService.class, null, null);
-        Call<Answer> call = homeCardService.getHomeCard();
-        call.enqueue(new Callback<Answer>() {
+        GlobalData.addObjectForKey("user", new User("yxdc002", "admin6"));
+        User user = (User) GlobalData.getObjectForKey("user");
+        HomeCardService homeCardService = ServiceGenerator.createService(HomeCardService.class, user.getName(), user.getPassword());
+        Call<JSONApiObject> call = homeCardService.getHomeCard();
+        call.enqueue(new Callback<JSONApiObject>() {
             @Override
-            public void onResponse(Call<Answer> call, retrofit2.Response<Answer> response) {
-                if (response.isSuccessful()) {
-
+            public void onResponse(Call<JSONApiObject> call, retrofit2.Response<JSONApiObject> response) {
+                JSONApiObject jsonApiObject = response.body();
+                System.out.println(jsonApiObject.getData());
+                if (jsonApiObject != null) {
+                    if (jsonApiObject.hasErrors()) {
+                        List<ErrorModel> errorList = jsonApiObject.getErrors();
+                        Toast.makeText(getContext(), errorList.get(0).getStatus(), Toast.LENGTH_LONG).show();
+                    } else {
+                        if (jsonApiObject.getData().size() > 0) {
+                            List<Resource> resources = jsonApiObject.getData();
+                            for (Resource resource : resources ) {
+                                listHomeCard.add((HomeCard) resource);
+                                // listHomeCard.add(new HomeCard("ic_menu_home", "#FF0000", "Home", 1));
+                                // listHomeCard.add(new HomeCard("ic_menu_region", "#00FF00", "Region", 2));
+                                // listHomeCard.add(new HomeCard("ic_menu_scene", "#0000FF", "Secne", 3));
+                            }
+                        } else {
+                            // Toast.makeText(getContext(), R.string.error_homecard_nonexistent, Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 } else {
-
+                    Toast.makeText(getContext(), R.string.error_network, Toast.LENGTH_LONG).show();
                 }
-                // get raw response
-                //Response raw = response.raw();
             }
 
             @Override
-            public void onFailure(Call<Answer> call, Throwable t) {
+            public void onFailure(Call<JSONApiObject> call, Throwable t) {
+                Toast.makeText(getContext(), R.string.error_system, Toast.LENGTH_LONG).show();
                 System.out.println(t.getMessage());
             }
         });
-        List<HomeCard> listHomeCard = new ArrayList<HomeCard>();
-        listHomeCard.add(new HomeCard("ic_menu_home", "#FF0000", "Home", 1));
-        listHomeCard.add(new HomeCard("ic_menu_region", "#00FF00", "Region", 2));
-        listHomeCard.add(new HomeCard("ic_menu_scene", "#0000FF", "Secne", 3));
+
         // specify an adapter
         mAdapter = new HomeAdapter(listHomeCard);
         mRecyclerView.setAdapter(mAdapter);
