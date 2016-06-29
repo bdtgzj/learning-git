@@ -11,6 +11,7 @@ var express = require('express');
 var user = require('./controllers/user');
 var homecard = require('./controllers/homecard');
 var region = require('./controllers/region');
+var device = require('./controllers/device');
 var water = require('./controllers/water');
 
 var router = express.Router();
@@ -24,6 +25,11 @@ var router = express.Router();
  * region
  */
  router.get('/region', region.retrieve);
+
+ /**
+ * device
+ */
+ router.get('/device', device.retrieveByRegion);
 
 /**
  * water.

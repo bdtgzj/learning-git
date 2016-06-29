@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.com.ehomeguru.R;
-import cn.com.ehomeguru.adapter.HomeAdapter;
+import cn.com.ehomeguru.adapter.HomeRecyclerViewAdapter;
 import cn.com.ehomeguru.bean.HomeCard;
 import cn.com.ehomeguru.bean.User;
 import cn.com.ehomeguru.model.GlobalData;
@@ -53,7 +53,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
-    private List<HomeCard> listHomeCard;
+    private List<HomeCard> mListHomeCard;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -106,7 +106,11 @@ public class HomeFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // data for adapter
-        listHomeCard = new ArrayList<HomeCard>();
+        mListHomeCard = new ArrayList<HomeCard>();
+
+        // specify an adapter
+        mAdapter = new HomeRecyclerViewAdapter(mListHomeCard);
+        mRecyclerView.setAdapter(mAdapter);
 
         // request for HomeCard data.
         GlobalData.addObjectForKey("user", new User("yxdc002", "admin6"));
@@ -117,39 +121,35 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<JSONApiObject> call, retrofit2.Response<JSONApiObject> response) {
                 JSONApiObject jsonApiObject = response.body();
-                System.out.println(jsonApiObject.getData());
                 if (jsonApiObject != null) {
                     if (jsonApiObject.hasErrors()) {
                         List<ErrorModel> errorList = jsonApiObject.getErrors();
-                        Toast.makeText(getContext(), errorList.get(0).getStatus(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), errorList.get(0).getStatus(), Toast.LENGTH_SHORT).show();
                     } else {
                         if (jsonApiObject.getData().size() > 0) {
                             List<Resource> resources = jsonApiObject.getData();
                             for (Resource resource : resources ) {
-                                listHomeCard.add((HomeCard) resource);
-                                // listHomeCard.add(new HomeCard("ic_menu_home", "#FF0000", "Home", 1));
-                                // listHomeCard.add(new HomeCard("ic_menu_region", "#00FF00", "Region", 2));
-                                // listHomeCard.add(new HomeCard("ic_menu_scene", "#0000FF", "Secne", 3));
+                                mListHomeCard.add((HomeCard) resource);
+                                // mListHomeCard.add(new HomeCard("ic_menu_home", "#FF0000", "Home", 1));
+                                // mListHomeCard.add(new HomeCard("ic_menu_region", "#00FF00", "RegionService", 2));
+                                // mListHomeCard.add(new HomeCard("ic_menu_scene", "#0000FF", "Secne", 3));
                             }
+                            mAdapter.notifyDataSetChanged();
                         } else {
                             // Toast.makeText(getContext(), R.string.error_homecard_nonexistent, Toast.LENGTH_SHORT).show();
                         }
                     }
                 } else {
-                    Toast.makeText(getContext(), R.string.error_network, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), R.string.error_network, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<JSONApiObject> call, Throwable t) {
-                Toast.makeText(getContext(), R.string.error_system, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.error_network, Toast.LENGTH_SHORT).show();
                 System.out.println(t.getMessage());
             }
         });
-
-        // specify an adapter
-        mAdapter = new HomeAdapter(listHomeCard);
-        mRecyclerView.setAdapter(mAdapter);
 
         return v;
 

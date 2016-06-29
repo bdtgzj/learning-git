@@ -6,7 +6,9 @@ import com.gustavofao.jsonapi.Retrofit.JSONConverterFactory;
 
 import java.io.IOException;
 
+import cn.com.ehomeguru.bean.Device;
 import cn.com.ehomeguru.bean.HomeCard;
+import cn.com.ehomeguru.bean.Region;
 import cn.com.ehomeguru.bean.User;
 import cn.com.ehomeguru.model.GlobalData;
 import okhttp3.Interceptor;
@@ -28,7 +30,7 @@ public class ServiceGenerator {
     private static Retrofit.Builder builder = new Retrofit.Builder()
             .baseUrl(API_BASE_URL)
             //.addConverterFactory(GsonConverterFactory.create());
-            .addConverterFactory(JSONConverterFactory.create(User.class, HomeCard.class));
+            .addConverterFactory(JSONConverterFactory.create(User.class, HomeCard.class, Region.class, Device.class));
 
     public static <S> S createService(Class<S> serviceClass) {
         return createService(serviceClass, null, null);

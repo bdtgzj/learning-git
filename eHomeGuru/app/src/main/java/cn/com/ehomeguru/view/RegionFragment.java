@@ -10,8 +10,24 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.gustavofao.jsonapi.Models.ErrorModel;
+import com.gustavofao.jsonapi.Models.JSONApiObject;
+import com.gustavofao.jsonapi.Models.Resource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import cn.com.ehomeguru.R;
+import cn.com.ehomeguru.adapter.RegionViewPagerAdapter;
+import cn.com.ehomeguru.bean.Region;
+import cn.com.ehomeguru.bean.User;
+import cn.com.ehomeguru.model.GlobalData;
+import cn.com.ehomeguru.service.RegionService;
+import cn.com.ehomeguru.service.ServiceGenerator;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,7 +52,8 @@ public class RegionFragment extends Fragment {
     //
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private ViewPagerAdapter viewPagerAdapter;
+    private RegionViewPagerAdapter viewPagerAdapter;
+    private List<Region> regions; // dataset for ViewPagerAdapter
 
     public RegionFragment() {
         // Required empty public constructor
@@ -77,22 +94,53 @@ public class RegionFragment extends Fragment {
         //
         tabLayout = (TabLayout) v.findViewById(R.id.tabs);
         viewPager = (ViewPager) v.findViewById(R.id.viewpager);
-        // set ViewPager's datasource
-        viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
+
+        // set ViewPager's Adapter.
+        regions = new ArrayList<Region>();
+        viewPagerAdapter = new RegionViewPagerAdapter(getChildFragmentManager(), regions);
         viewPager.setAdapter(viewPagerAdapter);
+
+        // request for region data. set for tab name, set dataset for ViewPagerAdapater.
+        User user = (User) GlobalData.getObjectForKey("user");
+        RegionService regionService = ServiceGenerator.createService(RegionService.class, user.getName(), user.getPassword());
+        Call<JSONApiObject> call = regionService.getRegion();
+        call.enqueue(new Callback<JSONApiObject>() {
+            @Override
+            public void onResponse(Call<JSONApiObject> call, retrofit2.Response<JSONApiObject> response) {
+                JSONApiObject jsonApiObject = response.body();
+                if (jsonApiObject != null) {
+                    if (jsonApiObject.hasErrors()) {
+                        List<ErrorModel> errorList = jsonApiObject.getErrors();
+                        Toast.makeText(getContext(), errorList.get(0).getStatus(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        if (jsonApiObject.getData().size() > 0) {
+                            List<Resource> resources = jsonApiObject.getData();
+                            for (Resource resource : resources ) {
+                                Region region = (Region) resource;
+                                tabLayout.addTab(tabLayout.newTab().setText(region.getName()));
+                                regions.add(region);
+                            }
+                            viewPagerAdapter.notifyDataSetChanged();
+                        } else {
+                            // Toast.makeText(getContext(), R.string.error_homecard_nonexistent, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                } else {
+                    Toast.makeText(getContext(), R.string.error_network, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JSONApiObject> call, Throwable t) {
+                Toast.makeText(getContext(), R.string.error_network, Toast.LENGTH_SHORT).show();
+                System.out.println(t.getMessage());
+            }
+        });
+
         // set tab
-        final TabLayout.Tab tab = tabLayout.newTab();
-        final TabLayout.Tab tab1 = tabLayout.newTab();
-        final TabLayout.Tab tab2 = tabLayout.newTab();
-        tab.setText("Tab");
-        tab1.setText("Tab1");
-        tab2.setText("Tab2");
-        tabLayout.addTab(tab, 0, true);
-        tabLayout.addTab(tab1, 1);
-        tabLayout.addTab(tab2, 2);
         tabLayout.setTabTextColors(ContextCompat.getColorStateList(v.getContext(), R.color.tab_selector));
         tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(v.getContext(), R.color.indicator));
-        // on click on TabLayout
+        // TabLayout integrate with ViewPager.  on click on TabLayout
         tabLayout.setupWithViewPager(viewPager);
 
         // on slide on viewPager

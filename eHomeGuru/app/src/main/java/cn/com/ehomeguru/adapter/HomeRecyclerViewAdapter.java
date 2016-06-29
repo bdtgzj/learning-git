@@ -4,11 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.VectorDrawable;
-import android.os.Build;
-import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -27,19 +23,17 @@ import cn.com.ehomeguru.bean.HomeCard;
 /**
  * Created by xiaodongyu on 6/23/2016 AD.
  */
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
+public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder> {
 
     private List<HomeCard> listHomeCard;
-    private Resources resources;
-    private String packageName;
 
-    public HomeAdapter(List<HomeCard> listHomeCard) {
+    public HomeRecyclerViewAdapter(List<HomeCard> listHomeCard) {
         this.listHomeCard = listHomeCard;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public HomeAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public HomeRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_home, parent, false);
         // set the view's size, margins, paddings and layout parameters

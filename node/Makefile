@@ -14,7 +14,8 @@ init-mongod:
 	db.users.save({_id: 1, name:'俞晓东', loginName:'yxdc002', password:'16b4d433eeef71946e93341822786a196549c2c5', email:'yxdc002@ehomeguru.com.cn', mphone: '13222880055', familyID: 17});
 
 start-curl:
-	curl http://localhost:3000/water
+# make start-curl resource=region
+	curl --basic --user yxdc002:admin6 http://localhost:3000/${resource}
 
 start-jmeter:
 	jmeter.sh &

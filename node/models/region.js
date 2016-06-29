@@ -8,5 +8,4 @@ var RegionSchema = new Schema({
 
 module.exports = RegionSchema;
 
-// no s: db.homecard_1s
 // db.region_1.save({name: '主卧', order: 1});

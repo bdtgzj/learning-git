@@ -12,10 +12,13 @@ import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
 
 import cn.com.ehomeguru.R;
+import cn.com.ehomeguru.bean.Device;
 import cn.com.ehomeguru.bean.User;
+import cn.com.ehomeguru.view.dummy.DummyContent;
 
 public class MainActivity extends AppCompatActivity
-        implements HomeFragment.OnFragmentInteractionListener, RegionFragment.OnFragmentInteractionListener {
+        implements HomeFragment.OnFragmentInteractionListener, RegionFragment.OnFragmentInteractionListener,
+                   DeviceFragment.OnListFragmentInteractionListener {
 
     private BottomBar bottomBar;
     private Toolbar toolbar;
@@ -111,6 +114,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    // DeviceFragment
+
+
+    @Override
+    public void onListFragmentInteraction(Device device) {
+        System.out.println(device.getName());
     }
 
     @Override

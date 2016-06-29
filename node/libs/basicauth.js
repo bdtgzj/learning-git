@@ -16,7 +16,7 @@ var basicAuth = function(req, res, next) {
     if (err) {
       next(err);
     } else {
-      console.log(credentials.user + credentials.pass + users + users[0]);
+      // console.log(credentials.user + credentials.pass + users + users[0]);
       var user = users.length > 0 ? users[0] : null;
       if (!user) {
         res.set('WWW-Authenticate', 'Basic realm="ehomeguru.com.cn"');
