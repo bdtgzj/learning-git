@@ -1,8 +1,12 @@
 package cn.com.ehomeguru.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,14 +25,10 @@ import java.util.List;
 import cn.com.ehomeguru.R;
 import cn.com.ehomeguru.adapter.DeviceRecyclerViewAdapter;
 import cn.com.ehomeguru.bean.Device;
-import cn.com.ehomeguru.bean.Region;
 import cn.com.ehomeguru.bean.User;
 import cn.com.ehomeguru.model.GlobalData;
 import cn.com.ehomeguru.service.DeviceService;
-import cn.com.ehomeguru.service.RegionService;
 import cn.com.ehomeguru.service.ServiceGenerator;
-import cn.com.ehomeguru.view.dummy.DummyContent;
-import cn.com.ehomeguru.view.dummy.DummyContent.DummyItem;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -86,6 +86,9 @@ public class DeviceFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
+            // Divider between Items in RecyclerView.
+            recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), R.drawable.shape_divider));
+
             // request for device data.
             // set Adapter
             mListDevice = new ArrayList<Device>();
@@ -162,6 +165,52 @@ public class DeviceFragment extends Fragment {
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
         void onListFragmentInteraction(Device device);
+    }
+
+    // divider
+    public class DividerItemDecoration extends RecyclerView.ItemDecoration {
+
+        private final int[] ATTRS = new int[]{android.R.attr.listDivider};
+        private Drawable mDivider;
+
+        /**
+         * Default divider will be used
+         */
+        public DividerItemDecoration(Context context) {
+            final TypedArray styledAttributes = context.obtainStyledAttributes(ATTRS);
+            mDivider = styledAttributes.getDrawable(0);
+            styledAttributes.recycle();
+        }
+
+        /**
+         * Custom divider will be used
+         */
+        public DividerItemDecoration(Context context, int resId) {
+            mDivider = ContextCompat.getDrawable(context, resId);
+        }
+
+        /**
+         * draw divider.
+         */
+        @Override
+        public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+            //super.onDraw(c, parent, state);
+            int left = parent.getPaddingLeft();
+            int right = parent.getWidth() - parent.getPaddingRight();
+
+            int childCount = parent.getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                View child = parent.getChildAt(i);
+
+                RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
+
+                int top = child.getBottom() + params.bottomMargin;
+                int bottom = top + mDivider.getIntrinsicHeight();
+
+                mDivider.setBounds(left, top, right, bottom);
+                mDivider.draw(c);
+            }
+        }
     }
 
 }

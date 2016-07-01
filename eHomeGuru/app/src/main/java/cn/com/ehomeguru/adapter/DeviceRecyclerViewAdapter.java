@@ -6,18 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 import cn.com.ehomeguru.R;
 import cn.com.ehomeguru.bean.Device;
 import cn.com.ehomeguru.view.DeviceFragment.OnListFragmentInteractionListener;
-import cn.com.ehomeguru.view.dummy.DummyContent.DummyItem;
 
-import java.util.List;
-
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class DeviceRecyclerViewAdapter extends RecyclerView.Adapter<DeviceRecyclerViewAdapter.ViewHolder> {
 
     private final List<Device> mListDevice;

@@ -1,20 +1,18 @@
 package cn.com.ehomeguru.view;
 
+import android.content.Intent;
 import android.net.Uri;
-import android.support.annotation.IdRes;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.google.gson.Gson;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
 
 import cn.com.ehomeguru.R;
 import cn.com.ehomeguru.bean.Device;
-import cn.com.ehomeguru.bean.User;
-import cn.com.ehomeguru.view.dummy.DummyContent;
 
 public class MainActivity extends AppCompatActivity
         implements HomeFragment.OnFragmentInteractionListener, RegionFragment.OnFragmentInteractionListener,
@@ -47,13 +45,13 @@ public class MainActivity extends AppCompatActivity
                     .add(R.id.fragment_container, homeFragment, getResources().getString(R.string.fragment_home))
                     .commit();
         }
-
+        System.out.println("onCreate");
         // Add BottomBar
         bottomBar = BottomBar.attach(this, savedInstanceState);
         // Show all titles even when there's more than three tabs.
         bottomBar.useFixedMode();
         // Set the color for the active tab. Ignored on mobile when there are more than three tabs.
-        //bottomBar.setActiveTabColor("#009688");
+        // bottomBar.setActiveTabColor("#009688");
         // Set Item and action
         bottomBar.setItems(R.menu.bottombar_menu);
         bottomBar.setOnMenuTabClickListener(new OnMenuTabClickListener() {
@@ -104,10 +102,30 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
+        System.out.println("onSaveInstanceState");
         // Necessary to restore the BottomBar's state, otherwise we would
         // lose the current tab on orientation change.
         bottomBar.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("onDestroy");
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        System.out.println("onNewIntent");
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        System.out.println("onRestoreInstanceState");
     }
 
     // HomeFragment
@@ -121,12 +139,19 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onListFragmentInteraction(Device device) {
-        System.out.println(device.getName());
+        Intent intent = new Intent(MainActivity.this, ControllerActivity.class);
+        intent.putExtra("name", device.getName());
+        intent.putExtra("region", device.getRegionId());
+        intent.putExtra("category", device.getCategoryId());
+        intent.putExtra("status", device.getStatus());
+        startActivity(intent);
     }
 
+    /*
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
-        return;
+        super.onBackPressed();
+        //return;
     }
+    */
 }
