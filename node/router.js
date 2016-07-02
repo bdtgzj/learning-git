@@ -12,6 +12,7 @@ var user = require('./controllers/user');
 var homecard = require('./controllers/homecard');
 var region = require('./controllers/region');
 var device = require('./controllers/device');
+var instruction = require('./controllers/instruction');
 var water = require('./controllers/water');
 
 var router = express.Router();
@@ -21,15 +22,20 @@ var router = express.Router();
  */
  router.get('/homecard', homecard.retrieve);
 
- /**
+/**
  * region
  */
  router.get('/region', region.retrieve);
 
- /**
+/**
  * device
  */
  router.get('/device', device.retrieveByRegion);
+
+/**
+ * instruction
+ */
+ router.get('/instruction', instruction.retrieveByDevice);
 
 /**
  * water.

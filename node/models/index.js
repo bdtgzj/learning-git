@@ -22,3 +22,4 @@ exports.User = mongoose.model('User');
 exports.HomecardSchema = require('./homecard');
 exports.RegionSchema = require('./region');
 exports.DeviceSchema = require('./device');
+exports.InstructionSchema = require('./instruction');

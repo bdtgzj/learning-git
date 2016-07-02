@@ -15,6 +15,8 @@ init-mongod:
 
 start-curl:
 # make start-curl resource=region
+# make start-curl resource=device?filter=577381aa9d38be3c52cc7b69
+# make start-curl resource=instruction?filter=5773855a9d38be3c52cc7b6c
 	curl --basic --user yxdc002:admin6 http://localhost:3000/${resource}
 
 start-jmeter:

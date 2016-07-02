@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity
                     .add(R.id.fragment_container, homeFragment, getResources().getString(R.string.fragment_home))
                     .commit();
         }
-        System.out.println("onCreate");
         // Add BottomBar
         bottomBar = BottomBar.attach(this, savedInstanceState);
         // Show all titles even when there's more than three tabs.
@@ -102,30 +101,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        System.out.println("onSaveInstanceState");
         // Necessary to restore the BottomBar's state, otherwise we would
         // lose the current tab on orientation change.
         bottomBar.onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        System.out.println("onDestroy");
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        setIntent(intent);
-        System.out.println("onNewIntent");
-
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        System.out.println("onRestoreInstanceState");
     }
 
     // HomeFragment
@@ -140,10 +118,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onListFragmentInteraction(Device device) {
         Intent intent = new Intent(MainActivity.this, ControllerActivity.class);
+        intent.putExtra("deviceId", device.getId());
         intent.putExtra("name", device.getName());
         intent.putExtra("region", device.getRegionId());
-        intent.putExtra("category", device.getCategoryId());
-        intent.putExtra("status", device.getStatus());
+        //intent.putExtra("category", device.getCategoryId());
+        //intent.putExtra("status", device.getStatus());
         startActivity(intent);
     }
 
