@@ -2,7 +2,9 @@ package cn.com.ehomeguru.service;
 
 import com.gustavofao.jsonapi.Models.JSONApiObject;
 
+import cn.com.ehomeguru.bean.Instruction;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.PUT;
@@ -17,6 +19,6 @@ public interface InstructionService {
     Call<JSONApiObject> getInstructionByDevice(@Query("filter") String deviceId);
 
     @PUT("instruction")
-    Call<JSONApiObject> setDeviceByInstruction(@Field("instruction") String instruction );
+    Call<JSONApiObject> setDeviceByInstruction(@Body Instruction instruction );
 
 }

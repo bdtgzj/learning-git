@@ -10,7 +10,7 @@ import com.gustavofao.jsonapi.Models.Resource;
 public class Instruction extends Resource {
 
     private String deviceId;
-    private String type;
+    private String category;
     private String instruction;
     private int order;
 
@@ -22,13 +22,12 @@ public class Instruction extends Resource {
         this.deviceId = deviceId;
     }
 
-    @Override
-    public String getType() {
-        return type;
+    public String getCategory() {
+        return category;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getInstruction() {
