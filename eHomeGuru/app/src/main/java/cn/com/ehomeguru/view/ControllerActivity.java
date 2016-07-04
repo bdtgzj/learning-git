@@ -136,8 +136,13 @@ public class ControllerActivity extends AppCompatActivity implements Instruction
 
     @Override
     public void onInstructionInteraction(Instruction instruction, Boolean isChecked) {
+        // reference
         mInstruction = instruction;
-        String data = isChecked ? "0000" : "FF00";
+        // original data
+        final String originalData = mInstruction.getInstruction();
+        // combine data
+        String data = isChecked ? "255 0" : "0 0";
+        mInstruction.setInstruction(mInstruction.getInstruction() + " " + data);
         // get instruction from server
         User user = (User) GlobalData.getObjectForKey("user");
         InstructionService instructionService = ServiceGenerator.createService(InstructionService.class, user.getName(), user.getPassword());
@@ -145,6 +150,12 @@ public class ControllerActivity extends AppCompatActivity implements Instruction
         call.enqueue(new Callback<JSONApiObject>() {
             @Override
             public void onResponse(Call<JSONApiObject> call, retrofit2.Response<JSONApiObject> response) {
+                /*
+                if (!response.isSuccessful()) {
+                    System.out.println("there is a error");
+                    return;
+                }
+                */
                 JSONApiObject jsonApiObject = response.body();
                 if (jsonApiObject != null) {
                     if (jsonApiObject.hasErrors()) {
@@ -166,12 +177,18 @@ public class ControllerActivity extends AppCompatActivity implements Instruction
                 } else {
                     Toast.makeText(getParent(), R.string.error_network, Toast.LENGTH_SHORT).show();
                 }
+                // restore data
+                mInstruction.setInstruction(originalData);
             }
 
             @Override
             public void onFailure(Call<JSONApiObject> call, Throwable t) {
                 Toast.makeText(getParent(), R.string.error_network, Toast.LENGTH_SHORT).show();
+                // restore data
+                mInstruction.setInstruction(originalData);
                 System.out.println(t.getMessage());
+                System.out.println("dd");
+                System.out.println(t.toString());
             }
         });
     }

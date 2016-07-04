@@ -20,27 +20,28 @@ var router = express.Router();
 /**
  * homecard
  */
- router.get('/homecard', homecard.retrieve);
+router.get('/homecard', homecard.retrieve);
 
 /**
  * region
  */
- router.get('/region', region.retrieve);
+router.get('/region', region.retrieve);
 
 /**
  * device
  */
- router.get('/device', device.retrieveByRegion);
+router.get('/device', device.retrieveByRegion);
 
 /**
  * instruction
  */
- router.get('/instruction', instruction.retrieveByDevice);
+router.get('/instruction', instruction.retrieveByDevice);
+router.post('/instruction/exec', instruction.exec);
 
 /**
  * water.
  */
- router.get('/water', water.open);
+router.get('/water', water.open);
 
 /**
  * user.

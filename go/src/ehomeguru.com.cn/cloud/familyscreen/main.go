@@ -155,7 +155,7 @@ func createFamilyConn(conn net.Conn) {
       }
     // Non-SN packet, Forward to Screen
     } else {
-      if sn > 0 {
+      if sn >= 0 {
         _, ok := familyScreen[sn]
         if ok {
           if len(familyScreen[sn].Screen) > 0 {
@@ -207,7 +207,7 @@ func createScreenConn(conn net.Conn) {
       }
       
       // remove conn from FamilyScreen
-      if sn > 0 {
+      if sn >= 0 {
         val, ok := familyScreen[sn]
         if ok {
           // delete(mapSocket, sn)
@@ -264,7 +264,7 @@ func createScreenConn(conn net.Conn) {
     }
     // send to family
     if familyScreen[sn].Family != nil {
-      familyScreen[sn].Family.Write(buf[:dataLen])
+      familyScreen[sn].Family.Write(buf[8:dataLen])
     }
 
   }
