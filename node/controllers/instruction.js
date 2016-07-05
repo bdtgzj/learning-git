@@ -19,10 +19,9 @@ exports.retrieveByDevice = function(req, res, next) {
 exports.exec = function(req, res, next) {
   new JSONAPIDeserializer().deserialize(req.body)
     .then(function(instruction) {
-      // network
-      req.app.locals.connectionPool.pull(function (err, connection) {
+      // get a connection from ConnectionPool. pull
+      req.app.locals.connectionPool.allocate(function (err, connection) {
         if (err) {
-          console.log("connection.pull() is error" + err);
           return next(err);
         }
         // SN and UID
@@ -36,6 +35,7 @@ exports.exec = function(req, res, next) {
         }
         // req.app.locals.ismap.T_SET_COIL0_OPEN
         const buf = new Buffer(SN.concat(UID, intInstruction));
+        // send data
         connection.write(buf.toString('binary'), 'binary');
         var cb = (buf) => {
           var data = new Uint8Array(buf).join(' ');
@@ -53,6 +53,7 @@ exports.exec = function(req, res, next) {
           */
           //connection.end();
         };
+        // receive data
         connection.on('data', cb);
       });
     })

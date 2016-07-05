@@ -10,19 +10,21 @@ var errorhandler = require('errorhandler');
 var basicAuth = require('./libs/basicauth');
 var app = express();
 
+// tcp connection pool
 var net = require('net');
 var ConnectionPool = require('jackpot');
-var connectionPool = new ConnectionPool(5, {
+var connectionPool = new ConnectionPool(5, { // size of the connection pool
   retries: 5, // allow 5 failures for the #pull method
   min: 100,
   max: 50000
 });
 // factory produce connections.
 connectionPool.factory(function () {
-  var socket = new net.Socket;
+  var socket = new net.Socket; // net.Socket from node.
+  // async api
   socket.connect(config.screenHostPort, config.screenHostName);
   // socket.setTimeout(10000000);
-  return socket
+  return socket;
 });
 
 var ismap = require('./ismap');
@@ -71,17 +73,17 @@ app.use(function(err, req, res, next){
   //res.json({desc: 'Internal Server Error', msg: '', valid: false});
 });
 */
-if (config.debug) {
+if (!config.debug) {
   app.use(errorhandler());
 } else {
   app.use(function (err, req, res, next) {
-    return res.status(500).json([{errors: {
-      id: 500,
+    return res.status(200).json([{errors: {
+      id: 200,
       links: null,
       status: '抱歉，系统异常，请联系管理员！',
       code: '500',
       title: null,
-      detail: null,
+      detail: null, 
       source: null,
       meta: null
     }}]);
