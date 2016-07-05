@@ -175,7 +175,7 @@ public class ControllerActivity extends AppCompatActivity implements Instruction
                         }
                     }
                 } else {
-                    Toast.makeText(getParent(), R.string.error_network, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ControllerActivity.this, R.string.error_network, Toast.LENGTH_SHORT).show();
                 }
                 // restore data
                 mInstruction.setInstruction(originalData);
@@ -183,7 +183,7 @@ public class ControllerActivity extends AppCompatActivity implements Instruction
 
             @Override
             public void onFailure(Call<JSONApiObject> call, Throwable t) {
-                Toast.makeText(getParent(), R.string.error_network, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ControllerActivity.this, R.string.error_network, Toast.LENGTH_SHORT).show();
                 // restore data
                 mInstruction.setInstruction(originalData);
                 System.out.println(t.getMessage());

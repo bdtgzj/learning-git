@@ -77,8 +77,8 @@ if (!config.debug) {
   app.use(errorhandler());
 } else {
   app.use(function (err, req, res, next) {
-    return res.status(200).json([{errors: {
-      id: 200,
+    return res.status(500).json([{errors: {
+      id: 500,
       links: null,
       status: '抱歉，系统异常，请联系管理员！',
       code: '500',
