@@ -20,11 +20,16 @@ public class MainActivity extends AppCompatActivity
 
     private BottomBar bottomBar;
     private Toolbar toolbar;
+    // can't getSupportFragmentManager().getFragments() when the first, async?
+    private int firstClick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //
+        firstClick = 0;
 
         // Add ToolBar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -45,6 +50,7 @@ public class MainActivity extends AppCompatActivity
                     .add(R.id.fragment_container, homeFragment, getResources().getString(R.string.fragment_home))
                     .commit();
         }
+
         // Add BottomBar
         bottomBar = BottomBar.attach(this, savedInstanceState);
         // Show all titles even when there's more than three tabs.
@@ -56,6 +62,10 @@ public class MainActivity extends AppCompatActivity
         bottomBar.setOnMenuTabClickListener(new OnMenuTabClickListener() {
             @Override
             public void onMenuTabSelected(@IdRes int menuItemId) {
+                if (firstClick == 0) {
+                    firstClick++;
+                    return;
+                }
                 if (menuItemId == R.id.bottomBarHome) {
                     HomeFragment homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag(getResources().getString(R.string.fragment_home));
                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

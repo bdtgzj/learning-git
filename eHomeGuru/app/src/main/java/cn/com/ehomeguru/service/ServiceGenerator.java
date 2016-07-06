@@ -17,13 +17,14 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by xiaodongyu on 6/13/2016 AD.
  */
 public class ServiceGenerator {
 
-    public static final String API_BASE_URL = "http://192.168.1.66:3000";
+    public static final String API_BASE_URL = "http://192.168.8.66:3000";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
@@ -60,6 +61,15 @@ public class ServiceGenerator {
         OkHttpClient client = httpClient.build();
         Retrofit retrofit = builder.client(client).build();
         return retrofit.create(serviceClass);
+    }
+
+    // produce a retrofit for convert http json body of error
+    public static Retrofit createRetrofit() {
+        Retrofit.Builder builder = new Retrofit.Builder()
+                .baseUrl(API_BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create());
+        Retrofit retrofit = builder.build();
+        return retrofit;
     }
 
 }

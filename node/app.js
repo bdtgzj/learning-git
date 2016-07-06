@@ -77,16 +77,12 @@ if (!config.debug) {
   app.use(errorhandler());
 } else {
   app.use(function (err, req, res, next) {
-    return res.status(500).json([{errors: {
-      id: 500,
-      links: null,
-      status: '抱歉，系统异常，请联系管理员！',
-      code: '500',
-      title: null,
-      detail: null, 
-      source: null,
-      meta: null
-    }}]);
+    return res.status(500).json({errors: [{
+      status: '500',
+      title: '网络服务异常',
+      detail: '抱歉，网络服务异常，您可请联系客服，谢谢！',
+      source: {}
+    }]});
   });
 }
 

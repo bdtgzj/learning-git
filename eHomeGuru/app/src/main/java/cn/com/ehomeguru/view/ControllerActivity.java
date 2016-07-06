@@ -15,6 +15,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gustavofao.jsonapi.JSONApiConverter;
 import com.gustavofao.jsonapi.Models.ErrorModel;
 import com.gustavofao.jsonapi.Models.JSONApiObject;
 import com.gustavofao.jsonapi.Models.Resource;
@@ -24,11 +25,14 @@ import java.util.List;
 
 import cn.com.ehomeguru.R;
 import cn.com.ehomeguru.adapter.InstructionListViewAdapter;
+import cn.com.ehomeguru.bean.HttpError;
 import cn.com.ehomeguru.bean.Instruction;
 import cn.com.ehomeguru.bean.User;
 import cn.com.ehomeguru.model.GlobalData;
 import cn.com.ehomeguru.service.InstructionService;
 import cn.com.ehomeguru.service.ServiceGenerator;
+import cn.com.ehomeguru.util.ErrorUtil;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -94,7 +98,7 @@ public class ControllerActivity extends AppCompatActivity implements Instruction
                 if (jsonApiObject != null) {
                     if (jsonApiObject.hasErrors()) {
                         List<ErrorModel> errorList = jsonApiObject.getErrors();
-                        Toast.makeText(getParent(), errorList.get(0).getStatus(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getParent(), errorList.get(0).getDetail(), Toast.LENGTH_SHORT).show();
                     } else {
                         if (jsonApiObject.getData().size() > 0) {
                             List<Resource> resources = jsonApiObject.getData();
@@ -150,32 +154,35 @@ public class ControllerActivity extends AppCompatActivity implements Instruction
         call.enqueue(new Callback<JSONApiObject>() {
             @Override
             public void onResponse(Call<JSONApiObject> call, retrofit2.Response<JSONApiObject> response) {
-                /*
-                if (!response.isSuccessful()) {
-                    System.out.println("there is a error");
-                    return;
-                }
-                */
-                JSONApiObject jsonApiObject = response.body();
-                if (jsonApiObject != null) {
-                    if (jsonApiObject.hasErrors()) {
-                        List<ErrorModel> errorList = jsonApiObject.getErrors();
-                        Toast.makeText(getParent(), errorList.get(0).getStatus(), Toast.LENGTH_SHORT).show();
-                    } else {
-                        if (jsonApiObject.getData().size() > 0) {
-                            List<Resource> resources = jsonApiObject.getData();
-                            Instruction instructionRet = (Instruction) resources.get(0);
-                            if (mInstruction.getInstruction() == instructionRet.getInstruction()) {
-                                mTextView.setText("东东");
-                            } else {
-                                mTextView.setText("西西");
-                            }
+                // i.e. 200
+                if (response.isSuccessful()) {
+                    JSONApiObject jsonApiObject = response.body();
+                    if (jsonApiObject != null) {
+                        if (jsonApiObject.hasErrors()) {
+                            List<ErrorModel> errorList = jsonApiObject.getErrors();
+                            Toast.makeText(getParent(), errorList.get(0).getDetail(), Toast.LENGTH_SHORT).show();
                         } else {
-                            // Toast.makeText(getContext(), R.string.error_homecard_nonexistent, Toast.LENGTH_SHORT).show();
+                            if (jsonApiObject.getData().size() > 0) {
+                                List<Resource> resources = jsonApiObject.getData();
+                                Instruction instructionRet = (Instruction) resources.get(0);
+                                if (mInstruction.getInstruction() == instructionRet.getInstruction()) {
+                                    mTextView.setText("东东");
+                                } else {
+                                    mTextView.setText("西西");
+                                }
+                            } else {
+                                Toast.makeText(ControllerActivity.this, R.string.error_network, Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
+                // i.e. 500
                 } else {
-                    Toast.makeText(ControllerActivity.this, R.string.error_network, Toast.LENGTH_SHORT).show();
+                    HttpError httpError = ErrorUtil.parseError(response);
+                    if (httpError != null && httpError.getErrors().size() > 0) {
+                        Toast.makeText(ControllerActivity.this, httpError.getErrors().get(0).getDetail(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(ControllerActivity.this, R.string.error_network, Toast.LENGTH_SHORT).show();
+                    }
                 }
                 // restore data
                 mInstruction.setInstruction(originalData);
@@ -183,12 +190,12 @@ public class ControllerActivity extends AppCompatActivity implements Instruction
 
             @Override
             public void onFailure(Call<JSONApiObject> call, Throwable t) {
+                // there is more than just a failing request (like: no internet connection)
                 Toast.makeText(ControllerActivity.this, R.string.error_network, Toast.LENGTH_SHORT).show();
+
                 // restore data
                 mInstruction.setInstruction(originalData);
                 System.out.println(t.getMessage());
-                System.out.println("dd");
-                System.out.println(t.toString());
             }
         });
     }
