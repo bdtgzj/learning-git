@@ -24,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ServiceGenerator {
 
-    public static final String API_BASE_URL = "http://192.168.8.66:3000";
+    public static final String API_BASE_URL = "http://192.168.1.66:3000";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
@@ -63,7 +63,7 @@ public class ServiceGenerator {
         return retrofit.create(serviceClass);
     }
 
-    // produce a retrofit for convert http json body of error
+    // produce a retrofit for convert http json body of http error(i.e. 500)
     public static Retrofit createRetrofit() {
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl(API_BASE_URL)

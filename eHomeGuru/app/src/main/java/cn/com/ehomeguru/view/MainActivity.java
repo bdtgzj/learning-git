@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity
 
     private BottomBar bottomBar;
     private Toolbar toolbar;
-    // can't getSupportFragmentManager().getFragments() when the first, async?
+    // can't getSupportFragmentManager().getFragments() when the first, async api?
     private int firstClick;
 
     @Override
@@ -46,9 +46,11 @@ public class MainActivity extends AppCompatActivity
             homeFragment.setArguments(getIntent().getExtras());
 
             // Add the fragment to the 'fragment_container' FrameLayout
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, homeFragment, getResources().getString(R.string.fragment_home))
-                    .commit();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            // let fragment add to backstack, for reserve status.
+            //ft.addToBackStack(null);
+            ft.add(R.id.fragment_container, homeFragment, getResources().getString(R.string.fragment_home));
+            ft.commit();
         }
 
         // Add BottomBar
@@ -78,6 +80,7 @@ public class MainActivity extends AppCompatActivity
                     }
                     ft.replace(R.id.fragment_container, homeFragment, getResources().getString(R.string.fragment_home));
                     ft.commit();
+                    System.out.println("a");
                 } else if (menuItemId == R.id.bottomBarRegion) {
                     RegionFragment regionFragment = (RegionFragment) getSupportFragmentManager().findFragmentByTag(getResources().getString(R.string.fragment_region));
                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -90,6 +93,7 @@ public class MainActivity extends AppCompatActivity
                     }
                     ft.replace(R.id.fragment_container, regionFragment, getResources().getString(R.string.fragment_region));
                     ft.commit();
+                    System.out.println("b");
                 } else if (menuItemId == R.id.bottomBarScene) {
 
                 } else if (menuItemId == R.id.bottomBarMe) {
@@ -136,11 +140,14 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
-    /*
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        //return;
+        //super.onBackPressed();
+        HomeFragment homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag(getResources().getString(R.string.fragment_home));
+        if (homeFragment != null && homeFragment.isVisible()) {
+            //System.exit(0);
+            finish();
+        }
     }
-    */
+
 }
