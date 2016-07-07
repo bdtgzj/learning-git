@@ -174,6 +174,8 @@ public class ControllerActivity extends AppCompatActivity implements Instruction
                                 Toast.makeText(ControllerActivity.this, R.string.error_network, Toast.LENGTH_SHORT).show();
                             }
                         }
+                    } else {
+                        Toast.makeText(ControllerActivity.this, R.string.error_network, Toast.LENGTH_SHORT).show();
                     }
                 // i.e. 500
                 } else {

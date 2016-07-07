@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity
                     }
                     ft.replace(R.id.fragment_container, homeFragment, getResources().getString(R.string.fragment_home));
                     ft.commit();
-                    System.out.println("a");
                 } else if (menuItemId == R.id.bottomBarRegion) {
                     RegionFragment regionFragment = (RegionFragment) getSupportFragmentManager().findFragmentByTag(getResources().getString(R.string.fragment_region));
                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -93,7 +92,6 @@ public class MainActivity extends AppCompatActivity
                     }
                     ft.replace(R.id.fragment_container, regionFragment, getResources().getString(R.string.fragment_region));
                     ft.commit();
-                    System.out.println("b");
                 } else if (menuItemId == R.id.bottomBarScene) {
 
                 } else if (menuItemId == R.id.bottomBarMe) {
@@ -145,8 +143,9 @@ public class MainActivity extends AppCompatActivity
         //super.onBackPressed();
         HomeFragment homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag(getResources().getString(R.string.fragment_home));
         if (homeFragment != null && homeFragment.isVisible()) {
-            //System.exit(0);
-            finish();
+            ExitDialogFragment.create().show(getSupportFragmentManager(), getString(R.string.fragment_exitdialog_name));
+            // System.exit(0);
+            // finish();
         }
     }
 

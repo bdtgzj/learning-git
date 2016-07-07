@@ -3,4 +3,11 @@
     <!-- fragment_name -->
     <string name="fragment_home">fragment_home</string>
     <string name="fragment_region">fragment_region</string>
+    <!-- HomeFragment -->
+    <string name="fragment_home_nonexistent">首页未初始化</string>
+    <!-- ExitDialogFragment -->
+    <string name="fragment_exitdialog_name">fragment_exitdialog</string>
+    <string name="fragment_exitdialog_title">确定退出系统!</string>
+    <string name="fragment_exitdialog_ok">确定</string>
+    <string name="fragment_exitdialog_cancel">取消</string>
 </resources>
