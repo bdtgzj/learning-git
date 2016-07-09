@@ -12,39 +12,41 @@ import java.util.List;
 
 import cn.com.ehomeguru.R;
 import cn.com.ehomeguru.bean.Device;
+import cn.com.ehomeguru.bean.Scene;
 import cn.com.ehomeguru.util.ResourceUtil;
 import cn.com.ehomeguru.view.DeviceFragment.OnListFragmentInteractionListener;
+import cn.com.ehomeguru.view.SceneListFragment;
 
-public class DeviceRecyclerViewAdapter extends RecyclerView.Adapter<DeviceRecyclerViewAdapter.ViewHolder> {
+public class SceneRecyclerViewAdapter extends RecyclerView.Adapter<SceneRecyclerViewAdapter.ViewHolder> {
 
-    private final List<Device> mListDevice;
-    private final OnListFragmentInteractionListener mListener;
+    private final List<Scene> mListScene;
+    private final SceneListFragment.OnSceneListFragmentInteractionListener mListener;
 
-    public DeviceRecyclerViewAdapter(List<Device> listDevice, OnListFragmentInteractionListener listener) {
-        mListDevice = listDevice;
+    public SceneRecyclerViewAdapter(List<Scene> listScene, SceneListFragment.OnSceneListFragmentInteractionListener listener) {
+        mListScene = listScene;
         mListener = listener;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_device_list_item, parent, false);
+                .inflate(R.layout.fragment_scene_list_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mDevice = mListDevice.get(position);
+        holder.mScene = mListScene.get(position);
         // icon
         Drawable drawable = ResourceUtil.getDrawableByIconColor(
-                holder.mDeviceIconView.getContext(),
-                mListDevice.get(position).getIcon(),
-                mListDevice.get(position).getColor()
+                holder.mSceneIconView.getContext(),
+                mListScene.get(position).getIcon(),
+                mListScene.get(position).getColor()
         );
-        holder.mDeviceIconView.setImageDrawable(drawable);
+        holder.mSceneIconView.setImageDrawable(drawable);
 
-        holder.mDeviceNameView.setText(mListDevice.get(position).getName());
-        holder.mDeviceStatusView.setText(mListDevice.get(position).getStatus());
+        holder.mSceneNameView.setText(mListScene.get(position).getName());
+        holder.mSceneStatusView.setText("yx");
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +54,7 @@ public class DeviceRecyclerViewAdapter extends RecyclerView.Adapter<DeviceRecycl
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mDevice);
+                    mListener.onSceneListFragmentInteraction(holder.mScene);
                 }
             }
         });
@@ -60,27 +62,27 @@ public class DeviceRecyclerViewAdapter extends RecyclerView.Adapter<DeviceRecycl
 
     @Override
     public int getItemCount() {
-        return mListDevice.size();
+        return mListScene.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final ImageView mDeviceIconView;
-        public final TextView mDeviceNameView;
-        public final TextView mDeviceStatusView;
-        public Device mDevice;
+        public final ImageView mSceneIconView;
+        public final TextView mSceneNameView;
+        public final TextView mSceneStatusView;
+        public Scene mScene;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mDeviceIconView = (ImageView) view.findViewById(R.id.device_icon);
-            mDeviceNameView = (TextView) view.findViewById(R.id.device_name);
-            mDeviceStatusView = (TextView) view.findViewById(R.id.device_status);
+            mSceneIconView = (ImageView) view.findViewById(R.id.scene_icon);
+            mSceneNameView = (TextView) view.findViewById(R.id.scene_name);
+            mSceneStatusView = (TextView) view.findViewById(R.id.scene_status);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mDeviceNameView.getText() + "'";
+            return super.toString() + " '" + mSceneNameView.getText() + "'";
         }
     }
 }

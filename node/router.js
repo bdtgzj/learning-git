@@ -13,6 +13,7 @@ var homecard = require('./controllers/homecard');
 var region = require('./controllers/region');
 var category = require('./controllers/category');
 var device = require('./controllers/device');
+var scene = require('./controllers/scene');
 var instruction = require('./controllers/instruction');
 var water = require('./controllers/water');
 
@@ -37,12 +38,24 @@ router.get('/category', category.retrieve);
 /**
  * device
  */
-router.get('/device', device.retrieveByRegion);
+router.get('/device', device.retrieve); //批量查询
+//app.get('/device/count', device.count); //特殊查询：对于GET：/zyz/count會被匹配到/zyz/:id，所以需要注意順序
+router.get('/device/:id', device.retrieveOne); //唯一查询
+//router.post('/device', device.create);   //唯一批量创建
+//router.put('/device', device.update);//唯一批量更新
+//router.delete('/device', device.delete); //唯一批量删除
+
+/**
+ * scene
+ */
+router.get('/scene', scene.retrieve);
+router.get('/scene/:id', scene.retrieveOne);
+router.post('/scene/exec', scene.exec);
 
 /**
  * instruction
  */
-router.get('/instruction', instruction.retrieveByDevice);
+router.get('/instruction', instruction.retrieve);
 router.post('/instruction/exec', instruction.exec);
 
 /**

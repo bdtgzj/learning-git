@@ -2,12 +2,12 @@
 <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/device_list"
-    android:name="cn.com.ehomeguru.view.DeviceFragment"
+    android:id="@+id/scene_list"
+    android:name="cn.com.ehomeguru.view.SceneFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context="cn.com.ehomeguru.view.DeviceFragment"
-    tools:listitem="@layout/fragment_device_list_item" />
+    tools:context="cn.com.ehomeguru.view.SceneListFragment"
+    tools:listitem="@layout/fragment_scene_list_item" />

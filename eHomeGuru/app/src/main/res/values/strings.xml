@@ -20,6 +20,10 @@
     <string name="error_password_field_required">请输入密码</string>
     <string name="error_user_nonexistent">抱歉,用户名或密码不存在!</string>
 
+    <!-- Strings related to MainActivity -->
+    <string name="toast_scene_exec_yes">场景执行成功!</string>
+    <string name="toast_scene_exec_no">当前状态:</string>
+
     <!-- Strings related to ControllerActivity -->
     <string name="label_current_status">当前状态:</string>
 

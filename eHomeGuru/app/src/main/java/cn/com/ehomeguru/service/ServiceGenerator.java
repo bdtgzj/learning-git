@@ -11,6 +11,7 @@ import cn.com.ehomeguru.bean.Device;
 import cn.com.ehomeguru.bean.HomeCard;
 import cn.com.ehomeguru.bean.Instruction;
 import cn.com.ehomeguru.bean.Region;
+import cn.com.ehomeguru.bean.Scene;
 import cn.com.ehomeguru.bean.User;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -31,7 +32,7 @@ public class ServiceGenerator {
     private static Retrofit.Builder builder = new Retrofit.Builder()
             .baseUrl(API_BASE_URL)
             //.addConverterFactory(GsonConverterFactory.create());
-            .addConverterFactory(JSONConverterFactory.create(User.class, HomeCard.class, Region.class, Device.class, Instruction.class));
+            .addConverterFactory(JSONConverterFactory.create(User.class, HomeCard.class, Region.class, Device.class, Instruction.class, Scene.class));
 
     public static <S> S createService(Class<S> serviceClass) {
         return createService(serviceClass, null, null);

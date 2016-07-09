@@ -2,7 +2,7 @@
 
 var JSONAPISerializer = require('jsonapi-serializer').Serializer;
 
-module.exports = new JSONAPISerializer('device', {
+module.exports = new JSONAPISerializer('scene', {
   id: '_id',
   keyForAttribute: 'camelCase',
   pluralizeType: false,
@@ -11,10 +11,7 @@ module.exports = new JSONAPISerializer('device', {
     'icon',
     'color',
     'regionId',
-    'categoryId',
     'regionName',
-    'categoryName',
-    'status',
     'order'
   ]
 });

@@ -6,14 +6,22 @@ var Instruction = require('../proxy').Instruction;
 var JSONAPIDeserializer = require('jsonapi-serializer').Deserializer;
 var InstructionSerializer = require('../serializers').InstructionSerializer;
 
-exports.retrieveByDevice = function(req, res, next) {
-  var deviceId = req.query.filter;
-  Instruction.getInstructionByDevice(req.uid, deviceId, function(err, instructions) {
-    if (err) {
-      return next(err);
-    }
-    res.json(InstructionSerializer.serialize(instructions));
-  });
+exports.retrieve = function(req, res, next) {
+  if (req.query.device) {
+    Instruction.getInstructionByDevice(req.uid, req.query.device, function(err, instructions) {
+      if (err) {
+        return next(err);
+      }
+      res.json(InstructionSerializer.serialize(instructions));
+    });
+  } else if (req.query.scene) {
+    Instruction.getInstructionByScene(req.uid, req.query.scene, function(err, instructions) {
+      if (err) {
+        return next(err);
+      }
+      res.json(InstructionSerializer.serialize(instructions));
+    });
+  }
 };
 
 exports.exec = function(req, res, next) {
@@ -60,4 +68,4 @@ exports.exec = function(req, res, next) {
     .catch(function(err) {
       return next(err);
     });
-}
+};

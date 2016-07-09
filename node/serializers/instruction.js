@@ -8,6 +8,7 @@ module.exports = new JSONAPISerializer('instruction', {
   pluralizeType: false,
   attributes: [
     'deviceId',
+    'sceneId',
     'category',
     'instruction',
     'order'

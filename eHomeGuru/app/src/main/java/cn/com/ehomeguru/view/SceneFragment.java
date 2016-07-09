@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.gustavofao.jsonapi.Models.ErrorModel;
 import com.gustavofao.jsonapi.Models.JSONApiObject;
 import com.gustavofao.jsonapi.Models.Resource;
 
@@ -21,6 +20,7 @@ import java.util.List;
 
 import cn.com.ehomeguru.R;
 import cn.com.ehomeguru.adapter.RegionViewPagerAdapter;
+import cn.com.ehomeguru.adapter.SceneViewPagerAdapter;
 import cn.com.ehomeguru.bean.Region;
 import cn.com.ehomeguru.bean.User;
 import cn.com.ehomeguru.model.GlobalData;
@@ -33,12 +33,12 @@ import retrofit2.Callback;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link RegionFragment.OnFragmentInteractionListener} interface
+ * {@link SceneFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link RegionFragment#newInstance} factory method to
+ * Use the {@link SceneFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RegionFragment extends Fragment {
+public class SceneFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -53,10 +53,10 @@ public class RegionFragment extends Fragment {
     //
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private RegionViewPagerAdapter viewPagerAdapter;
+    private SceneViewPagerAdapter viewPagerAdapter;
     private List<Region> regions; // dataset for ViewPagerAdapter
 
-    public RegionFragment() {
+    public SceneFragment() {
         // Required empty public constructor
     }
 
@@ -69,8 +69,8 @@ public class RegionFragment extends Fragment {
      * @return A new instance of fragment RegionFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static RegionFragment newInstance(String param1, String param2) {
-        RegionFragment fragment = new RegionFragment();
+    public static SceneFragment newInstance(String param1, String param2) {
+        SceneFragment fragment = new SceneFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -91,14 +91,14 @@ public class RegionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_region, container, false);
+        View v = inflater.inflate(R.layout.fragment_scene, container, false);
         //
-        tabLayout = (TabLayout) v.findViewById(R.id.tabs);
-        viewPager = (ViewPager) v.findViewById(R.id.viewpager);
+        tabLayout = (TabLayout) v.findViewById(R.id.tab_scene);
+        viewPager = (ViewPager) v.findViewById(R.id.viewpager_scene);
 
         // set ViewPager's Adapter.
         regions = new ArrayList<Region>();
-        viewPagerAdapter = new RegionViewPagerAdapter(getChildFragmentManager(), regions);
+        viewPagerAdapter = new SceneViewPagerAdapter(getChildFragmentManager(), regions);
         viewPager.setAdapter(viewPagerAdapter);
 
         // set tab

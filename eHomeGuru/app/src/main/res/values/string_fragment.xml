@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- common -->
+    <string name="fragment_data_nonexistent">数据不存在或未初始化!</string>
     <!-- fragment_name -->
     <string name="fragment_home">fragment_home</string>
     <string name="fragment_region">fragment_region</string>
+    <string name="fragment_scene">fragment_scene</string>
+    <string name="fragment_me">fragment_me</string>
     <!-- HomeFragment -->
     <string name="fragment_home_nonexistent">首页未初始化</string>
+    <!-- RegionFragment -->
+    <string name="fragment_region_nonexistent">区域未初始化</string>
+    <!-- DeviceFragment -->
+    <string name="fragment_device_icondesc">设备图标</string>
     <!-- ExitDialogFragment -->
     <string name="fragment_exitdialog_name">fragment_exitdialog</string>
     <string name="fragment_exitdialog_title">确定退出系统!</string>

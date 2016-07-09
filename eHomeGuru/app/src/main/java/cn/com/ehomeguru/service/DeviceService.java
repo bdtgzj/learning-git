@@ -4,6 +4,7 @@ import com.gustavofao.jsonapi.Models.JSONApiObject;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -12,6 +13,12 @@ import retrofit2.http.Query;
 public interface DeviceService {
 
     @GET("device")
-    Call<JSONApiObject> getDeviceByRegion(@Query("filter") String regionId);
+    Call<JSONApiObject> getDeviceByRegion(@Query("region") String regionId);
+
+    @GET("device")
+    Call<JSONApiObject> getDeviceByCategory(@Query("category") String categoryId);
+
+    @GET("device/{id}")
+    Call<JSONApiObject> getDeviceById(@Path("id") String deviceId);
 
 }

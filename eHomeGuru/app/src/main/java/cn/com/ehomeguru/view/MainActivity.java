@@ -7,16 +7,32 @@ import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
+import com.gustavofao.jsonapi.Models.JSONApiObject;
+import com.gustavofao.jsonapi.Models.Resource;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
 
+import java.util.List;
+
 import cn.com.ehomeguru.R;
 import cn.com.ehomeguru.bean.Device;
+import cn.com.ehomeguru.bean.HomeCard;
+import cn.com.ehomeguru.bean.Scene;
+import cn.com.ehomeguru.bean.User;
+import cn.com.ehomeguru.model.GlobalData;
+import cn.com.ehomeguru.service.DeviceService;
+import cn.com.ehomeguru.service.SceneService;
+import cn.com.ehomeguru.service.ServiceGenerator;
+import cn.com.ehomeguru.util.ResponseUtil;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class MainActivity extends AppCompatActivity
-        implements HomeFragment.OnFragmentInteractionListener, RegionFragment.OnFragmentInteractionListener,
-                   DeviceFragment.OnListFragmentInteractionListener {
+        implements HomeFragment.OnHomeFragmentInteractionListener, RegionFragment.OnFragmentInteractionListener,
+                   DeviceFragment.OnListFragmentInteractionListener, SceneFragment.OnFragmentInteractionListener,
+                   SceneListFragment.OnSceneListFragmentInteractionListener {
 
     private BottomBar bottomBar;
     private Toolbar toolbar;
@@ -85,15 +101,19 @@ public class MainActivity extends AppCompatActivity
                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                     if (null == regionFragment) {
                         regionFragment = new RegionFragment();
-                        // 根据Fragment的生命周期, 会把被替换的Fragment添加到BackStack堆栈
-                        // 1. 堆栈计数值会加1 `getSupportFragmentManager().getBackStackEntryCount()`
-                        // 2. Fragment会被添加到Fragment堆栈 `getSupportFragmentManager().getFragments()`
                         ft.addToBackStack(null);
                     }
                     ft.replace(R.id.fragment_container, regionFragment, getResources().getString(R.string.fragment_region));
                     ft.commit();
                 } else if (menuItemId == R.id.bottomBarScene) {
-
+                    SceneFragment sceneFragment = (SceneFragment) getSupportFragmentManager().findFragmentByTag(getResources().getString(R.string.fragment_scene));
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    if (null == sceneFragment) {
+                        sceneFragment = new SceneFragment();
+                        ft.addToBackStack(null);
+                    }
+                    ft.replace(R.id.fragment_container, sceneFragment, getResources().getString(R.string.fragment_scene));
+                    ft.commit();
                 } else if (menuItemId == R.id.bottomBarMe) {
 
                 }
@@ -118,24 +138,79 @@ public class MainActivity extends AppCompatActivity
         bottomBar.onSaveInstanceState(outState);
     }
 
-    // HomeFragment
     @Override
     public void onFragmentInteraction(Uri uri) {
 
     }
 
+    // HomeFragment
+    @Override
+    public void onHomeFragmentInteraction(HomeCard homeCard) {
+        // get instruction from server
+        User user = (User) GlobalData.getObjectForKey("user");
+        DeviceService deviceService = ServiceGenerator.createService(DeviceService.class, user.getName(), user.getPassword());
+        Call<JSONApiObject> call = deviceService.getDeviceById(homeCard.getDeviceId());
+        call.enqueue(new Callback<JSONApiObject>() {
+            @Override
+            public void onResponse(Call<JSONApiObject> call, retrofit2.Response<JSONApiObject> response) {
+                List<Resource> resources = ResponseUtil.parseResponse(response, MainActivity.this);
+                if (resources != null) {
+                    Device device = (Device) resources.get(0);
+                    Intent intent = new Intent(MainActivity.this, ControllerActivity.class);
+                    intent.putExtra("deviceId", device.getId());
+                    intent.putExtra("name", device.getName());
+                    intent.putExtra("regionName", device.getRegionName());
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JSONApiObject> call, Throwable t) {
+                Toast.makeText(MainActivity.this, R.string.error_network, Toast.LENGTH_SHORT).show();
+                System.out.println(t.getMessage());
+            }
+        });
+    }
+
     // DeviceFragment
-
-
     @Override
     public void onListFragmentInteraction(Device device) {
         Intent intent = new Intent(MainActivity.this, ControllerActivity.class);
         intent.putExtra("deviceId", device.getId());
         intent.putExtra("name", device.getName());
-        intent.putExtra("region", device.getRegionId());
+        intent.putExtra("regionName", device.getRegionName());
         //intent.putExtra("category", device.getCategoryId());
         //intent.putExtra("status", device.getStatus());
         startActivity(intent);
+    }
+
+    // SceneListFragment
+    @Override
+    public void onSceneListFragmentInteraction(final Scene scene) {
+        // get instruction from server
+        User user = (User) GlobalData.getObjectForKey("user");
+        SceneService sceneService = ServiceGenerator.createService(SceneService.class, user.getName(), user.getPassword());
+        Call<JSONApiObject> call = sceneService.setDeviceByScene(scene);
+        call.enqueue(new Callback<JSONApiObject>() {
+            @Override
+            public void onResponse(Call<JSONApiObject> call, retrofit2.Response<JSONApiObject> response) {
+                List<Resource> resources = ResponseUtil.parseResponse(response, MainActivity.this);
+                if (resources != null) {
+                    Scene sceneRet = (Scene) resources.get(0);
+                    if (sceneRet == scene) {
+                        Toast.makeText(MainActivity.this, R.string.toast_scene_exec_yes, Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, R.string.toast_scene_exec_yes, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JSONApiObject> call, Throwable t) {
+                Toast.makeText(MainActivity.this, R.string.error_network, Toast.LENGTH_SHORT).show();
+                System.out.println(t.getMessage());
+            }
+        });
     }
 
     @Override

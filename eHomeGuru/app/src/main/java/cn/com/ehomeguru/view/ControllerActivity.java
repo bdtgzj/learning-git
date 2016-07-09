@@ -4,18 +4,14 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.gustavofao.jsonapi.JSONApiConverter;
 import com.gustavofao.jsonapi.Models.ErrorModel;
 import com.gustavofao.jsonapi.Models.JSONApiObject;
 import com.gustavofao.jsonapi.Models.Resource;
@@ -32,7 +28,6 @@ import cn.com.ehomeguru.model.GlobalData;
 import cn.com.ehomeguru.service.InstructionService;
 import cn.com.ehomeguru.service.ServiceGenerator;
 import cn.com.ehomeguru.util.ErrorUtil;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -58,7 +53,7 @@ public class ControllerActivity extends AppCompatActivity implements Instruction
 
         // get data from intent
         Bundle bundle = getIntent().getExtras();
-        setTitle(bundle.getString("region") + "-" + bundle.getString("name"));
+        setTitle(bundle.getString("regionName") + "-" + bundle.getString("name"));
         String strStatus = "断电";
 
         // layout

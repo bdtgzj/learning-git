@@ -12,4 +12,6 @@
     <dimen name="text_margin">16dp</dimen>
     <!-- for Divider -->
     <dimen name="divider">1dp</dimen>
+    <!-- for Device -->
+    <dimen name="device_icon_right_margin">3dp</dimen>
 </resources>
