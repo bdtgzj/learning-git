@@ -8,4 +8,6 @@
     <color name="indicator">#ecd95a</color>
     <!-- for Divider -->
     <color name="divider">#cecece</color>
+    <!-- MeFragment -->
+    <color name="fragment_me_linearlayout_bg">#cecece</color>
 </resources>

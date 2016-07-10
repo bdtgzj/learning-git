@@ -10,6 +10,7 @@ module.exports = new JSONAPISerializer('homecard', {
     'icon',
     'color',
     'text',
-    'deviceId'
+    'deviceId',
+    'sceneId'
   ]
 });

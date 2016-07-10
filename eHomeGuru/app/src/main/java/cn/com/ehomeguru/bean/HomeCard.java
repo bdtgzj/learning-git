@@ -14,6 +14,7 @@ public class HomeCard extends Resource {
     private String color;
     private String text;
     private String deviceId;
+    private String sceneId;
 
     public String getIcon() {
         return icon;
@@ -45,5 +46,13 @@ public class HomeCard extends Resource {
 
     public void setDeviceId(String deviceId) {
         this.deviceId = deviceId;
+    }
+
+    public String getSceneId() {
+        return sceneId;
+    }
+
+    public void setSceneId(String sceneId) {
+        this.sceneId = sceneId;
     }
 }

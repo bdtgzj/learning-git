@@ -28,6 +28,7 @@ import cn.com.ehomeguru.model.GlobalData;
 import cn.com.ehomeguru.service.HomeCardService;
 import cn.com.ehomeguru.service.ServiceGenerator;
 import cn.com.ehomeguru.util.ErrorUtil;
+import cn.com.ehomeguru.util.ResponseUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -122,36 +123,12 @@ public class HomeFragment extends Fragment {
         call.enqueue(new Callback<JSONApiObject>() {
             @Override
             public void onResponse(Call<JSONApiObject> call, retrofit2.Response<JSONApiObject> response) {
-                if (response.isSuccessful()) {
-                    JSONApiObject jsonApiObject = response.body();
-                    if (jsonApiObject != null) {
-                        if (jsonApiObject.hasErrors()) {
-                            List<ErrorModel> errorList = jsonApiObject.getErrors();
-                            Toast.makeText(getContext(), errorList.get(0).getDetail(), Toast.LENGTH_SHORT).show();
-                        } else {
-                            if (jsonApiObject.getData().size() > 0) {
-                                List<Resource> resources = jsonApiObject.getData();
-                                for (Resource resource : resources) {
-                                    mListHomeCard.add((HomeCard) resource);
-                                    // mListHomeCard.add(new HomeCard("ic_menu_home", "#FF0000", "Home", 1));
-                                    // mListHomeCard.add(new HomeCard("ic_menu_region", "#00FF00", "RegionService", 2));
-                                    // mListHomeCard.add(new HomeCard("ic_menu_scene", "#0000FF", "Secne", 3));
-                                }
-                                mAdapter.notifyDataSetChanged();
-                            } else {
-                                Toast.makeText(getContext(), R.string.fragment_home_nonexistent, Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    } else {
-                        Toast.makeText(getContext(), R.string.fragment_home_nonexistent, Toast.LENGTH_SHORT).show();
+                List<Resource> resources = ResponseUtil.parseResponse(response, getContext());
+                if (resources != null) {
+                    for (Resource resource : resources) {
+                        mListHomeCard.add((HomeCard) resource);
                     }
-                } else {
-                    HttpError httpError = ErrorUtil.parseError(response);
-                    if (httpError != null && httpError.getErrors().size() > 0) {
-                        Toast.makeText(getActivity(), httpError.getErrors().get(0).getDetail(), Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getActivity(), R.string.error_network, Toast.LENGTH_SHORT).show();
-                    }
+                    mAdapter.notifyDataSetChanged();
                 }
             }
 

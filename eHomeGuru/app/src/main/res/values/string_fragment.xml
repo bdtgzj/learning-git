@@ -18,4 +18,9 @@
     <string name="fragment_exitdialog_title">确定退出系统!</string>
     <string name="fragment_exitdialog_ok">确定</string>
     <string name="fragment_exitdialog_cancel">取消</string>
+    <!-- MeFragment -->
+    <string name="fragment_me_password_modify">密码修改</string>
+    <string name="fragment_me_log_login">登录记录</string>
+    <string name="fragment_me_log_operation">操作记录</string>
+    <string name="fragment_me_about_us">关于我们</string>
 </resources>

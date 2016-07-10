@@ -14,4 +14,6 @@
     <dimen name="divider">1dp</dimen>
     <!-- for Device -->
     <dimen name="device_icon_right_margin">3dp</dimen>
+    <!-- MeFragment -->
+    <dimen name="fragment_me_linearlayout_border">1dp</dimen>
 </resources>
