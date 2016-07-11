@@ -17,4 +17,6 @@
     <!-- MeFragment -->
     <dimen name="fragment_me_linearlayout_border">1dp</dimen>
     <dimen name="fragment_me_linearlayout_item_margin">10dp</dimen>
+    <!-- UserInfoFragment -->
+    <dimen name="fragment_userinfo_linearlayout_padding">16dp</dimen>
 </resources>

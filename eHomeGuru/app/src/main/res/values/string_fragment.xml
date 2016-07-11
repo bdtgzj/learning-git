@@ -24,4 +24,12 @@
     <string name="fragment_me_log_operation">操作记录</string>
     <string name="fragment_me_about_us">关于我们</string>
     <string name="fragment_me_exit">退出系统</string>
+    <!-- UserInfoFragment -->
+    <string name="fragment_userinfo_nickname">用户昵称</string>
+    <string name="fragment_userinfo_mphone">手机号码</string>
+    <string name="fragment_userinfo_email">电子邮箱</string>
+    <string name="fragment_userinfo_oldpass">原用密码</string>
+    <string name="fragment_userinfo_newpass">新设密码</string>
+    <string name="fragment_userinfo_submit">修改</string>
+    <string name="fragment_userinfo_reset">重置</string>
 </resources>
