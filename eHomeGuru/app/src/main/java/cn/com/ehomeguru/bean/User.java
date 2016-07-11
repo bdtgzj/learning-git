@@ -23,6 +23,9 @@ public class User extends Resource {
     private int screenId;
     private Date created;
 
+    private String oldPass;
+    private String newPass;
+
     public User() {
     }
 
@@ -95,4 +98,19 @@ public class User extends Resource {
         this.screenId = screenId;
     }
 
+    public String getOldPass() {
+        return oldPass;
+    }
+
+    public void setOldPass(String oldPass) {
+        this.oldPass = oldPass;
+    }
+
+    public String getNewPass() {
+        return newPass;
+    }
+
+    public void setNewPass(String newPass) {
+        this.newPass = newPass;
+    }
 }

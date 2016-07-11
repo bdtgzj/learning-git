@@ -9,16 +9,17 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <LinearLayout
+            android:id="@+id/fragment_me_ll_user_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/layerlist_bottom_border">
+            android:background="@color/selector_me_fragment_item">
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/text_margin"
-                android:layout_marginTop="@dimen/text_margin"
-                android:layout_marginBottom="@dimen/text_margin"
+                android:layout_marginLeft="@dimen/fragment_me_linearlayout_item_margin"
+                android:layout_marginTop="@dimen/fragment_me_linearlayout_item_margin"
+                android:layout_marginBottom="@dimen/fragment_me_linearlayout_item_margin"
                 android:layout_marginRight="@dimen/device_icon_right_margin"
                 android:src="@drawable/ic_menu_camera"/>
             <TextView
@@ -26,15 +27,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
-                android:layout_margin="@dimen/text_margin"
-                android:text="@string/fragment_me_password_modify"/>
+                android:layout_margin="@dimen/fragment_me_linearlayout_item_margin"
+                android:text="@string/fragment_me_user_info"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
+                android:layout_margin="@dimen/fragment_me_linearlayout_item_margin"
                 android:src="@drawable/ic_menu_gallery"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/fragment_me_ll_login_log"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -42,9 +44,9 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/text_margin"
-                android:layout_marginTop="@dimen/text_margin"
-                android:layout_marginBottom="@dimen/text_margin"
+                android:layout_marginLeft="@dimen/fragment_me_linearlayout_item_margin"
+                android:layout_marginTop="@dimen/fragment_me_linearlayout_item_margin"
+                android:layout_marginBottom="@dimen/fragment_me_linearlayout_item_margin"
                 android:layout_marginRight="@dimen/device_icon_right_margin"
                 android:src="@drawable/ic_menu_camera"/>
             <TextView
@@ -52,15 +54,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
-                android:layout_margin="@dimen/text_margin"
+                android:layout_margin="@dimen/fragment_me_linearlayout_item_margin"
                 android:text="@string/fragment_me_log_login"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
+                android:layout_margin="@dimen/fragment_me_linearlayout_item_margin"
                 android:src="@drawable/ic_menu_gallery"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/fragment_me_ll_operation_log"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -68,9 +71,9 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/text_margin"
-                android:layout_marginTop="@dimen/text_margin"
-                android:layout_marginBottom="@dimen/text_margin"
+                android:layout_marginLeft="@dimen/fragment_me_linearlayout_item_margin"
+                android:layout_marginTop="@dimen/fragment_me_linearlayout_item_margin"
+                android:layout_marginBottom="@dimen/fragment_me_linearlayout_item_margin"
                 android:layout_marginRight="@dimen/device_icon_right_margin"
                 android:src="@drawable/ic_menu_camera"/>
             <TextView
@@ -78,15 +81,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
-                android:layout_margin="@dimen/text_margin"
+                android:layout_margin="@dimen/fragment_me_linearlayout_item_margin"
                 android:text="@string/fragment_me_log_operation"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
+                android:layout_margin="@dimen/fragment_me_linearlayout_item_margin"
                 android:src="@drawable/ic_menu_gallery"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/fragment_me_ll_about_us"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -94,9 +98,9 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/text_margin"
-                android:layout_marginTop="@dimen/text_margin"
-                android:layout_marginBottom="@dimen/text_margin"
+                android:layout_marginLeft="@dimen/fragment_me_linearlayout_item_margin"
+                android:layout_marginTop="@dimen/fragment_me_linearlayout_item_margin"
+                android:layout_marginBottom="@dimen/fragment_me_linearlayout_item_margin"
                 android:layout_marginRight="@dimen/device_icon_right_margin"
                 android:src="@drawable/ic_menu_camera"/>
             <TextView
@@ -104,12 +108,39 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
-                android:layout_margin="@dimen/text_margin"
+                android:layout_margin="@dimen/fragment_me_linearlayout_item_margin"
                 android:text="@string/fragment_me_about_us"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
+                android:layout_margin="@dimen/fragment_me_linearlayout_item_margin"
+                android:src="@drawable/ic_menu_gallery"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/fragment_me_ll_exit_system"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/layerlist_bottom_border">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/fragment_me_linearlayout_item_margin"
+                android:layout_marginTop="@dimen/fragment_me_linearlayout_item_margin"
+                android:layout_marginBottom="@dimen/fragment_me_linearlayout_item_margin"
+                android:layout_marginRight="@dimen/device_icon_right_margin"
+                android:src="@drawable/ic_menu_camera"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/fragment_me_linearlayout_item_margin"
+                android:text="@string/fragment_me_exit"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fragment_me_linearlayout_item_margin"
                 android:src="@drawable/ic_menu_gallery"/>
         </LinearLayout>
     </LinearLayout>

@@ -250,6 +250,29 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
+    // MeFragment
+    @Override
+    public void onMeFragmentUserInfoClick() {
+        Intent intent = new Intent(MainActivity.this, MeActivity.class);
+        intent.putExtra("fragmentName", "cn.com.ehomeguru.view.UserInfoFragment");
+        startActivity(intent);
+    }
+
+    @Override
+    public void onMeFragmentLoginLogClick() {
+
+    }
+
+    @Override
+    public void onMeFragmentOperationLogClick() {
+
+    }
+
+    @Override
+    public void onMeFragmentAboutUsClick() {
+
+    }
+
     @Override
     public void onBackPressed() {
         //super.onBackPressed();

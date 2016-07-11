@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import cn.com.ehomeguru.R;
 
@@ -65,14 +66,49 @@ public class MeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_me, container, false);
-    }
+        View view = inflater.inflate(R.layout.fragment_me, container, false);
+        // user info
+        LinearLayout llUserInfo = (LinearLayout) view.findViewById(R.id.fragment_me_ll_user_info);
+        llUserInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) {
+                    mListener.onMeFragmentUserInfoClick();
+                }
+            }
+        });
+        // user info
+        LinearLayout llLoginLog = (LinearLayout) view.findViewById(R.id.fragment_me_ll_login_log);
+        llLoginLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) {
+                    mListener.onMeFragmentLoginLogClick();
+                }
+            }
+        });
+        // user info
+        LinearLayout llOperationLog = (LinearLayout) view.findViewById(R.id.fragment_me_ll_operation_log);
+        llOperationLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) {
+                    mListener.onMeFragmentOperationLogClick();
+                }
+            }
+        });
+        // user info
+        LinearLayout llAboutUs = (LinearLayout) view.findViewById(R.id.fragment_me_ll_about_us);
+        llAboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) {
+                    mListener.onMeFragmentAboutUsClick();
+                }
+            }
+        });
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+        return view;
     }
 
     @Override
@@ -104,6 +140,9 @@ public class MeFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onMeFragmentUserInfoClick();
+        void onMeFragmentLoginLogClick();
+        void onMeFragmentOperationLogClick();
+        void onMeFragmentAboutUsClick();
     }
 }

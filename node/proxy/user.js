@@ -35,3 +35,24 @@ exports.getUserByNameEmailMPhonePass = function(name, password, callback) {
 exports.getUserByCondition = function(condition, callback) {
   User.find(condition, callback);
 };
+
+/**
+ * Update
+ * Update返回
+ */
+exports.update = function(id, user, callback) {
+  User.update({_id: id}, {$set: user}, callback);
+};
+
+// return new document, if {new: true}, than return new document.
+exports.updateOne = function(id, user, callback) {
+  User.findOneAndUpdate({_id: id}, user, {new: true}, callback);
+};
+
+/**
+ * Delete
+ * Delete返回
+ */
+exports.delete = function(id, callback) {
+  User.remove({_id: id}, callback);
+};

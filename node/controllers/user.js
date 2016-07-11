@@ -7,8 +7,92 @@ var mail = require('../services/mail');
 var crypto = require('crypto');
 var validator = require('validator');
 var hashcrypt = require('../libs/hashcrypt');
+var error = require('../libs/error');
 var JSONAPIDeserializer = require('jsonapi-serializer').Deserializer;
 var UserSerializer = require('../serializers').UserSerializer;
+var ErrorSerializer = require('../serializers').ErrorSerializer;
+
+/**
+ * User authentication.
+ */
+exports.signin = function(req, res, next) {
+  new JSONAPIDeserializer().deserialize(req.body)
+    .then(function(user) {
+      var name = validator.trim(user.name);
+      var password = validator.trim(user.password);
+      User.getUserByNameEmailMPhonePass(name, hashcrypt.sha1(password), function(err, users) {
+        if (err) {
+          return next(err);
+        }
+        var user = users.length > 0 ? users[0] : null;
+        res.json(UserSerializer.serialize(user));
+        //res.json({desc: '用户名或密码不正确，请重新输入！', valid: false});
+      });
+    })
+    .catch(function(err) {
+      return next(err);
+    });
+};
+
+/**
+ * User update.
+ */
+exports.updateOne = function(req, res, next) {
+  new JSONAPIDeserializer().deserialize(req.body)
+    .then(function(user) {
+      var tmpUser = {};
+      // id
+      if (!user.id) {
+        return res.json(ErrorSerializer.serialize(error('数据异常', 'id信息不存在！')));
+      }
+      // name
+      if (!user.name) {
+        return res.json(ErrorSerializer.serialize(error('数据异常', 'name信息不存在！')));
+      }
+      // nickName
+      if (!user.nickName || !validator.isLength(user.nickName, {min:6, max: 18})) {
+        return res.json(ErrorSerializer.serialize(error('数据异常', '昵称至少6个字符，至多18个字符！')));
+      } else {
+        tmpUser['nickName'] = user.nickName;
+      }
+      // email
+      if (!user.email || !validator.isEmail(user.email)) {
+        return res.json(ErrorSerializer.serialize(error('数据异常', 'Email地址格式不正确！')));
+      } else {
+        tmpUser['email'] = user.email;
+      }
+      // mphone
+      if (!user.mphone || !validator.isMobilePhone(user.mphone, 'zh-CN')) {
+        return res.json(ErrorSerializer.serialize(error('数据异常', '手机号码格式不正确！')));
+      } else {
+        tmpUser['mphone'] = user.mphone;
+      }
+      // state
+      // familyId
+      // screenId
+      User.updateOne(user.id, tmpUser, function(err, user) {
+        if (err) {
+          return next(err);
+        }
+        res.json(UserSerializer.serialize(user));
+      });
+    })
+    .catch(function(err) {
+      return next(err);
+    });
+};
+
+exports.update = function(req, res, next) {
+  new JSONAPIDeserializer().deserialize(req.body)
+    .then(function(users) {
+      users.forEach(function(user) {
+
+      });
+    })
+    .catch(function(err) {
+      return next(err);
+    });
+};
 
 exports.retrieve = function(req, res, next) {
   var type = req.query.type;
@@ -111,27 +195,7 @@ exports.signup = function(req, res, next) {
   });
 };
 
-/**
- * User authentication.
- */
-exports.signin = function(req, res, next) {
-  new JSONAPIDeserializer().deserialize(req.body)
-    .then(function(user) {
-      var name = validator.trim(user.name);
-      var password = validator.trim(user.password);
-      User.getUserByNameEmailMPhonePass(name, hashcrypt.sha1(password), function(err, users) {
-        if (err) {
-          return next(err);
-        }
-        var user = users.length > 0 ? users[0] : null;
-        res.json(UserSerializer.serialize(user));
-        //res.json({desc: '用户名或密码不正确，请重新输入！', valid: false});
-      });
-    })
-    .catch(function(err) {
-      return next(err);
-    });
-};
+
 
 /**
  * According cookie allow users automatically signin.
