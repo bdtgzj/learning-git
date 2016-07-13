@@ -36,36 +36,50 @@ exports.signin = function(req, res, next) {
 
 /**
  * User update.
+ * Data patch: id is must, others is optional.
  */
 exports.updateOne = function(req, res, next) {
   new JSONAPIDeserializer().deserialize(req.body)
     .then(function(user) {
       var tmpUser = {};
       // id
-      if (!user.id) {
-        return res.json(ErrorSerializer.serialize(error('数据异常', 'id信息不存在！')));
+      if (!user.id || user.id !== req.uid) {
+        return res.json(ErrorSerializer.serialize(error('数据异常', 'id信息不存在或不正确！')));
       }
       // name
-      if (!user.name) {
-        return res.json(ErrorSerializer.serialize(error('数据异常', 'name信息不存在！')));
+      if (user.name) {
+        if (validator.isLength(user.name, {min:6, max: 18})) {
+          tmpUser['name'] = user.name;
+        } else {
+          return res.json(ErrorSerializer.serialize(error('数据异常', '用户登录名至少6个字符，最多18个字符！')));
+        }
       }
       // nickName
-      if (!user.nickName || !validator.isLength(user.nickName, {min:6, max: 18})) {
-        return res.json(ErrorSerializer.serialize(error('数据异常', '昵称至少6个字符，至多18个字符！')));
-      } else {
-        tmpUser['nickName'] = user.nickName;
+      if (user.nickName) {
+        if (validator.isLength(user.nickName, {min:6, max: 18})) {
+          tmpUser['nickName'] = user.nickName;
+        } else {
+          return res.json(ErrorSerializer.serialize(error('数据异常', '用户昵称至少6个字符，最多18个字符！')));
+        }
       }
       // email
-      if (!user.email || !validator.isEmail(user.email)) {
-        return res.json(ErrorSerializer.serialize(error('数据异常', 'Email地址格式不正确！')));
-      } else {
-        tmpUser['email'] = user.email;
+      if (user.email) {
+        if (validator.isEmail(user.email)) {
+          tmpUser['email'] = user.email;
+        } else {
+          return res.json(ErrorSerializer.serialize(error('数据异常', 'Email格式不正确！')));
+        }
       }
       // mphone
-      if (!user.mphone || !validator.isMobilePhone(user.mphone, 'zh-CN')) {
-        return res.json(ErrorSerializer.serialize(error('数据异常', '手机号码格式不正确！')));
-      } else {
-        tmpUser['mphone'] = user.mphone;
+      if (user.mphone) {
+        if (validator.isMobilePhone(user.mphone, 'zh-CN')) {
+          tmpUser['mphone'] = user.mphone;
+        } else {
+          return res.json(ErrorSerializer.serialize(error('数据异常', '手机号码格式不正确！')));
+        }
+      }
+      // password
+      if (user.oldPass) {
       }
       // state
       // familyId

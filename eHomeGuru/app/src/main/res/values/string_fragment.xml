@@ -32,4 +32,12 @@
     <string name="fragment_userinfo_newpass">新设密码</string>
     <string name="fragment_userinfo_submit">修改</string>
     <string name="fragment_userinfo_reset">重置</string>
+    <string name="fragment_userinfo_error_nickname_empty">请输入用户昵称!</string>
+    <string name="fragment_userinfo_error_nickname_length">长度范围6至18!</string>
+    <string name="fragment_userinfo_error_oldpass_empty">请输入新密码!</string>
+    <string name="fragment_userinfo_error_oldpass_length">长度范围6至18!</string>
+    <string name="fragment_userinfo_error_newpass_empty">请输入新密码!</string>
+    <string name="fragment_userinfo_error_newpass_length">长度范围6至18!</string>
+    <string name="fragment_userinfo_toast_submit_no">用户信息无需更新!</string>
+    <string name="fragment_userinfo_toast_submit_ok">用户信息更新成功!</string>
 </resources>

@@ -44,6 +44,13 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // tmp data for test
+        User user = new User("yxdc002", "admin6");
+        user.setId("1");
+        user.setNickName("bdtgzj");
+        user.setMphone("13222880055");
+        user.setEmail("bdtgzj@163.com");
+        GlobalData.addObjectForKey("user", user);
         //
         firstClick = 0;
 
@@ -271,6 +278,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onMeFragmentAboutUsClick() {
 
+    }
+
+    @Override
+    public void onMeFragmentExitSystemClick() {
+        ExitDialogFragment.create().show(getSupportFragmentManager(), getString(R.string.fragment_exitdialog_name));
     }
 
     @Override

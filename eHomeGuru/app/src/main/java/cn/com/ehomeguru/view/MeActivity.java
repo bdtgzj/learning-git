@@ -35,7 +35,7 @@ import cn.com.ehomeguru.util.ErrorUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class MeActivity extends AppCompatActivity implements UserInfoFragment.OnFragmentInteractionListener {
+public class MeActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private Instruction mInstruction;
@@ -100,9 +100,4 @@ public class MeActivity extends AppCompatActivity implements UserInfoFragment.On
         return super.onOptionsItemSelected(item);
     }
 
-    // UserInfoFragment
-    @Override
-    public void onUserInfoFragmentModify(User user) {
-
-    }
 }

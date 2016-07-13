@@ -1,0 +1,17 @@
+{
+  "name": "node-bluebird",
+  "version": "1.0.0",
+  "description": "node-bluebird",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bluebird"
+  ],
+  "author": "bdtgzj",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.4.1"
+  }
+}

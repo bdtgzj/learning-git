@@ -20,11 +20,13 @@
                 android:layout_margin="@dimen/fragment_me_linearlayout_item_margin"
                 android:text="@string/fragment_userinfo_nickname"/>
             <EditText
+                android:id="@+id/fragment_userinfo_nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/fragment_me_linearlayout_item_margin"
-                android:maxLines="1"
-                android:layout_weight="1"/>
+                android:singleLine="true"
+                android:layout_weight="1"
+                android:imeOptions="actionNext" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,11 +40,13 @@
                 android:layout_margin="@dimen/fragment_me_linearlayout_item_margin"
                 android:text="@string/fragment_userinfo_mphone"/>
             <EditText
+                android:id="@+id/fragment_userinfo_mphone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/fragment_me_linearlayout_item_margin"
-                android:maxLines="1"
-                android:layout_weight="1"/>
+                android:singleLine="true"
+                android:layout_weight="1"
+                android:inputType="phone" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,11 +60,13 @@
                 android:layout_margin="@dimen/fragment_me_linearlayout_item_margin"
                 android:text="@string/fragment_userinfo_email"/>
             <EditText
+                android:id="@+id/fragment_userinfo_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/fragment_me_linearlayout_item_margin"
-                android:maxLines="1"
-                android:layout_weight="1"/>
+                android:singleLine="true"
+                android:layout_weight="1"
+                android:inputType="textEmailAddress" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,11 +80,13 @@
                 android:layout_margin="@dimen/fragment_me_linearlayout_item_margin"
                 android:text="@string/fragment_userinfo_oldpass"/>
             <EditText
+                android:id="@+id/fragment_userinfo_oldpass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/fragment_me_linearlayout_item_margin"
-                android:maxLines="1"
-                android:layout_weight="1"/>
+                android:singleLine="true"
+                android:layout_weight="1"
+                android:inputType="textPassword" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -92,11 +100,13 @@
                 android:layout_margin="@dimen/fragment_me_linearlayout_item_margin"
                 android:text="@string/fragment_userinfo_newpass"/>
             <EditText
+                android:id="@+id/fragment_userinfo_newpass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/fragment_me_linearlayout_item_margin"
-                android:maxLines="1"
-                android:layout_weight="1"/>
+                android:singleLine="true"
+                android:layout_weight="1"
+                android:inputType="textPassword" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -106,11 +116,13 @@
             android:paddingLeft="@dimen/fragment_userinfo_linearlayout_padding"
             android:paddingRight="@dimen/fragment_userinfo_linearlayout_padding">
             <Button
+                android:id="@+id/fragment_userinfo_submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/fragment_me_linearlayout_item_margin"
                 android:text="@string/fragment_userinfo_submit" />
             <Button
+                android:id="@+id/fragment_userinfo_reset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/fragment_me_linearlayout_item_margin"

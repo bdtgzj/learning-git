@@ -30,4 +30,12 @@ public class GlobalData {
         return getInstance()._hash.get(key);
     }
 
+    public static void updateObjectForKey(String key, Object obj) {
+        getInstance()._hash.put(key, obj);
+    }
+
+    public static void removeObjectForKey(String key) {
+        getInstance()._hash.remove(key);
+    }
+
 }

@@ -253,7 +253,6 @@ public class LoginActivity extends AppCompatActivity {
             Call<JSONApiObject> call = userService.signIn(user);
             try {
                 JSONApiObject jsonApiObject = call.execute().body();
-                // System.out.println(jsonApiObject.getData());
                 return jsonApiObject;
             } catch (IOException e) {
                 // network error.
@@ -281,11 +280,13 @@ public class LoginActivity extends AppCompatActivity {
                                 public void execute(Realm realm) {
                                     UserHint userHint = realm.createObject(UserHint.class);
                                     userHint.setName(name);
+
                                 }
                             });
                         }
                         // init User
                         User user = (User) jsonApiObject.getData(0);
+                        user.setPassword(password);
                         // save to global data
                         GlobalData.addObjectForKey("user", user);
                         // open MainActivity

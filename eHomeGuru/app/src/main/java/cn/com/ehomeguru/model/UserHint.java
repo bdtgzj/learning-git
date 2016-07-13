@@ -15,4 +15,5 @@ public class UserHint extends RealmObject {
     public void setName(String name) {
         this.name = name;
     }
+
 }

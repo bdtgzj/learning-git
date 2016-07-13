@@ -106,17 +106,17 @@ public class HomeFragment extends Fragment {
         // use a layout manager
         //mLayoutManager = new LinearLayoutManager(getContext());
         mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        // mLayoutManager.generateLayoutParams(new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // data for adapter
-        mListHomeCard = new ArrayList<HomeCard>();
+        mListHomeCard = new ArrayList<>();
 
         // specify an adapter
         mAdapter = new HomeRecyclerViewAdapter(mListHomeCard, mListener);
         mRecyclerView.setAdapter(mAdapter);
 
         // request for HomeCard data.
-        GlobalData.addObjectForKey("user", new User("yxdc002", "admin6"));
         User user = (User) GlobalData.getObjectForKey("user");
         HomeCardService homeCardService = ServiceGenerator.createService(HomeCardService.class, user.getName(), user.getPassword());
         Call<JSONApiObject> call = homeCardService.getHomeCard();

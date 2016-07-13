@@ -68,7 +68,7 @@ router.get('/water', water.open);
  * user.
  */
 router.post('/user/signin', user.signin);
-router.put('/user/:id', user.updateOne);
+router.post('/user/:id', user.updateOne);
 router.put('/user', user.update);
 
 router.get('/user', user.retrieve);

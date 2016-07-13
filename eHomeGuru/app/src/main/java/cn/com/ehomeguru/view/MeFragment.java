@@ -77,7 +77,7 @@ public class MeFragment extends Fragment {
                 }
             }
         });
-        // user info
+        // Login log
         LinearLayout llLoginLog = (LinearLayout) view.findViewById(R.id.fragment_me_ll_login_log);
         llLoginLog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +87,7 @@ public class MeFragment extends Fragment {
                 }
             }
         });
-        // user info
+        // Operation log
         LinearLayout llOperationLog = (LinearLayout) view.findViewById(R.id.fragment_me_ll_operation_log);
         llOperationLog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,13 +97,23 @@ public class MeFragment extends Fragment {
                 }
             }
         });
-        // user info
+        // About us
         LinearLayout llAboutUs = (LinearLayout) view.findViewById(R.id.fragment_me_ll_about_us);
         llAboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
                     mListener.onMeFragmentAboutUsClick();
+                }
+            }
+        });
+        // About us
+        LinearLayout llExitSystem = (LinearLayout) view.findViewById(R.id.fragment_me_ll_exit_system);
+        llExitSystem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) {
+                    mListener.onMeFragmentExitSystemClick();
                 }
             }
         });
@@ -144,5 +154,6 @@ public class MeFragment extends Fragment {
         void onMeFragmentLoginLogClick();
         void onMeFragmentOperationLogClick();
         void onMeFragmentAboutUsClick();
+        void onMeFragmentExitSystemClick();
     }
 }
