@@ -45,9 +45,10 @@ exports.signin = function(req, res, next) {
  */
 exports.updateOne = function(req, res, next) {
   var tmpUser = {};
-  var p = null;
+  var funcs = [];
 
   new JSONAPIDeserializer().deserialize(req.body, function(err, user) {
+    console.log(user);
     if (err) {
       return next(err);
     }
@@ -59,6 +60,11 @@ exports.updateOne = function(req, res, next) {
     if (user.name) {
       if (validator.isLength(user.name, {min:6, max: 18})) {
         tmpUser['name'] = user.name;
+        funcs.push(User.getUserByNameExceptSelfAsync(user.id, user.name).then((data)=>{
+          if (data) {
+            return ErrorSerializer.serialize(error('数据异常', '新更改的用户登录名已被注册，请更换！'));
+          }
+        }));
       } else {
         return res.json(ErrorSerializer.serialize(error('数据异常', '用户登录名至少6个字符，最多18个字符！')));
       }
@@ -75,6 +81,11 @@ exports.updateOne = function(req, res, next) {
     if (user.email) {
       if (validator.isEmail(user.email)) {
         tmpUser['email'] = user.email;
+        funcs.push(User.getUserByEmailExceptSelfAsync(user.id, user.email).then((data)=>{
+          if (data) {
+            return ErrorSerializer.serialize(error('数据异常', '新更改的Email已被注册，请更换！'));
+          }
+        }));
       } else {
         return res.json(ErrorSerializer.serialize(error('数据异常', 'Email格式不正确！')));
       }
@@ -83,6 +94,11 @@ exports.updateOne = function(req, res, next) {
     if (user.mphone) {
       if (validator.isMobilePhone(user.mphone, 'zh-CN')) {
         tmpUser['mphone'] = user.mphone;
+        funcs.push(User.getUserByMphoneExceptSelfAsync(user.id, user.mphone).then((data)=>{
+          if (data) {
+            return ErrorSerializer.serialize(error('数据异常', '新更改的手机号码已被注册，请更换！'));
+          }
+        }));
       } else {
         return res.json(ErrorSerializer.serialize(error('数据异常', '手机号码格式不正确！')));
       }
@@ -105,7 +121,39 @@ exports.updateOne = function(req, res, next) {
     // state
     // familyId
     // screenId
+    
+    if (funcs.length > 0) {
+      Promise.all(funcs)
+        .then((datas) => { // datas = [null, obj]
+          console.log(datas);
+          var errs = [];
+          datas.forEach(function(data) {
+            if (data) {
+              errs.push(data);
+            }
+          });
+          if (errs.length > 0) {
+            res.json(errs[0]);
+          } else {
+            console.log(tmpUser);
+            User.updateOneAsync(user.id, tmpUser)
+              .then((data) => {
+                res.json(UserSerializer.serialize(data));
+              });
+          }
+        })
+        .catch((err) => {
+          return next(err);
+        });
+    } else {
+      User.updateOneAsync(user.id, tmpUser)
+        .then((data) => {
+          res.json(UserSerializer.serialize(data));
+        });
+    }
 
+  });
+/*
     p = User.getUserByNameExceptSelfAsync(user.id, tmpUser.name)
       .then((data) => {
         if (data) {
@@ -116,6 +164,8 @@ exports.updateOne = function(req, res, next) {
         }
       })
       .then((data) => {
+        //console.log(p.isPending());
+        //console.log(p.isFulfilled());
         if (data) {
           res.json(ErrorSerializer.serialize(error('数据异常', '新更改的Email已被注册，请更换！')));
           p.cancel();
@@ -137,60 +187,9 @@ exports.updateOne = function(req, res, next) {
       });
 
     });
-
-    /*
-    if (tmpUser.name) {
-      if (!p) {
-        p = User.getUserByNameExceptSelfAsync(user.id, tmpUser.name);
-      }
-      p.then((data) => {
-        if (data) {
-          res.json(ErrorSerializer.serialize(error('数据异常', '新更改的用户登录名已被注册，请更换！')));
-          p.cancel();
-        }
-      });
-    }
-    if (tmpUser.email) {
-      if (!p) {
-        p = User.getUserByEmailExceptSelfAsync(user.id, tmpUser.email);
-      }
-      p.then((data) => {
-        if (data) {
-          res.json(ErrorSerializer.serialize(error('数据异常', '新更改的Email已被注册，请更换！')));
-          p.cancel();
-        } else {
-          return User.getUserByMphoneExceptSelfAsync(user.id, tmpUser.mphone);
-        }
-      });
-    }
-    if (tmpUser.mphone) {
-      !p && p = User.getUserByMphoneExceptSelfAsync(user.id, tmpUser.mphone)
-      p.then((user) => {
-        res.json(ErrorSerializer.serialize(error('数据异常', '新更改的移动号码已被注册，请更换！')));
-        p.cancel();
-      });
-    }
-    p && p.catch(() => {
-      return next(err);
-    });
-    
-  });*/
-/*
-    .then(function(user) {
-      
-      
-      
-      User.updateOne(user.id, tmpUser, function(err, user) {
-        if (err) {
-          return next(err);
-        }
-        res.json(UserSerializer.serialize(user));
-      });
-    })
-    .catch(function(err) {
-      return next(err);
-    });
 */
+
+
 };
 
 exports.update = function(req, res, next) {

@@ -32,7 +32,7 @@ start-curl-post:
 	curl --basic --user yxdc002:admin6 -H "Content-Type: application/json" -X POST -d '{"data": [{"id": "1", "type": "instruction", "attributes": {"instruction": "0 0 0 0 0 6 1 5 72 0 255 0"}}]}' http://localhost:3000/instruction/exec
 
 start-curl-update-user:
-	curl -i --basic --user yxdc002:admin6 -H "Content-Type: application/json" -X POST -d '{"data": {"id": "1", "type": "user", "attributes": {"nickName": "123", "email": "1tester@ehomeguru.com.cn", "mphone": "13222881154"}}}' http://localhost:3000/user/1
+	curl -i --basic --user tester:admin6 -H "Content-Type: application/json" -X POST -d '{"data": {"id": "2", "type": "user", "attributes": {"name": "tester", "nickName": "123", "email": "tester@ehomeguru.com.cn", "mphone": "13222881155"}}}' http://localhost:3000/user/2
 
 start-jmeter:
 	jmeter.sh &
