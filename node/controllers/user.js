@@ -2,7 +2,7 @@
  * Controllers - user
  */
 var config = require('../config');
-var User = require('../proxy').User;
+//var User = require('../proxy').User;
 var mail = require('../services/mail');
 var crypto = require('crypto');
 var validator = require('validator');
@@ -11,6 +11,11 @@ var error = require('../libs/error');
 var JSONAPIDeserializer = require('jsonapi-serializer').Deserializer;
 var UserSerializer = require('../serializers').UserSerializer;
 var ErrorSerializer = require('../serializers').ErrorSerializer;
+
+// bluebird
+var Promise = require('bluebird');
+Promise.config({cancellation: true});
+var User = Promise.promisifyAll(require('../proxy').User);
 
 /**
  * User authentication.
@@ -39,51 +44,142 @@ exports.signin = function(req, res, next) {
  * Data patch: id is must, others is optional.
  */
 exports.updateOne = function(req, res, next) {
-  new JSONAPIDeserializer().deserialize(req.body)
+  var tmpUser = {};
+  var p = null;
+
+  new JSONAPIDeserializer().deserialize(req.body, function(err, user) {
+    if (err) {
+      return next(err);
+    }
+    // id
+    if (!user.id || user.id != req.uid) {
+      return res.json(ErrorSerializer.serialize(error('数据异常', 'id信息不存在或不正确！')));
+    }
+    // name
+    if (user.name) {
+      if (validator.isLength(user.name, {min:6, max: 18})) {
+        tmpUser['name'] = user.name;
+      } else {
+        return res.json(ErrorSerializer.serialize(error('数据异常', '用户登录名至少6个字符，最多18个字符！')));
+      }
+    }
+    // nickName
+    if (user.nickName) {
+      if (validator.isLength(user.nickName, {min:3, max: 18})) {
+        tmpUser['nickName'] = user.nickName;
+      } else {
+        return res.json(ErrorSerializer.serialize(error('数据异常', '用户昵称至少3个字符，最多18个字符！')));
+      }
+    }
+    // email
+    if (user.email) {
+      if (validator.isEmail(user.email)) {
+        tmpUser['email'] = user.email;
+      } else {
+        return res.json(ErrorSerializer.serialize(error('数据异常', 'Email格式不正确！')));
+      }
+    }
+    // mphone
+    if (user.mphone) {
+      if (validator.isMobilePhone(user.mphone, 'zh-CN')) {
+        tmpUser['mphone'] = user.mphone;
+      } else {
+        return res.json(ErrorSerializer.serialize(error('数据异常', '手机号码格式不正确！')));
+      }
+    }
+    // password
+    if (user.oldPass) {
+      if (validator.isLength(user.oldPass, {min:6, max: 18})) {
+        tmpUser['oldPass'] = user.oldPass;
+      } else {
+        return res.json(ErrorSerializer.serialize(error('数据异常', '原用密码至少6个字符，最多18个字符！')));
+      }
+    }
+    if (user.newPass) {
+      if (validator.isLength(user.newPass, {min:6, max: 18})) {
+        tmpUser['newPass'] = user.newPass;
+      } else {
+        return res.json(ErrorSerializer.serialize(error('数据异常', '新设密码至少6个字符，最多18个字符！')));
+      }
+    }
+    // state
+    // familyId
+    // screenId
+
+    p = User.getUserByNameExceptSelfAsync(user.id, tmpUser.name)
+      .then((data) => {
+        if (data) {
+          res.json(ErrorSerializer.serialize(error('数据异常', '新更改的用户登录名已被注册，请更换！')));
+          p.cancel();
+        } else {
+          return User.getUserByEmailExceptSelfAsync(user.id, tmpUser.email);
+        }
+      })
+      .then((data) => {
+        if (data) {
+          res.json(ErrorSerializer.serialize(error('数据异常', '新更改的Email已被注册，请更换！')));
+          p.cancel();
+        } else {
+          return User.getUserByMphoneExceptSelfAsync(user.id, tmpUser.mphone);
+        }
+      })
+      .then((data) => {
+        if (data) {
+          res.json(ErrorSerializer.serialize(error('数据异常', '新更改的移动电话已被注册，请更换！')));
+          p.cancel();
+        }
+      })
+      .then((data) => {
+        res.json({a:1});
+      })
+      .catch((err) => {
+        next(err);
+      });
+
+    });
+
+    /*
+    if (tmpUser.name) {
+      if (!p) {
+        p = User.getUserByNameExceptSelfAsync(user.id, tmpUser.name);
+      }
+      p.then((data) => {
+        if (data) {
+          res.json(ErrorSerializer.serialize(error('数据异常', '新更改的用户登录名已被注册，请更换！')));
+          p.cancel();
+        }
+      });
+    }
+    if (tmpUser.email) {
+      if (!p) {
+        p = User.getUserByEmailExceptSelfAsync(user.id, tmpUser.email);
+      }
+      p.then((data) => {
+        if (data) {
+          res.json(ErrorSerializer.serialize(error('数据异常', '新更改的Email已被注册，请更换！')));
+          p.cancel();
+        } else {
+          return User.getUserByMphoneExceptSelfAsync(user.id, tmpUser.mphone);
+        }
+      });
+    }
+    if (tmpUser.mphone) {
+      !p && p = User.getUserByMphoneExceptSelfAsync(user.id, tmpUser.mphone)
+      p.then((user) => {
+        res.json(ErrorSerializer.serialize(error('数据异常', '新更改的移动号码已被注册，请更换！')));
+        p.cancel();
+      });
+    }
+    p && p.catch(() => {
+      return next(err);
+    });
+    
+  });*/
+/*
     .then(function(user) {
-      var tmpUser = {};
-      // id
-      if (!user.id || user.id !== req.uid) {
-        return res.json(ErrorSerializer.serialize(error('数据异常', 'id信息不存在或不正确！')));
-      }
-      // name
-      if (user.name) {
-        if (validator.isLength(user.name, {min:6, max: 18})) {
-          tmpUser['name'] = user.name;
-        } else {
-          return res.json(ErrorSerializer.serialize(error('数据异常', '用户登录名至少6个字符，最多18个字符！')));
-        }
-      }
-      // nickName
-      if (user.nickName) {
-        if (validator.isLength(user.nickName, {min:6, max: 18})) {
-          tmpUser['nickName'] = user.nickName;
-        } else {
-          return res.json(ErrorSerializer.serialize(error('数据异常', '用户昵称至少6个字符，最多18个字符！')));
-        }
-      }
-      // email
-      if (user.email) {
-        if (validator.isEmail(user.email)) {
-          tmpUser['email'] = user.email;
-        } else {
-          return res.json(ErrorSerializer.serialize(error('数据异常', 'Email格式不正确！')));
-        }
-      }
-      // mphone
-      if (user.mphone) {
-        if (validator.isMobilePhone(user.mphone, 'zh-CN')) {
-          tmpUser['mphone'] = user.mphone;
-        } else {
-          return res.json(ErrorSerializer.serialize(error('数据异常', '手机号码格式不正确！')));
-        }
-      }
-      // password
-      if (user.oldPass) {
-      }
-      // state
-      // familyId
-      // screenId
+      
+      
+      
       User.updateOne(user.id, tmpUser, function(err, user) {
         if (err) {
           return next(err);
@@ -94,6 +190,7 @@ exports.updateOne = function(req, res, next) {
     .catch(function(err) {
       return next(err);
     });
+*/
 };
 
 exports.update = function(req, res, next) {

@@ -18,12 +18,28 @@ exports.getUserById = function(id, callback) {
   User.findOne({_id: id}, callback);
 };
 
+exports.getUserByName = function(name, callback) {
+  User.findOne({name: name}, callback);
+};
+
 exports.getUserByEmail = function(email, callback) {
   User.findOne({email: email}, callback);
 };
 
-exports.getUserByName = function(name, callback) {
-  User.findOne({name: name}, callback);
+exports.getUserByMphone = function(mphone, callback) {
+  User.findOne({mphone: mphone}, callback);
+};
+
+exports.getUserByNameExceptSelf = function(id, name, callback) {
+  User.findOne({name: name, _id: {$ne: id}}, callback);
+};
+
+exports.getUserByEmailExceptSelf = function(id, email, callback) {
+  User.findOne({email: email, _id: {$ne: id}}, callback);
+};
+
+exports.getUserByMphoneExceptSelf = function(id, mphone, callback) {
+  User.findOne({mphone: mphone, _id: {$ne: id}}, callback);
 };
 
 exports.getUserByNameEmailMPhonePass = function(name, password, callback) {

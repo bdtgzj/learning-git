@@ -13,6 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "basic-auth": "^1.0.4",
+    "bluebird": "^3.4.1",
     "body-parser": "^1.15.1",
     "eventproxy": "^0.3.4",
     "express": "^4.13.4",

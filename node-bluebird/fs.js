@@ -12,11 +12,13 @@ FS.getFileContent('/Users/xiaodongyu/Downloads/url.html', function(err, data) {
 */
 
 var Promise = require('bluebird');
+Promise.config({cancellation: true});
 var FS = Promise.promisifyAll(require('./proxy/fs'));
 
-FS.getFileContentAsync('/Users/xiaodongyu/Downloads/url.html')
+p = FS.getFileContentAsync('/Users/xiaodongyu/Downloads/url.html')
   .then((data) => {
     console.log(data.toString());
+    p.cancel();
     return '1';
   })
   .then((data) => {

@@ -37,3 +37,6 @@ userSchema.pre('save', function(next) {
 
 // admin6 = 16b4d433eeef71946e93341822786a196549c2c5
 // db.users.save({_id: 1, name:'yxdc002', nickName:'俞晓东', password:'16b4d433eeef71946e93341822786a196549c2c5', email:'yxdc002@ehomeguru.com.cn', mphone: '13222880055', familyId: 17});
+// db.users.save({_id: 2, name:'tester', nickName:'tester', password:'16b4d433eeef71946e93341822786a196549c2c5', email:'tester@ehomeguru.com.cn', mphone: '13222881155', familyId: 18});
+// db.getIndexes();
+// db.users.dropIndex('loginName_1');

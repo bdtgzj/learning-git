@@ -73,7 +73,7 @@ app.use(function(err, req, res, next){
   //res.json({desc: 'Internal Server Error', msg: '', valid: false});
 });
 */
-if (!config.debug) {
+if (config.debug) {
   app.use(errorhandler());
 } else {
   app.use(function (err, req, res, next) {
