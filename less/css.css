@@ -1,0 +1,7 @@
+.box {
+  color: #ff0000;
+  border-color: #ff3333;
+}
+.box div {
+  width: 100px;
+}
