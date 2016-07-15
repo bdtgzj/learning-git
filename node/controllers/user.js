@@ -47,8 +47,7 @@ exports.updateOne = function(req, res, next) {
   var tmpUser = {};
   var funcs = [];
 
-  new JSONAPIDeserializer().deserialize(req.body, function(err, user) {
-    console.log(user);
+  new JSONAPIDeserializer({keyForAttribute: 'camelCase'}).deserialize(req.body, function(err, user) {
     if (err) {
       return next(err);
     }
@@ -125,7 +124,6 @@ exports.updateOne = function(req, res, next) {
     if (funcs.length > 0) {
       Promise.all(funcs)
         .then((datas) => { // datas = [null, obj]
-          console.log(datas);
           var errs = [];
           datas.forEach(function(data) {
             if (data) {
@@ -135,10 +133,12 @@ exports.updateOne = function(req, res, next) {
           if (errs.length > 0) {
             res.json(errs[0]);
           } else {
-            console.log(tmpUser);
             User.updateOneAsync(user.id, tmpUser)
               .then((data) => {
                 res.json(UserSerializer.serialize(data));
+              });
+              .catch((err) => {
+                return next(err);
               });
           }
         })
@@ -149,6 +149,9 @@ exports.updateOne = function(req, res, next) {
       User.updateOneAsync(user.id, tmpUser)
         .then((data) => {
           res.json(UserSerializer.serialize(data));
+        });
+        .catch((err) => {
+          return next(err);
         });
     }
 
