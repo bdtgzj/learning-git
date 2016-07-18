@@ -16,7 +16,7 @@ const App = () => (
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <App url="/api/comments" />,
+    <App />,
     document.getElementById('app')
   );
 });

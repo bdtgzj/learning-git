@@ -6,7 +6,7 @@ module.exports = {
   entry: './src/app/app.js',
   output: {
     path: path.join(__dirname, 'build'),
-    //publicPath: './build',
+    publicPath: '/',
     filename: "app.js"
   },
   module: {

@@ -2,4 +2,4 @@ build-mui:
 	npm run build-mui
 
 start-wds:
-	webpack-dev-server --content-base ./material-ui/build/
+	webpack-dev-server --inline --hot --config ./material-ui/webpack.config.js --content-base ./material-ui/build/
