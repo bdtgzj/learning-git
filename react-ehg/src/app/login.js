@@ -4,14 +4,25 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import {Grid, Row, Col} from 'react-bootstrap';
 
 // Needed for onTouchTap
 injectTapEventPlugin();
 
+const strings = {
+  login_placeholder_name: '用户名 / 邮箱 / 手机号码',
+  login_placeholder_password: '密码'
+};
+
+const styles = {
+  paper: { padding: '2em' }
+};
+
 // Needed for Theme
 const Login = () => (
   <MuiThemeProvider>
-    <Main />
+    <Main strings={strings} styles={styles} />
   </MuiThemeProvider>
 );
 
@@ -24,21 +35,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
 class Main extends Component {
 
-  const
-
   render() {
+
+    const { strings, styles } = this.props;
+
     return (
-      <Paper>
-        <TextField
-          id="name"
-          hintText={str.placeholder.name}
-        />
-        <br />
-        <TextField
-          id="password"
-          hintText={str.placeholder.password}
-        />
-      </Paper>
+      <Grid>
+        <Row>
+          <Col md={4} mdOffset={4} xs={6} xsOffset={3}>
+            <Paper style={styles.paper}>
+              <TextField
+                id="name"
+                hintText={strings.login_placeholder_name}
+                fullWidth={true}
+              />
+              <br />
+              <TextField
+                id="password"
+                hintText={strings.login_placeholder_password}
+                fullWidth={true}
+                type={'password'}
+              />
+            </Paper>
+          </Col>
+        </Row>
+      </Grid>
+      
     );
   }
 
