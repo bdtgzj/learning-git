@@ -8,8 +8,8 @@ module.exports = {
     app: './src/app/app.js'
   },
   output: {
-    path: path.join(__dirname, 'build'),
-    publicPath: '/',
+    path: path.join(__dirname, 'build/js'),
+    publicPath: '/js',
     filename: "[name].js"
   },
   module: {
@@ -26,7 +26,7 @@ module.exports = {
   },
   plugins: [
     new TransferWebpackPlugin([
-      { from: 'www'}
+      { from: 'www', to: '../'}
     ], path.join(__dirname, 'src'))
   ]
   
