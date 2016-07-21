@@ -5,7 +5,7 @@ module.exports = {
   context: __dirname,
   entry: {
     test_redux: './test_redux.js',
-    index: './index.js'
+    index: './todo/index.js'
   },
   output: {
     path: path.join(__dirname, 'build'),
@@ -27,7 +27,7 @@ module.exports = {
   plugins: [
     new TransferWebpackPlugin([
       { from: 'www'}
-    ], path.join(__dirname, 'src'))
+    ], path.join(__dirname))
   ]
 
 }
