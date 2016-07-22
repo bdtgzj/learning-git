@@ -5,7 +5,9 @@ module.exports = {
   context: __dirname,
   entry: {
     test_redux: './test_redux.js',
-    index: './todo/index.js'
+    index: './todo/index.js',
+    async: './async/index.js',
+    reddit: './reddit/index.js'
   },
   output: {
     path: path.join(__dirname, 'build'),
