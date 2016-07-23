@@ -2,4 +2,4 @@ build:
 	npm run build
 
 start-wds:
-	webpack-dev-server --inline --hot --config ./webpack.config.js --content-base ./build/
+	webpack-dev-server -d --inline --hot --config ./webpack.config.js --content-base ./build/

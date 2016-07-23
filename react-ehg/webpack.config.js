@@ -4,7 +4,7 @@ var TransferWebpackPlugin = require('transfer-webpack-plugin');
 module.exports = {
   context: __dirname,
   entry: {
-    login: './src/app/login.js',
+    login: './src/app/admin/index.js',
     app: './src/app/app.js'
   },
   output: {
@@ -28,6 +28,7 @@ module.exports = {
     new TransferWebpackPlugin([
       { from: 'www', to: '../'}
     ], path.join(__dirname, 'src'))
-  ]
-  
+  ],
+  debug: true,
+  devtool: 'source-map'
 }

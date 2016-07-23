@@ -1,15 +1,9 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import {Grid, Row, Col} from 'react-bootstrap';
-import Logo from './component/Logo';
-
-// Needed for onTouchTap
-injectTapEventPlugin();
+import Logo from '../../components/Logo';
 
 const strings = {
   login_placeholder_name: '用户名 / 邮箱 / 手机号码',
@@ -21,25 +15,13 @@ const styles = {
   paper: { padding: '2em' }
 };
 
-// Needed for Theme
-const Login = () => (
-  <MuiThemeProvider>
-    <Main strings={strings} styles={styles} />
-  </MuiThemeProvider>
-);
-
-document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(
-    <Login />,
-    document.getElementById('login')
-  );
-});
-
-class Main extends Component {
+class Login extends Component {
 
   render() {
 
-    const { strings, styles } = this.props;
+    const { name, onChange } = this.props;
+
+    let textFieldName;
 
     return (
       <Grid>
@@ -51,6 +33,9 @@ class Main extends Component {
                 id="name"
                 hintText={strings.login_placeholder_name}
                 fullWidth={true}
+                errorText={name && name.error}
+                onChange={() => onChange(textFieldName.value)}
+                ref={(node) => textFieldName=node}
               />
               <br />
               <TextField
@@ -77,3 +62,5 @@ class Main extends Component {
   }
 
 }
+
+export default Login
