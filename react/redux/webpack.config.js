@@ -30,6 +30,7 @@ module.exports = {
     new TransferWebpackPlugin([
       { from: 'www'}
     ], path.join(__dirname))
-  ]
-
+  ],
+  debug: true,
+  devtool: 'source-map'
 }

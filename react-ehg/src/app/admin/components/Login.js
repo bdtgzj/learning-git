@@ -21,8 +21,6 @@ class Login extends Component {
 
     const { name, onChange } = this.props;
 
-    let textFieldName;
-
     return (
       <Grid>
         <Row><Logo /></Row>
@@ -34,8 +32,8 @@ class Login extends Component {
                 hintText={strings.login_placeholder_name}
                 fullWidth={true}
                 errorText={name && name.error}
-                onChange={() => onChange(textFieldName.value)}
-                ref={(node) => textFieldName=node}
+                onChange={() => onChange(this.textFieldName.input.value)}
+                ref={(node) => this.textFieldName=node}
               />
               <br />
               <TextField

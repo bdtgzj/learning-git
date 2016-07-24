@@ -14,11 +14,11 @@ const store = configureStore();
 
 // Needed for Theme
 const Index = () => (
-  <MuiThemeProvider>
-    <Provider store={store}>
+  <Provider store={store}>
+    <MuiThemeProvider>
       <LoginContainer />
-    </Provider>
-  </MuiThemeProvider>
+    </MuiThemeProvider>
+  </Provider>
 )
 
 document.addEventListener('DOMContentLoaded', () => {
