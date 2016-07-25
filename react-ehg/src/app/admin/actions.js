@@ -7,6 +7,8 @@ export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 
+export const DIALOG_OK = 'DIALOG_OK'
+
 export function validateName(name) {
   return {
     type: VALIDATE_NAME,
@@ -69,5 +71,12 @@ function checkStatus(response) {
     var error = new Error(response.statusText)
     error.response = response
     throw error
+  }
+}
+
+
+export function dialogOk() {
+  return {
+    type: DIALOG_OK
   }
 }

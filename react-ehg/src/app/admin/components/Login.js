@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Paper from 'material-ui/Paper'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
+import FlatButton from 'material-ui/FlatButton';
 import {Grid, Row, Col} from 'react-bootstrap'
 import Logo from '../../components/Logo'
 import Dialog from 'material-ui/Dialog'
@@ -10,7 +11,8 @@ import CircularProgress from 'material-ui/CircularProgress'
 const strings = {
   login_placeholder_name: '用户名 / 邮箱 / 手机号码',
   login_placeholder_password: '密码',
-  login_label_submit: '登录'
+  login_label_submit: '登录',
+  login_dialog_ok: '确定'
 };
 
 const styles = {
@@ -22,7 +24,9 @@ class Login extends Component {
 
   render() {
 
-    const { name, password, login, onNameChange, onPasswordChange, onLogin } = this.props;
+    const { name, password, login, onNameChange, onPasswordChange, onLogin, onDialogOk } = this.props;
+
+    const actions = [<FlatButton label={strings.login_dialog_ok} primary={true} onTouchTap={onDialogOk} />]
 
     return (
       <Grid>
@@ -61,6 +65,7 @@ class Login extends Component {
                 onClick={() => onLogin({name: name.value, password: password.value})}
               />
               <Dialog
+                actions={actions}
                 modal={true}
                 open={login.logining}
               >

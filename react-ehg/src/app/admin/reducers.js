@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { VALIDATE_NAME, VALIDATE_PASSWORD, LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE } from './actions'
+import { VALIDATE_NAME, VALIDATE_PASSWORD, LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, DIALOG_OK } from './actions'
 import trim from 'validator/lib/trim'
 import isLength from 'validator/lib/isLength'
 
@@ -51,6 +51,8 @@ function login(state = {logining: false}, action) {
       return Object.assign({}, state, {logining: false, admin: action.admin})
     case LOGIN_FAILURE:
       return Object.assign({}, state, {logining: true, e: action.e})
+    case DIALOG_OK:
+      return {logining: false}
     default:
       return state
   }

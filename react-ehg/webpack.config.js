@@ -4,8 +4,8 @@ var TransferWebpackPlugin = require('transfer-webpack-plugin');
 module.exports = {
   context: __dirname,
   entry: {
-    login: './src/app/admin/index.js',
-    app: './src/app/app.js'
+    login: ['babel-polyfill', './src/app/admin/index.js'],
+    app: ['babel-polyfill', './src/app/app.js']
   },
   output: {
     path: path.join(__dirname, 'build/js'),

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { validateName, validatePassword, login } from '../actions'
+import { validateName, validatePassword, login, dialogOk } from '../actions'
 import Login from '../components/Login'
 
 const mapStateToProps = (state) => {
@@ -16,6 +16,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onLogin: (admin) => {
       dispatch(login(admin))
+    },
+    onDialogOk: () => {
+      dispatch(dialogOk())
     }
   }
 }
