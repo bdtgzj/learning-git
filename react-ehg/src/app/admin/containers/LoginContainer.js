@@ -1,15 +1,21 @@
 import { connect } from 'react-redux'
-import { validateName } from '../actions'
+import { validateName, validatePassword, login } from '../actions'
 import Login from '../components/Login'
 
 const mapStateToProps = (state) => {
-  return {name: state.name}
+  return state
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onChange: (name) => {
+    onNameChange: (name) => {
       dispatch(validateName(name))
+    },
+    onPasswordChange: (password) => {
+      dispatch(validatePassword(password))
+    },
+    onLogin: (admin) => {
+      dispatch(login(admin))
     }
   }
 }

@@ -1,9 +1,11 @@
-import React, {Component} from 'react';
-import Paper from 'material-ui/Paper';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-import {Grid, Row, Col} from 'react-bootstrap';
-import Logo from '../../components/Logo';
+import React, {Component} from 'react'
+import Paper from 'material-ui/Paper'
+import TextField from 'material-ui/TextField'
+import RaisedButton from 'material-ui/RaisedButton'
+import {Grid, Row, Col} from 'react-bootstrap'
+import Logo from '../../components/Logo'
+import Dialog from 'material-ui/Dialog'
+import CircularProgress from 'material-ui/CircularProgress'
 
 const strings = {
   login_placeholder_name: '用户名 / 邮箱 / 手机号码',
@@ -12,14 +14,15 @@ const strings = {
 };
 
 const styles = {
-  paper: { padding: '2em' }
+  paper: { padding: '2em' },
+  circularProgress: { display: 'none' }
 };
 
 class Login extends Component {
 
   render() {
 
-    const { name, onChange } = this.props;
+    const { name, password, login, onNameChange, onPasswordChange, onLogin } = this.props;
 
     return (
       <Grid>
@@ -31,8 +34,9 @@ class Login extends Component {
                 id="name"
                 hintText={strings.login_placeholder_name}
                 fullWidth={true}
-                errorText={name && name.error}
-                onChange={() => onChange(this.textFieldName.input.value)}
+                errorText={!name.valid && name.error}
+                onChange={() => onNameChange(this.textFieldName.input.value)}
+                // onBlur={}
                 ref={(node) => this.textFieldName=node}
               />
               <br />
@@ -41,6 +45,9 @@ class Login extends Component {
                 hintText={strings.login_placeholder_password}
                 fullWidth={true}
                 type={'password'}
+                errorText={!password.valid && password.error}
+                onChange={() => onPasswordChange(this.textFieldPassword.input.value)}
+                ref={(node) => this.textFieldPassword=node}
               />
               <br />
               <br />
@@ -50,12 +57,22 @@ class Login extends Component {
                 fullWidth={true}
                 primary={true}
                 type={'password'}
+                disabled={!name.valid || !password.valid}
+                onClick={() => onLogin({name: name.value, password: password.value})}
               />
+              <Dialog
+                modal={true}
+                open={login.logining}
+              >
+                <CircularProgress
+                  style={(login.admin || login.e) && styles.circularProgress}
+                />
+                <div>{login.admin || login.e}</div>
+              </Dialog>
             </Paper>
           </Col>
         </Row>
       </Grid>
-      
     );
   }
 

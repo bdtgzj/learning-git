@@ -1,26 +1,65 @@
 import { combineReducers } from 'redux'
-import { VALIDATE_NAME, VALIDATE_PASS } from './actions'
+import { VALIDATE_NAME, VALIDATE_PASSWORD, LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE } from './actions'
+import trim from 'validator/lib/trim'
+import isLength from 'validator/lib/isLength'
 
-function user(state = {}, action) {
+function name(state = {value: '', valid: false}, action) {
   switch (action.type) {
     case VALIDATE_NAME:
-      if (action.name.length < 6) {
-        return {name: {
+      if (isLength(trim(action.name), {min: 6, max: 18})) {
+        return {
           value: action.name,
-          error: 'please input your name!'
-        }}
+          valid: true
+        }
       } else {
-        return {name: {
-          value: action.name
-        }}
+        return {
+          value: action.name,
+          valid: false,
+          error: '请输入6至18个字符！'
+        }
       }
     default:
       return state;
   }
 }
 
+function password(state = {value: '', valid: false}, action) {
+  switch (action.type) {
+    case VALIDATE_PASSWORD:
+      if (isLength(trim(action.password), {min: 6, max: 18})) {
+        return {
+          value: action.password,
+          valid: true
+        }
+      } else {
+        return {
+          value: action.password,
+          valid: false,
+          error: '请输入6至18个字符！'
+        }
+      }
+    default:
+      return state;
+  }
+}
+
+function login(state = {logining: false}, action) {
+  switch (action.type) {
+    case LOGIN_REQUEST:
+      return Object.assign({}, state, {logining: true})
+    case LOGIN_SUCCESS:
+      return Object.assign({}, state, {logining: false, admin: action.admin})
+    case LOGIN_FAILURE:
+      return Object.assign({}, state, {logining: true, e: action.e})
+    default:
+      return state
+  }
+}
+
 const rootReducer = combineReducers({
-  user
+  name,
+  password,
+  login
 })
 
 export default rootReducer
