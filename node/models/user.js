@@ -18,7 +18,7 @@ var userSchema = new Schema({
   screenId: {type: Number}
 });
 
-userSchema.index({loginName: 1}, {unique: true});
+userSchema.index({name: 1}, {unique: true});
 userSchema.index({email: 1}, {unique: true});
 userSchema.index({mphone: 1}, {unique: true});
 

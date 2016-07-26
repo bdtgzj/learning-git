@@ -17,8 +17,11 @@ mongoose.connection.on('disconnected', function() {
 });
 
 require('./user');
+require('./admin');
 
 exports.User = mongoose.model('User');
+exports.Admin = mongoose.model('Admin');
+
 exports.HomecardSchema = require('./homecard');
 exports.RegionSchema = require('./region');
 exports.CategorySchema = require('./category');

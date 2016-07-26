@@ -21,6 +21,7 @@
     "react-redux": "^4.4.5",
     "react-tap-event-plugin": "^1.0.0",
     "redux": "^3.5.2",
+    "redux-json-api": "^1.4.2",
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0",
     "validator": "^5.5.0"

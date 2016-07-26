@@ -49,17 +49,29 @@ export function login(admin) {
     // sync
     dispatch(loginRequest(admin))
     // async
-    return fetch('http://localhost:3000/admin/login', {
+    return fetch('http://localhost:3000/admin/signin', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(admin)
+      body: JSON.stringify({
+        data: {
+          type: 'admin',
+          attributes: admin
+        }
+      })
     })
       .then(response => checkStatus(response))
       .then(response => response.json())
-      .then(json => dispatch(loginSuccess(json)))
+      .then(json => {
+        if (json.data === null) {
+          dispatch(loginFailure("用户名或密码错误！"))
+        } else {
+          //dispatch(loginSuccess(json))
+          document.location.href = "http://baidu.com"
+        }
+      })
       .catch(e => dispatch(loginFailure(e.toString())))
   }
 }
@@ -73,7 +85,6 @@ function checkStatus(response) {
     throw error
   }
 }
-
 
 export function dialogOk() {
   return {

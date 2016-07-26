@@ -17,7 +17,8 @@ const strings = {
 
 const styles = {
   paper: { padding: '2em' },
-  circularProgress: { display: 'none' }
+  circularProgress: { display: 'none' },
+  dialogContent: { width: '50%' }
 };
 
 class Login extends Component {
@@ -67,6 +68,7 @@ class Login extends Component {
               <Dialog
                 actions={actions}
                 modal={true}
+                contentStyle={styles.dialogContent}
                 open={login.logining}
               >
                 <CircularProgress

@@ -1,5 +1,6 @@
 
 exports.UserSerializer = require('./user');
+exports.AdminSerializer = require('./admin');
 exports.HomecardSerializer = require('./homecard');
 exports.RegionSerializer = require('./region');
 exports.CategorySerializer = require('./category');

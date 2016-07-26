@@ -136,7 +136,7 @@ exports.updateOne = function(req, res, next) {
             User.updateOneAsync(user.id, tmpUser)
               .then((data) => {
                 res.json(UserSerializer.serialize(data));
-              });
+              })
               .catch((err) => {
                 return next(err);
               });
@@ -149,7 +149,7 @@ exports.updateOne = function(req, res, next) {
       User.updateOneAsync(user.id, tmpUser)
         .then((data) => {
           res.json(UserSerializer.serialize(data));
-        });
+        })
         .catch((err) => {
           return next(err);
         });

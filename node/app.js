@@ -43,7 +43,7 @@ app.use(bodyParser.urlencoded({ extended: false })); // not for parsing applicat
 //app.use(express.static(path.join(__dirname, 'public')));
 //custom middleware, can't tokenAuth().
 app.use(function(req, res, next) {
-  if (req.path === '/user/signin') {
+  if (req.path === '/user/signin' || req.path === '/admin/signin') {
     return next();
   }
   basicAuth(req, res, next);
@@ -60,6 +60,18 @@ app.locals.ismap = ismap;
   *next();
   *});
 **/
+
+// CORS
+app.use((req, res, next) => {
+  res.set({'Access-Control-Allow-Origin': '*'}); // http://ehomeguru.com.cn
+  if (req.method === 'OPTIONS') {
+    res.set({
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept, X-Requested-With',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE'
+    });
+  }
+  next();
+});
 
 // routes
 app.use('/', router);

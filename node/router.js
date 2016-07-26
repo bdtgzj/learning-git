@@ -9,6 +9,7 @@
 
 var express = require('express');
 var user = require('./controllers/user');
+var admin = require('./controllers/admin');
 var homecard = require('./controllers/homecard');
 var region = require('./controllers/region');
 var category = require('./controllers/category');
@@ -85,9 +86,11 @@ router.get('/active_account', user.activeAccount);
 router.post('/retrieve_password', user.retrievePassword);
 router.get('/reset_password', user.resetPassword);
 router.post('/reset_password', user.updatePassword);
-// topic
-//app.post('/api/topic', topic.create);
-//app.get('/api/topic', topic.retrieve);
-// relation
-//app.post('/api/relation', relation.create);
+
+/**
+ * admin.
+ */
+router.post('/admin/signin', admin.signin);
+
+
 module.exports = router;
