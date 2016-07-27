@@ -1,5 +1,9 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+
+const Index = () => (<div>This is home stub.</div>)
+
+export default Index
+/*
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import configureStore from './configureStore'
@@ -23,7 +27,7 @@ const Index = () => (
 
 export default Index
 
-/*
+
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <Index />,

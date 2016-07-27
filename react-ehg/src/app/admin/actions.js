@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import { browserHistory } from 'react-router'
 
 export const VALIDATE_NAME = 'VALIDATE_NAME'
 export const VALIDATE_PASSWORD = 'VALIDATE_PASSWORD'
@@ -69,7 +70,8 @@ export function login(admin) {
           dispatch(loginFailure("用户名或密码错误！"))
         } else {
           //dispatch(loginSuccess(json))
-          document.location.href = "http://baidu.com"
+          //document.location.href = "http://baidu.com"
+          browserHistory.push('/home')
         }
       })
       .catch(e => dispatch(loginFailure(e.toString())))

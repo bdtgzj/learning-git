@@ -5,7 +5,7 @@ module.exports = {
   context: __dirname,
   entry: {
     login: ['babel-polyfill', './src/app/admin/index.js'],
-    app: ['babel-polyfill', './src/app/app.js']
+    app: ['babel-polyfill', './src/app/main.js']
   },
   output: {
     path: path.join(__dirname, 'build/js'),
