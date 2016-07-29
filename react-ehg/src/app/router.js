@@ -2,7 +2,7 @@ import React from 'react'
 import {IndexRoute, Route } from 'react-router'
 
 //import Login from './admin'
-import Layout from './layout/Layout'
+import LayoutContainer from './layout/LayoutContainer'
 import Home from './home'
 
 // 
@@ -22,7 +22,7 @@ function router(getState) {
   }
 
   return (
-    <Route path="/" component={Layout} onEnter={auth}>
+    <Route path="/" component={LayoutContainer} onEnter={auth}>
       <IndexRoute component={Home} onEnter={auth} />
       <Route path="*" component={NoMatch} onEnter={auth}  />
     </Route>

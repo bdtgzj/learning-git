@@ -19,7 +19,7 @@ function name(state = {value: '', valid: false}, action) {
         }
       }
     default:
-      return state;
+      return state
   }
 }
 
@@ -39,7 +39,7 @@ function password(state = {value: '', valid: false}, action) {
         }
       }
     default:
-      return state;
+      return state
   }
 }
 
@@ -58,10 +58,10 @@ function login(state = {logining: false}, action) {
   }
 }
 
-const rootReducer = combineReducers({
+const indexReducer = combineReducers({
   name,
   password,
   login
 })
 
-export default rootReducer
+export default indexReducer

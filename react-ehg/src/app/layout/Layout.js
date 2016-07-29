@@ -21,7 +21,7 @@ import IconSignOut from 'material-ui/svg-icons/image/adjust'
 import Drawer from 'material-ui/Drawer'
 import Divider from 'material-ui/Divider'
 import { IndexLink } from 'react-router'
-import NavLink from './NavLink'
+import NavLink from '../components/NavLink'
 
 import Logo from '../components/Logo'
 import Dialog from 'material-ui/Dialog'
@@ -69,9 +69,9 @@ class Layout extends Component {
 
   render() {
 
-    const { children } = this.props;
+    const { children, handleSignOut } = this.props;
 
-    //const actions = [<FlatButton label={strings.login_dialog_ok} primary={true} onTouchTap={onDialogOk} />]
+    // const actions = [<FlatButton label={strings.login_dialog_ok} primary={true} onTouchTap={onDialogOk} />]
 
     return (
       <div>
@@ -84,9 +84,9 @@ class Layout extends Component {
               targetOrigin={{horizontal: 'right', vertical: 'top'}}
               anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
             >
-              <MenuItem primaryText={strings.layout_menuitem_refresh} leftIcon={<IconRefresh />} />
-              <MenuItem primaryText={strings.layout_menuitem_help} leftIcon={<IconHelp />} />
-              <MenuItem primaryText={strings.layout_menuitem_signout} leftIcon={<IconSignOut />} />
+              <MenuItem primaryText={strings.layout_menuitem_refresh} leftIcon={<IconRefresh />} onTouchTap={handleSignOut} />
+              <MenuItem primaryText={strings.layout_menuitem_help} leftIcon={<IconHelp />} onTouchTap={handleSignOut} />
+              <MenuItem primaryText={strings.layout_menuitem_signout} leftIcon={<IconSignOut />} onTouchTap={handleSignOut} />
             </IconMenu>
           }
         />
