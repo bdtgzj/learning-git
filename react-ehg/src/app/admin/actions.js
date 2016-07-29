@@ -38,10 +38,10 @@ export function loginFailure(e) {
   }
 }
 
-export function loginSuccess(json) {
+export function loginSuccess(admin) {
   return {
     type: LOGIN_SUCCESS,
-    json
+    admin
   }
 }
 
@@ -69,10 +69,12 @@ export function login(admin) {
         if (json.data === null) {
           dispatch(loginFailure("用户名或密码错误！"))
         } else {
-          //dispatch(loginSuccess(json))
-          //document.location.href = "http://baidu.com"
+          // update state
+          dispatch(loginSuccess(json))
+          // route to main
           browserHistory.push('/')
           //hashHistory.push('/')
+          //document.location.href = "http://baidu.com"
         }
       })
       .catch(e => dispatch(loginFailure(e.toString())))
