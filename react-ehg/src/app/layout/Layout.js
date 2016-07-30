@@ -46,7 +46,8 @@ const strings = {
 const styles = {
   drawer: { marginTop: '64px' },
   circularProgress: { display: 'none' },
-  dialogContent: { width: '50%' }
+  dialogContent: { width: '50%' },
+  layout_appbar: {position: 'fixed', top: 0, left: 0}
 }
 
 class Layout extends Component {
@@ -55,13 +56,13 @@ class Layout extends Component {
     super()
     this.state = { 
       drawerState: true,
-      rightContentStyle: {marginLeft: '260px'}
+      rightContentStyle: {marginLeft: '256px'}
     }
   }
 
   handleDrawerState(drawerState) {
-    let rightContentStyle = drawerState ? {marginLeft: '0'} : {marginLeft: '260px'}
-    this.setState({ 
+    let rightContentStyle = drawerState ? {marginLeft: '0'} : {marginLeft: '256px'}
+    this.setState({
       drawerState: !drawerState,
       rightContentStyle: rightContentStyle
     })
@@ -77,6 +78,7 @@ class Layout extends Component {
       <div>
         <AppBar
           title={strings.layout_appbar_title}
+          style={styles.layout_appbar}
           iconElementLeft={ <IconButton onTouchTap={() => this.handleDrawerState(this.state.drawerState)}><NavigationApps /></IconButton> }
           iconElementRight={
             <IconMenu
@@ -86,7 +88,9 @@ class Layout extends Component {
             >
               <MenuItem primaryText={strings.layout_menuitem_refresh} leftIcon={<IconRefresh />} onTouchTap={handleSignOut} />
               <MenuItem primaryText={strings.layout_menuitem_help} leftIcon={<IconHelp />} onTouchTap={handleSignOut} />
-              <MenuItem primaryText={strings.layout_menuitem_signout} leftIcon={<IconSignOut />} onTouchTap={handleSignOut} />
+              <IndexLink to="/signout">
+                <MenuItem primaryText={strings.layout_menuitem_signout} leftIcon={<IconSignOut />} />
+              </IndexLink>
             </IconMenu>
           }
         />

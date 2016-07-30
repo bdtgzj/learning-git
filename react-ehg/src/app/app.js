@@ -1,11 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Router, Route, Link, browserHistory, hashHistory } from 'react-router'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import configureStore from './configureStore'
 import { Provider } from 'react-redux'
-import LoginContainer from './admin/containers/LoginContainer'
 import router from './router'
 import { persistStore, getStoredState } from 'redux-persist'
 
@@ -28,27 +26,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // get & inject store, set middleware, persist store 
     const store = configureStore(restoredState)
-    persistStore(store)
+    const persistor = persistStore(store)
 
     // get routes
-    const routes = router(store.getState)
+    const routes = router(store.getState, persistor)
 
     // React Component
     const App = () => (
       <Provider store={store}>
         <MuiThemeProvider>
-          <Router history={browserHistory}>
-            <Route path="/login" component={LoginContainer} />
-            {routes}
-          </Router>
+          {routes}
         </MuiThemeProvider>
       </Provider>
     )
+
+    // handle window close event and clear localStorage
+    window.onunload = function() {
+      // persistor.purge(['admin','layout'])
+      persistor.purgeAll()
+    }
 
     ReactDOM.render(
       <App />,
       document.getElementById('app')
     );
+
   })
 
 });

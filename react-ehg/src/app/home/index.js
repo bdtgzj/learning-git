@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Index = () => (<div>This is home stub.</div>)
+const Index = () => (<div>This is a home stub.</div>)
 
 export default Index
 /*

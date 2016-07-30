@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
 import { validateName, validatePassword, login, dialogOk } from '../actions'
-import Login from '../components/Login'
+import Region from '../components/Region'
 
 const mapStateToProps = (state) => {
-  return state.admin
+  return state
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => {
     onPasswordChange: (password) => {
       dispatch(validatePassword(password))
     },
-    onLogin: (admin) => {
+    onRegion: (admin) => {
       dispatch(login(admin))
     },
     onDialogOk: () => {
@@ -23,9 +23,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const LoginContainer = connect(
+const RegionContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Login)
+)(Region)
 
-export default LoginContainer
+export default RegionContainer

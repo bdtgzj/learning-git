@@ -3,7 +3,7 @@ import { signOut } from './actions'
 import Layout from './Layout'
 
 const mapStateToProps = (state) => {
-  return state
+  return state.layout
 }
 
 const mapDispatchToProps = (dispatch) => {
