@@ -3,7 +3,7 @@ import { validateName, validatePassword, login, dialogOk } from '../actions'
 import Region from '../components/Region'
 
 const mapStateToProps = (state) => {
-  return state
+  return state.region
 }
 
 const mapDispatchToProps = (dispatch) => {
