@@ -6,7 +6,7 @@ import configureStore from './configureStore'
 import { Provider } from 'react-redux'
 import router from './router'
 import { persistStore, getStoredState } from 'redux-persist'
-import { setEndpointHost, setEndpointPath, setAccessToken, readEndpoint } from 'redux-json-api'
+import { setEndpointHost, setEndpointPath } from 'redux-json-api'
 import config from './config'
 
 // Needed for onTouchTap of material-ui
@@ -32,8 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // init redux-json-api params
     store.dispatch(setEndpointHost(config.host))
-    // get users
-    store.dispatch(readEndpoint(''))
+    store.dispatch(setEndpointPath(config.path))
 
     // get routes
     const routes = router(store.getState, persistor)

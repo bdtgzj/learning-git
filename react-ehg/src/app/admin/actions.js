@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import { browserHistory, hashHistory } from 'react-router'
+import { setAccessToken, readEndpoint } from 'redux-json-api'
 
 export const VALIDATE_NAME = 'VALIDATE_NAME'
 export const VALIDATE_PASSWORD = 'VALIDATE_PASSWORD'
@@ -69,6 +70,10 @@ export function login(admin) {
         if (json.data === null) {
           dispatch(loginFailure("用户名或密码错误！"))
         } else {
+          // set access token
+          dispath(setAccessToken())
+          // get users
+          dispatch(readEndpoint('user'))
           // update state
           dispatch(loginSuccess(json))
           // route to main

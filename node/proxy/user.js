@@ -49,7 +49,7 @@ exports.getUserByNameEmailMPhonePass = function(name, password, callback) {
 };
 
 exports.getUserAll = function(callback) {
-  User.find({state: {$gt: 0}}, callback);
+  User.find({state: {$eq: 0}}, callback);
 };
 
 exports.getUserByCondition = function(condition, callback) {

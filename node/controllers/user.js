@@ -208,7 +208,7 @@ exports.update = function(req, res, next) {
 };
 
 exports.retrieve = function(req, res, next) {
-  User.getUserAll()
+  User.getUserAllAsync()
     .then((data) => {
       res.json(UserSerializer.serialize(data));
     })
@@ -232,7 +232,7 @@ function getInterestedUser(res, next) {
     }
     res.json({desc:'', valid: true, data: user});
   });
-}
+};
 
 exports.login = function(req, res){
   //console.log(req.cookies);

@@ -11,7 +11,7 @@ var userSchema = new Schema({
   mphone: {type: String},
   created: {type: Date, default: Date.now},
   modified: {type: Date, default: Date.now},
-  state: {type: Number, default: 0},
+  state: {type: Number, default: 0}, // 0=enable, 1=disable, 2=delete
   retrieveToken: {type: String},
   retrieveTime: {type: Number},
   familyId: {type: Number},
@@ -40,3 +40,4 @@ userSchema.pre('save', function(next) {
 // db.users.save({_id: 2, name:'tester', nickName:'tester', password:'16b4d433eeef71946e93341822786a196549c2c5', email:'tester@ehomeguru.com.cn', mphone: '13222881155', familyId: 18});
 // db.getIndexes();
 // db.users.dropIndex('loginName_1');
+// db.users.update({}, {$set: {state: 0}}, {multi: true})

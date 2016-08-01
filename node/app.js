@@ -66,7 +66,7 @@ app.use((req, res, next) => {
   res.set({'Access-Control-Allow-Origin': '*'}); // http://ehomeguru.com.cn
   if (req.method === 'OPTIONS') {
     res.set({
-      'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept, X-Requested-With',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept, X-Requested-With, Authorization',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE'
     });
   }
