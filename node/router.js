@@ -71,8 +71,8 @@ router.get('/water', water.open);
 router.post('/user/signin', user.signin);
 router.post('/user/:id', user.updateOne);
 router.put('/user', user.update);
-
 router.get('/user', user.retrieve);
+
 router.get('/init', user.init);
 //signup
 router.get('/username_available', user.nameAvailable);

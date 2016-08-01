@@ -6,6 +6,8 @@ import configureStore from './configureStore'
 import { Provider } from 'react-redux'
 import router from './router'
 import { persistStore, getStoredState } from 'redux-persist'
+import { setEndpointHost, setEndpointPath, setAccessToken, readEndpoint } from 'redux-json-api'
+import config from './config'
 
 // Needed for onTouchTap of material-ui
 injectTapEventPlugin()
@@ -27,6 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // get & inject store, set middleware, persist store 
     const store = configureStore(restoredState)
     const persistor = persistStore(store)
+
+    // init redux-json-api params
+    store.dispatch(setEndpointHost(config.host))
+    // get users
+    store.dispatch(readEndpoint(''))
 
     // get routes
     const routes = router(store.getState, persistor)

@@ -48,6 +48,10 @@ exports.getUserByNameEmailMPhonePass = function(name, password, callback) {
   //注：find返回数组[]，不能直接对象操作；findOne返回对象null
 };
 
+exports.getUserAll = function(callback) {
+  User.find({state: {$gt: 0}}, callback);
+};
+
 exports.getUserByCondition = function(condition, callback) {
   User.find(condition, callback);
 };

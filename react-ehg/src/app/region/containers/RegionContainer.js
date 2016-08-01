@@ -1,24 +1,24 @@
 import { connect } from 'react-redux'
-import { validateName, validatePassword, login, dialogOk } from '../actions'
+import { createEntity, readEndpoint, updateEntity, deleteEntity } from 'redux-json-api'
 import Region from '../components/Region'
 
 const mapStateToProps = (state) => {
-  return state.region
+  return state
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onNameChange: (name) => {
-      dispatch(validateName(name))
+    handleCreate: (region) => {
+      dispatch(createEntity(region))
     },
-    onPasswordChange: (password) => {
-      dispatch(validatePassword(password))
+    handleRead: (endpoint) => {
+      dispatch(readEndpoint(endpoint))
     },
-    onRegion: (admin) => {
-      dispatch(login(admin))
+    handleUpdate: (region) => {
+      dispatch(updateEntity(region))
     },
-    onDialogOk: () => {
-      dispatch(dialogOk())
+    handleDelete: (region) => {
+      dispatch(deleteEntity(region))
     }
   }
 }

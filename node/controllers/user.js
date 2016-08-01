@@ -208,10 +208,13 @@ exports.update = function(req, res, next) {
 };
 
 exports.retrieve = function(req, res, next) {
-  var type = req.query.type;
-  if (type === '0') {
-    getInterestedUser(res, next);
-  }
+  User.getUserAll()
+    .then((data) => {
+      res.json(UserSerializer.serialize(data));
+    })
+    .catch((err) => {
+      return next(err);
+    });
 };
 
 function getInterestedUser(res, next) {
