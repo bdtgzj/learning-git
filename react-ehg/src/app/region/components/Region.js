@@ -26,18 +26,18 @@ class Region extends Component {
     this.autoCompleteUser.focus()
   }
 
-  handleNewRequest(selectedValue, selectedIndex) {
+  handleNewRequest(selectedValue, selectedIndex, handleRead) {
     if (selectedIndex === -1) {
       console.log('dd')
       return
     }
-    this.props.handleRead(selectedValue)
+    handleRead(selectedValue.id)
   }
 
   render() {
 
     const { users, regions } = this.props
-    //const { handleRead } = this.props
+    const { handleRead } = this.props
 
     const usersConfig = { text: 'name', value: 'id'}
 
@@ -63,7 +63,7 @@ class Region extends Component {
             dataSource={users}
             dataSourceConfig={usersConfig}
             ref={(node) => this.autoCompleteUser=node}
-            onNewRequest={this.handleNewRequest}
+            onNewRequest={(selectedValue, selectedIndex) => this.handleNewRequest(selectedValue, selectedIndex, handleRead)}
           />
           <ToolbarSeparator />
           <RaisedButton label={strings.button_label_create} primary={true} />

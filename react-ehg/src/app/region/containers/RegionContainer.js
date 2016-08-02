@@ -14,7 +14,8 @@ const mapDispatchToProps = (dispatch) => {
     handleCreate: (region) => {
       dispatch(createEntity(region))
     },
-    handleRead: (endpoint) => {
+    handleRead: (userID) => {
+      const endpoint = 'region?uid=' + userID
       dispatch(readEndpoint(endpoint))
     },
     handleUpdate: (region) => {
