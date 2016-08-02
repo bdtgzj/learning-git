@@ -3,12 +3,12 @@ import thunkMiddleware from 'redux-thunk'
 import { autoRehydrate } from 'redux-persist'
 import { combineReducers } from 'redux'
 // reducers
-import adminReducer from './admin/reducers'
+import loginReducer from './login/reducers'
 import layoutReducer from './layout/reducers'
 import { reducer } from 'redux-json-api'
 
 const rootReducer = combineReducers({
-  admin: adminReducer,
+  login: loginReducer,
   layout: layoutReducer,
   api: reducer
 })

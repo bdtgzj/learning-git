@@ -43,7 +43,7 @@ app.use(bodyParser.urlencoded({ extended: false })); // not for parsing applicat
 //app.use(express.static(path.join(__dirname, 'public')));
 //custom middleware, can't tokenAuth().
 app.use(function(req, res, next) {
-  if (req.path === '/user/signin' || req.path === '/admin/signin') {
+  if (req.path === '/user/signin' || req.path === '/admin/signin' || req.method === 'OPTIONS') {
     return next();
   }
   basicAuth(req, res, next);

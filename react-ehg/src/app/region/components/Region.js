@@ -26,20 +26,30 @@ class Region extends Component {
     this.autoCompleteUser.focus()
   }
 
+  handleNewRequest(selectedValue, selectedIndex) {
+    if (selectedIndex === -1) {
+      console.log('dd')
+      return
+    }
+    this.props.handleRead(selectedValue)
+  }
+
   render() {
 
-    //const {  } = this.props.region;
-    const { data: datas } = this.props.api.regions || {data: []};
+    const { users, regions } = this.props
+    //const { handleRead } = this.props
+
+    const usersConfig = { text: 'name', value: 'id'}
 
     //const actions = [<FlatButton label={strings.login_dialog_ok} primary={true} onTouchTap={onDialogOk} />]
 
     let rows = []
 
-    datas.forEach(function(data) {
+    regions.forEach(function(region) {
       rows.push(
         <TableRow>
-          <TableRowColumn>{data.name}</TableRowColumn>
-          <TableRowColumn>{data.order}</TableRowColumn>
+          <TableRowColumn>{region.name}</TableRowColumn>
+          <TableRowColumn>{region.order}</TableRowColumn>
         </TableRow>
       )
     }, this);
@@ -50,9 +60,10 @@ class Region extends Component {
         <ToolbarGroup>
           <AutoComplete
             hintText={strings.region_toolbar_autocomplete_placeholder}
-            dataSource={['aa','bb', 'cc']}
-            onUpdateInput={this.handleUpdateInput}
+            dataSource={users}
+            dataSourceConfig={usersConfig}
             ref={(node) => this.autoCompleteUser=node}
+            onNewRequest={this.handleNewRequest}
           />
           <ToolbarSeparator />
           <RaisedButton label={strings.button_label_create} primary={true} />

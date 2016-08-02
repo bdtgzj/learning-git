@@ -3,7 +3,7 @@ import { validateName, validatePassword, login, dialogOk } from '../actions'
 import Login from '../components/Login'
 
 const mapStateToProps = (state) => {
-  return state.admin
+  return state.login
 }
 
 const mapDispatchToProps = (dispatch) => {

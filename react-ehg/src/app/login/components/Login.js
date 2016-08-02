@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Paper from 'material-ui/Paper'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
-import FlatButton from 'material-ui/FlatButton';
+import FlatButton from 'material-ui/FlatButton'
 import {Grid, Row, Col} from 'react-bootstrap'
 import Logo from '../../components/Logo'
 import Dialog from 'material-ui/Dialog'
@@ -13,19 +13,19 @@ const strings = {
   login_placeholder_password: '密码',
   login_label_submit: '登录',
   login_dialog_ok: '确定'
-};
+}
 
 const styles = {
   paper: { padding: '2em' },
   circularProgress: { display: 'none' },
   dialogContent: { width: '50%' }
-};
+}
 
 class Login extends Component {
 
   render() {
 
-    const { name, password, login, onNameChange, onPasswordChange, onLogin, onDialogOk } = this.props;
+    const { name, password, login, onNameChange, onPasswordChange, onLogin, onDialogOk } = this.props
 
     const actions = [<FlatButton label={strings.login_dialog_ok} primary={true} onTouchTap={onDialogOk} />]
 
@@ -63,7 +63,7 @@ class Login extends Component {
                 primary={true}
                 type={'password'}
                 disabled={!name.valid || !password.valid}
-                onClick={() => onLogin({name: name.value, password: password.value})}
+                onClick={() => onLogin({name: name.value, password: this.textFieldPassword.input.value})}
               />
               <Dialog
                 actions={actions}

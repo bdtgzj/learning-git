@@ -23,17 +23,15 @@ function name(state = {value: '', valid: false}, action) {
   }
 }
 
-function password(state = {value: '', valid: false}, action) {
+function password(state = {valid: false}, action) {
   switch (action.type) {
     case VALIDATE_PASSWORD:
       if (isLength(trim(action.password), {min: 6, max: 18})) {
         return {
-          value: action.password,
           valid: true
         }
       } else {
         return {
-          value: action.password,
           valid: false,
           error: '请输入6至18个字符！'
         }
@@ -43,16 +41,16 @@ function password(state = {value: '', valid: false}, action) {
   }
 }
 
-function login(state = {logining: false}, action) {
+function login(state = {logining: false, isLogined: false}, action) {
   switch (action.type) {
     case LOGIN_REQUEST:
-      return Object.assign({}, state, {logining: true})
+      return Object.assign({}, state, {logining: true, isLogined: false})
     case LOGIN_SUCCESS:
-      return Object.assign({}, state, {logining: false, admin: action.admin})
+      return Object.assign({}, state, {logining: false, isLogined: true})
     case LOGIN_FAILURE:
-      return Object.assign({}, state, {logining: true, e: action.e})
+      return Object.assign({}, state, {logining: true, isLogined: false, e: action.e})
     case DIALOG_OK:
-      return {logining: false}
+      return {logining: false, isLogined: false}
     default:
       return state
   }

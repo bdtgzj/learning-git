@@ -1,9 +1,8 @@
 import React from 'react'
 import { Router, Route, IndexRoute, browserHistory, hashHistory } from 'react-router'
 
-//import Login from './admin'
 import LayoutContainer from './layout/LayoutContainer'
-import LoginContainer from './admin/containers/LoginContainer'
+import LoginContainer from './login/containers/LoginContainer'
 import RegionContainer from './region/containers/RegionContainer'
 import Home from './home'
 
@@ -16,7 +15,7 @@ const NoMatch = () => (<div>This is a NoMatch stub.</div>)
 function router(getState, persistor) {
 
   function auth(nextState, replace) {
-    if (!getState().admin.login.admin) {
+    if (!getState().login.login.isLogined) {
       //replaceState({nextPathname: nextState.location.pathname}, '/login')
       //replace({ nextPathname: nextState.location.pathname }, '/login', nextState.location.query)
       replace('/login')

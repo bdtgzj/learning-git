@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import { browserHistory, hashHistory } from 'react-router'
 import { setAccessToken, readEndpoint } from 'redux-json-api'
+var Base64 = require('js-base64').Base64;
 
 export const VALIDATE_NAME = 'VALIDATE_NAME'
 export const VALIDATE_PASSWORD = 'VALIDATE_PASSWORD'
@@ -71,7 +72,7 @@ export function login(admin) {
           dispatch(loginFailure("用户名或密码错误！"))
         } else {
           // set access token
-          dispath(setAccessToken())
+          dispatch(setAccessToken(Base64.encode(admin.name + ':' + admin.password)))
           // get users
           dispatch(readEndpoint('user'))
           // update state

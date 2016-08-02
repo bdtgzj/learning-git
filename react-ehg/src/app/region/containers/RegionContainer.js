@@ -1,9 +1,12 @@
 import { connect } from 'react-redux'
 import { createEntity, readEndpoint, updateEntity, deleteEntity } from 'redux-json-api'
 import Region from '../components/Region'
+import {deserializer} from '../../util/jsonapi'
 
 const mapStateToProps = (state) => {
-  return state
+  let users = deserializer(state.api.user)
+  let regions = deserializer(state.api.region)
+  return { users: users, regions: regions }
 }
 
 const mapDispatchToProps = (dispatch) => {
