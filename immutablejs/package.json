@@ -1,0 +1,17 @@
+{
+  "name": "immutablejs",
+  "version": "1.0.0",
+  "description": "immutablejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "immutablejs"
+  ],
+  "author": "bdtgzj",
+  "license": "ISC",
+  "dependencies": {
+    "immutable": "^3.8.1"
+  }
+}
