@@ -9,7 +9,7 @@ exports.newAndSave = function(name, email, password, active, callback) {
 
 };
 
-exports.getRegion = function(uid, callback) {
+exports.getRegion = function(uid, page, callback) {
   var Region = mongoose.model('Region_' + uid, RegionSchema);
-  Region.find(null, callback);
+  Region.find(null).skip(page.skip).limit(page.limit).sort({order: page.sort}).exec(callback);
 }
