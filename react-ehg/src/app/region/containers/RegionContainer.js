@@ -2,11 +2,12 @@ import { connect } from 'react-redux'
 import { createEntity, readEndpoint, updateEntity, deleteEntity } from 'redux-json-api'
 import Region from '../components/Region'
 import {deserializer} from '../../util/jsonapi'
+import { openAlertDialog } from '../actions'
 
 const mapStateToProps = (state) => {
   let users = deserializer(state.api.user)
   let regions = deserializer(state.api.region)
-  return { users: users, regions: regions }
+  return { users: users, regions: regions, region: state.region }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -14,10 +15,16 @@ const mapDispatchToProps = (dispatch) => {
     handleCreate: (region) => {
       dispatch(createEntity(region))
     },
-    handleRead: (userID) => {
+    handleRead: (selectedValue, selectedIndex) => {
+      if (selectedIndex === -1) {
+        dispatch(openAlertDialog(true, '请选择用户'))
+        return
+      }
       // page[size]=2&page[number]=2&page[sort]=1&
-      const endpoint = 'region?uid=' + userID
+      const endpoint = 'region?uid=' + selectedValue.id
       dispatch(readEndpoint(endpoint))
+      //
+      dispatch(setUser())
     },
     handleUpdate: (region) => {
       dispatch(updateEntity(region))

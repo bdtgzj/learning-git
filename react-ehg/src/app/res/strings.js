@@ -4,6 +4,7 @@ const strings = {
   button_label_read: '查询',
   button_label_update: '修改',
   button_label_delete: '删除',
+  button_label_ok: '确定',
   // region
   region_toolbar_autocomplete_placeholder: '请输入用户账号查询',
   region_tableheadercolumn_name: '名称',

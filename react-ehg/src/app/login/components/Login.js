@@ -63,7 +63,7 @@ class Login extends Component {
                 primary={true}
                 type={'password'}
                 disabled={!name.valid || !password.valid}
-                onClick={() => onLogin({name: name.value, password: this.textFieldPassword.input.value})}
+                onTouchTap={() => onLogin({name: name.value, password: this.textFieldPassword.input.value})}
               />
               <Dialog
                 actions={actions}

@@ -17,7 +17,8 @@ import strings from '../../res/strings'
 const styles = {
   region_toolbar: { position: 'fixed', top: '64px', zIndex: 1000, width: '100%' },
   region_table_header: { position: 'fixed', top: '120px', zIndex: 1000 },
-  region_table_body: { marginTop: '176px' }
+  region_table_body: { marginTop: '176px' },
+  alertDialogContent: { width: '50%' }
 }
 
 class Region extends Component {
@@ -26,22 +27,16 @@ class Region extends Component {
     this.autoCompleteUser.focus()
   }
 
-  handleNewRequest(selectedValue, selectedIndex, handleRead) {
-    if (selectedIndex === -1) {
-      console.log('dd')
-      return
-    }
-    handleRead(selectedValue.id)
-  }
-
   render() {
 
-    const { users, regions } = this.props
-    const { handleRead } = this.props
+    const { users, regions, region } = this.props
+    const { handleOpenCreateDialog, handleOpenUpdateDialog, handleOpenReadDialog, handleOpenAlertDialog } = this.props
+    const { handleCreate, handleRead, handleUpdate, handleDelete } = this.props
 
     const usersConfig = { text: 'name', value: 'id'}
 
-    //const actions = [<FlatButton label={strings.login_dialog_ok} primary={true} onTouchTap={onDialogOk} />]
+    // button for alert dialog
+    const actionsAlertDialog = [<FlatButton label={strings.button_label_ok} primary={true} onTouchTap={()=>handleOpenAlertDialog(false)} />]
 
     let rows = []
 
@@ -56,34 +51,59 @@ class Region extends Component {
 
     return (
       <div>
-      <Toolbar style={styles.region_toolbar}>
-        <ToolbarGroup>
-          <AutoComplete
-            hintText={strings.region_toolbar_autocomplete_placeholder}
-            dataSource={users}
-            dataSourceConfig={usersConfig}
-            ref={(node) => this.autoCompleteUser=node}
-            onNewRequest={(selectedValue, selectedIndex) => this.handleNewRequest(selectedValue, selectedIndex, handleRead)}
-          />
-          <ToolbarSeparator />
-          <RaisedButton label={strings.button_label_create} primary={true} />
-          <RaisedButton label={strings.button_label_update} primary={true} />
-          <RaisedButton label={strings.button_label_delete} primary={true} />
-          <RaisedButton label={strings.button_label_read} primary={true} />
-        </ToolbarGroup>
-      </Toolbar>
+        <Toolbar style={styles.region_toolbar}>
+          <ToolbarGroup>
+            <AutoComplete
+              hintText={strings.region_toolbar_autocomplete_placeholder}
+              openOnFocus={true}
+              dataSource={users}
+              dataSourceConfig={usersConfig}
+              ref={(node) => this.autoCompleteUser=node}
+              onNewRequest={handleRead} />
+            <ToolbarSeparator />
+            <RaisedButton
+              label={strings.button_label_create}
+              primary={true}
+              disabled={!user.id}
+              onTouchTap={()=>handleOpenCreateDialog(true)} />
+            <RaisedButton
+              label={strings.button_label_update}
+              primary={true}
+              disabled={selected.length !== 1}
+              onTouchTap={()=>handleOpenUpdateDialog(true)} />
+            <RaisedButton
+              label={strings.button_label_delete}
+              primary={true}
+              disabled={selected.length < 1}
+              onTouchTap={handleDelete} />
+            <RaisedButton
+              label={strings.button_label_read}
+              primary={true}
+              onTouchTap={()=>handleOpenReadDialog(true)} />
+          </ToolbarGroup>
+        </Toolbar>
 
-      <Table headerStyle={styles.region_table_header} bodyStyle={styles.region_table_body}>
-        <TableHeader>
-          <TableRow>
-            <TableHeaderColumn>{strings.region_tableheadercolumn_name}</TableHeaderColumn>
-            <TableHeaderColumn>{strings.region_tableheadercolumn_order}</TableHeaderColumn>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {rows}
-        </TableBody>
-      </Table>
+        <Table headerStyle={styles.region_table_header} bodyStyle={styles.region_table_body}>
+          <TableHeader>
+            <TableRow>
+              <TableHeaderColumn>{strings.region_tableheadercolumn_name}</TableHeaderColumn>
+              <TableHeaderColumn>{strings.region_tableheadercolumn_order}</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {rows}
+          </TableBody>
+        </Table>
+        
+        <Dialog
+          actions={actionsAlertDialog}
+          modal={true}
+          contentStyle={styles.alertDialogContent}
+          open={region.alertDialog.isVisible}>
+          <div>{region.alertDialog.content}</div>
+        </Dialog>
+
+
       </div>
     );
   }
