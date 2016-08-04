@@ -12,6 +12,24 @@ export const CREATE_SUCCESS = 'CREATE_SUCCESS'
 export const DIALOG_OK = 'DIALOG_OK'
 
 export const OPEN_ALERT_DIALOG = 'OPEN_ALERT_DIALOG'
+export const OPEN_CREATE_DIALOG = 'OPEN_CREATE_DIALOG'
+export const OPEN_UPDATE_DIALOG = 'OPEN_UPDATE_DIALOG'
+export const OPEN_READ_DIALOG = 'OPEN_READ_DIALOG'
+
+export const SET_USER = 'SET_USER'
+
+export const SELECT_ROW = 'SELECT_ROW'
+
+/*
+ * user
+ */
+
+export function setUser(id) {
+  return {
+    type: SET_USER,
+    id
+  }
+}
 
 /*
  * Dialog 
@@ -21,6 +39,37 @@ export function openAlertDialog(open, content) {
     type: OPEN_ALERT_DIALOG,
     open,
     content
+  }
+}
+
+export function openCreateDialog(open) {
+  return {
+    type: OPEN_CREATE_DIALOG,
+    open
+  }
+}
+
+export function openUpdateDialog(open) {
+  return {
+    type: OPEN_UPDATE_DIALOG,
+    open
+  }
+}
+
+export function openReadDialog(open) {
+  return {
+    type: OPEN_READ_DIALOG,
+    open
+  }
+}
+
+/*
+ * Table 
+ */
+export function selectRow(rows) {
+  return {
+    type: SELECT_ROW,
+    rows
   }
 }
 
@@ -41,89 +90,4 @@ export function validateOrder(order) {
   }
 }
 
-/*
- * create
- */
-export function createRequest(uid, region) {
-  return {
-    type: CREATE_REQUEST,
-    uid,
-    region
-  }
-}
 
-export function createFailure(e) {
-  return {
-    type: CREATE_FAILURE,
-    e
-  }
-}
-
-export function createSuccess(region) {
-  return {
-    type: CREATE_SUCCESS,
-    region
-  }
-}
-
-export function create(region) {
-  return function(dispatch) {
-    // sync
-    dispatch(createRequest(region))
-    // async
-    return fetch(config.host + 'region', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        data: {
-          type: 'admin',
-          attributes: admin
-        }
-      })
-    })
-      .then(response => checkStatus(response))
-      .then(response => response.json())
-      .then(json => {
-        if (json.data === null) {
-          dispatch(loginFailure("用户名或密码错误！"))
-        } else {
-          // update state
-          dispatch(loginSuccess(json))
-          // route to main
-          browserHistory.push('/')
-          //hashHistory.push('/')
-          //document.location.href = "http://baidu.com"
-        }
-      })
-      .catch(e => dispatch(loginFailure(e.toString())))
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
-    return response
-  } else {
-    var error = new Error(response.statusText)
-    error.response = response
-    throw error
-  }
-}
-
-export function dialogOk() {
-  return {
-    type: DIALOG_OK
-  }
-}

@@ -32,6 +32,7 @@ class Region extends Component {
     const { users, regions, region } = this.props
     const { handleOpenCreateDialog, handleOpenUpdateDialog, handleOpenReadDialog, handleOpenAlertDialog } = this.props
     const { handleCreate, handleRead, handleUpdate, handleDelete } = this.props
+    const { handleSelectRow } = this.props
 
     const usersConfig = { text: 'name', value: 'id'}
 
@@ -40,14 +41,14 @@ class Region extends Component {
 
     let rows = []
 
-    regions.forEach(function(region) {
+    regions.forEach(function(v, k) {
       rows.push(
-        <TableRow>
-          <TableRowColumn>{region.name}</TableRowColumn>
-          <TableRowColumn>{region.order}</TableRowColumn>
+        <TableRow selected={region.selected.includes(k)}>
+          <TableRowColumn>{v.name}</TableRowColumn>
+          <TableRowColumn>{v.order}</TableRowColumn>
         </TableRow>
       )
-    }, this);
+    });
 
     return (
       <div>
@@ -59,31 +60,33 @@ class Region extends Component {
               dataSource={users}
               dataSourceConfig={usersConfig}
               ref={(node) => this.autoCompleteUser=node}
+              searchText={region.user.name}
               onNewRequest={handleRead} />
             <ToolbarSeparator />
             <RaisedButton
               label={strings.button_label_create}
               primary={true}
-              disabled={!user.id}
+              disabled={!region.user.id}
               onTouchTap={()=>handleOpenCreateDialog(true)} />
             <RaisedButton
               label={strings.button_label_update}
               primary={true}
-              disabled={selected.length !== 1}
+              disabled={!Array.isArray(region.selected) || region.selected.length !== 1}
               onTouchTap={()=>handleOpenUpdateDialog(true)} />
             <RaisedButton
               label={strings.button_label_delete}
               primary={true}
-              disabled={selected.length < 1}
+              disabled={region.selected === 'none' || (Array.isArray(region.selected) && region.selected.length===0)}
               onTouchTap={handleDelete} />
             <RaisedButton
               label={strings.button_label_read}
               primary={true}
+              disabled={!region.user.id}
               onTouchTap={()=>handleOpenReadDialog(true)} />
           </ToolbarGroup>
         </Toolbar>
 
-        <Table headerStyle={styles.region_table_header} bodyStyle={styles.region_table_body}>
+        <Table headerStyle={styles.region_table_header} bodyStyle={styles.region_table_body} multiSelectable={true} onRowSelection={handleSelectRow}>
           <TableHeader>
             <TableRow>
               <TableHeaderColumn>{strings.region_tableheadercolumn_name}</TableHeaderColumn>
