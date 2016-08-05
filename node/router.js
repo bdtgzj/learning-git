@@ -29,6 +29,7 @@ router.get('/homecard', homecard.retrieve);
  * region
  */
 router.get('/region', region.retrieve);
+router.post('/region', region.create);
 
 /**
  * category

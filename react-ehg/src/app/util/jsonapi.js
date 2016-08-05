@@ -10,3 +10,7 @@ export function deserializer(inputs = {data: []}) {
   
   return outputs
 }
+
+export function serializer(inputs = {data: []}) {
+
+}

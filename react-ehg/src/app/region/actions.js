@@ -1,15 +1,8 @@
 import config from '../config'
-import fetch from 'isomorphic-fetch'
 import { browserHistory, hashHistory } from 'react-router'
 
 export const VALIDATE_NAME = 'VALIDATE_NAME'
 export const VALIDATE_ORDER = 'VALIDATE_ORDER'
-
-export const CREATE_REQUEST = 'CREATE_REQUEST'
-export const CREATE_FAILURE = 'CREATE_FAILURE'
-export const CREATE_SUCCESS = 'CREATE_SUCCESS'
-
-export const DIALOG_OK = 'DIALOG_OK'
 
 export const OPEN_ALERT_DIALOG = 'OPEN_ALERT_DIALOG'
 export const OPEN_CREATE_DIALOG = 'OPEN_CREATE_DIALOG'
@@ -24,10 +17,10 @@ export const SELECT_ROW = 'SELECT_ROW'
  * user
  */
 
-export function setUser(id) {
+export function setUser(user) {
   return {
     type: SET_USER,
-    id
+    user
   }
 }
 
@@ -63,19 +56,6 @@ export function openReadDialog(open) {
   }
 }
 
-/*
- * Table 
- */
-export function selectRow(rows) {
-  return {
-    type: SELECT_ROW,
-    rows
-  }
-}
-
-/*
- * validate 
- */
 export function validateName(name) {
   return {
     type: VALIDATE_NAME,
@@ -86,8 +66,17 @@ export function validateName(name) {
 export function validateOrder(order) {
   return {
     type: VALIDATE_ORDER,
-    password
+    order
   }
 }
 
+/*
+ * Table 
+ */
+export function selectRow(rows) {
+  return {
+    type: SELECT_ROW,
+    rows
+  }
+}
 

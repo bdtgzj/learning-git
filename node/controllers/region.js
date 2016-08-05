@@ -29,3 +29,24 @@ exports.retrieve = function(req, res, next) {
     res.json(RegionSerializer.serialize(regions));
   });
 };
+
+exports.create = function(req, res, next) {
+
+  var region = validatorBusiness.validateRegion(req.body);
+  if (!region.isValid) {
+    return res.json(ErrorSerializer.serialize(error('数据异常', region.error)));
+  }
+
+  new JSONAPIDeserializer({keyForAttribute: 'camelCase'}).deserialize(region.data)
+    .then((region)=>{
+      Region.create(region.uid, delete region.uid, function(err, region) {
+        if (err) {
+          return next(err);
+        }
+        res.json(RegionSerializer.serialize(region));
+      });
+    })
+    .catch((err)=>{
+      return next(err);
+    });
+};

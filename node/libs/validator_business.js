@@ -46,4 +46,24 @@ function validatePage(page) {
 
 }
 
-module.exports = { validateUID: validateUID, validatePage: validatePage }
+function validateRegion(region) {
+  if (!validator.isJSON(region)) {
+    return {isValid: false, error: '非法数据！'}
+  }
+
+  if (!validator.isInt(region.uid) || region.uid < 1) {
+    return {isValid: false, error: '非法数据uid！'};
+  }
+
+  if (!validator.isLength(trim(region.name), {min: 1, max: 10})) {
+    return {isValid: false, error: '非法数据name！'};
+  }
+
+  if (!validator.isInt(region.order)) {
+    return {isValid: false, error: '非法数据order！'};
+  }
+
+  return {isValid: true, data: region}
+}
+
+module.exports = { validateUID: validateUID, validatePage: validatePage, validateRegion: validateRegion }
