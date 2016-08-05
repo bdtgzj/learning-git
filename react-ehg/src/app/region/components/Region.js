@@ -119,7 +119,7 @@ class Region extends Component {
             fullWidth={true}
             floatingLabelText={strings.region_dialog_label_name}
             hintText={strings.region_dialog_textfield_placeholder_name}
-            value={region.createDialog.name.value}
+            defaultValue={region.createDialog.name.value}
             errorText={!region.createDialog.name.valid && region.createDialog.name.error}
             onChange={() => handleNameChange(this.textFieldName.input.value)} />
             <br />
@@ -129,7 +129,7 @@ class Region extends Component {
               fullWidth={true}
               floatingLabelText={strings.region_dialog_label_order}
               hintText={strings.region_dialog_textfield_placeholder_order}
-              value={region.createDialog.order.value}
+              defaultValue={region.createDialog.order.value}
               errorText={!region.createDialog.order.valid && region.createDialog.order.error}
               onChange={() => handleOrderChange(this.textFieldOrder.input.value)} />
         </Dialog>

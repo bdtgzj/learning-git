@@ -31,15 +31,15 @@ exports.retrieve = function(req, res, next) {
 };
 
 exports.create = function(req, res, next) {
-
-  var region = validatorBusiness.validateRegion(req.body);
-  if (!region.isValid) {
-    return res.json(ErrorSerializer.serialize(error('数据异常', region.error)));
-  }
-
-  new JSONAPIDeserializer({keyForAttribute: 'camelCase'}).deserialize(region.data)
-    .then((region)=>{
-      Region.create(region.uid, delete region.uid, function(err, region) {
+  new JSONAPIDeserializer({keyForAttribute: 'camelCase'}).deserialize(req.body)
+    .then((region) => validatorBusiness.validateRegion(region))
+    .then((validatedRegion)=>{
+      if (!validatedRegion.isValid) {
+        return res.json(ErrorSerializer.serialize(error('数据异常', validatedRegion.error)));
+      }
+      var uid = validatedRegion.data.uid;
+      delete validatedRegion.data.uid;
+      Region.create(uid, validatedRegion.data, function(err, region) {
         if (err) {
           return next(err);
         }

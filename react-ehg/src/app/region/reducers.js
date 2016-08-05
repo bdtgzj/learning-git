@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
-import { OPEN_ALERT_DIALOG, OPEN_CREATE_DIALOG, OPEN_UPDATE_DIALOG, OPEN_READ_DIALOG, 
-         SET_USER, SELECT_ROW,
-         VALIDATE_NAME, VALIDATE_ORDER
+import { SET_USER,
+         OPEN_ALERT_DIALOG, OPEN_CREATE_DIALOG, OPEN_UPDATE_DIALOG, OPEN_READ_DIALOG, VALIDATE_NAME, VALIDATE_ORDER,
+         SELECT_ROW,
        } from './actions'
 
 import trim from 'validator/lib/trim'
@@ -107,6 +107,7 @@ function selected(state = 'none', action) {
   }
 }
 
+// combine
 const indexReducer = combineReducers({
   alertDialog,
   createDialog,

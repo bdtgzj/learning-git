@@ -1,21 +1,10 @@
 import config from '../config'
 import { browserHistory, hashHistory } from 'react-router'
 
-export const VALIDATE_NAME = 'VALIDATE_NAME'
-export const VALIDATE_ORDER = 'VALIDATE_ORDER'
-
-export const OPEN_ALERT_DIALOG = 'OPEN_ALERT_DIALOG'
-export const OPEN_CREATE_DIALOG = 'OPEN_CREATE_DIALOG'
-export const OPEN_UPDATE_DIALOG = 'OPEN_UPDATE_DIALOG'
-export const OPEN_READ_DIALOG = 'OPEN_READ_DIALOG'
-
-export const SET_USER = 'SET_USER'
-
-export const SELECT_ROW = 'SELECT_ROW'
-
 /*
  * user
  */
+export const SET_USER = 'REGION_SET_USER'
 
 export function setUser(user) {
   return {
@@ -27,6 +16,13 @@ export function setUser(user) {
 /*
  * Dialog 
  */
+export const OPEN_ALERT_DIALOG = 'REGION_OPEN_ALERT_DIALOG'
+export const OPEN_CREATE_DIALOG = 'REGION_OPEN_CREATE_DIALOG'
+export const OPEN_UPDATE_DIALOG = 'REGION_OPEN_UPDATE_DIALOG'
+export const OPEN_READ_DIALOG = 'REGION_OPEN_READ_DIALOG'
+export const VALIDATE_NAME = 'REGION_VALIDATE_NAME'
+export const VALIDATE_ORDER = 'REGION_VALIDATE_ORDER'
+
 export function openAlertDialog(open, content) {
   return {
     type: OPEN_ALERT_DIALOG,
@@ -73,6 +69,8 @@ export function validateOrder(order) {
 /*
  * Table 
  */
+export const SELECT_ROW = 'REGION_SELECT_ROW'
+
 export function selectRow(rows) {
   return {
     type: SELECT_ROW,

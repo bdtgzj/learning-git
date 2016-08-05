@@ -1,4 +1,5 @@
 var validator = require('validator');
+var _ = require('lodash');
 
 function validateUID(uid) {
 
@@ -16,6 +17,10 @@ function validatePage(page) {
 
   if (!page) {
     return {isValid: true, data: {skip: 0, limit: 0, sort: 1}}
+  }
+
+  if (!_.isPlainObject(page)) {
+    return {isValid: false, error: '非法数据！'}
   }
 
   if (page.size) {
@@ -47,7 +52,7 @@ function validatePage(page) {
 }
 
 function validateRegion(region) {
-  if (!validator.isJSON(region)) {
+  if (!_.isObject(region)) {
     return {isValid: false, error: '非法数据！'}
   }
 
@@ -55,7 +60,7 @@ function validateRegion(region) {
     return {isValid: false, error: '非法数据uid！'};
   }
 
-  if (!validator.isLength(trim(region.name), {min: 1, max: 10})) {
+  if (!validator.isLength(validator.trim(region.name), {min: 1, max: 10})) {
     return {isValid: false, error: '非法数据name！'};
   }
 

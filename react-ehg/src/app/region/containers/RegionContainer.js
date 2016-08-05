@@ -43,7 +43,12 @@ const mapDispatchToProps = (dispatch) => {
     handleCreate: (region) => {
       dispatch(createEntity({type: 'region', attributes: region}))
       .then((json)=>{
-        dispatch(openAlertDialog(true, strings.action_create_ok_prompt))
+        let regions = deserializer(json)
+        if (regions[0].type==='errors') {
+          dispatch(openAlertDialog(true, regions[0].content))
+        } else {
+          dispatch(openAlertDialog(true, strings.action_create_ok_prompt))
+        }
       })
       .catch((err)=>{
         dispatch(openAlertDialog(true, strings.action_error_network_prompt))
