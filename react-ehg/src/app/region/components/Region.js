@@ -19,7 +19,8 @@ const styles = {
   region_table_header: { position: 'fixed', top: '120px', zIndex: 1000 },
   region_table_body: { marginTop: '176px' },
   alertDialogContent: { width: '50%' },
-  createDialogContent: { width: '50%' }
+  createDialogContent: { width: '50%' },
+  updateDialogContent: { width: '50%' }
 }
 
 class Region extends Component {
@@ -34,7 +35,7 @@ class Region extends Component {
     const { handleOpenCreateDialog, handleOpenUpdateDialog, handleOpenReadDialog, handleOpenAlertDialog } = this.props
     const { handleCreate, handleRead, handleUpdate, handleDelete } = this.props
     const { handleSelectRow } = this.props
-    const { handleNameChange,  handleOrderChange } = this.props
+    const { handleNameChangeCreate,  handleOrderChangeCreate, handleNameChangeUpdate,  handleOrderChangeUpdate } = this.props
 
     const usersConfig = { text: 'name', value: 'id'}
 
@@ -45,6 +46,12 @@ class Region extends Component {
         disabled={!region.createDialog.name.valid || !region.createDialog.order.valid || !region.user.id}
         onTouchTap={()=>handleCreate({name: region.createDialog.name.value, order:region.createDialog.order.value, uid:region.user.id})} />,
       <FlatButton label={strings.button_label_cancel} primary={true} onTouchTap={()=>handleOpenCreateDialog(false)} />
+    ]
+    const actionsUpdateDialog = [
+      <FlatButton label={strings.button_label_update} primary={true} 
+        disabled={!region.updateDialog.name.valid || !region.updateDialog.order.valid || !region.user.id}
+        onTouchTap={()=>handleUpdate(region.updateDialog.id, {name: region.updateDialog.name.value, order:region.updateDialog.order.value, uid:region.user.id})} />,
+      <FlatButton label={strings.button_label_cancel} primary={true} onTouchTap={()=>handleOpenUpdateDialog(false)} />
     ]
 
     let rows = []
@@ -80,7 +87,7 @@ class Region extends Component {
               label={strings.button_label_update}
               primary={true}
               disabled={!Array.isArray(region.selected) || region.selected.length !== 1}
-              onTouchTap={()=>handleOpenUpdateDialog(true)} />
+              onTouchTap={()=>handleOpenUpdateDialog(true, regions[region.selected[0]])} />
             <RaisedButton
               label={strings.button_label_delete}
               primary={true}
@@ -121,7 +128,7 @@ class Region extends Component {
             hintText={strings.region_dialog_textfield_placeholder_name}
             defaultValue={region.createDialog.name.value}
             errorText={!region.createDialog.name.valid && region.createDialog.name.error}
-            onChange={() => handleNameChange(this.textFieldName.input.value)} />
+            onChange={() => handleNameChangeCreate(this.textFieldName.input.value)} />
             <br />
             <TextField
               id="order"
@@ -131,7 +138,35 @@ class Region extends Component {
               hintText={strings.region_dialog_textfield_placeholder_order}
               defaultValue={region.createDialog.order.value}
               errorText={!region.createDialog.order.valid && region.createDialog.order.error}
-              onChange={() => handleOrderChange(this.textFieldOrder.input.value)} />
+              onChange={() => handleOrderChangeCreate(this.textFieldOrder.input.value)} />
+        </Dialog>
+
+        <Dialog
+          title={strings.region_updatedialog_title}
+          actions={actionsUpdateDialog}
+          modal={true}
+          contentStyle={styles.updateDialogContent}
+          autoScrollBodyContent={true}
+          open={region.updateDialog.isVisible}>
+          <TextField
+            id="name"
+            ref={(node) => this.textFieldName=node}
+            fullWidth={true}
+            floatingLabelText={strings.region_dialog_label_name}
+            hintText={strings.region_dialog_textfield_placeholder_name}
+            defaultValue={region.updateDialog.name.value}
+            errorText={!region.updateDialog.name.valid && region.updateDialog.name.error}
+            onChange={() => handleNameChangeUpdate(this.textFieldName.input.value)} />
+            <br />
+            <TextField
+              id="order"
+              ref={(node) => this.textFieldOrder=node}
+              fullWidth={true}
+              floatingLabelText={strings.region_dialog_label_order}
+              hintText={strings.region_dialog_textfield_placeholder_order}
+              defaultValue={region.updateDialog.order.value}
+              errorText={!region.updateDialog.order.valid && region.updateDialog.order.error}
+              onChange={() => handleOrderChangeUpdate(this.textFieldOrder.input.value)} />
         </Dialog>
 
         <Dialog

@@ -30,6 +30,7 @@ router.get('/homecard', homecard.retrieve);
  */
 router.get('/region', region.retrieve);
 router.post('/region', region.create);
+router.put('/region/:id', region.updateOne);
 
 /**
  * category

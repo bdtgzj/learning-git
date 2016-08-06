@@ -20,8 +20,10 @@ export const OPEN_ALERT_DIALOG = 'REGION_OPEN_ALERT_DIALOG'
 export const OPEN_CREATE_DIALOG = 'REGION_OPEN_CREATE_DIALOG'
 export const OPEN_UPDATE_DIALOG = 'REGION_OPEN_UPDATE_DIALOG'
 export const OPEN_READ_DIALOG = 'REGION_OPEN_READ_DIALOG'
-export const VALIDATE_NAME = 'REGION_VALIDATE_NAME'
-export const VALIDATE_ORDER = 'REGION_VALIDATE_ORDER'
+export const VALIDATE_NAME_CREATE = 'REGION_VALIDATE_NAME_CREATE'
+export const VALIDATE_ORDER_CREATE = 'REGION_VALIDATE_ORDER_CREATE'
+export const VALIDATE_NAME_UPDATE = 'REGION_VALIDATE_NAME_UPDATE'
+export const VALIDATE_ORDER_UPDATE = 'REGION_VALIDATE_ORDER_UPDATE'
 
 export function openAlertDialog(open, content) {
   return {
@@ -38,10 +40,11 @@ export function openCreateDialog(open) {
   }
 }
 
-export function openUpdateDialog(open) {
+export function openUpdateDialog(open, selectedRow) {
   return {
     type: OPEN_UPDATE_DIALOG,
-    open
+    open,
+    selectedRow
   }
 }
 
@@ -52,16 +55,30 @@ export function openReadDialog(open) {
   }
 }
 
-export function validateName(name) {
+export function validateNameCreate(name) {
   return {
-    type: VALIDATE_NAME,
+    type: VALIDATE_NAME_CREATE,
     name
   }
 }
 
-export function validateOrder(order) {
+export function validateOrderCreate(order) {
   return {
-    type: VALIDATE_ORDER,
+    type: VALIDATE_ORDER_CREATE,
+    order
+  }
+}
+
+export function validateNameUpdate(name) {
+  return {
+    type: VALIDATE_NAME_UPDATE,
+    name
+  }
+}
+
+export function validateOrderUpdate(order) {
+  return {
+    type: VALIDATE_ORDER_UPDATE,
     order
   }
 }

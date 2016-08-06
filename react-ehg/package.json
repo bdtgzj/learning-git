@@ -13,6 +13,7 @@
   "author": "bdtgzj",
   "license": "MIT",
   "dependencies": {
+    "inflected": "^1.1.7",
     "isomorphic-fetch": "^2.2.1",
     "js-base64": "^2.1.9",
     "material-ui": "^0.15.2",

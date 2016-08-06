@@ -13,6 +13,7 @@ const strings = {
   action_update_ok_prompt: '修改成功！',
   action_delete_ok_prompt: '创建成功！',
   action_error_network_prompt: '抱歉，网络错误！',
+  action_error_system_prompt: '抱歉，系统错误！',
   // user
   user_select_prompt: '请输入正确的用户账号，并在下拉列表中选择用户账号!',
   // region

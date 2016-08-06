@@ -4,9 +4,12 @@ import Region from '../components/Region'
 import {deserializer} from '../../util/jsonapi'
 import strings from '../../res/strings'
 import { openAlertDialog, openCreateDialog, openUpdateDialog, openReadDialog, setUser, selectRow,
-         validateName, validateOrder
+         validateNameCreate, validateOrderCreate, validateNameUpdate, validateOrderUpdate
        } from '../actions'
 
+var JSONAPISerializer = require('../../util/jsonapi-serializer-sync').Serializer;
+var JSONAPIDeserializer = require('../../util/jsonapi-serializer-sync').Deserializer;
+const JSONAPI_DESERIALIZER_CONFIG = {keyForAttribute: 'camelCase'};
 
 const mapStateToProps = (state) => {
   let users = deserializer(state.api.user)
@@ -23,31 +26,41 @@ const mapDispatchToProps = (dispatch) => {
     handleOpenCreateDialog: (open) => {
       dispatch(openCreateDialog(open))
     },
-    handleOpenUpdateDialog: (open) => {
-      dispatch(openUpdateDialog(open))
+    handleOpenUpdateDialog: (open, selectedRow) => {
+      dispatch(openUpdateDialog(open, selectedRow))
     },
     handleOpenReadDialog: (open) => {
       dispatch(openReadDialog(open))
     },
-    handleNameChange: (name) => {
-      dispatch(validateName(name))
+    handleNameChangeCreate: (name) => {
+      dispatch(validateNameCreate(name))
     },
-    handleOrderChange: (order) => {
-      dispatch(validateOrder(order))
+    handleOrderChangeCreate: (order) => {
+      dispatch(validateOrderCreate(order))
+    },
+    handleNameChangeUpdate: (name) => {
+      dispatch(validateNameUpdate(name))
+    },
+    handleOrderChangeUpdate: (order) => {
+      dispatch(validateOrderUpdate(order))
     },
     // Table
     handleSelectRow: (rows) => {
       return dispatch(selectRow(rows))
     },
     // Restful API
-    handleCreate: (region) => {
-      dispatch(createEntity({type: 'region', attributes: region}))
+    handleCreate: (entity) => {
+      dispatch(createEntity({type: 'region', attributes: entity}))
       .then((json)=>{
-        let regions = deserializer(json)
-        if (regions[0].type==='errors') {
-          dispatch(openAlertDialog(true, regions[0].content))
-        } else {
+        if (json.data.type==='error') {
+          return dispatch(openAlertDialog(true, json.data.attributes.detail))
+        }
+        let entity = new JSONAPIDeserializer(JSONAPI_DESERIALIZER_CONFIG).deserialize(json)
+        if (entity.id) {
+          //dispatch(readEndpoint('region?uid=1'))
           dispatch(openAlertDialog(true, strings.action_create_ok_prompt))
+        } else {
+          dispatch(openAlertDialog(true, strings.action_error_system_prompt))
         }
       })
       .catch((err)=>{
@@ -65,8 +78,23 @@ const mapDispatchToProps = (dispatch) => {
       // set user state
       dispatch(setUser(selectedValue))
     },
-    handleUpdate: (region) => {
-      dispatch(updateEntity(region))
+    handleUpdate: (id, entity) => {
+      dispatch(updateEntity({type: 'region', id: id, attributes: entity}))
+      .then((json)=>{
+        if (json.data.type==='error') {
+          return dispatch(openAlertDialog(true, json.data.attributes.detail))
+        }
+        let entity = new JSONAPIDeserializer(JSONAPI_DESERIALIZER_CONFIG).deserialize(json)
+        if (entity.id) {
+          //dispatch(readEndpoint('region?uid=1'))
+          dispatch(openAlertDialog(true, strings.action_create_ok_prompt))
+        } else {
+          dispatch(openAlertDialog(true, strings.action_error_system_prompt))
+        }
+      })
+      .catch((err)=>{
+        dispatch(openAlertDialog(true, strings.action_error_network_prompt))
+      })
     },
     handleDelete: (region) => {
       dispatch(deleteEntity(region))

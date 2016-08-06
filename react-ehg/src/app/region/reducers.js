@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux'
 import { SET_USER,
-         OPEN_ALERT_DIALOG, OPEN_CREATE_DIALOG, OPEN_UPDATE_DIALOG, OPEN_READ_DIALOG, VALIDATE_NAME, VALIDATE_ORDER,
+         OPEN_ALERT_DIALOG, OPEN_CREATE_DIALOG, OPEN_UPDATE_DIALOG, OPEN_READ_DIALOG, 
+         VALIDATE_NAME_CREATE, VALIDATE_ORDER_CREATE, VALIDATE_NAME_UPDATE, VALIDATE_ORDER_UPDATE,
          SELECT_ROW,
        } from './actions'
 
 import trim from 'validator/lib/trim'
 import isLength from 'validator/lib/isLength'
 import isInt from 'validator/lib/isInt'
-
 
 /*
  * User
@@ -50,13 +50,13 @@ function createDialog(state = {isVisible: false, name: {}, order: {}}, action) {
       } else {
         return Object.assign({}, state, {isVisible: false})
       }
-    case VALIDATE_NAME:
+    case VALIDATE_NAME_CREATE:
       if (isLength(trim(action.name), {min: 1, max: 10})) {
         return Object.assign({}, state, {name:{value: action.name, valid: true}})
       } else {
         return Object.assign({}, state, {name:{value: action.name, valid: false, error: '请输入1至10个字符！'}})
       }
-    case VALIDATE_ORDER:
+    case VALIDATE_ORDER_CREATE:
       if (isInt(trim(action.order))) {
         return Object.assign({}, state, {order:{value: action.order, valid: true}})
       } else {
@@ -67,13 +67,30 @@ function createDialog(state = {isVisible: false, name: {}, order: {}}, action) {
   }
 }
 
-function updateDialog(state = {isVisible: false}, action) {
+function updateDialog(state = {isVisible: false, name: {}, order: {}}, action) {
   switch (action.type) {
     case OPEN_UPDATE_DIALOG:
       if (action.open) {
-        return {isVisible: true}
+        return Object.assign({}, state,
+          { isVisible: true, 
+            id: action.selectedRow.id,
+            name: {value: action.selectedRow.name, valid: true},
+            order: {value: action.selectedRow.order, valid: true}
+          })
       } else {
-        return {isVisible: false}
+        return Object.assign({}, state, {isVisible: false})
+      }
+    case VALIDATE_NAME_UPDATE:
+      if (isLength(trim(action.name), {min: 1, max: 10})) {
+        return Object.assign({}, state, {name:{value: action.name, valid: true}})
+      } else {
+        return Object.assign({}, state, {name:{value: action.name, valid: false, error: '请输入1至10个字符！'}})
+      }
+    case VALIDATE_ORDER_UPDATE:
+      if (isInt(trim(action.order))) {
+        return Object.assign({}, state, {order:{value: action.order, valid: true}})
+      } else {
+        return Object.assign({}, state, {order:{value: action.order, valid: false, error: '请输入数字字符！'}})
       }
     default:
       return state

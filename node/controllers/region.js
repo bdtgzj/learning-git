@@ -50,3 +50,24 @@ exports.create = function(req, res, next) {
       return next(err);
     });
 };
+
+exports.updateOne = function(req, res, next) {
+  new JSONAPIDeserializer({keyForAttribute: 'camelCase'}).deserialize(req.body)
+    .then((entity) => validatorBusiness.validateRegion(entity))
+    .then((validatedRegion)=>{
+      if (!validatedEntity.isValid) {
+        return res.json(ErrorSerializer.serialize(error('数据异常', validatedRegion.error)));
+      }
+      var uid = validatedRegion.data.uid;
+      delete validatedRegion.data.uid;
+      Region.create(uid, validatedRegion.data, function(err, region) {
+        if (err) {
+          return next(err);
+        }
+        res.json(RegionSerializer.serialize(region));
+      });
+    })
+    .catch((err)=>{
+      return next(err);
+    });
+}
