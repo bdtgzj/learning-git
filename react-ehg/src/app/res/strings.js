@@ -9,9 +9,9 @@ const strings = {
   // dialog
   dialog_title_prompt: '提示',
   // action
-  action_create_ok_prompt: '创建成功！',
+  action_create_ok_prompt: '增加成功！',
   action_update_ok_prompt: '修改成功！',
-  action_delete_ok_prompt: '创建成功！',
+  action_delete_ok_prompt: '删除成功！',
   action_error_network_prompt: '抱歉，网络错误！',
   action_error_system_prompt: '抱歉，系统错误！',
   // user

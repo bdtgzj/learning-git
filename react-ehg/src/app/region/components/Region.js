@@ -54,6 +54,18 @@ class Region extends Component {
       <FlatButton label={strings.button_label_cancel} primary={true} onTouchTap={()=>handleOpenUpdateDialog(false)} />
     ]
 
+    const handleOnDelete = () => {
+      if (region.selected==='all') {
+        handleDelete(regions.map((v)=>{v['uid']=region.user.id; return v;}))
+      } else {
+        handleDelete(
+          regions
+          .filter((v, k)=>region.selected.includes(k))
+          .map((v)=>{v['uid']=region.user.id; return v;})
+        )
+      }
+    }
+
     let rows = []
 
     regions.forEach(function(v, k) {
@@ -92,7 +104,7 @@ class Region extends Component {
               label={strings.button_label_delete}
               primary={true}
               disabled={region.selected === 'none' || (Array.isArray(region.selected) && region.selected.length===0)}
-              onTouchTap={handleDelete} />
+              onTouchTap={handleOnDelete} />
             <RaisedButton
               label={strings.button_label_read}
               primary={true}

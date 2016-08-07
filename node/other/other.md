@@ -81,4 +81,14 @@ if (index===0) return false;
 method: 'PUT',
 ```
 
-
+【bug】
+```
+// file: lib/state-mutation.js
+// func : removeEntityFromState
+//bdtgzj add: strat
+var rels = entity.get('relationships');
+if (!rels) {
+  return;
+}
+//bdtgzj add: end
+```

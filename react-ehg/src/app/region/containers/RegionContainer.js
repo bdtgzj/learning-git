@@ -59,6 +59,8 @@ const mapDispatchToProps = (dispatch) => {
         if (entity.id) {
           //dispatch(readEndpoint('region?uid=1'))
           dispatch(openAlertDialog(true, strings.action_create_ok_prompt))
+          // set selected
+          dispatch(selectRow([0]))
         } else {
           dispatch(openAlertDialog(true, strings.action_error_system_prompt))
         }
@@ -77,6 +79,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(readEndpoint(endpoint))
       // set user state
       dispatch(setUser(selectedValue))
+      // set selected state
+      dispatch(selectRow('none'))
     },
     handleUpdate: (id, entity) => {
       dispatch(updateEntity({type: 'region', id: id, attributes: entity}))
@@ -86,8 +90,9 @@ const mapDispatchToProps = (dispatch) => {
         }
         let entity = new JSONAPIDeserializer(JSONAPI_DESERIALIZER_CONFIG).deserialize(json)
         if (entity.id) {
-          //dispatch(readEndpoint('region?uid=1'))
-          dispatch(openAlertDialog(true, strings.action_create_ok_prompt))
+          dispatch(selectRow([0]))
+          dispatch(openUpdateDialog(false))
+          dispatch(openAlertDialog(true, strings.action_update_ok_prompt))
         } else {
           dispatch(openAlertDialog(true, strings.action_error_system_prompt))
         }
@@ -96,8 +101,17 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(openAlertDialog(true, strings.action_error_network_prompt))
       })
     },
-    handleDelete: (region) => {
-      dispatch(deleteEntity(region))
+    handleDelete: (regions) => {
+      let promises = regions.map((v)=>{
+        return dispatch(deleteEntity({type: 'region', id: v.id, attributes: v}))
+      })
+      Promise.all(promises)
+      .then((entitys)=>{
+        dispatch(openAlertDialog(true, strings.action_delete_ok_prompt))
+      })
+      .catch((err)=>{
+        dispatch(openAlertDialog(true, strings.action_error_network_prompt))
+      })
     }
   }
 }

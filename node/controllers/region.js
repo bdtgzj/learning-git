@@ -1,6 +1,7 @@
 /**
  * Controllers - region
  */
+const STRINGS = require('../libs/strings');
 var validatorBusiness = require('../libs/validator_business');
 var error = require('../libs/error');
 var ErrorSerializer = require('../serializers').ErrorSerializer;
@@ -52,22 +53,42 @@ exports.create = function(req, res, next) {
 };
 
 exports.updateOne = function(req, res, next) {
-  new JSONAPIDeserializer({keyForAttribute: 'camelCase'}).deserialize(req.body)
-    .then((entity) => validatorBusiness.validateRegion(entity))
-    .then((validatedRegion)=>{
-      if (!validatedEntity.isValid) {
-        return res.json(ErrorSerializer.serialize(error('数据异常', validatedRegion.error)));
-      }
-      var uid = validatedRegion.data.uid;
-      delete validatedRegion.data.uid;
-      Region.create(uid, validatedRegion.data, function(err, region) {
-        if (err) {
-          return next(err);
-        }
-        res.json(RegionSerializer.serialize(region));
-      });
-    })
-    .catch((err)=>{
+  var validatedID = validatorBusiness.validateID(req.params.id);
+  if (!validatedID.isValid) {
+    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error)));
+  }
+
+  var validatedEntity = validatorBusiness.validateRegion(req.body.data.attributes);
+  if (!validatedEntity.isValid) {
+    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedEntity.error)));
+  }
+
+  var uid = validatedEntity.data.uid;
+  delete validatedEntity.data.uid;
+  Region.updateOne(uid, validatedID.data, validatedEntity.data, function(err, entity) {
+    if (err) {
       return next(err);
-    });
-}
+    }
+    res.json(RegionSerializer.serialize(entity));
+  });
+};
+
+exports.deleteOne = function(req, res, next) {
+  var validatedID = validatorBusiness.validateID(req.params.id);
+  if (!validatedID.isValid) {
+    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error)));
+  }
+
+  var validatedEntity = validatorBusiness.validateRegion(req.body.data.attributes);
+  if (!validatedEntity.isValid) {
+    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedEntity.error)));
+  }
+
+  Region.deleteOne(validatedEntity.data.uid, validatedID.data, function(err, entity) {
+    if (err) {
+      return next(err);
+    }
+    res.type('text/plain').end();
+    // res.json();
+  });
+};

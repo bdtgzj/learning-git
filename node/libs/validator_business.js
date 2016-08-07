@@ -1,8 +1,8 @@
+const STRINGS = require('../libs/strings');
 var validator = require('validator');
 var _ = require('lodash');
 
 function validateUID(uid) {
-
   var result = {};
   if (!uid || !validator.isInt(uid)) {
     result =  {isValid: false, error: '非法参数uid！'};
@@ -10,7 +10,16 @@ function validateUID(uid) {
     result =  {isValid: true, data: parseInt(uid)};
   }
   return result;
+}
 
+function validateID(id) {
+  var result = {};
+  if (!id || id.length !== 24) {
+    result =  {isValid: false, error: '非法参数id！'};
+  } else {
+    result =  {isValid: true, data: id};
+  }
+  return result;
 }
 
 function validatePage(page) {
@@ -56,7 +65,7 @@ function validateRegion(region) {
     return {isValid: false, error: '非法数据！'}
   }
 
-  if (!validator.isInt(region.uid) || region.uid < 1) {
+  if (!validator.isInt(region.uid.toString()) || region.uid < 1) {
     return {isValid: false, error: '非法数据uid！'};
   }
 
@@ -64,11 +73,11 @@ function validateRegion(region) {
     return {isValid: false, error: '非法数据name！'};
   }
 
-  if (!validator.isInt(region.order)) {
+  if (!validator.isInt(region.order.toString())) {
     return {isValid: false, error: '非法数据order！'};
   }
 
   return {isValid: true, data: region}
 }
 
-module.exports = { validateUID: validateUID, validatePage: validatePage, validateRegion: validateRegion }
+module.exports = { validateUID: validateUID, validateID: validateID, validatePage: validatePage, validateRegion: validateRegion }
