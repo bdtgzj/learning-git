@@ -35,6 +35,9 @@ router.delete('/region/:id', region.deleteOne);
 
 /**
  * category
+ * router.post('/category', category.create);
+router.put('/category/:id', category.updateOne);
+router.delete('/category/:id', category.deleteOne);
  */
 router.get('/category', category.retrieve);
 

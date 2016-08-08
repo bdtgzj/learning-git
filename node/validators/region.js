@@ -1,4 +1,4 @@
-const STRINGS = require('../libs/strings');
+const STRINGS = require('../res/strings');
 var validator = require('validator');
 var _ = require('lodash');
 
@@ -18,6 +18,21 @@ function validateID(id) {
     result =  {isValid: false, error: '非法参数id！'};
   } else {
     result =  {isValid: true, data: id};
+  }
+  return result;
+}
+
+function validateName(name) {
+  var result = {};
+  if (!name) {
+    result = {isValid: true, data: null}
+    
+  } else {
+    if (!validator.isLength(validator.trim(name), {min: 1, max: 10})) {
+      result =  {isValid: false, error: '非法参数name！'};
+    } else {
+      result =  {isValid: true, data: {name: {$regex: name, $options: 'i'}}};
+    }
   }
   return result;
 }
@@ -80,4 +95,10 @@ function validateRegion(region) {
   return {isValid: true, data: region}
 }
 
-module.exports = { validateUID: validateUID, validateID: validateID, validatePage: validatePage, validateRegion: validateRegion }
+module.exports = { 
+  validateUID: validateUID,
+  validateID: validateID, 
+  validatePage: validatePage, 
+  validateRegion: validateRegion,
+  validateName: validateName
+}

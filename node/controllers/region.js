@@ -1,8 +1,9 @@
 /**
  * Controllers - region
  */
-const STRINGS = require('../libs/strings');
-var validatorBusiness = require('../libs/validator_business');
+const STRINGS = require('../res/strings');
+var validatorRegion = require('../validators').Region;
+
 var error = require('../libs/error');
 var ErrorSerializer = require('../serializers').ErrorSerializer;
 
@@ -13,17 +14,22 @@ var RegionSerializer = require('../serializers').RegionSerializer;
 
 exports.retrieve = function(req, res, next) {
 
-  var uid = validatorBusiness.validateUID(req.query.uid);
-  if (!uid.isValid) {
-    return res.json(ErrorSerializer.serialize(error('数据异常', uid.error)));
+  var validatedUID = validatorRegion.validateUID(req.query.uid);
+  if (!validatedUID.isValid) {
+    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedUID.error)));
   }
 
-  var page = validatorBusiness.validatePage(req.query.page);
-  if (!page.isValid) {
-    return res.json(ErrorSerializer.serialize(error('数据异常', page.error)));
+  var validatedPage = validatorRegion.validatePage(req.query.page);
+  if (!validatedPage.isValid) {
+    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedPage.error)));
   }
 
-  Region.getRegion(uid.data, page.data, function(err, regions) {
+  var validatedName = validatorRegion.validateName(req.query.name);
+  if (!validatedName.isValid) {
+    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedName.error)));
+  }
+
+  Region.retrieve(validatedUID.data, validatedPage.data, validatedName.data, function(err, regions) {
     if (err) {
       return next(err);
     }
@@ -33,7 +39,7 @@ exports.retrieve = function(req, res, next) {
 
 exports.create = function(req, res, next) {
   new JSONAPIDeserializer({keyForAttribute: 'camelCase'}).deserialize(req.body)
-    .then((region) => validatorBusiness.validateRegion(region))
+    .then((region) => validatorRegion.validateRegion(region))
     .then((validatedRegion)=>{
       if (!validatedRegion.isValid) {
         return res.json(ErrorSerializer.serialize(error('数据异常', validatedRegion.error)));
@@ -53,12 +59,12 @@ exports.create = function(req, res, next) {
 };
 
 exports.updateOne = function(req, res, next) {
-  var validatedID = validatorBusiness.validateID(req.params.id);
+  var validatedID = validatorRegion.validateID(req.params.id);
   if (!validatedID.isValid) {
     return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error)));
   }
 
-  var validatedEntity = validatorBusiness.validateRegion(req.body.data.attributes);
+  var validatedEntity = validatorRegion.validateRegion(req.body.data.attributes);
   if (!validatedEntity.isValid) {
     return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedEntity.error)));
   }
@@ -74,12 +80,12 @@ exports.updateOne = function(req, res, next) {
 };
 
 exports.deleteOne = function(req, res, next) {
-  var validatedID = validatorBusiness.validateID(req.params.id);
+  var validatedID = validatorRegion.validateID(req.params.id);
   if (!validatedID.isValid) {
     return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error)));
   }
 
-  var validatedEntity = validatorBusiness.validateRegion(req.body.data.attributes);
+  var validatedEntity = validatorRegion.validateRegion(req.body.data.attributes);
   if (!validatedEntity.isValid) {
     return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedEntity.error)));
   }

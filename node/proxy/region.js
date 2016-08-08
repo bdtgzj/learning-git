@@ -5,9 +5,9 @@
 var mongoose = require('mongoose');
 var RegionSchema = require('../models').RegionSchema;
 
-exports.getRegion = function(uid, page, callback) {
+exports.retrieve = function(uid, page, condition, callback) {
   var Region = mongoose.model('Region_' + uid, RegionSchema);
-  Region.find(null).skip(page.skip).limit(page.limit).sort({order: page.sort}).exec(callback);
+  Region.find(condition).skip(page.skip).limit(page.limit).sort({order: page.sort}).exec(callback);
 }
 
 exports.create = function(uid, region, callback) {

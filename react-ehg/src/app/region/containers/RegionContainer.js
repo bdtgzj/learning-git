@@ -3,8 +3,8 @@ import { createEntity, readEndpoint, updateEntity, deleteEntity } from 'redux-js
 import Region from '../components/Region'
 import {deserializer} from '../../util/jsonapi'
 import strings from '../../res/strings'
-import { openAlertDialog, openCreateDialog, openUpdateDialog, openReadDialog, setUser, selectRow,
-         validateNameCreate, validateOrderCreate, validateNameUpdate, validateOrderUpdate
+import { openCreateDialog, openReadDialog, openUpdateDialog, openDeleteDialog, openAlertDialog,  setUser, selectRow,
+         validateNameCreate, validateOrderCreate, validateNameUpdate, validateOrderUpdate, validateNameRead
        } from '../actions'
 
 var JSONAPISerializer = require('../../util/jsonapi-serializer-sync').Serializer;
@@ -12,25 +12,28 @@ var JSONAPIDeserializer = require('../../util/jsonapi-serializer-sync').Deserial
 const JSONAPI_DESERIALIZER_CONFIG = {keyForAttribute: 'camelCase'};
 
 const mapStateToProps = (state) => {
-  let users = deserializer(state.api.user)
-  let regions = deserializer(state.api.region)
+  let users = new JSONAPIDeserializer(JSONAPI_DESERIALIZER_CONFIG).deserialize(state.api.user)
+  let regions = new JSONAPIDeserializer(JSONAPI_DESERIALIZER_CONFIG).deserialize(state.api.region)
   return { users: users, regions: regions, region: state.region }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     // Dialog
-    handleOpenAlertDialog: (open, content) => {
-      dispatch(openAlertDialog(open, content))
-    },
     handleOpenCreateDialog: (open) => {
       dispatch(openCreateDialog(open))
+    },
+    handleOpenReadDialog: (open) => {
+      dispatch(openReadDialog(open))
     },
     handleOpenUpdateDialog: (open, selectedRow) => {
       dispatch(openUpdateDialog(open, selectedRow))
     },
-    handleOpenReadDialog: (open) => {
-      dispatch(openReadDialog(open))
+    handleOpenDeleteDialog: (open, selectedRow) => {
+      dispatch(openDeleteDialog(open, selectedRow))
+    },
+    handleOpenAlertDialog: (open, content) => {
+      dispatch(openAlertDialog(open, content))
     },
     handleNameChangeCreate: (name) => {
       dispatch(validateNameCreate(name))
@@ -43,6 +46,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     handleOrderChangeUpdate: (order) => {
       dispatch(validateOrderUpdate(order))
+    },
+    handleNameChangeRead: (name) => {
+      dispatch(validateNameRead(name))
     },
     // Table
     handleSelectRow: (rows) => {
@@ -80,7 +86,20 @@ const mapDispatchToProps = (dispatch) => {
       // set user state
       dispatch(setUser(selectedValue))
       // set selected state
-      dispatch(selectRow('none'))
+      dispatch(selectRow([]))
+    },
+    handleReadByCondition: (condition) => {
+      const endpoint = 'region?' + condition
+      dispatch(readEndpoint(endpoint))
+      // set selected state
+      dispatch(selectRow([]))
+      // hide read dialog
+      dispatch(openReadDialog(false))
+    },
+    handleRefresh: (uid) => {
+      const endpoint = 'region?uid=' + uid
+      dispatch(selectRow([]))
+      dispatch(readEndpoint(endpoint))
     },
     handleUpdate: (id, entity) => {
       dispatch(updateEntity({type: 'region', id: id, attributes: entity}))
@@ -107,9 +126,13 @@ const mapDispatchToProps = (dispatch) => {
       })
       Promise.all(promises)
       .then((entitys)=>{
+        dispatch(selectRow([]))
+        dispatch(openDeleteDialog(false))
         dispatch(openAlertDialog(true, strings.action_delete_ok_prompt))
       })
       .catch((err)=>{
+        dispatch(selectRow([]))
+        dispatch(openDeleteDialog(false))
         dispatch(openAlertDialog(true, strings.action_error_network_prompt))
       })
     }

@@ -81,6 +81,18 @@ if (index===0) return false;
 method: 'PUT',
 ```
 
+【问题】delete时没有上传body，项目有此需求，所以添加上传body
+```
+// file: lib/jsonapi.js
+// func : deleteEntity
+// line start: 276
+// bdtgzj add: start
+body: (0, _stringify2.default)({
+  data: entity
+})
+// bdtgzj add: end
+```
+
 【bug】
 ```
 // file: lib/state-mutation.js
