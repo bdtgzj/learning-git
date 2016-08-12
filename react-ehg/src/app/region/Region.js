@@ -1,29 +1,19 @@
+// react
 import React, {Component} from 'react'
+// material-ui
 import Paper from 'material-ui/Paper'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton'
-import {Grid, Row, Col} from 'react-bootstrap'
-import Logo from '../../components/Logo'
 import Dialog from 'material-ui/Dialog'
-import CircularProgress from 'material-ui/CircularProgress'
-
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import AutoComplete from 'material-ui/AutoComplete'
-
-import strings from '../../res/strings'
-
-const styles = {
-  region_toolbar: { position: 'fixed', top: '64px', zIndex: 1000, width: '100%' },
-  region_table_header: { position: 'fixed', top: '120px', zIndex: 1000 },
-  region_table_body: { marginTop: '176px' },
-  createDialogContent: { width: '50%' },
-  readDialogContent: { width: '50%' },
-  updateDialogContent: { width: '50%' },
-  deleteDialogContent: { width: '50%' },
-  alertDialogContent: { width: '50%' }
-}
+// config
+import CONFIG from '../config'
+// res
+import strings from '../res/strings'
+import styles from '../res/styles'
 
 class Region extends Component {
 
@@ -34,12 +24,10 @@ class Region extends Component {
   render() {
 
     const { users, regions, region } = this.props
-    const { handleOpenCreateDialog, handleOpenReadDialog, handleOpenUpdateDialog, handleOpenDeleteDialog, handleOpenAlertDialog } = this.props
+    const { handleOpenCreateDialog, handleOpenReadDialog, handleOpenUpdateDialog, handleOpenDeleteDialog } = this.props
     const { handleCreate, handleRead, handleUpdate, handleDelete, handleReadByCondition, handleRefresh } = this.props
     const { handleSelectRow } = this.props
     const { handleNameChangeCreate,  handleOrderChangeCreate, handleNameChangeUpdate, handleOrderChangeUpdate, handleNameChangeRead } = this.props
-
-    const usersConfig = { text: 'name', value: 'id'}
 
     const handleDeleteWrapper = () => {
       handleDelete(
@@ -72,7 +60,7 @@ class Region extends Component {
     }
 
     const rows = regions.map((v, k) => (
-      <TableRow selected={region.selected.includes(k)}>
+      <TableRow key={k} selected={region.selected.includes(k)}>
         <TableRowColumn>{v.name}</TableRowColumn>
         <TableRowColumn>{v.order}</TableRowColumn>
       </TableRow>
@@ -101,19 +89,16 @@ class Region extends Component {
       <FlatButton label={strings.button_label_ok} primary={true} onTouchTap={handleDeleteWrapper} />,
       <FlatButton label={strings.button_label_cancel} primary={true} onTouchTap={()=>handleOpenDeleteDialog(false)} />
     ]
-    const actionsAlertDialog = [
-      <FlatButton label={strings.button_label_ok} primary={true} onTouchTap={()=>handleOpenAlertDialog(false)} />
-    ]
 
     return (
       <div>
-        <Toolbar style={styles.region_toolbar}>
+        <Toolbar style={styles.toolbar}>
           <ToolbarGroup>
             <AutoComplete
-              hintText={strings.region_toolbar_autocomplete_placeholder}
+              hintText={strings.autocomplete_placeholder_user}
               openOnFocus={true}
               dataSource={users}
-              dataSourceConfig={usersConfig}
+              dataSourceConfig={CONFIG.DATA_SOURCE_CONFIG_USER}
               ref={(node) => this.autoCompleteUser=node}
               searchText={region.user.name}
               onNewRequest={handleRead} />
@@ -146,8 +131,8 @@ class Region extends Component {
           </ToolbarGroup>
         </Toolbar>
 
-        <Table headerStyle={styles.region_table_header} 
-               bodyStyle={styles.region_table_body}
+        <Table headerStyle={styles.table_header} 
+               bodyStyle={styles.table_body}
                multiSelectable={true}
                onRowSelection={handleSelectRowWrapper}>
           <TableHeader>
@@ -242,15 +227,6 @@ class Region extends Component {
           contentStyle={styles.deleteDialogContent}
           open={region.deleteDialog.isVisible}>
           <div dangerouslySetInnerHTML={region.deleteDialog.content} />
-        </Dialog>
-
-        <Dialog
-          title={strings.dialog_title_prompt}
-          actions={actionsAlertDialog}
-          modal={true}
-          contentStyle={styles.alertDialogContent}
-          open={region.alertDialog.isVisible}>
-          <div>{region.alertDialog.content}</div>
         </Dialog>
 
       </div>

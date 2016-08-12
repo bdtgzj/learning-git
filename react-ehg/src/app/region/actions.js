@@ -20,7 +20,6 @@ export const OPEN_CREATE_DIALOG = 'REGION_OPEN_CREATE_DIALOG'
 export const OPEN_READ_DIALOG = 'REGION_OPEN_READ_DIALOG'
 export const OPEN_UPDATE_DIALOG = 'REGION_OPEN_UPDATE_DIALOG'
 export const OPEN_DELETE_DIALOG = 'REGION_OPEN_DELETE_DIALOG'
-export const OPEN_ALERT_DIALOG = 'REGION_OPEN_ALERT_DIALOG'
 export const VALIDATE_NAME_CREATE = 'REGION_VALIDATE_NAME_CREATE'
 export const VALIDATE_ORDER_CREATE = 'REGION_VALIDATE_ORDER_CREATE'
 export const VALIDATE_NAME_UPDATE = 'REGION_VALIDATE_NAME_UPDATE'
@@ -54,14 +53,6 @@ export function openDeleteDialog(open, selectedRow) {
     type: OPEN_DELETE_DIALOG,
     open,
     selectedRow
-  }
-}
-
-export function openAlertDialog(open, content) {
-  return {
-    type: OPEN_ALERT_DIALOG,
-    open,
-    content
   }
 }
 

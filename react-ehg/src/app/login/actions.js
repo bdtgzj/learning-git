@@ -1,6 +1,14 @@
 import fetch from 'isomorphic-fetch'
 import { browserHistory, hashHistory } from 'react-router'
 import { setAccessToken, readEndpoint } from 'redux-json-api'
+// res
+import strings from '../res/strings'
+// config
+import CONFIG from '../config'
+// actions
+import { setCacheUsers, setCacheIcons, setCacheColors } from '../cache/actions'
+import { openAlertDialog } from '../layout/actions'
+
 var Base64 = require('js-base64').Base64;
 
 export const VALIDATE_NAME = 'VALIDATE_NAME'
@@ -73,8 +81,18 @@ export function login(admin) {
         } else {
           // set access token
           dispatch(setAccessToken(Base64.encode(admin.name + ':' + admin.password)))
-          // get users
-          dispatch(readEndpoint('user'))
+          // get users & set cache
+          dispatch(readEndpoint(CONFIG.ENTITY.USER))
+          .then(json=>dispatch(setCacheUsers(json)))
+          .catch(err=>dispatch(openAlertDialog(true, strings.cache_error_prompt_get_user)))
+          // get icons  & set cache
+          dispatch(readEndpoint(CONFIG.ENTITY.ICON))
+          .then(json=>dispatch(setCacheIcons(json)))
+          .catch(err=>dispatch(openAlertDialog(true, strings.cache_error_prompt_get_icon)))
+          // get colors
+          dispatch(readEndpoint(CONFIG.ENTITY.COLOR))
+          .then(json=>dispatch(setCacheColors(json)))
+          .catch(err=>dispatch(openAlertDialog(true, strings.cache_error_prompt_get_color)))
           // update state
           dispatch(loginSuccess(json))
           // route to main

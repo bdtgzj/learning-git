@@ -1,13 +1,19 @@
+// react
 import React from 'react'
 import ReactDOM from 'react-dom'
+// material-ui
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import injectTapEventPlugin from 'react-tap-event-plugin'
-import configureStore from './configureStore'
-import { Provider } from 'react-redux'
-import router from './router'
+//
 import { persistStore, getStoredState } from 'redux-persist'
 import { setEndpointHost, setEndpointPath } from 'redux-json-api'
-import config from './config'
+//
+import configureStore from './configureStore'
+import { Provider } from 'react-redux'
+// config
+import CONFIG from './config'
+// router
+import router from './router'
 
 // Needed for onTouchTap of material-ui
 injectTapEventPlugin()
@@ -31,8 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const persistor = persistStore(store)
 
     // init redux-json-api params
-    store.dispatch(setEndpointHost(config.host))
-    store.dispatch(setEndpointPath(config.path))
+    store.dispatch(setEndpointHost(CONFIG.HOST))
+    store.dispatch(setEndpointPath(CONFIG.PATH))
 
     // get routes
     const routes = router(store.getState, persistor)

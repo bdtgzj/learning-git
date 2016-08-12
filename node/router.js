@@ -16,6 +16,8 @@ var category = require('./controllers/category');
 var device = require('./controllers/device');
 var scene = require('./controllers/scene');
 var instruction = require('./controllers/instruction');
+var icon = require('./controllers/icon');
+var color = require('./controllers/color');
 var water = require('./controllers/water');
 
 var router = express.Router();
@@ -35,12 +37,11 @@ router.delete('/region/:id', region.deleteOne);
 
 /**
  * category
- * router.post('/category', category.create);
-router.put('/category/:id', category.updateOne);
-router.delete('/category/:id', category.deleteOne);
  */
 router.get('/category', category.retrieve);
-
+router.post('/category', category.create);
+router.put('/category/:id', category.updateOne);
+router.delete('/category/:id', category.deleteOne);
 
 /**
  * device
@@ -48,10 +49,11 @@ router.get('/category', category.retrieve);
 router.get('/device', device.retrieve); //批量查询
 //app.get('/device/count', device.count); //特殊查询：对于GET：/zyz/count會被匹配到/zyz/:id，所以需要注意順序
 router.get('/device/:id', device.retrieveOne); //唯一查询
-//router.post('/device', device.create);   //唯一批量创建
-//router.put('/device/:id', device.updateOne);//唯一更新
+router.post('/device', device.create);   //唯一批量创建
+router.put('/device/:id', device.updateOne);//唯一更新
 //router.put('/device', device.update);//批量更新
-//router.delete('/device', device.delete); //唯一批量删除
+router.delete('/device/:id', device.deleteOne); //唯一删除
+//router.delete('/device', device.delete); //批量删除
 
 /**
  * scene
@@ -98,5 +100,20 @@ router.post('/reset_password', user.updatePassword);
  */
 router.post('/admin/signin', admin.signin);
 
+/**
+ * icon
+ */
+router.get('/icon', icon.retrieve);
+router.post('/icon', icon.create);
+router.put('/icon/:id', icon.updateOne);
+router.delete('/icon/:id', icon.deleteOne);
+
+/**
+ * color
+ */
+router.get('/color', color.retrieve);
+router.post('/color', color.create);
+router.put('/color/:id', color.updateOne);
+router.delete('/color/:id', color.deleteOne);
 
 module.exports = router;

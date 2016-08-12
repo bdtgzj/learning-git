@@ -16,12 +16,18 @@ mongoose.connection.on('disconnected', function() {
   //console.error('disconnected.');
 });
 
+// model
 require('./user');
 require('./admin');
+require('./icon');
+require('./color');
 
 exports.User = mongoose.model('User');
 exports.Admin = mongoose.model('Admin');
+exports.Icon = mongoose.model('Icon');
+exports.Color = mongoose.model('Color');
 
+// schema
 exports.HomecardSchema = require('./homecard');
 exports.RegionSchema = require('./region');
 exports.CategorySchema = require('./category');

@@ -1,25 +1,31 @@
 /**
  * Controllers - region
  */
+//config
+const CONFIG = require('../config');
+// res
 const STRINGS = require('../res/strings');
+// validator
+var validatorCommon = require('../validators').Common;
 var validatorRegion = require('../validators').Region;
-
+// error
 var error = require('../libs/error');
 var ErrorSerializer = require('../serializers').ErrorSerializer;
-
+// proxy
 var Region = require('../proxy').Region;
-
+// json api
 var JSONAPIDeserializer = require('jsonapi-serializer').Deserializer;
 var RegionSerializer = require('../serializers').RegionSerializer;
 
+// Retrieve
 exports.retrieve = function(req, res, next) {
 
-  var validatedUID = validatorRegion.validateUID(req.query.uid);
+  var validatedUID = validatorCommon.validateUID(req.query.uid);
   if (!validatedUID.isValid) {
     return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedUID.error)));
   }
 
-  var validatedPage = validatorRegion.validatePage(req.query.page);
+  var validatedPage = validatorCommon.validatePage(req.query.page);
   if (!validatedPage.isValid) {
     return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedPage.error)));
   }
@@ -37,12 +43,13 @@ exports.retrieve = function(req, res, next) {
   });
 };
 
+// Create
 exports.create = function(req, res, next) {
-  new JSONAPIDeserializer({keyForAttribute: 'camelCase'}).deserialize(req.body)
+  new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(req.body)
     .then((region) => validatorRegion.validateRegion(region))
     .then((validatedRegion)=>{
       if (!validatedRegion.isValid) {
-        return res.json(ErrorSerializer.serialize(error('数据异常', validatedRegion.error)));
+        return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedRegion.error)));
       }
       var uid = validatedRegion.data.uid;
       delete validatedRegion.data.uid;
@@ -58,39 +65,41 @@ exports.create = function(req, res, next) {
     });
 };
 
+// Update
 exports.updateOne = function(req, res, next) {
-  var validatedID = validatorRegion.validateID(req.params.id);
+  var validatedID = validatorCommon.validateID(req.params.id);
   if (!validatedID.isValid) {
     return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error)));
   }
 
-  var validatedEntity = validatorRegion.validateRegion(req.body.data.attributes);
-  if (!validatedEntity.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedEntity.error)));
+  var validatedRegion = validatorRegion.validateRegion(req.body.data.attributes);
+  if (!validatedRegion.isValid) {
+    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedRegion.error)));
   }
 
-  var uid = validatedEntity.data.uid;
-  delete validatedEntity.data.uid;
-  Region.updateOne(uid, validatedID.data, validatedEntity.data, function(err, entity) {
+  var uid = validatedRegion.data.uid;
+  delete validatedRegion.data.uid;
+  Region.updateOne(uid, validatedID.data, validatedRegion.data, function(err, region) {
     if (err) {
       return next(err);
     }
-    res.json(RegionSerializer.serialize(entity));
+    res.json(RegionSerializer.serialize(region));
   });
 };
 
+// Delete
 exports.deleteOne = function(req, res, next) {
-  var validatedID = validatorRegion.validateID(req.params.id);
+  var validatedID = validatorCommon.validateID(req.params.id);
   if (!validatedID.isValid) {
     return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error)));
   }
 
-  var validatedEntity = validatorRegion.validateRegion(req.body.data.attributes);
-  if (!validatedEntity.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedEntity.error)));
+  var validatedRegion = validatorRegion.validateRegion(req.body.data.attributes);
+  if (!validatedRegion.isValid) {
+    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedRegion.error)));
   }
 
-  Region.deleteOne(validatedEntity.data.uid, validatedID.data, function(err, entity) {
+  Region.deleteOne(validatedRegion.data.uid, validatedID.data, function(err, result) {
     if (err) {
       return next(err);
     }

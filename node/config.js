@@ -26,11 +26,13 @@ var config = {
   site_static_host: '', // 静态文件存储域名
   upload_dir: path.join(__dirname, 'public', 'user_data', 'images'),
 
+  // security
   cookieSecret: 'ehomeguru',
   token: 'token',
   tokenId: 'tokenId',
   tokenStatus: 'tokenStatus',
 
+  // mysqld
   mysql: {
     host: '127.0.0.1', // 172.16.5.31
     port: '3306',
@@ -39,7 +41,7 @@ var config = {
     database: 'db_jyfs_gd' //
   },
 
-  //db: 'mongodb://zRzmPmhC4KV7t9gDzATQoEkS:IGApgf97oKG5yuy2dvferma70d8DZPGy@mongo.duapp.com:8908/FdirTQHYpEulyHiMValI',
+  // mongod
   db: 'mongodb://127.0.0.1/db_ehomeguru',
 
   //weixin
@@ -75,7 +77,12 @@ var config = {
   hostname: process.env.HOSTNAME || '0.0.0.0',
   port: process.env.PORT || 3000,
   screenHostName: process.env.SCREENHOSTNAME || '0.0.0.0',
-  screenHostPort: process.env.SCREENHOSTPORT || 11502
+  screenHostPort: process.env.SCREENHOSTPORT || 11502,
+
+  // JSON API
+  JSONAPI_DESERIALIZER_CONFIG: {
+    keyForAttribute: 'camelCase'
+  }
 
 };
 

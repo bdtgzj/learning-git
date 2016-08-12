@@ -15,9 +15,9 @@ exports.create = function(uid, region, callback) {
   Region.create(region, callback);
 };
 
-exports.updateOne = function(uid, id, entity, callback) {
+exports.updateOne = function(uid, id, region, callback) {
   var Region = mongoose.model('Region_' + uid, RegionSchema);
-  Region.findOneAndUpdate({_id: id}, {$set: entity}, {new: true}, callback);
+  Region.findOneAndUpdate({_id: id}, {$set: region}, {new: true}, callback);
 };
 
 exports.deleteOne = function(uid, id, callback) {

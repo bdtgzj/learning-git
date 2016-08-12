@@ -1,10 +1,13 @@
 import { combineReducers } from 'redux'
+// res
+import strings from '../res/strings'
+// actions
 import { SET_USER,
-         OPEN_CREATE_DIALOG, OPEN_READ_DIALOG, OPEN_UPDATE_DIALOG, OPEN_DELETE_DIALOG, OPEN_ALERT_DIALOG,
+         OPEN_CREATE_DIALOG, OPEN_READ_DIALOG, OPEN_UPDATE_DIALOG, OPEN_DELETE_DIALOG,
          VALIDATE_NAME_CREATE, VALIDATE_ORDER_CREATE, VALIDATE_NAME_UPDATE, VALIDATE_ORDER_UPDATE, VALIDATE_NAME_READ,
          SELECT_ROW,
        } from './actions'
-
+// validator
 import trim from 'validator/lib/trim'
 import isLength from 'validator/lib/isLength'
 import isInt from 'validator/lib/isInt'
@@ -36,13 +39,13 @@ function createDialog(state = {isVisible: false, name: {}, order: {}}, action) {
       if (isLength(trim(action.name), {min: 1, max: 10})) {
         return Object.assign({}, state, {name:{value: action.name, valid: true}})
       } else {
-        return Object.assign({}, state, {name:{value: action.name, valid: false, error: '请输入1至10个字符！'}})
+        return Object.assign({}, state, {name:{value: action.name, valid: false, error: strings.error_prompt_name}})
       }
     case VALIDATE_ORDER_CREATE:
       if (isInt(trim(action.order))) {
         return Object.assign({}, state, {order:{value: action.order, valid: true}})
       } else {
-        return Object.assign({}, state, {order:{value: action.order, valid: false, error: '请输入数字字符！'}})
+        return Object.assign({}, state, {order:{value: action.order, valid: false, error: strings.error_prompt_order}})
       }
     default:
       return state
@@ -61,7 +64,7 @@ function readDialog(state = {isVisible: false, name: {}}, action) {
       if (isLength(trim(action.name), {min: 1, max: 10})) {
         return Object.assign({}, state, {name:{value: action.name, valid: true}})
       } else {
-        return Object.assign({}, state, {name:{value: action.name, valid: false, error: '请输入1至10个字符！'}})
+        return Object.assign({}, state, {name:{value: action.name, valid: false, error: strings.error_prompt_name}})
       }
     default:
       return state
@@ -85,13 +88,13 @@ function updateDialog(state = {isVisible: false, name: {}, order: {}}, action) {
       if (isLength(trim(action.name), {min: 1, max: 10})) {
         return Object.assign({}, state, {name:{value: action.name, valid: true}})
       } else {
-        return Object.assign({}, state, {name:{value: action.name, valid: false, error: '请输入1至10个字符！'}})
+        return Object.assign({}, state, {name:{value: action.name, valid: false, error: strings.error_prompt_name}})
       }
     case VALIDATE_ORDER_UPDATE:
       if (isInt(trim(action.order))) {
         return Object.assign({}, state, {order:{value: action.order, valid: true}})
       } else {
-        return Object.assign({}, state, {order:{value: action.order, valid: false, error: '请输入数字字符！'}})
+        return Object.assign({}, state, {order:{value: action.order, valid: false, error: strings.error_prompt_order}})
       }
     default:
       return state
@@ -116,23 +119,6 @@ function deleteDialog(state = {isVisible: false, content: ''}, action) {
   }
 }
 
-function alertDialog(state = {isVisible: false, content: ''}, action) {
-  switch (action.type) {
-    case OPEN_ALERT_DIALOG:
-      if (action.open) {
-        return {
-          isVisible: true,
-          content: action.content
-        }
-      } else {
-        return {
-          isVisible: false,
-        }
-      }
-    default:
-      return state
-  }
-}
 /*
  * Table
  */
@@ -151,7 +137,6 @@ const indexReducer = combineReducers({
   readDialog,
   updateDialog,
   deleteDialog,
-  alertDialog,
   user,
   selected
 })

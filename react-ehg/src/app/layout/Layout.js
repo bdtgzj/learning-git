@@ -1,5 +1,6 @@
+// react
 import React, {Component} from 'react'
-
+// material-ui
 import AppBar from 'material-ui/AppBar'
 import IconButton from 'material-ui/IconButton'
 import IconMenu from 'material-ui/IconMenu'
@@ -14,47 +15,31 @@ import IconCategory from 'material-ui/svg-icons/content/low-priority'
 import IconDevice from 'material-ui/svg-icons/device/devices'
 import IconUser from 'material-ui/svg-icons/action/account-box'
 import IconAdmin from 'material-ui/svg-icons/action/accessibility'
+import IconIcon from 'material-ui/svg-icons/action/gif'
+import IconColor from 'material-ui/svg-icons/action/invert-colors'
 import IconSetting from 'material-ui/svg-icons/action/settings'
 import IconRefresh from 'material-ui/svg-icons/action/autorenew'
 import IconHelp from 'material-ui/svg-icons/action/help'
 import IconSignOut from 'material-ui/svg-icons/image/adjust'
 import Drawer from 'material-ui/Drawer'
 import Divider from 'material-ui/Divider'
-import { IndexLink } from 'react-router'
-import NavLink from '../components/NavLink'
-
-import Logo from '../components/Logo'
 import Dialog from 'material-ui/Dialog'
 import CircularProgress from 'material-ui/CircularProgress'
-
-const strings = {
-  layout_appbar_title: '江苏易家智',
-  layout_menuitem_refresh: '刷新',
-  layout_menuitem_help: '帮助',
-  layout_menuitem_signout: '退出',
-  layout_link_home: '首页',
-  layout_link_category: '设备分类',
-  layout_link_region: '设备区域',
-  layout_link_device: '设备管理',
-  layout_link_scene: '场景管理',
-  layout_link_homecard: '首页管理',
-  layout_link_user: '客户管理',
-  layout_link_admin: '账户管理',
-  layout_link_setting: '系统设置'
-}
-
-const styles = {
-  drawer: { marginTop: '64px' },
-  circularProgress: { display: 'none' },
-  dialogContent: { width: '50%' },
-  layout_appbar: {position: 'fixed', top: 0, left: 0}
-}
+import FlatButton from 'material-ui/FlatButton'
+// react-router
+import { IndexLink } from 'react-router'
+// custom components
+import NavLink from '../components/NavLink'
+import Logo from '../components/Logo'
+// res
+import strings from '../res/strings'
+import styles from '../res/styles'
 
 class Layout extends Component {
 
   constructor() {
     super()
-    this.state = { 
+    this.state = {
       drawerState: true,
       rightContentStyle: {marginLeft: '256px'}
     }
@@ -70,9 +55,12 @@ class Layout extends Component {
 
   render() {
 
-    const { children, handleSignOut } = this.props;
+    const { children, layout } = this.props
+    const { handleOpenAlertDialog, handleRefresh } = this.props
 
-    // const actions = [<FlatButton label={strings.login_dialog_ok} primary={true} onTouchTap={onDialogOk} />]
+    const actionsAlertDialog = [
+      <FlatButton label={strings.button_label_ok} primary={true} onTouchTap={()=>handleOpenAlertDialog(false)} />
+    ]
 
     return (
       <div>
@@ -86,8 +74,8 @@ class Layout extends Component {
               targetOrigin={{horizontal: 'right', vertical: 'top'}}
               anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
             >
-              <MenuItem primaryText={strings.layout_menuitem_refresh} leftIcon={<IconRefresh />} onTouchTap={handleSignOut} />
-              <MenuItem primaryText={strings.layout_menuitem_help} leftIcon={<IconHelp />} onTouchTap={handleSignOut} />
+              <MenuItem primaryText={strings.layout_menuitem_refresh} leftIcon={<IconRefresh />} onTouchTap={handleRefresh} />
+              <MenuItem primaryText={strings.layout_menuitem_help} leftIcon={<IconHelp />} onTouchTap={handleRefresh} />
               <IndexLink to="/signout">
                 <MenuItem primaryText={strings.layout_menuitem_signout} leftIcon={<IconSignOut />} />
               </IndexLink>
@@ -95,7 +83,7 @@ class Layout extends Component {
           }
         />
         <div id="leftNav">
-          <Drawer open={this.state.drawerState} containerStyle={styles.drawer}>
+          <Drawer open={this.state.drawerState} containerStyle={styles.layout_drawer}>
             <IndexLink to="/" activeClassName="activeLink">
               <MenuItem leftIcon={<IconHome />}>{strings.layout_link_home}</MenuItem>
             </IndexLink>
@@ -124,6 +112,14 @@ class Layout extends Component {
               <MenuItem leftIcon={<IconUser />}>{strings.layout_link_user}</MenuItem>
             </NavLink>
             <Divider />
+            <NavLink to="/icon">
+              <MenuItem leftIcon={<IconIcon />}>{strings.layout_link_icon}</MenuItem>
+            </NavLink>
+            <Divider />
+            <NavLink to="/color">
+              <MenuItem leftIcon={<IconColor />}>{strings.layout_link_color}</MenuItem>
+            </NavLink>
+            <Divider />
             <NavLink to="/admin">
               <MenuItem leftIcon={<IconAdmin />}>{strings.layout_link_admin}</MenuItem>
             </NavLink>
@@ -135,6 +131,15 @@ class Layout extends Component {
           </Drawer>
         </div>
         <div id="rightContent" style={this.state.rightContentStyle}>{children}</div>
+        <Dialog
+          title={strings.dialog_title_prompt}
+          actions={actionsAlertDialog}
+          modal={true}
+          style={styles.alertDialog}
+          contentStyle={styles.alertDialogContent}
+          open={layout.alertDialog.isVisible}>
+          <div>{layout.alertDialog.content}</div>
+        </Dialog>
       </div>
     );
   }

@@ -1,9 +1,9 @@
-import { browserHistory } from 'react-router'
+export const OPEN_ALERT_DIALOG = 'OPEN_ALERT_DIALOG'
 
-export const SIGN_OUT = 'SIGN_OUT'
-
-export function signOut() {
+export function openAlertDialog(open, content) {
   return {
-    type: SIGN_OUT
+    type: OPEN_ALERT_DIALOG,
+    open,
+    content
   }
 }

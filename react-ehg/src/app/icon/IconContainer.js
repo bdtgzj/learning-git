@@ -1,20 +1,26 @@
+// react-redux
 import { connect } from 'react-redux'
+// redux-json-api
 import { createEntity, readEndpoint, updateEntity, deleteEntity } from 'redux-json-api'
-import Region from '../components/Region'
-import {deserializer} from '../../util/jsonapi'
-import strings from '../../res/strings'
-import { openCreateDialog, openReadDialog, openUpdateDialog, openDeleteDialog, openAlertDialog,  setUser, selectRow,
-         validateNameCreate, validateOrderCreate, validateNameUpdate, validateOrderUpdate, validateNameRead
-       } from '../actions'
+// config
+import CONFIG from '../config'
+// res
+import strings from '../res/strings'
+// component
+import Icon from './Icon'
+// actions
+import { openAlertDialog } from '../layout/actions'
+import { openCreateDialog, openReadDialog, openUpdateDialog, openDeleteDialog, selectRow,
+         validateNameCreate, validateNameUpdate, validateNameRead,
+         validateIconCreate, validateIconUpdate,
+         validateOrderCreate, validateOrderUpdate,
+       } from './actions'
 
-var JSONAPISerializer = require('../../util/jsonapi-serializer-sync').Serializer;
-var JSONAPIDeserializer = require('../../util/jsonapi-serializer-sync').Deserializer;
-const JSONAPI_DESERIALIZER_CONFIG = {keyForAttribute: 'camelCase'};
+var JSONAPIDeserializer = require('../util/jsonapi-serializer-sync').Deserializer
 
 const mapStateToProps = (state) => {
-  let users = new JSONAPIDeserializer(JSONAPI_DESERIALIZER_CONFIG).deserialize(state.api.user)
-  let regions = new JSONAPIDeserializer(JSONAPI_DESERIALIZER_CONFIG).deserialize(state.api.region)
-  return { users: users, regions: regions, region: state.region }
+  let icons = new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(state.api.icon || {data:[]})
+  return { icons: icons, icon: state.icon }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -32,38 +38,45 @@ const mapDispatchToProps = (dispatch) => {
     handleOpenDeleteDialog: (open, selectedRow) => {
       dispatch(openDeleteDialog(open, selectedRow))
     },
-    handleOpenAlertDialog: (open, content) => {
-      dispatch(openAlertDialog(open, content))
-    },
+    // name
     handleNameChangeCreate: (name) => {
       dispatch(validateNameCreate(name))
-    },
-    handleOrderChangeCreate: (order) => {
-      dispatch(validateOrderCreate(order))
     },
     handleNameChangeUpdate: (name) => {
       dispatch(validateNameUpdate(name))
     },
-    handleOrderChangeUpdate: (order) => {
-      dispatch(validateOrderUpdate(order))
-    },
     handleNameChangeRead: (name) => {
       dispatch(validateNameRead(name))
+    },
+    // icon
+    handleIconChangeCreate: (icon) => {
+      dispatch(validateIconCreate(icon))
+    },
+    handleIconChangeUpdate: (icon) => {
+      dispatch(validateIconUpdate(icon))
+    },
+    // order
+    handleOrderChangeCreate: (order) => {
+      dispatch(validateOrderCreate(order))
+    },
+    handleOrderChangeUpdate: (order) => {
+      dispatch(validateOrderUpdate(order))
     },
     // Table
     handleSelectRow: (rows) => {
       return dispatch(selectRow(rows))
     },
     // Restful API
-    handleCreate: (entity) => {
-      dispatch(createEntity({type: 'region', attributes: entity}))
+    // Create
+    handleCreate: (icon) => {
+      dispatch(createEntity({type: CONFIG.ENTITY.ICON, attributes: icon}))
       .then((json)=>{
-        if (json.data.type==='error') {
+        if (json.data.type===CONFIG.ENTITY.ERROR) {
           return dispatch(openAlertDialog(true, json.data.attributes.detail))
         }
-        let entity = new JSONAPIDeserializer(JSONAPI_DESERIALIZER_CONFIG).deserialize(json)
-        if (entity.id) {
-          //dispatch(readEndpoint('region?uid=1'))
+        let icon = new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(json)
+        if (icon.id) {
+          //dispatch(readEndpoint('icon?uid=1'))
           dispatch(openAlertDialog(true, strings.action_create_ok_prompt))
           // set selected
           dispatch(selectRow([0]))
@@ -75,40 +88,29 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(openAlertDialog(true, strings.action_error_network_prompt))
       })
     },
-    handleRead: (selectedValue, selectedIndex) => {
-      if (selectedIndex === -1) {
-        dispatch(openAlertDialog(true, strings.user_select_prompt))
-        return
-      }
-      // page[size]=2&page[number]=2&page[sort]=1&
-      const endpoint = 'region?uid=' + selectedValue.id
-      dispatch(readEndpoint(endpoint))
-      // set user state
-      dispatch(setUser(selectedValue))
-      // set selected state
-      dispatch(selectRow([]))
-    },
+    // Read
     handleReadByCondition: (condition) => {
-      const endpoint = 'region?' + condition
+      const endpoint = CONFIG.ENTITY.ICON + '?' + condition
       dispatch(readEndpoint(endpoint))
       // set selected state
       dispatch(selectRow([]))
       // hide read dialog
       dispatch(openReadDialog(false))
     },
-    handleRefresh: (uid) => {
-      const endpoint = 'region?uid=' + uid
+    handleRefresh: () => {
+      const endpoint = CONFIG.ENTITY.ICON
       dispatch(selectRow([]))
       dispatch(readEndpoint(endpoint))
     },
-    handleUpdate: (id, entity) => {
-      dispatch(updateEntity({type: 'region', id: id, attributes: entity}))
+    // Update
+    handleUpdate: (id, icon) => {
+      dispatch(updateEntity({type: CONFIG.ENTITY.ICON, id: id, attributes: icon}))
       .then((json)=>{
-        if (json.data.type==='error') {
+        if (json.data.type===CONFIG.ENTITY.ERROR) {
           return dispatch(openAlertDialog(true, json.data.attributes.detail))
         }
-        let entity = new JSONAPIDeserializer(JSONAPI_DESERIALIZER_CONFIG).deserialize(json)
-        if (entity.id) {
+        let icon = new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(json)
+        if (icon.id) {
           dispatch(selectRow([0]))
           dispatch(openUpdateDialog(false))
           dispatch(openAlertDialog(true, strings.action_update_ok_prompt))
@@ -120,12 +122,13 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(openAlertDialog(true, strings.action_error_network_prompt))
       })
     },
-    handleDelete: (regions) => {
-      let promises = regions.map((v)=>{
-        return dispatch(deleteEntity({type: 'region', id: v.id, attributes: v}))
+    // Delete
+    handleDelete: (icons) => {
+      let promises = icons.map((v)=>{
+        return dispatch(deleteEntity({type: CONFIG.ENTITY.ICON, id: v.id, attributes: v}))
       })
       Promise.all(promises)
-      .then((entitys)=>{
+      .then((icons)=>{
         dispatch(selectRow([]))
         dispatch(openDeleteDialog(false))
         dispatch(openAlertDialog(true, strings.action_delete_ok_prompt))
@@ -139,9 +142,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const RegionContainer = connect(
+const IconContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Region)
+)(Icon)
 
-export default RegionContainer
+export default IconContainer
