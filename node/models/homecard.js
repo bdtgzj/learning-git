@@ -2,11 +2,12 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var HomecardSchema = new Schema({
-  icon: {type: String},
-  color: {type: String},
-  text: {type: String},
+  name: {type: String},
+  iconId: {type: Schema.ObjectId},
+  colorId: {type: Schema.ObjectId},
   deviceId: {type: Schema.ObjectId},
-  sceneId: {type: Schema.ObjectId}
+  sceneId: {type: Schema.ObjectId},
+  order: {type: Number}
 });
 
 module.exports = HomecardSchema;

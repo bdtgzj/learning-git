@@ -6,7 +6,7 @@ import strings from '../res/strings'
 // config
 import CONFIG from '../config'
 // actions
-import { setCacheUsers, setCacheIcons, setCacheColors } from '../cache/actions'
+import { setCacheUsers, setCacheIcons, setCacheColors, setCacheInscats, setCacheFamilys } from '../cache/actions'
 import { openAlertDialog } from '../layout/actions'
 
 var Base64 = require('js-base64').Base64;
@@ -93,6 +93,14 @@ export function login(admin) {
           dispatch(readEndpoint(CONFIG.ENTITY.COLOR))
           .then(json=>dispatch(setCacheColors(json)))
           .catch(err=>dispatch(openAlertDialog(true, strings.cache_error_prompt_get_color)))
+          // get inscats
+          dispatch(readEndpoint(CONFIG.ENTITY.INSCAT))
+          .then(json=>dispatch(setCacheInscats(json)))
+          .catch(err=>dispatch(openAlertDialog(true, strings.cache_error_prompt_get_color)))
+          // get familys
+          dispatch(readEndpoint(CONFIG.ENTITY.FAMILY))
+          .then(json=>dispatch(setCacheFamilys(json)))
+          .catch(err=>dispatch(openAlertDialog(true, strings.cache_error_prompt_get_family)))
           // update state
           dispatch(loginSuccess(json))
           // route to main

@@ -3,8 +3,8 @@ var Schema = mongoose.Schema;
 
 var SceneSchema = new Schema({
   name: {type: String},
-  icon: {type: String},
-  color: {type: String},
+  iconId: {type: Schema.ObjectId},
+  colorId: {type: Schema.ObjectId},
   regionId: {type: Schema.ObjectId},
   order: {type: Number}
 });

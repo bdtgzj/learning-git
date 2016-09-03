@@ -10,7 +10,6 @@ var validatorCommon = require('../validators').Common;
 var validatorIcon = require('../validators').Icon;
 // error
 var error = require('../libs/error');
-var ErrorSerializer = require('../serializers').ErrorSerializer;
 // proxy
 var Icon = require('../proxy').Icon;
 // json api
@@ -22,12 +21,12 @@ exports.retrieve = function(req, res, next) {
 
   var validatedPage = validatorCommon.validatePage(req.query.page);
   if (!validatedPage.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedPage.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedPage.error));
   }
 
   var validatedName = validatorIcon.validateName(req.query.name);
   if (!validatedName.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedName.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedName.error));
   }
 
   Icon.retrieve(validatedPage.data, validatedName.data, function(err, icons) {
@@ -44,7 +43,7 @@ exports.create = function(req, res, next) {
     .then((icon) => validatorIcon.validateIcon(icon))
     .then((validatedIcon)=>{
       if (!validatedIcon.isValid) {
-        return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedIcon.error)));
+        return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedIcon.error));
       }
       Icon.create(validatedIcon.data, function(err, icon) {
         if (err) {
@@ -62,12 +61,12 @@ exports.create = function(req, res, next) {
 exports.updateOne = function(req, res, next) {
   var validatedID = validatorCommon.validateID(req.params.id);
   if (!validatedID.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error));
   }
 
   var validatedIcon = validatorIcon.validateIcon(req.body.data.attributes);
   if (!validatedIcon.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedIcon.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedIcon.error));
   }
 
   Icon.updateOne(validatedID.data, validatedIcon.data, function(err, icon) {
@@ -82,12 +81,12 @@ exports.updateOne = function(req, res, next) {
 exports.deleteOne = function(req, res, next) {
   var validatedID = validatorCommon.validateID(req.params.id);
   if (!validatedID.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error));
   }
 
   var validatedIcon = validatorIcon.validateIcon(req.body.data.attributes);
   if (!validatedIcon.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedIcon.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedIcon.error));
   }
 
   Icon.deleteOne(validatedID.data, function(err, result) {

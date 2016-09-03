@@ -43,6 +43,10 @@ var config = {
 
   // mongod
   db: 'mongodb://127.0.0.1/db_ehomeguru',
+  // mongoose
+  MONGOOSE: {
+    AGGREGATE_QUERY_LIMIT: 10000
+  },
 
   //weixin
   weixinToken: 'xuezhile', //joy_bdtgzj

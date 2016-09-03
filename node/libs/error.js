@@ -6,12 +6,12 @@ var error = function(title, detail, status, source) {
   !status && '';
   !source && {};
 
-  return {
+  return { errors: [{
     'title': title,
     'detail': detail,
     'status': status,
     'source': source
-  };
+  }]};
 }
 
 module.exports = error;

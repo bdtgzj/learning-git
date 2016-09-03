@@ -8,11 +8,15 @@ module.exports = new JSONAPISerializer('device', {
   pluralizeType: false,
   attributes: [
     'name',
+    'iconId',
+    'iconName',
     'icon',
+    'colorId',
+    'colorName',
     'color',
     'regionId',
-    'categoryId',
     'regionName',
+    'categoryId',
     'categoryName',
     'status',
     'order'

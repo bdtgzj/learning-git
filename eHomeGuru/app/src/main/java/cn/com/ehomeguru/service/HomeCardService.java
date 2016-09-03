@@ -4,6 +4,7 @@ import com.gustavofao.jsonapi.Models.JSONApiObject;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 /**
  * Created by xiaodongyu on 6/24/2016 AD.
@@ -11,6 +12,6 @@ import retrofit2.http.GET;
 public interface HomeCardService {
 
     @GET("homecard")
-    Call<JSONApiObject> getHomeCard();
+    Call<JSONApiObject> getHomeCard(@Query("uid") String uid);
 
 }

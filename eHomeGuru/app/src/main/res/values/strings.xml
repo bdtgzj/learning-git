@@ -20,7 +20,7 @@
 
     <!-- Strings related to MainActivity -->
     <string name="toast_scene_exec_yes">场景执行成功!</string>
-    <string name="toast_scene_exec_no">当前状态:</string>
+    <string name="toast_scene_exec_no">场景执行失败!</string>
     <string name="error_homecard_no_data">抱歉,数据异常!</string>
 
     <!-- Strings related to ControllerActivity -->

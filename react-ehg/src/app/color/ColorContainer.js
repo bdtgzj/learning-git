@@ -71,8 +71,8 @@ const mapDispatchToProps = (dispatch) => {
     handleCreate: (color) => {
       dispatch(createEntity({type: CONFIG.ENTITY.COLOR, attributes: color}))
       .then((json)=>{
-        if (json.data.type===CONFIG.ENTITY.ERROR) {
-          return dispatch(openAlertDialog(true, json.data.attributes.detail))
+        if (json.errors) {
+          return dispatch(openAlertDialog(true, json.errors[0].detail))
         }
         let color = new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(json)
         if (color.id) {
@@ -106,8 +106,8 @@ const mapDispatchToProps = (dispatch) => {
     handleUpdate: (id, color) => {
       dispatch(updateEntity({type: CONFIG.ENTITY.COLOR, id: id, attributes: color}))
       .then((json)=>{
-        if (json.data.type===CONFIG.ENTITY.ERROR) {
-          return dispatch(openAlertDialog(true, json.data.attributes.detail))
+        if (json.errors) {
+          return dispatch(openAlertDialog(true, json.errors[0].detail))
         }
         let color = new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(json)
         if (color.id) {

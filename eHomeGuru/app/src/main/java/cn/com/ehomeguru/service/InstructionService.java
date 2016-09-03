@@ -15,12 +15,12 @@ import retrofit2.http.Query;
 public interface InstructionService {
 
     @GET("instruction")
-    Call<JSONApiObject> getInstructionByDevice(@Query("device") String deviceId);
+    Call<JSONApiObject> getInstructionByDevice(@Query("uid") String uid, @Query("deviceId") String deviceId);
 
     @GET("instruction")
-    Call<JSONApiObject> getInstructionByScene(@Query("scene") String sceneId);
+    Call<JSONApiObject> getInstructionByScene(@Query("uid") String uid, @Query("scene") String sceneId);
 
     @POST("instruction/exec")
-    Call<JSONApiObject> setDeviceByInstruction(@Body Instruction instruction );
+    Call<JSONApiObject> execInstruction(@Body Instruction instruction );
 
 }

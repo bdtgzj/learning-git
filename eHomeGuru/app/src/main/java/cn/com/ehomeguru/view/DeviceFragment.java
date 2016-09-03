@@ -98,7 +98,7 @@ public class DeviceFragment extends Fragment {
             // request for device data. set dataset for RecyclerViewAdapater.
             User user = (User) GlobalData.getObjectForKey("user");
             DeviceService deviceService = ServiceGenerator.createService(DeviceService.class, user.getName(), user.getPassword());
-            Call<JSONApiObject> call = deviceService.getDeviceByRegion(regionId);
+            Call<JSONApiObject> call = deviceService.getDeviceByRegion(user.getId(), regionId);
             call.enqueue(new Callback<JSONApiObject>() {
                 @Override
                 public void onResponse(Call<JSONApiObject> call, retrofit2.Response<JSONApiObject> response) {

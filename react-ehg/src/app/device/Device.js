@@ -17,6 +17,9 @@ import strings from '../res/strings'
 import styles from '../res/styles'
 import drawables from '../res/drawables'
 
+// immutable
+var Immutable = require('immutable')
+
 class Device extends Component {
 
   componentDidMount() {
@@ -25,12 +28,13 @@ class Device extends Component {
 
   render() {
 
-    const { users, icons, colors, devices, device } = this.props
+    const { users, icons, colors, regions, categorys, devices, device } = this.props
     const { handleOpenCreateDialog, handleOpenReadDialog, handleOpenUpdateDialog, handleOpenDeleteDialog } = this.props
     const { handleCreate, handleRead, handleUpdate, handleDelete, handleReadByCondition, handleRefresh } = this.props
     const { handleSelectRow } = this.props
-    const { handleNameChangeCreate, handleOrderChangeCreate, handleNameChangeUpdate, handleOrderChangeUpdate, handleNameChangeRead } = this.props
+    const { handleNameChangeCreate, handleNameChangeUpdate, handleNameChangeRead, handleOrderChangeCreate, handleOrderChangeUpdate } = this.props
     const { handleIconChangeCreate, handleIconChangeUpdate, handleColorChangeCreate, handleColorChangeUpdate } = this.props
+    const { handleRegionChangeCreate, handleRegionChangeUpdate, handleRegionChangeRead, handleCategoryChangeCreate, handleCategoryChangeUpdate, handleCategoryChangeRead } = this.props
 
     const handleOpenDeleteDialogWrapper = () => {
       handleOpenDeleteDialog(true,
@@ -56,25 +60,32 @@ class Device extends Component {
 
     const handleCreateWrapper = () => {
       handleCreate({
-        name: device.createDialog.name.value, 
-        icon: device.createDialog.icon.value, 
-        color: device.createDialog.color.value, 
-        region: device.createDialog.region.value,
-        category: device.createDialog.category.value,  
+        name: device.createDialog.name.value,
+        iconId: device.createDialog.icon.id, 
+        colorId: device.createDialog.color.id, 
+        regionId: device.createDialog.region.id,
+        categoryId: device.createDialog.category.id,  
         order:device.createDialog.order.value,
         uid:device.user.id})
     }
+    
+    const handleReadByConditionWrapper = () => {
+      const conditionName = device.readDialog.name.value ? `&name=${device.readDialog.name.value}` : ''
+      const conditionRegionId = device.readDialog.region.id ? `&regionId=${device.readDialog.region.id}` : ''
+      const conditionCategoryId = device.readDialog.category.id ? `&categoryId=${device.readDialog.category.id}` : ''
+      const condition = `uid=${device.user.id}${conditionName}${conditionRegionId}${conditionCategoryId}`
+      handleReadByCondition(condition)
+    }
 
     const handleUpdateWrapper = () => {
-      handleUpdate({
-        id: device.updateDialog.id,
-        name: device.updateDialog.name.value, 
-        icon: device.updateDialog.icon.value, 
-        color: device.updateDialog.color.value, 
-        region: device.updateDialog.region.value,
-        category: device.updateDialog.category.value,  
-        order:device.updateDialog.order.value,
-        uid:device.user.id})
+      handleUpdate(device.updateDialog.id, {
+        name: device.updateDialog.name.value,
+        iconId: device.updateDialog.icon.id,
+        colorId: device.updateDialog.color.id,
+        regionId: device.updateDialog.region.id,
+        categoryId: device.updateDialog.category.id,
+        order: device.updateDialog.order.value,
+        uid: device.user.id})
     }
 
     const handleDeleteWrapper = () => {
@@ -85,13 +96,29 @@ class Device extends Component {
       )
     }
 
+    const formValidator = (form) => {
+      return !form.name.valid || 
+             !form.icon.id ||
+             !form.color.id ||
+             !form.region.id ||
+             !form.category.id ||
+             !form.order.valid ||
+             !device.user.id
+    }
+
+    const formReadValidator = (form) => {
+      return !form.name.valid ||
+             (!form.name.value && !form.region.id && !form.category.id) ||
+             !device.user.id
+    }
+
     const rows = devices.map((v, k) => (
       <TableRow key={k} selected={device.selected.includes(k)}>
         <TableRowColumn>{v.name}</TableRowColumn>
-        <TableRowColumn>{v.icon}</TableRowColumn>
-        <TableRowColumn>{v.color}</TableRowColumn>
-        <TableRowColumn>{v.region}</TableRowColumn>
-        <TableRowColumn>{v.category}</TableRowColumn>
+        <TableRowColumn>{v.iconName}</TableRowColumn>
+        <TableRowColumn>{v.colorName}</TableRowColumn>
+        <TableRowColumn>{v.regionName}</TableRowColumn>
+        <TableRowColumn>{v.categoryName}</TableRowColumn>
         <TableRowColumn>{v.order}</TableRowColumn>
       </TableRow>
     ))
@@ -101,25 +128,36 @@ class Device extends Component {
     ))
 
     const menuitemColors = colors.map((v, k) => (
-      <MenuItem key={k} value={v.id} primaryText={v.name} leftIcon={drawables['ic_color_rectangle'](v.color)} />
+      <MenuItem key={k} value={v.id} primaryText={v.name} leftIcon={drawables[CONFIG.DRAWABLE.COLOR](v.color)} />
     ))
+    
+    const menuitemRegions = regions.map((v, k) => (
+      <MenuItem key={k} value={v.id} primaryText={v.name} />
+    ))
+    // menuitemRegions.splice(0, 0, <MenuItem value={-1} primaryText={''} />)
+    const menuitemRegionsImmutable = Immutable.List(menuitemRegions).splice(0, 0, <MenuItem key={-1} value={-1} primaryText={strings.text_select_cancel} />)
+
+    const menuitemCategorys = categorys.map((v, k) => (
+      <MenuItem key={k} value={v.id} primaryText={v.name} />
+    ))
+    const menuitemCategorysImmutable = Immutable.List(menuitemCategorys).splice(0, 0, <MenuItem key={-1} value={-1} primaryText={strings.text_select_cancel} />)
     
     // button for dialog
     const actionsCreateDialog = [
       <FlatButton label={strings.button_label_create} primary={true} 
-        disabled={!device.createDialog.name.valid || !device.createDialog.order.valid || !device.user.id}
+        disabled={formValidator(device.createDialog)}
         onTouchTap={handleCreateWrapper} />,
       <FlatButton label={strings.button_label_cancel} primary={true} onTouchTap={()=>handleOpenCreateDialog(false)} />
     ]
     const actionsReadDialog = [
       <FlatButton label={strings.button_label_read} primary={true}
-        disabled={!device.readDialog.name.valid || !device.user.id}
-        onTouchTap={()=>handleReadByCondition('uid=' + device.user.id + '&name=' + device.readDialog.name.value)} />,
+        disabled={formReadValidator(device.readDialog)}
+        onTouchTap={handleReadByConditionWrapper} />,
       <FlatButton label={strings.button_label_cancel} primary={true} onTouchTap={()=>handleOpenReadDialog(false)} />
     ]
     const actionsUpdateDialog = [
       <FlatButton label={strings.button_label_update} primary={true} 
-        disabled={!device.updateDialog.name.valid || !device.updateDialog.order.valid || !device.user.id}
+        disabled={formValidator(device.updateDialog)}
         onTouchTap={handleUpdateWrapper} />,
       <FlatButton label={strings.button_label_cancel} primary={true} onTouchTap={()=>handleOpenUpdateDialog(false)} />
     ]
@@ -204,62 +242,61 @@ class Device extends Component {
             errorText={!device.createDialog.name.valid && device.createDialog.name.error}
             onChange={() => handleNameChangeCreate(this.textFieldName.input.value)} />
             <br />
-            <SelectField
-              fullWidth={true}
-              floatingLabelText={strings.device_dialog_label_icon}
-              hintText={strings.device_dialog_selectfield_placeholder_icon}
-              value={device.createDialog.icon.id}
-              onChange={(event, key, payload) => handleIconChangeCreate(payload)}>
-              {menuitemIcons}
-            </SelectField>
-            <br />
-            <SelectField
-              fullWidth={true}
-              floatingLabelText={strings.device_dialog_label_color}
-              hintText={strings.device_dialog_selectfield_placeholder_color}
-              value={device.createDialog.color.id}
-              onChange={(event, key, payload) => handleColorChangeCreate(payload)}>
-              {menuitemColors}
-            </SelectField>
-            <br />
-            <SelectField
-              fullWidth={true}
-              floatingLabelText={strings.device_dialog_label_region}
-              hintText={strings.device_dialog_selectfield_placeholder_region}
-              value={device.createDialog.region.id}
-              onChange={(event, key, payload) => handleRegionChangeCreate(payload)}>
-              {menuitemRegions}
-            </SelectField>
-            <br />
-            <SelectField
-              fullWidth={true}
-              floatingLabelText={strings.device_dialog_label_category}
-              hintText={strings.device_dialog_selectfield_placeholder_category}
-              value={device.createDialog.category.id}
-              onChange={(event, key, payload) => handleCategoryChangeCreate(payload)}>
-              {menuitemColors}
-            </SelectField>
-            <br />
-            <TextField
-              id="order"
-              ref={(node) => this.textFieldOrder=node}
-              fullWidth={true}
-              floatingLabelText={strings.device_dialog_label_order}
-              hintText={strings.device_dialog_textfield_placeholder_order}
-              defaultValue={device.createDialog.order.value}
-              errorText={!device.createDialog.order.valid && device.createDialog.order.error}
-              onChange={() => handleOrderChangeCreate(this.textFieldOrder.input.value)} />
+          <SelectField
+            fullWidth={true}
+            floatingLabelText={strings.device_dialog_label_icon}
+            hintText={strings.device_dialog_selectfield_placeholder_icon}
+            value={device.createDialog.icon.id}
+            onChange={(event, key, payload) => handleIconChangeCreate(payload)}>
+            {menuitemIcons}
+          </SelectField>
+          <br />
+          <SelectField
+            fullWidth={true}
+            floatingLabelText={strings.device_dialog_label_color}
+            hintText={strings.device_dialog_selectfield_placeholder_color}
+            value={device.createDialog.color.id}
+            onChange={(event, key, payload) => handleColorChangeCreate(payload)}>
+            {menuitemColors}
+          </SelectField>
+          <br />
+          <SelectField
+            fullWidth={true}
+            floatingLabelText={strings.device_dialog_label_region}
+            hintText={strings.device_dialog_selectfield_placeholder_region}
+            value={device.createDialog.region.id}
+            onChange={(event, key, payload) => handleRegionChangeCreate(payload)}>
+            {menuitemRegions}
+          </SelectField>
+          <br />
+          <SelectField
+            fullWidth={true}
+            floatingLabelText={strings.device_dialog_label_category}
+            hintText={strings.device_dialog_selectfield_placeholder_category}
+            value={device.createDialog.category.id}
+            onChange={(event, key, payload) => handleCategoryChangeCreate(payload)}>
+            {menuitemCategorys}
+          </SelectField>
+          <br />
+          <TextField
+            id="order"
+            ref={(node) => this.textFieldOrder=node}
+            fullWidth={true}
+            floatingLabelText={strings.device_dialog_label_order}
+            hintText={strings.device_dialog_textfield_placeholder_order}
+            defaultValue={device.createDialog.order.value}
+            errorText={!device.createDialog.order.valid && device.createDialog.order.error}
+            onChange={() => handleOrderChangeCreate(this.textFieldOrder.input.value)} />
         </Dialog>
 
         <Dialog
           title={strings.device_readdialog_title}
           actions={actionsReadDialog}
           modal={true}
-          contentStyle={styles.updateDialogContent}
+          contentStyle={styles.readDialogContent}
           autoScrollBodyContent={true}
           open={device.readDialog.isVisible}>
           <TextField
-            id="name"
             ref={(node) => this.textFieldName=node}
             fullWidth={true}
             floatingLabelText={strings.device_dialog_label_name}
@@ -267,6 +304,26 @@ class Device extends Component {
             defaultValue={device.readDialog.name.value}
             errorText={!device.readDialog.name.valid && device.readDialog.name.error}
             onChange={() => handleNameChangeRead(this.textFieldName.input.value)} />
+          <br />
+          <SelectField
+            fullWidth={true}
+            floatingLabelText={strings.device_dialog_label_region}
+            hintText={strings.device_dialog_selectfield_placeholder_region}
+            value={device.readDialog.region.id}
+            onChange={(event, key, payload) => handleRegionChangeRead(payload)}>
+            <MenuItem value={-1} primaryText={''} />
+            {menuitemRegionsImmutable}
+          </SelectField>
+          <br />
+          <SelectField
+            fullWidth={true}
+            floatingLabelText={strings.device_dialog_label_category}
+            hintText={strings.device_dialog_selectfield_placeholder_category}
+            value={device.readDialog.category.id}
+            onChange={(event, key, payload) => handleCategoryChangeRead(payload)}>
+            <MenuItem value={-1} primaryText={''} />
+            {menuitemCategorysImmutable}
+          </SelectField>
         </Dialog>
 
         <Dialog
@@ -277,7 +334,6 @@ class Device extends Component {
           autoScrollBodyContent={true}
           open={device.updateDialog.isVisible}>
           <TextField
-            id="name"
             ref={(node) => this.textFieldName=node}
             fullWidth={true}
             floatingLabelText={strings.device_dialog_label_name}
@@ -286,15 +342,51 @@ class Device extends Component {
             errorText={!device.updateDialog.name.valid && device.updateDialog.name.error}
             onChange={() => handleNameChangeUpdate(this.textFieldName.input.value)} />
             <br />
-            <TextField
-              id="order"
-              ref={(node) => this.textFieldOrder=node}
-              fullWidth={true}
-              floatingLabelText={strings.device_dialog_label_order}
-              hintText={strings.device_dialog_textfield_placeholder_order}
-              defaultValue={device.updateDialog.order.value}
-              errorText={!device.updateDialog.order.valid && device.updateDialog.order.error}
-              onChange={() => handleOrderChangeUpdate(this.textFieldOrder.input.value)} />
+          <SelectField
+            fullWidth={true}
+            floatingLabelText={strings.device_dialog_label_icon}
+            hintText={strings.device_dialog_selectfield_placeholder_icon}
+            value={device.updateDialog.icon.id}
+            onChange={(event, key, payload) => handleIconChangeUpdate(payload)}>
+            {menuitemIcons}
+          </SelectField>
+          <br />
+          <SelectField
+            fullWidth={true}
+            floatingLabelText={strings.device_dialog_label_color}
+            hintText={strings.device_dialog_selectfield_placeholder_color}
+            value={device.updateDialog.color.id}
+            onChange={(event, key, payload) => handleColorChangeUpdate(payload)}>
+            {menuitemColors}
+          </SelectField>
+          <br />
+          <SelectField
+            fullWidth={true}
+            floatingLabelText={strings.device_dialog_label_region}
+            hintText={strings.device_dialog_selectfield_placeholder_region}
+            value={device.updateDialog.region.id}
+            onChange={(event, key, payload) => handleRegionChangeUpdate(payload)}>
+            {menuitemRegions}
+          </SelectField>
+          <br />
+          <SelectField
+            fullWidth={true}
+            floatingLabelText={strings.device_dialog_label_category}
+            hintText={strings.device_dialog_selectfield_placeholder_category}
+            value={device.updateDialog.category.id}
+            onChange={(event, key, payload) => handleCategoryChangeUpdate(payload)}>
+            {menuitemCategorys}
+          </SelectField>
+          <br />
+          <TextField
+            id="order"
+            ref={(node) => this.textFieldOrder=node}
+            fullWidth={true}
+            floatingLabelText={strings.device_dialog_label_order}
+            hintText={strings.device_dialog_textfield_placeholder_order}
+            defaultValue={device.updateDialog.order.value}
+            errorText={!device.updateDialog.order.valid && device.updateDialog.order.error}
+            onChange={() => handleOrderChangeUpdate(this.textFieldOrder.input.value)} />
         </Dialog>
 
         <Dialog 

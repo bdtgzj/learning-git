@@ -10,7 +10,6 @@ var validatorCommon = require('../validators').Common;
 var validatorDevice = require('../validators').Device;
 // error
 var error = require('../libs/error');
-var ErrorSerializer = require('../serializers').ErrorSerializer;
 // proxy
 var Device = require('../proxy').Device;
 // json api
@@ -23,17 +22,19 @@ var DeviceSerializer = require('../serializers').DeviceSerializer;
 exports.retrieve = function(req, res, next) {
   var validatedUID = validatorCommon.validateUID(req.query.uid);
   if (!validatedUID.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedUID.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedUID.error));
   }
 
   var validatedPage = validatorCommon.validatePage(req.query.page);
   if (!validatedPage.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedPage.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedPage.error));
   }
+  // page.limit must positive for aggregate
+  if (!validatedPage.data.limit) validatedPage.data.limit = CONFIG.MONGOOSE.AGGREGATE_QUERY_LIMIT;
 
   var validatedIdNameRegionCategory = validatorDevice.validateIdNameRegionCategory(req.query);
   if (!validatedIdNameRegionCategory.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedIdNameRegionCategory.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedIdNameRegionCategory.error));
   }
 
   Device.retrieve(validatedUID.data, validatedPage.data, validatedIdNameRegionCategory.data, function(err, devices) {
@@ -62,14 +63,22 @@ exports.retrieve = function(req, res, next) {
 };
 
 exports.retrieveOne = function(req, res, next) {
-  if (req.params.id) {
-    Device.getDeviceById(req.uid, req.params.id, function(err, devices) {
-      if (err) {
-        return next(err);
-      }
-      res.json(DeviceSerializer.serialize(devices));
-    });
+  var validatedID = validatorCommon.validateID(req.params.id);
+  if (!validatedID.isValid) {
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error));
   }
+
+  var validatedUID = validatorCommon.validateUID(req.query.uid);
+  if (!validatedUID.isValid) {
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedUID.error));
+  }
+  
+  Device.retrieveOne(validatedUID.data, validatedID.data, function(err, devices) {
+    if (err) {
+      return next(err);
+    }
+    res.json(DeviceSerializer.serialize(devices));
+  });
 };
 
 /**
@@ -79,16 +88,16 @@ exports.create = function(req, res, next) {
   new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(req.body)
     .then((device) => validatorDevice.validateDevice(device))
     .then((validatedDevice)=>{
-      if (!validateddevice.isValid) {
-        return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedDevice.error)));
+      if (!validatedDevice.isValid) {
+        return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedDevice.error));
       }
       var uid = validatedDevice.data.uid;
-      delete validateddevice.data.uid;
-      Device.create(uid, validatedDevice.data, function(err, device) {
+      delete validatedDevice.data.uid;
+      Device.create(uid, validatedDevice.data, function(err, devices) {
         if (err) {
           return next(err);
         }
-        res.json(deviceSerializer.serialize(device));
+        res.json(DeviceSerializer.serialize(devices[0]));
       });
     })
     .catch((err)=>{
@@ -102,21 +111,21 @@ exports.create = function(req, res, next) {
 exports.updateOne = function(req, res, next) {
   var validatedID = validatorCommon.validateID(req.params.id);
   if (!validatedID.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error));
   }
 
   var validatedDevice = validatorDevice.validateDevice(req.body.data.attributes);
   if (!validatedDevice.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedDevice.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedDevice.error));
   }
 
   var uid = validatedDevice.data.uid;
   delete validatedDevice.data.uid;
-  Device.updateOne(uid, validatedID.data, validatedDevice.data, function(err, device) {
+  Device.updateOne(uid, validatedID.data, validatedDevice.data, function(err, devices) {
     if (err) {
       return next(err);
     }
-    res.json(DeviceSerializer.serialize(device));
+    res.json(DeviceSerializer.serialize(devices[0]));
   });
 };
 
@@ -126,12 +135,12 @@ exports.updateOne = function(req, res, next) {
 exports.deleteOne = function(req, res, next) {
   var validatedID = validatorCommon.validateID(req.params.id);
   if (!validatedID.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error));
   }
 
   var validatedDevice = validatorDevice.validateDevice(req.body.data.attributes);
   if (!validatedDevice.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedDevice.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedDevice.error));
   }
 
   Device.deleteOne(validatedDevice.data.uid, validatedID.data, function(err, result) {

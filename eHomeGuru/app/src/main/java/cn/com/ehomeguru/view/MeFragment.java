@@ -107,7 +107,7 @@ public class MeFragment extends Fragment {
                 }
             }
         });
-        // About us
+        // exit
         LinearLayout llExitSystem = (LinearLayout) view.findViewById(R.id.fragment_me_ll_exit_system);
         llExitSystem.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -16,11 +16,11 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/fragment_home_cardview_imageview_size"
+            android:layout_height="@dimen/fragment_home_cardview_imageview_size"
             android:id="@+id/home_card_image"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="2dp"
+            android:layout_margin="@dimen/fragment_home_cardview_imageview_margin"
             app:srcCompact="@drawable/ic_menu_save"
             android:contentDescription="desc" />
 
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="2dp" />
+            android:layout_margin="@dimen/fragment_home_cardview_textview_margin" />
 
     </LinearLayout>
 

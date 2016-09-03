@@ -18,6 +18,9 @@ var scene = require('./controllers/scene');
 var instruction = require('./controllers/instruction');
 var icon = require('./controllers/icon');
 var color = require('./controllers/color');
+var inscat = require('./controllers/inscat');
+var family = require('./controllers/family');
+var log = require('./controllers/log');
 var water = require('./controllers/water');
 
 var router = express.Router();
@@ -26,6 +29,9 @@ var router = express.Router();
  * homecard
  */
 router.get('/homecard', homecard.retrieve);
+router.post('/homecard', homecard.create);
+router.put('/homecard/:id', homecard.updateOne);
+router.delete('/homecard/:id', homecard.deleteOne);
 
 /**
  * region
@@ -60,12 +66,18 @@ router.delete('/device/:id', device.deleteOne); //唯一删除
  */
 router.get('/scene', scene.retrieve);
 router.get('/scene/:id', scene.retrieveOne);
+router.post('/scene', scene.create);
+router.put('/scene/:id', scene.updateOne);
+router.delete('/scene/:id', scene.deleteOne); 
 router.post('/scene/exec', scene.exec);
 
 /**
  * instruction
  */
 router.get('/instruction', instruction.retrieve);
+router.post('/instruction', instruction.create);
+router.put('/instruction/:id', instruction.updateOne);
+router.delete('/instruction/:id', instruction.deleteOne);
 router.post('/instruction/exec', instruction.exec);
 
 /**
@@ -76,22 +88,21 @@ router.get('/water', water.open);
 /**
  * user.
  */
-router.post('/user/signin', user.signin);
-router.post('/user/:id', user.updateOne);
-router.put('/user', user.update);
+// CRUD
 router.get('/user', user.retrieve);
+router.post('/user', user.create);
+router.put('/user/:id', user.updateOne);
+router.delete('/user/:id', user.deleteOne);
 
-router.get('/init', user.init);
+router.post('/user/signin', user.signin);
+router.post('/user/:id', user.updateOneByMobile);
+router.put('/user', user.update);
+
 //signup
 router.get('/username_available', user.nameAvailable);
 router.get('/email_available', user.emailAvailable);
-router.post('/signup', user.signup);
-//signin
 
-router.get('/user/is_signin', user.isSignin);
 //account relative
-router.get('/active_account', user.activeAccount);
-router.post('/retrieve_password', user.retrievePassword);
 router.get('/reset_password', user.resetPassword);
 router.post('/reset_password', user.updatePassword);
 
@@ -115,5 +126,29 @@ router.get('/color', color.retrieve);
 router.post('/color', color.create);
 router.put('/color/:id', color.updateOne);
 router.delete('/color/:id', color.deleteOne);
+
+/**
+ * inscat
+ */
+router.get('/inscat', inscat.retrieve);
+router.post('/inscat', inscat.create);
+router.put('/inscat/:id', inscat.updateOne);
+router.delete('/inscat/:id', inscat.deleteOne);
+
+/**
+ * family
+ */
+router.get('/family', family.retrieve);
+router.post('/family', family.create);
+router.put('/family/:id', family.updateOne);
+router.delete('/family/:id', family.deleteOne);
+
+/**
+ * log
+ */
+router.get('/log', log.retrieve);
+router.post('/log', log.create);
+router.put('/log/:id', log.updateOne);
+router.delete('/log/:id', log.deleteOne);
 
 module.exports = router;

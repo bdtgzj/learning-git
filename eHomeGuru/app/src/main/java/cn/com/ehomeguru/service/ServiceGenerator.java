@@ -2,7 +2,6 @@ package cn.com.ehomeguru.service;
 
 import android.util.Base64;
 
-import com.gustavofao.jsonapi.Models.ErrorModel;
 import com.gustavofao.jsonapi.Retrofit.JSONConverterFactory;
 
 import java.io.IOException;
@@ -10,6 +9,7 @@ import java.io.IOException;
 import cn.com.ehomeguru.bean.Device;
 import cn.com.ehomeguru.bean.HomeCard;
 import cn.com.ehomeguru.bean.Instruction;
+import cn.com.ehomeguru.bean.Log;
 import cn.com.ehomeguru.bean.Region;
 import cn.com.ehomeguru.bean.Scene;
 import cn.com.ehomeguru.bean.User;
@@ -32,7 +32,7 @@ public class ServiceGenerator {
     private static Retrofit.Builder builder = new Retrofit.Builder()
             .baseUrl(API_BASE_URL)
             //.addConverterFactory(GsonConverterFactory.create());
-            .addConverterFactory(JSONConverterFactory.create(User.class, HomeCard.class, Region.class, Device.class, Instruction.class, Scene.class));
+            .addConverterFactory(JSONConverterFactory.create(User.class, HomeCard.class, Region.class, Device.class, Instruction.class, Scene.class, Log.class));
 
     public static <S> S createService(Class<S> serviceClass) {
         return createService(serviceClass, null, null);

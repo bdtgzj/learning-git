@@ -100,7 +100,7 @@ public class SceneListFragment extends Fragment {
             // request for device data. set dataset for RecyclerViewAdapater.
             User user = (User) GlobalData.getObjectForKey("user");
             SceneService sceneService = ServiceGenerator.createService(SceneService.class, user.getName(), user.getPassword());
-            Call<JSONApiObject> call = sceneService.getSceneByRegion(regionId);
+            Call<JSONApiObject> call = sceneService.getSceneByRegion(user.getId(), regionId);
             call.enqueue(new Callback<JSONApiObject>() {
                 @Override
                 public void onResponse(Call<JSONApiObject> call, retrofit2.Response<JSONApiObject> response) {

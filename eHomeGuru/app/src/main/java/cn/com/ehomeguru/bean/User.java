@@ -12,6 +12,7 @@ import java.util.Date;
 @Type("user")
 public class User extends Resource {
 
+    private int fid;
     private String name;
     private String password;
     private String nickName;
@@ -32,6 +33,14 @@ public class User extends Resource {
     public User(String name, String password) {
         this.name = name;
         this.password = password;
+    }
+
+    public int getFid() {
+        return fid;
+    }
+
+    public void setFid(int fid) {
+        fid = fid;
     }
 
     public String getName() {

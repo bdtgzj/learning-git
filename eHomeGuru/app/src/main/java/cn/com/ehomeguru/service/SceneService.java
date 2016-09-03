@@ -17,12 +17,12 @@ import retrofit2.http.Query;
 public interface SceneService {
 
     @GET("scene")
-    Call<JSONApiObject> getSceneByRegion(@Query("region") String regionId);
+    Call<JSONApiObject> getSceneByRegion(@Query("uid") String uid, @Query("regionId") String regionId);
 
     @GET("scene/{id}")
-    Call<JSONApiObject> getSceneById(@Path("id") String sceneId);
+    Call<JSONApiObject> getSceneById( @Path("id") String sceneId, @Query("uid") String uid);
 
     @POST("scene/exec")
-    Call<JSONApiObject> setDeviceByScene(@Body Scene scene );
+    Call<JSONApiObject> execScene(@Body Scene scene );
 
 }

@@ -71,8 +71,8 @@ const mapDispatchToProps = (dispatch) => {
     handleCreate: (icon) => {
       dispatch(createEntity({type: CONFIG.ENTITY.ICON, attributes: icon}))
       .then((json)=>{
-        if (json.data.type===CONFIG.ENTITY.ERROR) {
-          return dispatch(openAlertDialog(true, json.data.attributes.detail))
+        if (json.errors) {
+          return dispatch(openAlertDialog(true, json.errors[0].detail))
         }
         let icon = new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(json)
         if (icon.id) {
@@ -106,8 +106,8 @@ const mapDispatchToProps = (dispatch) => {
     handleUpdate: (id, icon) => {
       dispatch(updateEntity({type: CONFIG.ENTITY.ICON, id: id, attributes: icon}))
       .then((json)=>{
-        if (json.data.type===CONFIG.ENTITY.ERROR) {
-          return dispatch(openAlertDialog(true, json.data.attributes.detail))
+        if (json.errors) {
+          return dispatch(openAlertDialog(true, json.errors[0].detail))
         }
         let icon = new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(json)
         if (icon.id) {

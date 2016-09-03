@@ -115,7 +115,7 @@ public class SceneFragment extends Fragment {
         // request for region data. set for tab name, set dataset for ViewPagerAdapater.
         User user = (User) GlobalData.getObjectForKey("user");
         RegionService regionService = ServiceGenerator.createService(RegionService.class, user.getName(), user.getPassword());
-        Call<JSONApiObject> call = regionService.getRegion();
+        Call<JSONApiObject> call = regionService.getRegion(user.getId());
         call.enqueue(new Callback<JSONApiObject>() {
             @Override
             public void onResponse(Call<JSONApiObject> call, retrofit2.Response<JSONApiObject> response) {
@@ -133,7 +133,7 @@ public class SceneFragment extends Fragment {
             @Override
             public void onFailure(Call<JSONApiObject> call, Throwable t) {
                 Toast.makeText(getContext(), R.string.error_network, Toast.LENGTH_SHORT).show();
-                System.out.println(t.getMessage());
+                // System.out.println(t.getMessage());
             }
         });
 

@@ -115,7 +115,7 @@ public class RegionFragment extends Fragment {
         // request for region data. set for tab name, set dataset for ViewPagerAdapater.
         User user = (User) GlobalData.getObjectForKey("user");
         RegionService regionService = ServiceGenerator.createService(RegionService.class, user.getName(), user.getPassword());
-        Call<JSONApiObject> call = regionService.getRegion();
+        Call<JSONApiObject> call = regionService.getRegion(user.getId());
         call.enqueue(new Callback<JSONApiObject>() {
             @Override
             public void onResponse(Call<JSONApiObject> call, retrofit2.Response<JSONApiObject> response) {

@@ -18,8 +18,11 @@
     <string name="fragment_exitdialog_title">确定退出系统!</string>
     <string name="fragment_exitdialog_ok">确定</string>
     <string name="fragment_exitdialog_cancel">取消</string>
+    <!-- SceneExecDialogFragment -->
+    <string name="fragment_sceneexecdialog_name">fragment_sceneexecdialog</string>
+    <string name="fragment_sceneexecdialog_title">确定执行场景：</string>
     <!-- MeFragment -->
-    <string name="fragment_me_user_info">用户信息</string>
+    <string name="fragment_me_user_info">我的信息</string>
     <string name="fragment_me_log_login">登录记录</string>
     <string name="fragment_me_log_operation">操作记录</string>
     <string name="fragment_me_about_us">关于我们</string>
@@ -38,6 +41,6 @@
     <string name="fragment_userinfo_error_oldpass_length">长度范围6至18!</string>
     <string name="fragment_userinfo_error_newpass_empty">请输入新密码!</string>
     <string name="fragment_userinfo_error_newpass_length">长度范围6至18!</string>
-    <string name="fragment_userinfo_toast_submit_no">用户信息无需更新!</string>
-    <string name="fragment_userinfo_toast_submit_ok">用户信息更新成功!</string>
+    <string name="fragment_userinfo_toast_submit_no">信息无需更新!</string>
+    <string name="fragment_userinfo_toast_submit_ok">信息更新成功!</string>
 </resources>

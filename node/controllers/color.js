@@ -10,7 +10,6 @@ var validatorCommon = require('../validators').Common;
 var validatorColor = require('../validators').Color;
 // error
 var error = require('../libs/error');
-var ErrorSerializer = require('../serializers').ErrorSerializer;
 // proxy
 var Color = require('../proxy').Color;
 // json api
@@ -22,12 +21,12 @@ exports.retrieve = function(req, res, next) {
 
   var validatedPage = validatorCommon.validatePage(req.query.page);
   if (!validatedPage.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedPage.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedPage.error));
   }
 
   var validatedName = validatorColor.validateName(req.query.name);
   if (!validatedName.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedName.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedName.error));
   }
 
   Color.retrieve(validatedPage.data, validatedName.data, function(err, colors) {
@@ -44,7 +43,7 @@ exports.create = function(req, res, next) {
     .then((color) => validatorColor.validateColor(color))
     .then((validatedColor)=>{
       if (!validatedColor.isValid) {
-        return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedColor.error)));
+        return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedColor.error));
       }
       Color.create(validatedColor.data, function(err, color) {
         if (err) {
@@ -62,12 +61,12 @@ exports.create = function(req, res, next) {
 exports.updateOne = function(req, res, next) {
   var validatedID = validatorCommon.validateID(req.params.id);
   if (!validatedID.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error));
   }
 
   var validatedColor = validatorColor.validateColor(req.body.data.attributes);
   if (!validatedColor.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedColor.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedColor.error));
   }
 
   Color.updateOne(validatedID.data, validatedColor.data, function(err, color) {
@@ -82,12 +81,12 @@ exports.updateOne = function(req, res, next) {
 exports.deleteOne = function(req, res, next) {
   var validatedID = validatorCommon.validateID(req.params.id);
   if (!validatedID.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error));
   }
 
   var validatedColor = validatorColor.validateColor(req.body.data.attributes);
   if (!validatedColor.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedColor.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedColor.error));
   }
 
   Color.deleteOne(validatedID.data, function(err, result) {

@@ -7,10 +7,14 @@ module.exports = new JSONAPISerializer('instruction', {
   keyForAttribute: 'camelCase',
   pluralizeType: false,
   attributes: [
-    'deviceId',
-    'sceneId',
-    'category',
+    'name',
     'instruction',
+    'categoryId',
+    'categoryName',
+    'deviceId',
+    'deviceName',
+    'sceneId',
+    'sceneName',
     'order'
   ]
 });

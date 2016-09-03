@@ -11,40 +11,48 @@ var mongoose = require('mongoose');
 function validateIdNameRegionCategory(query) {
   var condition = {};
 
-  if ( (!query.id || !validator.trim(id.toString())) && 
-       (!query.name || !validator.trim(name.toString())) &&
-       (!query.region || !validator.trim(name.toString())) && 
-       (!query.category || !validator.trim(name.toString()))
+  if ( (!query.id || !validator.trim(query.id.toString())) && 
+       (!query.name || !validator.trim(query.name.toString())) &&
+       (!query.regionId || !validator.trim(query.regionId.toString())) && 
+       (!query.categoryId || !validator.trim(query.categoryId.toString()))
   ) {
-    return result = {isValid: true, data: null};
+    return result = {isValid: true, data: {}};
   }
 
-  var validatedId = validatorCommon.validateID(query.id);
-  if (!validatedId.isValid) {
-    return validatedId;
-  } else {
-    condition['_id'] = mongoose.Types.ObjectId(validatedId.data);
+  if (query.id) {
+    var validatedId = validatorCommon.validateID(query.id);
+    if (!validatedId.isValid) {
+      return validatedId;
+    } else {
+      condition['_id'] = mongoose.Types.ObjectId(validatedId.data);
+    }
   }
 
-  var validatedName = validatorCommon.validateName(query.name);
-  if (!validatedName.isValid) {
-    return validatedName;
-  } else {
-    condition['name'] = {$regex: validatedName.data, $options: 'i'};
+  if (query.name) {
+    var validatedName = validatorCommon.validateName(query.name);
+    if (!validatedName.isValid) {
+      return validatedName;
+    } else {
+      condition['name'] = {$regex: validatedName.data, $options: 'i'};
+    }
   }
 
-  var validatedRegion = validatorCommon.validateID(query.region);
-  if (!validatedRegion.isValid) {
-    return validatedRegion;
-  } else {
-    condition['regionId'] = mongoose.Types.ObjectId(validatedRegion.data);
+  if (query.regionId) {
+    var validatedRegionId = validatorCommon.validateID(query.regionId);
+    if (!validatedRegionId.isValid) {
+      return validatedRegionId;
+    } else {
+      condition['regionId'] = mongoose.Types.ObjectId(validatedRegionId.data);
+    }
   }
 
-  var validatedCategory = validatorCommon.validateID(query.category);
-  if (!validatedCategory.isValid) {
-    return validatedCategory;
-  } else {
-    condition['categoryId'] = mongoose.Types.ObjectId(validatedCategory.data);
+  if (query.categoryId) {
+    var validatedCategoryId = validatorCommon.validateID(query.categoryId);
+    if (!validatedCategoryId.isValid) {
+      return validatedCategoryId;
+    } else {
+      condition['categoryId'] = mongoose.Types.ObjectId(validatedCategoryId.data);
+    }
   }
 
   return {isValid: true, data: condition};
@@ -71,18 +79,18 @@ function validateDevice(device) {
     validatedDevice['name'] = validatedName.data;
   }
 
-  var validatedIcon = validatorCommon.validateIcon(device.icon);
-  if (!validatedIcon.isValid) {
-    return validatedIcon;
+  var validatedIconId = validatorCommon.validateID(device.iconId);
+  if (!validatedIconId.isValid) {
+    return validatedIconId;
   } else {
-    validatedDevice['icon'] = validatedIcon.data;
+    validatedDevice['iconId'] = validatedIconId.data;
   }
 
-  var validatedColor = validatorCommon.validateColor(device.color);
-  if (!validatedColor.isValid) {
-    return validatedColor;
+  var validatedColorId = validatorCommon.validateID(device.colorId);
+  if (!validatedColorId.isValid) {
+    return validatedColorId;
   } else {
-    validatedDevice['color'] = validatedColor.data;
+    validatedDevice['colorId'] = validatedColorId.data;
   }
 
   var validatedRegionId = validatorCommon.validateID(device.regionId);

@@ -61,8 +61,8 @@ const mapDispatchToProps = (dispatch) => {
     handleCreate: (category) => {
       dispatch(createEntity({type: CONFIG.ENTITY.CATEGORY, attributes: category}))
       .then((json)=>{
-        if (json.data.type===CONFIG.ENTITY.ERROR) {
-          return dispatch(openAlertDialog(true, json.data.attributes.detail))
+        if (json.errors) {
+          return dispatch(openAlertDialog(true, json.errors[0].detail))
         }
         let category = new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(json)
         if (category.id) {
@@ -109,8 +109,8 @@ const mapDispatchToProps = (dispatch) => {
     handleUpdate: (id, category) => {
       dispatch(updateEntity({type: CONFIG.ENTITY.CATEGORY, id: id, attributes: category}))
       .then((json)=>{
-        if (json.data.type===CONFIG.ENTITY.ERROR) {
-          return dispatch(openAlertDialog(true, json.data.attributes.detail))
+        if (json.errors) {
+          return dispatch(openAlertDialog(true, json.errors[0].detail))
         }
         let category = new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(json)
         if (category.id) {

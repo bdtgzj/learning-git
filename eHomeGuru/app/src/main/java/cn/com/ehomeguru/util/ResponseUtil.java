@@ -31,14 +31,14 @@ public class ResponseUtil {
                     if (jsonApiObject.getData().size() > 0) {
                         return jsonApiObject.getData();
                     } else {
-                        Toast.makeText(context, R.string.fragment_data_nonexistent, Toast.LENGTH_SHORT).show();
-
+                        // 数据为空的提示信息
+                        // Toast.makeText(context, R.string.fragment_data_nonexistent, Toast.LENGTH_SHORT).show();
                     }
                 }
             } else {
                 Toast.makeText(context, R.string.fragment_data_nonexistent, Toast.LENGTH_SHORT).show();
             }
-            // i.e. 500
+        // i.e. 500
         } else {
             HttpError httpError = ErrorUtil.parseError(response);
             if (httpError != null && httpError.getErrors().size() > 0) {

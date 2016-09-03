@@ -10,7 +10,6 @@ var hashcrypt = require('../libs/hashcrypt');
 var error = require('../libs/error');
 var JSONAPIDeserializer = require('jsonapi-serializer').Deserializer;
 var AdminSerializer = require('../serializers').AdminSerializer;
-var ErrorSerializer = require('../serializers').ErrorSerializer;
 
 // bluebird
 var Promise = require('bluebird');
@@ -53,7 +52,7 @@ exports.updateOne = function(req, res, next) {
     }
     // id
     if (!user.id || user.id != req.uid) {
-      return res.json(ErrorSerializer.serialize(error('数据异常', 'id信息不存在或不正确！')));
+      return res.json(error('数据异常', 'id信息不存在或不正确！'));
     }
     // name
     if (user.name) {
@@ -61,11 +60,11 @@ exports.updateOne = function(req, res, next) {
         tmpUser['name'] = user.name;
         funcs.push(User.getUserByNameExceptSelfAsync(user.id, user.name).then((data)=>{
           if (data) {
-            return ErrorSerializer.serialize(error('数据异常', '新更改的用户登录名已被注册，请更换！'));
+            return error('数据异常', '新更改的用户登录名已被注册，请更换！');
           }
         }));
       } else {
-        return res.json(ErrorSerializer.serialize(error('数据异常', '用户登录名至少6个字符，最多18个字符！')));
+        return res.json(error('数据异常', '用户登录名至少6个字符，最多18个字符！'));
       }
     }
     // nickName
@@ -73,7 +72,7 @@ exports.updateOne = function(req, res, next) {
       if (validator.isLength(user.nickName, {min:3, max: 18})) {
         tmpUser['nickName'] = user.nickName;
       } else {
-        return res.json(ErrorSerializer.serialize(error('数据异常', '用户昵称至少3个字符，最多18个字符！')));
+        return res.json(error('数据异常', '用户昵称至少3个字符，最多18个字符！'));
       }
     }
     // email
@@ -82,11 +81,11 @@ exports.updateOne = function(req, res, next) {
         tmpUser['email'] = user.email;
         funcs.push(User.getUserByEmailExceptSelfAsync(user.id, user.email).then((data)=>{
           if (data) {
-            return ErrorSerializer.serialize(error('数据异常', '新更改的Email已被注册，请更换！'));
+            return error('数据异常', '新更改的Email已被注册，请更换！');
           }
         }));
       } else {
-        return res.json(ErrorSerializer.serialize(error('数据异常', 'Email格式不正确！')));
+        return res.json(error('数据异常', 'Email格式不正确！'));
       }
     }
     // mphone
@@ -95,11 +94,11 @@ exports.updateOne = function(req, res, next) {
         tmpUser['mphone'] = user.mphone;
         funcs.push(User.getUserByMphoneExceptSelfAsync(user.id, user.mphone).then((data)=>{
           if (data) {
-            return ErrorSerializer.serialize(error('数据异常', '新更改的手机号码已被注册，请更换！'));
+            return error('数据异常', '新更改的手机号码已被注册，请更换！');
           }
         }));
       } else {
-        return res.json(ErrorSerializer.serialize(error('数据异常', '手机号码格式不正确！')));
+        return res.json(error('数据异常', '手机号码格式不正确！'));
       }
     }
     // password
@@ -107,14 +106,14 @@ exports.updateOne = function(req, res, next) {
       if (validator.isLength(user.oldPass, {min:6, max: 18})) {
         tmpUser['oldPass'] = user.oldPass;
       } else {
-        return res.json(ErrorSerializer.serialize(error('数据异常', '原用密码至少6个字符，最多18个字符！')));
+        return res.json(error('数据异常', '原用密码至少6个字符，最多18个字符！'));
       }
     }
     if (user.newPass) {
       if (validator.isLength(user.newPass, {min:6, max: 18})) {
         tmpUser['newPass'] = user.newPass;
       } else {
-        return res.json(ErrorSerializer.serialize(error('数据异常', '新设密码至少6个字符，最多18个字符！')));
+        return res.json(error('数据异常', '新设密码至少6个字符，最多18个字符！'));
       }
     }
     // state
@@ -160,7 +159,7 @@ exports.updateOne = function(req, res, next) {
     p = User.getUserByNameExceptSelfAsync(user.id, tmpUser.name)
       .then((data) => {
         if (data) {
-          res.json(ErrorSerializer.serialize(error('数据异常', '新更改的用户登录名已被注册，请更换！')));
+          res.json(error('数据异常', '新更改的用户登录名已被注册，请更换！'));
           p.cancel();
         } else {
           return User.getUserByEmailExceptSelfAsync(user.id, tmpUser.email);
@@ -170,7 +169,7 @@ exports.updateOne = function(req, res, next) {
         //console.log(p.isPending());
         //console.log(p.isFulfilled());
         if (data) {
-          res.json(ErrorSerializer.serialize(error('数据异常', '新更改的Email已被注册，请更换！')));
+          res.json(error('数据异常', '新更改的Email已被注册，请更换！'));
           p.cancel();
         } else {
           return User.getUserByMphoneExceptSelfAsync(user.id, tmpUser.mphone);
@@ -178,7 +177,7 @@ exports.updateOne = function(req, res, next) {
       })
       .then((data) => {
         if (data) {
-          res.json(ErrorSerializer.serialize(error('数据异常', '新更改的移动电话已被注册，请更换！')));
+          res.json(error('数据异常', '新更改的移动电话已被注册，请更换！'));
           p.cancel();
         }
       })

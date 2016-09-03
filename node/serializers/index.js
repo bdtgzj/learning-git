@@ -9,4 +9,7 @@ exports.SceneSerializer = require('./scene');
 exports.InstructionSerializer = require('./instruction');
 exports.IconSerializer = require('./icon');
 exports.ColorSerializer = require('./color');
+exports.InscatSerializer = require('./inscat');
+exports.FamilySerializer = require('./family');
 exports.ErrorSerializer = require('./error');
+exports.LogSerializer = require('./log');

@@ -76,7 +76,9 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
         holder.mImageView.setImageDrawable(drawable);
 
         // set TextView
-        holder.mTextView.setText(listHomeCard.get(position).getText());
+        String strName = listHomeCard.get(position).getName();
+        if (strName.length() > 8) strName = strName.substring(0, 7).concat("..");
+        holder.mTextView.setText(strName);
 
         // set CardView
         holder.mCardView.setOnClickListener(new View.OnClickListener() {

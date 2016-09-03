@@ -1,17 +1,27 @@
 /**
  * Controllers - user
  */
-var config = require('../config');
-//var User = require('../proxy').User;
-var mail = require('../services/mail');
-var crypto = require('crypto');
+//config
+const CONFIG = require('../config');
+// res
+const STRINGS = require('../res/strings');
+// validator
+var validatorCommon = require('../validators').Common;
+var validatorUser = require('../validators').User;
 var validator = require('validator');
-var hashcrypt = require('../libs/hashcrypt');
+// error
 var error = require('../libs/error');
+// proxy
+//var User = require('../proxy').User;
+var Log = require('../proxy').Log;
+// mail
+var mail = require('../services/mail');
+// crypto
+var crypto = require('crypto');
+var hashcrypt = require('../libs/hashcrypt');
+// json api
 var JSONAPIDeserializer = require('jsonapi-serializer').Deserializer;
 var UserSerializer = require('../serializers').UserSerializer;
-var ErrorSerializer = require('../serializers').ErrorSerializer;
-
 // bluebird
 var Promise = require('bluebird');
 Promise.config({cancellation: true});
@@ -21,15 +31,24 @@ var User = Promise.promisifyAll(require('../proxy').User);
  * User authentication.
  */
 exports.signin = function(req, res, next) {
-  new JSONAPIDeserializer().deserialize(req.body)
-    .then(function(user) {
-      var name = validator.trim(user.name);
-      var password = validator.trim(user.password);
-      User.getUserByNameEmailMPhonePass(name, hashcrypt.sha1(password), function(err, users) {
+  new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(req.body)
+    .then((user) => validatorUser.validateSignin(user))
+    .then((validatedUser)=>{
+      if (!validatedUser.isValid) {
+        return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedUser.error));
+      }
+      User.getUserByNameEmailMPhonePass(validatedUser.data.name, hashcrypt.sha1(validatedUser.data.password), function(err, users) {
         if (err) {
           return next(err);
         }
         var user = users.length > 0 ? users[0] : null;
+        // log
+        Log.create(user._id, {category: 1, log: STRINGS.LOG_SIGNIN_OK, ip: req.ip}, function(err) {
+          if (err) {
+            console.log(err);
+          }
+        });
+        //
         res.json(UserSerializer.serialize(user));
         //res.json({desc: '用户名或密码不正确，请重新输入！', valid: false});
       });
@@ -43,7 +62,7 @@ exports.signin = function(req, res, next) {
  * User update.
  * Data patch: id is must, others is optional.
  */
-exports.updateOne = function(req, res, next) {
+exports.updateOneByMobile = function(req, res, next) {
   var tmpUser = {};
   var funcs = [];
 
@@ -53,7 +72,7 @@ exports.updateOne = function(req, res, next) {
     }
     // id
     if (!user.id || user.id != req.uid) {
-      return res.json(ErrorSerializer.serialize(error('数据异常', 'id信息不存在或不正确！')));
+      return res.json(error('数据异常', 'id信息不存在或不正确！'));
     }
     // name
     if (user.name) {
@@ -61,11 +80,11 @@ exports.updateOne = function(req, res, next) {
         tmpUser['name'] = user.name;
         funcs.push(User.getUserByNameExceptSelfAsync(user.id, user.name).then((data)=>{
           if (data) {
-            return ErrorSerializer.serialize(error('数据异常', '新更改的用户登录名已被注册，请更换！'));
+            return error('数据异常', '新更改的用户登录名已被注册，请更换！');
           }
         }));
       } else {
-        return res.json(ErrorSerializer.serialize(error('数据异常', '用户登录名至少6个字符，最多18个字符！')));
+        return res.json(error('数据异常', '用户登录名至少6个字符，最多18个字符！'));
       }
     }
     // nickName
@@ -73,7 +92,7 @@ exports.updateOne = function(req, res, next) {
       if (validator.isLength(user.nickName, {min:3, max: 18})) {
         tmpUser['nickName'] = user.nickName;
       } else {
-        return res.json(ErrorSerializer.serialize(error('数据异常', '用户昵称至少3个字符，最多18个字符！')));
+        return res.json(error('数据异常', '用户昵称至少3个字符，最多18个字符！'));
       }
     }
     // email
@@ -82,11 +101,11 @@ exports.updateOne = function(req, res, next) {
         tmpUser['email'] = user.email;
         funcs.push(User.getUserByEmailExceptSelfAsync(user.id, user.email).then((data)=>{
           if (data) {
-            return ErrorSerializer.serialize(error('数据异常', '新更改的Email已被注册，请更换！'));
+            return error('数据异常', '新更改的Email已被注册，请更换！');
           }
         }));
       } else {
-        return res.json(ErrorSerializer.serialize(error('数据异常', 'Email格式不正确！')));
+        return res.json(error('数据异常', 'Email格式不正确！'));
       }
     }
     // mphone
@@ -95,11 +114,11 @@ exports.updateOne = function(req, res, next) {
         tmpUser['mphone'] = user.mphone;
         funcs.push(User.getUserByMphoneExceptSelfAsync(user.id, user.mphone).then((data)=>{
           if (data) {
-            return ErrorSerializer.serialize(error('数据异常', '新更改的手机号码已被注册，请更换！'));
+            return error('数据异常', '新更改的手机号码已被注册，请更换！');
           }
         }));
       } else {
-        return res.json(ErrorSerializer.serialize(error('数据异常', '手机号码格式不正确！')));
+        return res.json(error('数据异常', '手机号码格式不正确！'));
       }
     }
     // password
@@ -107,14 +126,14 @@ exports.updateOne = function(req, res, next) {
       if (validator.isLength(user.oldPass, {min:6, max: 18})) {
         tmpUser['oldPass'] = user.oldPass;
       } else {
-        return res.json(ErrorSerializer.serialize(error('数据异常', '原用密码至少6个字符，最多18个字符！')));
+        return res.json(error('数据异常', '原用密码至少6个字符，最多18个字符！'));
       }
     }
     if (user.newPass) {
       if (validator.isLength(user.newPass, {min:6, max: 18})) {
         tmpUser['newPass'] = user.newPass;
       } else {
-        return res.json(ErrorSerializer.serialize(error('数据异常', '新设密码至少6个字符，最多18个字符！')));
+        return res.json(error('数据异常', '新设密码至少6个字符，最多18个字符！'));
       }
     }
     // state
@@ -160,7 +179,7 @@ exports.updateOne = function(req, res, next) {
     p = User.getUserByNameExceptSelfAsync(user.id, tmpUser.name)
       .then((data) => {
         if (data) {
-          res.json(ErrorSerializer.serialize(error('数据异常', '新更改的用户登录名已被注册，请更换！')));
+          res.json(error('数据异常', '新更改的用户登录名已被注册，请更换！'));
           p.cancel();
         } else {
           return User.getUserByEmailExceptSelfAsync(user.id, tmpUser.email);
@@ -170,7 +189,7 @@ exports.updateOne = function(req, res, next) {
         //console.log(p.isPending());
         //console.log(p.isFulfilled());
         if (data) {
-          res.json(ErrorSerializer.serialize(error('数据异常', '新更改的Email已被注册，请更换！')));
+          res.json(error('数据异常', '新更改的Email已被注册，请更换！'));
           p.cancel();
         } else {
           return User.getUserByMphoneExceptSelfAsync(user.id, tmpUser.mphone);
@@ -178,7 +197,7 @@ exports.updateOne = function(req, res, next) {
       })
       .then((data) => {
         if (data) {
-          res.json(ErrorSerializer.serialize(error('数据异常', '新更改的移动电话已被注册，请更换！')));
+          res.json(error('数据异常', '新更改的移动电话已被注册，请更换！'));
           p.cancel();
         }
       })
@@ -207,7 +226,7 @@ exports.update = function(req, res, next) {
     });
 };
 
-exports.retrieve = function(req, res, next) {
+exports.retrieve11 = function(req, res, next) {
   User.getUserAllAsync()
     .then((data) => {
       res.json(UserSerializer.serialize(data));
@@ -217,36 +236,9 @@ exports.retrieve = function(req, res, next) {
     });
 };
 
-function getInterestedUser(res, next) {
-  /*
-  User.getUserByName('test', function(err, user) {
-    if (err) {
-      return next(err);
-    }
-    res.json({desc:'', valid: true, data: user});
-  });
-  */
-  User.getUserByCondition({$or: [{name: 'test'}, {name: 'z'}]}, function(err, user) {
-    if (err) {
-      return next(err);
-    }
-    res.json({desc:'', valid: true, data: user});
-  });
-};
 
-exports.login = function(req, res){
-  //console.log(req.cookies);
-  //console.log(app.locals.config.description);
-  res.render('user/login', { title: '筑智' });
-};
 
-exports.reg = function(req, res) {
-  res.render('user/reg', { title: '注册 - 筑智' });
-};
 
-exports.tokenAuth = function(req, res, next) {
-  
-};
 
 exports.init = function(req, res, next) {
   if (!req.tokenId) {
@@ -264,93 +256,7 @@ exports.init = function(req, res, next) {
   });
 };
 
-exports.signup = function(req, res, next) {
-  var user = {};
-  //asyn fn
-  existUserName(req.body.name, function(err, result) {
-    if (err) {
-      return next(err);
-    }
-    if (!result.valid) {
-      res.json(result);
-      return;
-    }
-    user.name = result.msg;
-    //asyn fn
-    existEmail(req.body.email, function(err, result) {
-      if (err) {
-        return next(err);
-      }
-      if (!result.valid) {
-        res.json(result);
-        return;
-      }
-      user.email = result.msg;
-      //syn fn
-      var filteredPassword = filterPassword(req.body.password);
-      var filteredPasswordRep = filterPassword(req.body.passwordrep);
-      if (!filteredPassword.valid || !filteredPasswordRep.valid) {
-        res.json(filteredPassword);
-        return;
-      }
-      if (filteredPassword.msg !== filteredPasswordRep.msg) {
-        res.json({desc: '输入的密码不一致！', msg: '', valid: false});
-        return;
-      }
-      user.password = sha1(filteredPassword.msg);
 
-      //asyn fn
-      User.newAndSave(user.name, user.email, user.password, false, function(err) {
-        if (err) {
-          return next(err);
-        }
-        mail.sendActiveMail(user.name, user.email, md5(user.email + config.cookieSecret));
-        res.json({desc: '欢迎加入' + config.name + '社区！我们已给您的注册邮箱发送了一封邮件，请点击里面的链接来激活您的帐号，谢谢！', msg: '筑智提示：', valid: true});
-      });
-    });
-  });
-};
-
-
-
-/**
- * According cookie allow users automatically signin.
- */
-exports.isSignin = function(req, res, next) {
-  if (req.tokenId) {
-    //res.redirect('/administrate/home.html');
-    res.json({desc: '', valid: true});
-  }
-};
-
-exports.activeAccount = function(req, res, next) {
-  var key = req.query.key;
-  var username = req.query.account;
-  var filteredUserName = filterUserName(username);
-  if (!filteredUserName.valid) {
-    res.render('notify', {header: '', body: filteredUserName.desc});
-    return;
-  }
-  username = filteredUserName.msg;
-  User.getUserByName(username, function(err, user) {
-    if (err) {
-      return next(err);
-    }
-    if (!user || md5(user.email + config.cookieSecret) !== key) {
-      return res.render('notify', {header: '', body: '信息有误，帐号无法被激活。'});
-    } 
-    if (user.active) {
-      return res.render('notify', {header: '', body: '帐号已经是激活状态，请<a href="/app">登录</a>。'});
-    }
-    user.active = true;
-    user.save(function(err) {
-      if (err) {
-        return next(err);
-      }
-      res.render('notify', {header: '', body: '帐号已被激活，请<a href="/app">登录</a>。'});
-    });
-  });
-};
 
 exports.retrievePassword = function(req, res, next) {
   var filteredEmail = filterEmail(req.body.email);
@@ -504,101 +410,87 @@ function existEmail(email, callback) {
     callback(null, {desc: 'Email available', msg: email, valid: true});
   });
 }
+///////////////////
+// Retrieve
+exports.retrieve = function(req, res, next) {
 
-function filterUserName(username) {
-  if (typeof username === 'undefined') {
-    return {desc: '用户名不存在！', msg: '', valid: false};
+  var validatedPage = validatorCommon.validatePage(req.query.page);
+  if (!validatedPage.isValid) {
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedPage.error));
   }
-  username = username.trim().toLowerCase();
-  username = sanitize(username).xss();
-  if (username === '') {
-     return {desc: '用户名不能为空！', msg: '', valid: false};
-  }
-  try {
-    check(username, '用户名只能使用0-9，a-z，A-Z，_。').regex(/^\w+$/g);
-  } catch(e) {
-    return {desc: e.message, msg: '', valid: false};
-  }
-  return {desc: '', msg: username, valid: true};
-}
+  // page.limit must positive for aggregate
+  if (!validatedPage.data.limit) validatedPage.data.limit = CONFIG.MONGOOSE.AGGREGATE_QUERY_LIMIT;
 
-function filterEmail(email) {
-  if (typeof email === 'undefined') {
-    return {desc: '邮箱地址不存在！', msg: '', valid: false};
+  var validatedIdNameNicknameEmailMphoneStateFamilyid = validatorUser.validateIdNameNicknameEmailMphoneStateFamilyid(req.query);
+  if (!validatedIdNameNicknameEmailMphoneStateFamilyid.isValid) {
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedIdNameNicknameEmailMphoneStateFamilyid.error));
   }
-  email = email.trim().toLowerCase();
-  email = sanitize(email).xss();
-  if (email === '') {
-     return {desc: '邮箱地址不能为空！', msg: '', valid: false};
+
+  User.retrieve(validatedPage.data, validatedIdNameNicknameEmailMphoneStateFamilyid.data, function(err, users) {
+    if (err) {
+      return next(err);
+    }
+    res.json(UserSerializer.serialize(users));
+  });
+};
+
+// Create
+exports.create = function(req, res, next) {
+  new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(req.body)
+    .then((user) => validatorUser.validateUser(user))
+    .then((validatedUser)=>{
+      if (!validatedUser.isValid) {
+        return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedUser.error));
+      }
+      User.create(validatedUser.data, function(err, users) {
+        if (err) {
+          return next(err);
+        }
+        res.json(UserSerializer.serialize(users[0]));
+      });
+    })
+    .catch((err)=>{
+      return next(err);
+    });
+};
+
+// Update
+exports.updateOne = function(req, res, next) {
+  var validatedID = validatorCommon.validateUID(req.params.id);
+  if (!validatedID.isValid) {
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error));
   }
-  try {
-    check(email, '请输入正确的邮箱地址！').isEmail();
-  } catch(e) {
-    return {desc: e.message, msg: '',  valid: false};
+
+  var validatedUser = validatorUser.validateUser(req.body.data.attributes);
+  if (!validatedUser.isValid) {
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedUser.error));
   }
-  return {desc: '', msg: email, valid: true};
-}
 
-function filterPassword(password) {
-  if (typeof password === 'undefined') {
-    return {desc: '密码不存在！', msg: '', valid: false};
+  User.updateOne(validatedID.data, validatedUser.data, function(err, users) {
+    if (err) {
+      return next(err);
+    }
+    res.json(UserSerializer.serialize(users[0]));
+  });
+};
+
+// Delete
+exports.deleteOne = function(req, res, next) {
+  var validatedID = validatorCommon.validateUID(req.params.id);
+  if (!validatedID.isValid) {
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error));
   }
-  password = sanitize(password.trim()).xss();
-  if (password === '') {
-    return {desc: '密码不能为空！', msg: '', valid: false};
+
+  var validatedUser = validatorUser.validateUser(req.body.data.attributes);
+  if (!validatedUser.isValid) {
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedUser.error));
   }
-  try {
-    check(password, '密码至少6个字符，最多20个字符！').len(6, 20);
-  } catch(e) {
-    return{desc: e.message, msg: '', valid: false};
-  }
-  return {desc: '', msg: password, valid: true}; 
-}
 
-function md5(str) {
-  var md5sum = crypto.createHash('md5');
-  md5sum.update(str);
-  str = md5sum.digest('hex');
-  return str;
-}
-
-function sha1(str) {
-  var sha1sum = crypto.createHash('sha1');
-  sha1sum.update(str);
-  str = sha1sum.digest('hex');
-  return str;
-}
-
-function setCookie(user, res) {
-  var token = encrypt(user._id + '\t' + user.name + '\t' + user.password + '\t' + user.email, config.cookieSecret);
-  //cookie有效期30天 1000 * 60 * 60 * 24 *30
-  res.cookie(config.token, token, {path: '/', maxAge: 30 * 24 * 60 * 60 * 1000});
-  res.cookie(config.tokenStatus, true);
-  res.cookie(config.tokenId, user._id);
-}
-
-function encrypt(str, secret) {
-  var cipher = crypto.createCipher('aes192', secret);
-  var enc = cipher.update(str, 'utf8', 'hex');
-  enc += cipher.final('hex');
-  return enc;
-}
-
-function decrypt(str, secret) {
-  var decipher = crypto.createDecipher('aes192', secret);
-  var dec = decipher.update(str, 'hex', 'utf8');
-  dec += decipher.final('utf8');
-  return dec;
-}
-
-function randomString(size) {
-  size = size || 6;
-  var metaStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  var maxLenth = metaStr.length;
-  var randomStr = '';
-  while (size > 0) {
-    randomStr += metaStr.charAt(Math.floor(Math.random() * maxLenth));
-    size--;
-  }
-  return randomStr;
-}
+  User.deleteOne(validatedID.data, function(err, result) {
+    if (err) {
+      return next(err);
+    }
+    res.type('text/plain').end();
+    // res.json();
+  });
+};

@@ -10,7 +10,10 @@ module.exports = new JSONAPISerializer('user', {
     'nickName',
     'email',
     'mphone',
+    'state',
     'familyId',
+    'familyName',
+    'fid',
     'oldPass',
     'newPass'
   ]

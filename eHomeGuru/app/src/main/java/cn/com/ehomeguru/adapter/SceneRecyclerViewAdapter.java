@@ -46,7 +46,7 @@ public class SceneRecyclerViewAdapter extends RecyclerView.Adapter<SceneRecycler
         holder.mSceneIconView.setImageDrawable(drawable);
 
         holder.mSceneNameView.setText(mListScene.get(position).getName());
-        holder.mSceneStatusView.setText("yx");
+        holder.mSceneStatusView.setText("");
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override

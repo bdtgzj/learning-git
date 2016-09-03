@@ -10,7 +10,6 @@ var validatorCommon = require('../validators').Common;
 var validatorRegion = require('../validators').Region;
 // error
 var error = require('../libs/error');
-var ErrorSerializer = require('../serializers').ErrorSerializer;
 // proxy
 var Region = require('../proxy').Region;
 // json api
@@ -22,17 +21,17 @@ exports.retrieve = function(req, res, next) {
 
   var validatedUID = validatorCommon.validateUID(req.query.uid);
   if (!validatedUID.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedUID.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedUID.error));
   }
 
   var validatedPage = validatorCommon.validatePage(req.query.page);
   if (!validatedPage.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedPage.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedPage.error));
   }
 
   var validatedName = validatorRegion.validateName(req.query.name);
   if (!validatedName.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedName.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedName.error));
   }
 
   Region.retrieve(validatedUID.data, validatedPage.data, validatedName.data, function(err, regions) {
@@ -49,7 +48,7 @@ exports.create = function(req, res, next) {
     .then((region) => validatorRegion.validateRegion(region))
     .then((validatedRegion)=>{
       if (!validatedRegion.isValid) {
-        return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedRegion.error)));
+        return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedRegion.error));
       }
       var uid = validatedRegion.data.uid;
       delete validatedRegion.data.uid;
@@ -69,12 +68,12 @@ exports.create = function(req, res, next) {
 exports.updateOne = function(req, res, next) {
   var validatedID = validatorCommon.validateID(req.params.id);
   if (!validatedID.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error));
   }
 
   var validatedRegion = validatorRegion.validateRegion(req.body.data.attributes);
   if (!validatedRegion.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedRegion.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedRegion.error));
   }
 
   var uid = validatedRegion.data.uid;
@@ -91,12 +90,12 @@ exports.updateOne = function(req, res, next) {
 exports.deleteOne = function(req, res, next) {
   var validatedID = validatorCommon.validateID(req.params.id);
   if (!validatedID.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error));
   }
 
   var validatedRegion = validatorRegion.validateRegion(req.body.data.attributes);
   if (!validatedRegion.isValid) {
-    return res.json(ErrorSerializer.serialize(error(STRINGS.ERROR_EXCEPTION_DATA, validatedRegion.error)));
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedRegion.error));
   }
 
   Region.deleteOne(validatedRegion.data.uid, validatedID.data, function(err, result) {

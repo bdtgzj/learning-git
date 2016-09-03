@@ -8,8 +8,12 @@ module.exports = new JSONAPISerializer('scene', {
   pluralizeType: false,
   attributes: [
     'name',
+    'iconId',
     'icon',
+    'iconName',
+    'colorId',
     'color',
+    'colorName',
     'regionId',
     'regionName',
     'order'

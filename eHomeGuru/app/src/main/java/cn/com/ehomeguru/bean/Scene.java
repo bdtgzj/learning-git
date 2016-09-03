@@ -9,6 +9,8 @@ import com.gustavofao.jsonapi.Models.Resource;
 @Type("scene")
 public class Scene extends Resource {
 
+    private int uid;
+    private int fid;
     private String name;
     private String icon;
     private String color;
@@ -16,7 +18,21 @@ public class Scene extends Resource {
     private String regionName;
     private int order;
 
+    public int getUid() {
+        return uid;
+    }
 
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+    public int getFid() {
+        return fid;
+    }
+
+    public void setFid(int fid) {
+        this.fid = fid;
+    }
 
     public String getName() {
         return name;

@@ -13,11 +13,15 @@ import IconScene from 'material-ui/svg-icons/device/wallpaper'
 import IconRegion from 'material-ui/svg-icons/action/dashboard'
 import IconCategory from 'material-ui/svg-icons/content/low-priority'
 import IconDevice from 'material-ui/svg-icons/device/devices'
+import IconInstruction from 'material-ui/svg-icons/action/input'
 import IconUser from 'material-ui/svg-icons/action/account-box'
 import IconAdmin from 'material-ui/svg-icons/action/accessibility'
 import IconIcon from 'material-ui/svg-icons/action/gif'
 import IconColor from 'material-ui/svg-icons/action/invert-colors'
+import IconInscat from 'material-ui/svg-icons/device/graphic-eq'
+import IconFamily from 'material-ui/svg-icons/action/chrome-reader-mode'
 import IconSetting from 'material-ui/svg-icons/action/settings'
+import IconLog from 'material-ui/svg-icons/device/dvr'
 import IconRefresh from 'material-ui/svg-icons/action/autorenew'
 import IconHelp from 'material-ui/svg-icons/action/help'
 import IconSignOut from 'material-ui/svg-icons/image/adjust'
@@ -108,6 +112,10 @@ class Layout extends Component {
               <MenuItem leftIcon={<IconDevice />}>{strings.layout_link_device}</MenuItem>
             </NavLink>
             <Divider />
+            <NavLink to="/instruction">
+              <MenuItem leftIcon={<IconInstruction />}>{strings.layout_link_instruction}</MenuItem>
+            </NavLink>
+            <Divider />
             <NavLink to="/user">
               <MenuItem leftIcon={<IconUser />}>{strings.layout_link_user}</MenuItem>
             </NavLink>
@@ -120,12 +128,23 @@ class Layout extends Component {
               <MenuItem leftIcon={<IconColor />}>{strings.layout_link_color}</MenuItem>
             </NavLink>
             <Divider />
+            <NavLink to="/inscat">
+              <MenuItem leftIcon={<IconInscat />}>{strings.layout_link_inscat}</MenuItem>
+            </NavLink>
+            <Divider />
+            <NavLink to="/family">
+              <MenuItem leftIcon={<IconFamily />}>{strings.layout_link_family}</MenuItem>
+            </NavLink>
+            <Divider />
             <NavLink to="/admin">
               <MenuItem leftIcon={<IconAdmin />}>{strings.layout_link_admin}</MenuItem>
             </NavLink>
             <Divider />
             <NavLink to="/setting">
               <MenuItem leftIcon={<IconSetting />}>{strings.layout_link_setting}</MenuItem>
+            </NavLink>
+            <NavLink to="/log">
+              <MenuItem leftIcon={<IconLog />}>{strings.layout_link_log}</MenuItem>
             </NavLink>
             <Divider />
           </Drawer>

@@ -9,3 +9,4 @@ var counterSchema = new Schema({
 module.exports = mongoose.model('Counter', counterSchema);
 
 // db.counters.insert({_id: "userid", seq: 1});
+// db.counters.update({_id: "userid", {$set: {seq: 1}}});

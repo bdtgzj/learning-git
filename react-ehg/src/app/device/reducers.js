@@ -6,7 +6,9 @@ import { SET_USER,
          OPEN_CREATE_DIALOG, OPEN_READ_DIALOG, OPEN_UPDATE_DIALOG, OPEN_DELETE_DIALOG,
          VALIDATE_NAME_CREATE, VALIDATE_ORDER_CREATE, VALIDATE_NAME_UPDATE, VALIDATE_ORDER_UPDATE, VALIDATE_NAME_READ,
          SET_ICON_ID_CREATE, SET_ICON_ID_UPDATE, SET_COLOR_ID_CREATE, SET_COLOR_ID_UPDATE,
+         SET_REGION_ID_CREATE, SET_REGION_ID_UPDATE, SET_REGION_ID_READ, SET_CATEGORY_ID_CREATE, SET_CATEGORY_ID_UPDATE, SET_CATEGORY_ID_READ,
          SELECT_ROW,
+         SET_REGIONS, SET_CATEGORYS
        } from './actions'
 // validator
 import trim from 'validator/lib/trim'
@@ -28,7 +30,7 @@ function user(state = {}, action) {
 /*
  * Dialog
  */
-function createDialog(state = {isVisible: false, name: {}, icon: {}, color: {}, order: {}}, action) {
+function createDialog(state = {isVisible: false, name: {}, icon: {}, color: {}, region: {}, category: {}, order: {}}, action) {
   switch (action.type) {
     case OPEN_CREATE_DIALOG:
       if (action.open) {
@@ -46,6 +48,10 @@ function createDialog(state = {isVisible: false, name: {}, icon: {}, color: {}, 
       return Object.assign({}, state, {icon:{id: action.id}})
     case SET_COLOR_ID_CREATE:
       return Object.assign({}, state, {color:{id: action.id}})
+    case SET_REGION_ID_CREATE:
+      return Object.assign({}, state, {region:{id: action.id}})
+    case SET_CATEGORY_ID_CREATE:
+      return Object.assign({}, state, {category:{id: action.id}})
     case VALIDATE_ORDER_CREATE:
       if (isInt(trim(action.order))) {
         return Object.assign({}, state, {order:{value: action.order, valid: true}})
@@ -57,7 +63,7 @@ function createDialog(state = {isVisible: false, name: {}, icon: {}, color: {}, 
   }
 }
 
-function readDialog(state = {isVisible: false, name: {}}, action) {
+function readDialog(state = {isVisible: false, name: {}, region: {}, category: {}}, action) {
   switch (action.type) {
     case OPEN_READ_DIALOG:
       if (action.open) {
@@ -66,17 +72,29 @@ function readDialog(state = {isVisible: false, name: {}}, action) {
         return Object.assign({}, state, {isVisible: false})
       }
     case VALIDATE_NAME_READ:
-      if (isLength(trim(action.name), {min: 1, max: 10})) {
+      if (isLength(trim(action.name), {min: 0, max: 10})) {
         return Object.assign({}, state, {name:{value: action.name, valid: true}})
       } else {
         return Object.assign({}, state, {name:{value: action.name, valid: false, error: strings.error_prompt_name}})
+      }
+    case SET_REGION_ID_READ:
+      if (action.id === -1) {
+        return Object.assign({}, state, {region:{}})
+      } else {
+        return Object.assign({}, state, {region:{id: action.id}})
+      }
+    case SET_CATEGORY_ID_READ:
+      if (action.id === -1) {
+        return Object.assign({}, state, {category:{}})
+      } else {
+        return Object.assign({}, state, {category:{id: action.id}})
       }
     default:
       return state
   }
 }
 
-function updateDialog(state = {isVisible: false, name: {}, order: {}}, action) {
+function updateDialog(state = {isVisible: false, name: {}, icon: {}, color: {}, region: {}, category: {}, order: {}}, action) {
   switch (action.type) {
     case OPEN_UPDATE_DIALOG:
       if (action.open) {
@@ -84,6 +102,10 @@ function updateDialog(state = {isVisible: false, name: {}, order: {}}, action) {
           { isVisible: true, 
             id: action.selectedRow.id,
             name: {value: action.selectedRow.name, valid: true},
+            icon: {id: action.selectedRow.iconId},
+            color: {id: action.selectedRow.colorId},
+            region: {id: action.selectedRow.regionId},
+            category: {id: action.selectedRow.categoryId},
             order: {value: action.selectedRow.order, valid: true}
           })
       } else {
@@ -99,6 +121,10 @@ function updateDialog(state = {isVisible: false, name: {}, order: {}}, action) {
       return Object.assign({}, state, {icon:{id: action.id}})
     case SET_COLOR_ID_UPDATE:
       return Object.assign({}, state, {color:{id: action.id}})
+    case SET_REGION_ID_UPDATE:
+      return Object.assign({}, state, {region:{id: action.id}})
+    case SET_CATEGORY_ID_UPDATE:
+      return Object.assign({}, state, {category:{id: action.id}})
     case VALIDATE_ORDER_UPDATE:
       if (isInt(trim(action.order))) {
         return Object.assign({}, state, {order:{value: action.order, valid: true}})
@@ -118,11 +144,35 @@ function deleteDialog(state = {isVisible: false, content: ''}, action) {
         let tmp = action.selectedRow.reduce((previousValue, v, k)=>{
           return previousValue += k===0 ? ('【' + v + '】') :  ('，【' + v + '】') 
         }, '')
-        content = {__html: '确认删除分类：<span style="background-color:#ff0000; color:#ffffff;">' + tmp + '</span>吗？删除后将无法恢复！'}
+        content = {__html: '确认删除设备：<span style="background-color:#ff0000; color:#ffffff;">' + tmp + '</span>吗？删除后将无法恢复！'}
         return Object.assign({}, state, {isVisible: true, content: content})
       } else {
         return Object.assign({}, state, {isVisible: false, content: ''})
       }
+    default:
+      return state
+  }
+}
+
+/*
+ * Regions
+ */
+function regions(state = [], action) {
+  switch (action.type) {
+    case SET_REGIONS:
+      return action.regions
+    default:
+      return state
+  }
+}
+
+/*
+ * Categorys
+ */
+function categorys(state = [], action) {
+  switch (action.type) {
+    case SET_CATEGORYS:
+      return action.categorys
     default:
       return state
   }
@@ -147,7 +197,9 @@ const indexReducer = combineReducers({
   updateDialog,
   deleteDialog,
   user,
-  selected
+  selected,
+  regions,
+  categorys
 })
 
 export default indexReducer

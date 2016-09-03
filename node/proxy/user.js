@@ -1,18 +1,25 @@
 /**
- *
+ * Proxy - user
  */
+var User = require('../models').User;
 
-var models = require('../models');
-var User = models.User;
-
-exports.newAndSave = function(name, email, password, active, callback) {
-  var user = new User();
-  user.name = name;
-  user.email = email;
-  user.password = password;
-  user.active = active;
-  user.save(callback);
+var getAggregate = function(condition) {
+  return [
+    { $match: condition },
+    { $lookup: { from: "families", localField: "familyId", foreignField: "_id", as: "family_docs" } },
+    { $unwind: {path: "$family_docs", preserveNullAndEmptyArrays: true} },
+    { $project: { name: 1, nickName: 1, email: 1, mphone: 1, state: 1, familyId: 1, created:1, familyName: "$family_docs.name", fid: "$family_docs.fid" } }
+  ]
 };
+
+/**
+ * Retrieve
+ * Retrieve返回
+ */
+exports.retrieve = function(page, condition, callback) {
+  var aggr = getAggregate(condition);
+  User.aggregate(aggr).skip(page.skip).limit(page.limit).sort({created: page.sort}).exec(callback);
+}
 
 exports.getUserById = function(id, callback) {
   User.findOne({_id: id}, callback);
@@ -43,7 +50,9 @@ exports.getUserByMphoneExceptSelf = function(id, mphone, callback) {
 };
 
 exports.getUserByNameEmailMPhonePass = function(name, password, callback) {
-  User.find({$or: [{name: name}, {email: name}, {mphone: name}], password: password}, callback);
+  var aggr = getAggregate({$or: [{name: name}, {email: name}, {mphone: name}], password: password});
+  User.aggregate(aggr).exec(callback);
+  //User.find({$or: [{name: name}, {email: name}, {mphone: name}], password: password}, callback);
   //此条件查询mongoose只支持find，不支持findOne，mongo shell中是支持findOne的。
   //注：find返回数组[]，不能直接对象操作；findOne返回对象null
 };
@@ -57,22 +66,37 @@ exports.getUserByCondition = function(condition, callback) {
 };
 
 /**
+ * Create
+ * Create返回
+ */
+exports.create = function(user, callback) {
+  User.create(user, function(err, user) {
+    if (err) {
+      return callback(err);
+    }
+    var aggr = getAggregate({_id: user._id});
+    User.aggregate(aggr, callback);
+  });
+};
+
+/**
  * Update
  * Update返回
  */
-exports.update = function(id, user, callback) {
-  User.update({_id: id}, {$set: user}, callback);
-};
-
-// return new document, if {new: true}, than return new document.
 exports.updateOne = function(id, user, callback) {
-  User.findOneAndUpdate({_id: id}, user, {new: true}, callback);
+  User.findOneAndUpdate({_id: id}, {$set: user}, {new: true}, function(err, user) {
+    if (err) {
+      return callback(err);
+    }
+    var aggr = getAggregate({_id: user._id});
+    User.aggregate(aggr, callback);
+  });
 };
 
 /**
  * Delete
  * Delete返回
  */
-exports.delete = function(id, callback) {
+exports.deleteOne = function(id, callback) {
   User.remove({_id: id}, callback);
 };

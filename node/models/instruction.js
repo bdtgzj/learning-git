@@ -1,11 +1,16 @@
+/**
+ * Model - instruction
+ */
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var InstructionSchema = new Schema({
+  name: {type: String},
+  instruction: {type: String},
+  categoryId: {type: Schema.ObjectId},
   deviceId: {type: Schema.ObjectId},
   sceneId: {type: Schema.ObjectId},
-  category: {type: String},
-  instruction: {type: String},
   order: {type: Number}
 });
 

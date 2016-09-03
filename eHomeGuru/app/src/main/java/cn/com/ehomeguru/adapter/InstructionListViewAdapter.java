@@ -19,7 +19,6 @@ import cn.com.ehomeguru.bean.Instruction;
 public class InstructionListViewAdapter extends BaseAdapter{
 
     private List<Instruction> mListInstruction;
-    private Instruction mInstruction;
     private OnInstructionInteractionListener mOnInstructionInteractionListener;
 
     public InstructionListViewAdapter(List<Instruction> listInstruction, OnInstructionInteractionListener onInstructionInteractionListener) {
@@ -44,9 +43,9 @@ public class InstructionListViewAdapter extends BaseAdapter{
 
     @Override
     public View getView(int i, View convertView, ViewGroup parent) { // parent == ListView
-        mInstruction = mListInstruction.get(i);
-        switch (mInstruction.getCategory()) {
-            case "switch":
+        final Instruction instruction = mListInstruction.get(i);
+        switch (instruction.getCategoryName()) {
+            case "开关":
                 if (convertView == null) {
                     // set LayoutParams for LinearLayout in ListView, so use android.widget.AbsListView.LayoutParams
                     LinearLayout linearLayout = new LinearLayout(parent.getContext());
@@ -56,20 +55,43 @@ public class InstructionListViewAdapter extends BaseAdapter{
                     // set LayoutParams for Switch in LinearLayout, so use android.widget.LinearLayout.LayoutParams;
                     LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     layoutParams.bottomMargin = 50;
+
                     Switch aSwitch = new Switch(linearLayout.getContext());
+                    aSwitch.setOnCheckedChangeListener(null);
+                    //
+                    if (instruction.getStatus()!=null && instruction.getStatus()!="") {
+                        String[] readInstruction = instruction.getInstruction().split("@")[0].split(" ");
+                        // 读几个线圈数据
+                        int readNumber = Integer.parseInt(readInstruction[10]+readInstruction[11], 16);
+                        String [] arrReturnedValue = instruction.getStatus().split(" ");
+                        // 字节数
+                        int dataNumber = Integer.parseInt(arrReturnedValue[0], 16);
+                        if (dataNumber == (arrReturnedValue.length-1)) {
+                            // 数据
+                            String strReturnedValue = "";
+                            for (int ii = 0; ii < dataNumber; ii++) {
+                                strReturnedValue += arrReturnedValue[++ii];
+                            }
+                            int intReturnedValue = Integer.parseInt(strReturnedValue, 16);
+                            Boolean bStatus = ((intReturnedValue >> (readNumber-1)) & 1) > 0;
+                            aSwitch.setChecked(bStatus);
+                        }
+                    }
+                    //aSwitch.setChecked(CommonUtil.equals(mInstruction.getStatus(), "01 01"));
                     aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                            mOnInstructionInteractionListener.onInstructionInteraction(mInstruction, isChecked);
+                            mOnInstructionInteractionListener.onInstructionInteraction(instruction, isChecked);
                         }
                     });
                     aSwitch.setLayoutParams(layoutParams);
                     linearLayout.addView(aSwitch);
+
                     convertView = linearLayout;
                 }
                 break;
             default:
-                convertView =  null;
+                convertView = null;
         }
         return convertView;
 

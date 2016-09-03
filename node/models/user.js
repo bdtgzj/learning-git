@@ -11,11 +11,11 @@ var userSchema = new Schema({
   mphone: {type: String},
   created: {type: Date, default: Date.now},
   modified: {type: Date, default: Date.now},
-  state: {type: Number, default: 0}, // 0=enable, 1=disable, 2=delete
+  state: {type: Number, default: 1}, // 1=enable, 2=disable, 3=delete
   retrieveToken: {type: String},
   retrieveTime: {type: Number},
-  familyId: {type: Number},
-  screenId: {type: Number}
+  familyId: {type: Schema.ObjectId},
+  screenId: {type: Schema.ObjectId}
 });
 
 userSchema.index({name: 1}, {unique: true});

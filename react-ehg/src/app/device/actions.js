@@ -1,4 +1,10 @@
-import config from '../config'
+import apiRequest from '../util/api_request'
+// config
+import CONFIG from '../config'
+// res
+import strings from '../res/strings'
+// actions
+import { openAlertDialog } from '../layout/actions'
 
 /*
  * user
@@ -21,15 +27,22 @@ export const OPEN_UPDATE_DIALOG = 'DEVICE_OPEN_UPDATE_DIALOG'
 export const OPEN_DELETE_DIALOG = 'DEVICE_OPEN_DELETE_DIALOG'
 
 export const VALIDATE_NAME_CREATE = 'DEVICE_VALIDATE_NAME_CREATE'
-export const VALIDATE_ORDER_CREATE = 'DEVICE_VALIDATE_ORDER_CREATE'
 export const VALIDATE_NAME_UPDATE = 'DEVICE_VALIDATE_NAME_UPDATE'
-export const VALIDATE_ORDER_UPDATE = 'DEVICE_VALIDATE_ORDER_UPDATE'
 export const VALIDATE_NAME_READ = 'DEVICE_VALIDATE_NAME_READ'
+export const VALIDATE_ORDER_CREATE = 'DEVICE_VALIDATE_ORDER_CREATE'
+export const VALIDATE_ORDER_UPDATE = 'DEVICE_VALIDATE_ORDER_UPDATE'
 
 export const SET_ICON_ID_CREATE = 'DEVICE_SET_ICON_ID_CREATE'
 export const SET_ICON_ID_UPDATE = 'DEVICE_SET_ICON_ID_UPDATE'
 export const SET_COLOR_ID_CREATE = 'DEVICE_SET_COLOR_ID_CREATE'
 export const SET_COLOR_ID_UPDATE = 'DEVICE_SET_COLOR_ID_UPDATE'
+
+export const SET_REGION_ID_CREATE = 'DEVICE_SET_REGION_ID_CREATE'
+export const SET_REGION_ID_UPDATE = 'DEVICE_SET_REGION_ID_UPDATE'
+export const SET_REGION_ID_READ = 'DEVICE_SET_REGION_ID_READ'
+export const SET_CATEGORY_ID_CREATE = 'DEVICE_SET_CATEGORY_ID_CREATE'
+export const SET_CATEGORY_ID_UPDATE = 'DEVICE_SET_CATEGORY_ID_UPDATE'
+export const SET_CATEGORY_ID_READ = 'DEVICE_SET_CATEGORY_ID_READ'
 
 export function openCreateDialog(open) {
   return {
@@ -128,6 +141,50 @@ export function setColorIdUpdate(id) {
   }
 }
 
+// region
+export function setRegionIdCreate(id) {
+  return {
+    type: SET_REGION_ID_CREATE,
+    id
+  }
+}
+
+export function setRegionIdUpdate(id) {
+  return {
+    type: SET_REGION_ID_UPDATE,
+    id
+  }
+}
+
+export function setRegionIdRead(id) {
+  return {
+    type: SET_REGION_ID_READ,
+    id
+  }
+}
+
+// category
+export function setCategoryIdCreate(id) {
+  return {
+    type: SET_CATEGORY_ID_CREATE,
+    id
+  }
+}
+
+export function setCategoryIdUpdate(id) {
+  return {
+    type: SET_CATEGORY_ID_UPDATE,
+    id
+  }
+}
+
+export function setCategoryIdRead(id) {
+  return {
+    type: SET_CATEGORY_ID_READ,
+    id
+  }
+}
+
 /*
  * Table 
  */
@@ -137,6 +194,73 @@ export function selectRow(rows) {
   return {
     type: SELECT_ROW,
     rows
+  }
+}
+
+/**
+ * getRegionCategory
+ */
+
+export const SET_REGIONS = 'DEVICE_SET_REGIONS'
+export const SET_CATEGORYS = 'DEVICE_SET_CATEGORYS'
+
+export function setRegions(regions) {
+  return {
+    type: SET_REGIONS,
+    regions
+  }
+}
+
+export function setCategorys(categorys) {
+  return {
+    type: SET_CATEGORYS,
+    categorys
+  }
+}
+
+// network
+export const READ_REQUEST = 'DEVICE_READ_REQUEST'
+export const READ_FAILURE = 'DEVICE_READ_FAILURE'
+export const READ_SUCCESS = 'DEVICE_READ_SUCCESS'
+
+export function readRequest() {
+  return {
+    type: READ_REQUEST
+  }
+}
+
+export function readFailure() {
+  return {
+    type: READ_REQUEST
+  }
+}
+
+export function readSuccess() {
+  return {
+    type: READ_REQUEST
+  }
+}
+
+export function getRegionCategory(condition) {
+  return (dispatch, getState) => {
+    // sync
+    dispatch(readRequest())
+    // async
+    const { host: apiHost, path: apiPath, accessToken } = getState().api.endpoint
+    const urlRegion = `${apiHost}${apiPath}/${CONFIG.ENTITY.REGION}${condition}`
+    const urlCategory = `${apiHost}${apiPath}/${CONFIG.ENTITY.CATEGORY}${condition}`
+    const promises = [apiRequest(urlRegion, accessToken), apiRequest(urlCategory, accessToken)]
+    Promise.all(promises)
+    .then(jsons => {
+      let JSONAPIDeserializer = require('../util/jsonapi-serializer-sync').Deserializer
+      dispatch(readSuccess())
+      dispatch(setRegions(new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(jsons[0] || {data:[]})))
+      dispatch(setCategorys(new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(jsons[1] || {data:[]})))
+    })
+    .catch(err => {
+      dispatch(readFailure())
+      dispatch(openAlertDialog(true, strings.action_error_network_prompt))
+    })
   }
 }
 

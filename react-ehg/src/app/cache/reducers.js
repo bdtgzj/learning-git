@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
-import { SET_CACHE_USERS, SET_CACHE_ICONS, SET_CACHE_COLORS,
+import { SET_CACHE_USERS, SET_CACHE_ICONS, 
+         SET_CACHE_COLORS, SET_CACHE_INSCATS, SET_CACHE_FAMILYS,
          READ_REQUEST, READ_FAILURE, READ_SUCCESS
        } from './actions'
 // config
@@ -37,6 +38,24 @@ function colors(state = [], action) {
   }
 }
 
+function inscats(state = [], action) {
+  switch (action.type) {
+    case SET_CACHE_INSCATS:
+      return new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(action.inscats || {data:[]})
+    default:
+      return state
+  }
+}
+
+function familys(state = [], action) {
+  switch (action.type) {
+    case SET_CACHE_FAMILYS:
+      return new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(action.familys || {data:[]})
+    default:
+      return state
+  }
+}
+
 /**
  * Network
  */
@@ -58,6 +77,8 @@ const indexReducer = combineReducers({
   users,
   icons,
   colors,
+  inscats,
+  familys,
   isReading,
 })
 

@@ -3,8 +3,8 @@ var Schema = mongoose.Schema;
 
 var DeviceSchema = new Schema({
   name: {type: String},
-  icon: {type: Schema.ObjectId},
-  color: {type: Schema.ObjectId},
+  iconId: {type: Schema.ObjectId},
+  colorId: {type: Schema.ObjectId},
   regionId: {type: Schema.ObjectId},
   categoryId: {type: Schema.ObjectId},
   status: {type: String},

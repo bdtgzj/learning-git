@@ -32,7 +32,7 @@ function createDialog(state = {isVisible: false, name: {}, icon: {}, order: {}},
         return Object.assign({}, state, {name:{value: action.name, valid: false, error: strings.error_prompt_name}})
       }
     case VALIDATE_ICON_CREATE:
-      if (isLength(trim(action.icon), {min: 1, max: 20})) {
+      if (isLength(trim(action.icon), {min: 1, max: 50})) {
         return Object.assign({}, state, {icon:{value: trim(action.icon), valid: true}})
       } else {
         return Object.assign({}, state, {icon:{value: action.icon, valid: false, error: strings.error_prompt_icon}})
@@ -88,7 +88,7 @@ function updateDialog(state = {isVisible: false, name: {}, icon: {}, order: {}},
         return Object.assign({}, state, {name:{value: action.name, valid: false, error: strings.error_prompt_name}})
       }
     case VALIDATE_ICON_UPDATE:
-      if (isLength(trim(action.icon), {min: 1, max: 20})) {
+      if (isLength(trim(action.icon), {min: 1, max: 50})) {
         return Object.assign({}, state, {icon:{value: trim(action.icon), valid: true}})
       } else {
         return Object.assign({}, state, {icon:{value: action.icon, valid: false, error: strings.error_prompt_icon}})

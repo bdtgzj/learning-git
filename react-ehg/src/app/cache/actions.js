@@ -12,6 +12,8 @@ import { openAlertDialog } from '../layout/actions'
 export const SET_CACHE_USERS = 'SET_CACHE_USERS'
 export const SET_CACHE_ICONS = 'SET_CACHE_ICONS'
 export const SET_CACHE_COLORS = 'SET_CACHE_COLORS'
+export const SET_CACHE_INSCATS = 'SET_CACHE_INSCATS'
+export const SET_CACHE_FAMILYS = 'SET_CACHE_FAMILYS'
 
 export function setCacheUsers(users) {
   return {
@@ -31,6 +33,20 @@ export function setCacheColors(colors) {
   return {
     type: SET_CACHE_COLORS,
     colors
+  }
+}
+
+export function setCacheInscats(inscats) {
+  return {
+    type: SET_CACHE_INSCATS,
+    inscats
+  }
+}
+
+export function setCacheFamilys(familys) {
+  return {
+    type: SET_CACHE_FAMILYS,
+    familys
   }
 }
 
@@ -68,36 +84,28 @@ export function refreshCache() {
     const urlUser = `${apiHost}${apiPath}/${CONFIG.ENTITY.USER}`
     const urlIcon = `${apiHost}${apiPath}/${CONFIG.ENTITY.ICON}`
     const urlColor = `${apiHost}${apiPath}/${CONFIG.ENTITY.COLOR}`
-    const promises = [apiRequest(urlUser, accessToken), apiRequest(urlIcon, accessToken), apiRequest(urlColor, accessToken)]
+    const urlInscat = `${apiHost}${apiPath}/${CONFIG.ENTITY.INSCAT}`
+    const urlFamily = `${apiHost}${apiPath}/${CONFIG.ENTITY.FAMILY}`
+    const promises = [
+      apiRequest(urlUser, accessToken),
+      apiRequest(urlIcon, accessToken),
+      apiRequest(urlColor, accessToken),
+      apiRequest(urlInscat, accessToken),
+      apiRequest(urlFamily, accessToken)
+    ]
     Promise.all(promises)
     .then(jsons => {
       dispatch(readSuccess())
       dispatch(setCacheUsers(jsons[0]))
       dispatch(setCacheIcons(jsons[1]))
       dispatch(setCacheColors(jsons[2]))
+      dispatch(setCacheInscats(jsons[3]))
+      dispatch(setCacheFamilys(jsons[4]))
       dispatch(openAlertDialog(true, strings.action_refresh_ok_prompt))
     })
     .catch(err => {
       dispatch(readFailure())
       dispatch(openAlertDialog(true, strings.action_error_network_prompt))
     })
-  }
-}
-
-
-export const SET_CACHE_REGIONS = 'SET_CACHE_REGIONS'
-export const SET_CACHE_CATEGORYS = 'SET_CACHE_CATEGORYS'
-
-export function setCacheRegions(regions) {
-  return {
-    type: SET_CACHE_REGIONS,
-    regions
-  }
-}
-
-export function setCacheCategorys(categorys) {
-  return {
-    type: SET_CACHE_CATEGORYS,
-    categorys
   }
 }

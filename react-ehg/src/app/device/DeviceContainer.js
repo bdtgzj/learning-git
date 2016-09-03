@@ -12,16 +12,22 @@ import Device from './Device'
 import { openAlertDialog } from '../layout/actions'
 import { openCreateDialog, openReadDialog, openUpdateDialog, openDeleteDialog,  setUser, selectRow,
          validateNameCreate, validateOrderCreate, validateNameUpdate, validateOrderUpdate, validateNameRead,
-         setIconIdCreate, setIconIdUpdate, setColorIdCreate, setColorIdUpdate
+         setIconIdCreate, setIconIdUpdate, setColorIdCreate, setColorIdUpdate,
+         setRegionIdCreate, setRegionIdUpdate, setRegionIdRead, setCategoryIdCreate, setCategoryIdUpdate, setCategoryIdRead,
+         getRegionCategory
        } from './actions'
 
 var JSONAPIDeserializer = require('../util/jsonapi-serializer-sync').Deserializer
 
 const mapStateToProps = (state) => {
-  let regions = new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(state.api.region || {data:[]})
-  let categorys = new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(state.api.category || {data:[]})
   let devices = new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(state.api.device || {data:[]})
-  return { users: state.cache.users, icons: state.cache.icons, colors: state.cache.colors, devices: devices, device: state.device }
+  return { users: state.cache.users,
+           icons: state.cache.icons,
+           colors: state.cache.colors,
+           regions: state.device.regions,
+           categorys: state.device.categorys,
+           devices: devices,
+           device: state.device }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -63,6 +69,26 @@ const mapDispatchToProps = (dispatch) => {
     handleColorChangeUpdate: (id) => {
       dispatch(setColorIdUpdate(id))
     },
+    // region
+    handleRegionChangeCreate: (id) => {
+      dispatch(setRegionIdCreate(id))
+    },
+    handleRegionChangeUpdate: (id) => {
+      dispatch(setRegionIdUpdate(id))
+    },
+    handleRegionChangeRead: (id) => {
+      dispatch(setRegionIdRead(id))
+    },
+    // category
+    handleCategoryChangeCreate: (id) => {
+      dispatch(setCategoryIdCreate(id))
+    },
+    handleCategoryChangeUpdate: (id) => {
+      dispatch(setCategoryIdUpdate(id))
+    },
+    handleCategoryChangeRead: (id) => {
+      dispatch(setCategoryIdRead(id))
+    },
     //order
     handleOrderChangeCreate: (order) => {
       dispatch(validateOrderCreate(order))
@@ -77,10 +103,10 @@ const mapDispatchToProps = (dispatch) => {
     // Restful API
     // Create
     handleCreate: (device) => {
-      dispatch(createEntity({type: CONFIG.ENTITY.CATEGORY, attributes: device}))
+      dispatch(createEntity({type: CONFIG.ENTITY.DEVICE, attributes: device}))
       .then((json)=>{
-        if (json.data.type===CONFIG.ENTITY.ERROR) {
-          return dispatch(openAlertDialog(true, json.data.attributes.detail))
+        if (json.errors) {
+          return dispatch(openAlertDialog(true, json.errors[0].detail))
         }
         let device = new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(json)
         if (device.id) {
@@ -103,15 +129,17 @@ const mapDispatchToProps = (dispatch) => {
         return
       }
       // page[size]=2&page[number]=2&page[sort]=1&
-      const endpoint = CONFIG.ENTITY.CATEGORY + '?uid=' + selectedValue.id
+      const endpoint = CONFIG.ENTITY.DEVICE + '?uid=' + selectedValue.id
       dispatch(readEndpoint(endpoint))
       // set user state
       dispatch(setUser(selectedValue))
       // set selected state
       dispatch(selectRow([]))
+      // get regions & categorys
+      dispatch(getRegionCategory('?uid=' + selectedValue.id))
     },
     handleReadByCondition: (condition) => {
-      const endpoint = CONFIG.ENTITY.CATEGORY + '?' + condition
+      const endpoint = CONFIG.ENTITY.DEVICE + '?' + condition
       dispatch(readEndpoint(endpoint))
       // set selected state
       dispatch(selectRow([]))
@@ -119,16 +147,18 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(openReadDialog(false))
     },
     handleRefresh: (uid) => {
-      const endpoint = CONFIG.ENTITY.CATEGORY + '?uid=' + uid
+      const endpoint = CONFIG.ENTITY.DEVICE + '?uid=' + uid
       dispatch(selectRow([]))
       dispatch(readEndpoint(endpoint))
+      // get regions & categorys
+      dispatch(getRegionCategory('?uid=' + uid))
     },
     // Update
     handleUpdate: (id, device) => {
-      dispatch(updateEntity({type: CONFIG.ENTITY.CATEGORY, id: id, attributes: device}))
+      dispatch(updateEntity({type: CONFIG.ENTITY.DEVICE, id: id, attributes: device}))
       .then((json)=>{
-        if (json.data.type===CONFIG.ENTITY.ERROR) {
-          return dispatch(openAlertDialog(true, json.data.attributes.detail))
+        if (json.errors) {
+          return dispatch(openAlertDialog(true, json.errors[0].detail))
         }
         let device = new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(json)
         if (device.id) {
@@ -146,7 +176,7 @@ const mapDispatchToProps = (dispatch) => {
     // Delete
     handleDelete: (devices) => {
       let promises = devices.map((v)=>{
-        return dispatch(deleteEntity({type: CONFIG.ENTITY.CATEGORY, id: v.id, attributes: v}))
+        return dispatch(deleteEntity({type: CONFIG.ENTITY.DEVICE, id: v.id, attributes: v}))
       })
       Promise.all(promises)
       .then((devices)=>{

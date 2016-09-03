@@ -25,6 +25,7 @@ import cn.com.ehomeguru.model.GlobalData;
 import cn.com.ehomeguru.service.DeviceService;
 import cn.com.ehomeguru.service.SceneService;
 import cn.com.ehomeguru.service.ServiceGenerator;
+import cn.com.ehomeguru.util.CommonUtil;
 import cn.com.ehomeguru.util.ResponseUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,13 +45,16 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*
         // tmp data for test
-        User user = new User("yxdc002", "admin6");
-        user.setId("1");
-        user.setNickName("bdtgzj");
-        user.setMphone("13222880055");
-        user.setEmail("bdtgzj@163.com");
+        User user = new User("tester", "admin6");
+        user.setId("2");
+        user.setNickName("tester_nickname");
+        user.setMphone("13222881155");
+        user.setEmail("tester@ehomeguru.com.cn");
+        user.setFid(1);
         GlobalData.addObjectForKey("user", user);
+        */
         //
         firstClick = 0;
 
@@ -165,7 +169,7 @@ public class MainActivity extends AppCompatActivity
 
         if (homeCard.getDeviceId() != null && homeCard.getDeviceId() != "") {
             DeviceService deviceService = ServiceGenerator.createService(DeviceService.class, user.getName(), user.getPassword());
-            Call<JSONApiObject> call = deviceService.getDeviceById(homeCard.getDeviceId());
+            Call<JSONApiObject> call = deviceService.getDeviceById(homeCard.getDeviceId(), user.getId());
             call.enqueue(new Callback<JSONApiObject>() {
                 @Override
                 public void onResponse(Call<JSONApiObject> call, retrofit2.Response<JSONApiObject> response) {
@@ -173,8 +177,10 @@ public class MainActivity extends AppCompatActivity
                     if (resources != null) {
                         Device device = (Device) resources.get(0);
                         Intent intent = new Intent(MainActivity.this, ControllerActivity.class);
-                        intent.putExtra("deviceId", device.getId());
+                        intent.putExtra("id", device.getId());
                         intent.putExtra("name", device.getName());
+                        intent.putExtra("icon", device.getIcon());
+                        intent.putExtra("color", device.getColor());
                         intent.putExtra("regionName", device.getRegionName());
                         startActivity(intent);
                     }
@@ -187,21 +193,17 @@ public class MainActivity extends AppCompatActivity
                 }
             });
         } else if (homeCard.getSceneId() != null && homeCard.getSceneId() != "") {
+            // get scene details from server
             SceneService sceneService = ServiceGenerator.createService(SceneService.class, user.getName(), user.getPassword());
-            final Scene scene = new Scene();
-            scene.setId(homeCard.getSceneId());
-            Call<JSONApiObject> call = sceneService.setDeviceByScene(scene);
+            Call<JSONApiObject> call = sceneService.getSceneById(homeCard.getSceneId(), user.getId());
             call.enqueue(new Callback<JSONApiObject>() {
                 @Override
                 public void onResponse(Call<JSONApiObject> call, retrofit2.Response<JSONApiObject> response) {
                     List<Resource> resources = ResponseUtil.parseResponse(response, MainActivity.this);
                     if (resources != null) {
-                        Scene sceneRet = (Scene) resources.get(0);
-                        if (sceneRet == scene) {
-                            Toast.makeText(MainActivity.this, R.string.toast_scene_exec_yes, Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(MainActivity.this, R.string.toast_scene_exec_no, Toast.LENGTH_SHORT).show();
-                        }
+                        SceneExecDialogFragment
+                            .create((Scene) resources.get(0))
+                            .show(getSupportFragmentManager(), getString(R.string.fragment_sceneexecdialog_name));
                     }
                 }
 
@@ -220,11 +222,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onListFragmentInteraction(Device device) {
         Intent intent = new Intent(MainActivity.this, ControllerActivity.class);
-        intent.putExtra("deviceId", device.getId());
+        intent.putExtra("id", device.getId());
         intent.putExtra("name", device.getName());
+        intent.putExtra("icon", device.getIcon());
+        intent.putExtra("color", device.getColor());
         intent.putExtra("regionName", device.getRegionName());
-        //intent.putExtra("category", device.getCategoryId());
-        //intent.putExtra("status", device.getStatus());
         startActivity(intent);
     }
 
@@ -234,14 +236,16 @@ public class MainActivity extends AppCompatActivity
         // get instruction from server
         User user = (User) GlobalData.getObjectForKey("user");
         SceneService sceneService = ServiceGenerator.createService(SceneService.class, user.getName(), user.getPassword());
-        Call<JSONApiObject> call = sceneService.setDeviceByScene(scene);
+        scene.setUid(Integer.parseInt(user.getId()));
+        scene.setFid(user.getFid());
+        Call<JSONApiObject> call = sceneService.execScene(scene);
         call.enqueue(new Callback<JSONApiObject>() {
             @Override
             public void onResponse(Call<JSONApiObject> call, retrofit2.Response<JSONApiObject> response) {
                 List<Resource> resources = ResponseUtil.parseResponse(response, MainActivity.this);
                 if (resources != null) {
                     Scene sceneRet = (Scene) resources.get(0);
-                    if (sceneRet == scene) {
+                    if (CommonUtil.equals(sceneRet.getId(), scene.getId())) {
                         Toast.makeText(MainActivity.this, R.string.toast_scene_exec_yes, Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(MainActivity.this, R.string.toast_scene_exec_no, Toast.LENGTH_SHORT).show();
@@ -267,12 +271,18 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onMeFragmentLoginLogClick() {
-
+        Intent intent = new Intent(MainActivity.this, MeActivity.class);
+        intent.putExtra("fragmentName", "cn.com.ehomeguru.view.LogFragment");
+        intent.putExtra("category", 1);
+        startActivity(intent);
     }
 
     @Override
     public void onMeFragmentOperationLogClick() {
-
+        Intent intent = new Intent(MainActivity.this, MeActivity.class);
+        intent.putExtra("fragmentName", "cn.com.ehomeguru.view.LogFragment");
+        intent.putExtra("category", 2);
+        startActivity(intent);
     }
 
     @Override

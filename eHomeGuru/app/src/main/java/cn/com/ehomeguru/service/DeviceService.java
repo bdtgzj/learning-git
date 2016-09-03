@@ -13,12 +13,12 @@ import retrofit2.http.Query;
 public interface DeviceService {
 
     @GET("device")
-    Call<JSONApiObject> getDeviceByRegion(@Query("region") String regionId);
+    Call<JSONApiObject> getDeviceByRegion(@Query("uid") String uid, @Query("regionId") String regionId);
 
     @GET("device")
     Call<JSONApiObject> getDeviceByCategory(@Query("category") String categoryId);
 
     @GET("device/{id}")
-    Call<JSONApiObject> getDeviceById(@Path("id") String deviceId);
+    Call<JSONApiObject> getDeviceById(@Path("id") String deviceId, @Query("uid") String uid);
 
 }

@@ -119,7 +119,7 @@ public class HomeFragment extends Fragment {
         // request for HomeCard data.
         User user = (User) GlobalData.getObjectForKey("user");
         HomeCardService homeCardService = ServiceGenerator.createService(HomeCardService.class, user.getName(), user.getPassword());
-        Call<JSONApiObject> call = homeCardService.getHomeCard();
+        Call<JSONApiObject> call = homeCardService.getHomeCard(user.getId());
         call.enqueue(new Callback<JSONApiObject>() {
             @Override
             public void onResponse(Call<JSONApiObject> call, retrofit2.Response<JSONApiObject> response) {

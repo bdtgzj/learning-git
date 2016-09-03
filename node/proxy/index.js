@@ -9,3 +9,6 @@ exports.Scene = require('./scene');
 exports.Instruction = require('./instruction');
 exports.Icon = require('./icon');
 exports.Color = require('./color');
+exports.Inscat = require('./inscat');
+exports.Family = require('./family');
+exports.Log = require('./log');

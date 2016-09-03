@@ -19,4 +19,14 @@
     <dimen name="fragment_me_linearlayout_item_margin">10dp</dimen>
     <!-- UserInfoFragment -->
     <dimen name="fragment_userinfo_linearlayout_padding">16dp</dimen>
+    <!-- HomeCard Icon size -->
+    <dimen name="fragment_home_cardview_imageview_size">36dp</dimen>
+    <dimen name="fragment_home_cardview_imageview_margin">2dp</dimen>
+    <dimen name="fragment_home_cardview_textview_margin">2dp</dimen>
+    <!-- Region Icon size -->
+    <dimen name="fragment_device_recyclerview_imageview_size">24dp</dimen>
+    <!-- Scene Icon size -->
+    <dimen name="fragment_scene_recyclerview_imageview_size">24dp</dimen>
+    <!-- fragment log -->
+    <dimen name="fragment_log_recyclerview_margin">8dp</dimen>
 </resources>

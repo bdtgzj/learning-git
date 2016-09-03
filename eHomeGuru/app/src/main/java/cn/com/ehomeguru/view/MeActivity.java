@@ -7,33 +7,14 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.gustavofao.jsonapi.Models.ErrorModel;
-import com.gustavofao.jsonapi.Models.JSONApiObject;
-import com.gustavofao.jsonapi.Models.Resource;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.List;
 
 import cn.com.ehomeguru.R;
 import cn.com.ehomeguru.adapter.InstructionListViewAdapter;
-import cn.com.ehomeguru.bean.HttpError;
 import cn.com.ehomeguru.bean.Instruction;
-import cn.com.ehomeguru.bean.User;
-import cn.com.ehomeguru.model.GlobalData;
-import cn.com.ehomeguru.service.InstructionService;
-import cn.com.ehomeguru.service.ServiceGenerator;
-import cn.com.ehomeguru.util.ErrorUtil;
-import retrofit2.Call;
-import retrofit2.Callback;
 
 public class MeActivity extends AppCompatActivity {
 
@@ -56,6 +37,7 @@ public class MeActivity extends AppCompatActivity {
 
         // get data from intent
         String fragmentName = getIntent().getExtras().getString("fragmentName");
+        int categoryId = getIntent().getExtras().getInt("category");
 
         // Add Fragment
         if (findViewById(R.id.fragment_container_me) != null) {
@@ -66,8 +48,13 @@ public class MeActivity extends AppCompatActivity {
             // Create a new Fragment to be placed in the activity framelayout layout
             try {
                 Class<?> c = Class.forName(fragmentName);
-                Method method = c.getDeclaredMethod(NEW_METHOD_NAME, null);
-                o = method.invoke(null, null);
+                if (categoryId > 0) {
+                    Method method = c.getDeclaredMethod(NEW_METHOD_NAME, int.class);
+                    o = method.invoke(null, categoryId);
+                } else {
+                    Method method = c.getDeclaredMethod(NEW_METHOD_NAME, null);
+                    o = method.invoke(null, null);
+                }
             } catch (ClassNotFoundException e) {
                 System.out.println(e.getMessage());
             } catch (NoSuchMethodException e) {
@@ -82,7 +69,7 @@ public class MeActivity extends AppCompatActivity {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             // let fragment add to backstack, for reserve status.
             //ft.addToBackStack(null);
-            ft.add(R.id.fragment_container_me, (UserInfoFragment) o);
+            ft.add(R.id.fragment_container_me, (Fragment) o);
             ft.commit();
         }
     }

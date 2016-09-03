@@ -7,10 +7,17 @@ module.exports = new JSONAPISerializer('homecard', {
   keyForAttribute: 'camelCase',
   pluralizeType: false,
   attributes: [
+    'name',
+    'iconId',
+    'iconName',
     'icon',
+    'colorId',
+    'colorName',
     'color',
-    'text',
     'deviceId',
-    'sceneId'
+    'deviceName',
+    'sceneId',
+    'sceneName',
+    'order'
   ]
 });

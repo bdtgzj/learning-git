@@ -4,6 +4,7 @@ import com.gustavofao.jsonapi.Models.JSONApiObject;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 /**
  * Created by xiaodongyu on 6/28/2016 AD.
@@ -11,6 +12,6 @@ import retrofit2.http.GET;
 public interface RegionService {
 
     @GET("region")
-    Call<JSONApiObject> getRegion();
+    Call<JSONApiObject> getRegion(@Query("uid") String uid);
 
 }

@@ -9,6 +9,8 @@ var errorhandler = require('errorhandler');
 //var tokenAuth = require('./libs/middleware').tokenAuth;
 var basicAuth = require('./libs/basicauth');
 var app = express();
+// error
+var error = require('./libs/error');
 
 // tcp connection pool
 var net = require('net');
@@ -21,9 +23,36 @@ var connectionPool = new ConnectionPool(5, { // size of the connection pool
 // factory produce connections.
 connectionPool.factory(function () {
   var socket = new net.Socket; // net.Socket from node.
+  var handlerDatas = [];
+  // configure
+  socket.setTimeout(10000);
   // async api
   socket.connect(config.screenHostPort, config.screenHostName);
-  // socket.setTimeout(10000000);
+  // on data
+  socket.on('data', function(buf) {
+    //console.log(buf);
+    var fid = buf.readUInt32BE(0);
+    var handlerData = handlerDatas[fid].pop();
+    if (typeof handlerData  === 'function') handlerData(null, buf);
+  });
+  // on error
+  socket.on('error', function(err) {
+    //var handlerData = handlerDatas.pop();
+    //if (typeof handlerData  === 'function') handlerData(err);
+    console.log(err);
+  });
+  // on timeout
+  socket.on('timeout', function() {
+    console.log('timeout');
+    // Half-closes the socket.sends a FIN packet.server will still send some data.
+    socket.end();
+  });
+  // on handlerData
+  socket.on('handlerData', function(fid, fn) {
+    if (!handlerDatas[fid]) handlerDatas[fid] = [];
+    handlerDatas[fid].unshift(fn);
+  });
+  // 
   return socket;
 });
 
@@ -89,12 +118,7 @@ if (config.debug) {
   app.use(errorhandler());
 } else {
   app.use(function (err, req, res, next) {
-    return res.status(500).json({errors: [{
-      status: '500',
-      title: '网络服务异常',
-      detail: '抱歉，网络服务异常，您可请联系客服，谢谢！',
-      source: {}
-    }]});
+    return res.status(500).json(error('网络服务异常', '抱歉，网络服务异常，您可请联系客服，谢谢！', '500'));
   });
 }
 
