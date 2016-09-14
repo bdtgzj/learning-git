@@ -57,8 +57,8 @@ var config = {
     port: 994,
     secureConnection: true,
     auth: {
-      user: 'service@xuezhile.cn',
-      pass: '7Cov6IC9rm'
+      user: '',
+      pass: ''
     }
   },
   // sms

@@ -88,7 +88,7 @@ func main() {
       fmt.Println("Error accepting for family: ", err.Error())
       os.Exit(1)
     }
-    fmt.Printf("a new Family connection: %v; remote client is: %v", conn, conn.RemoteAddr().String())
+    // fmt.Printf("a new Family connection: %v; remote client is: %v", conn, conn.RemoteAddr().String())
     // create & manage connections in a new goroutine.
     go createFamilyConn(conn)
   }
@@ -103,7 +103,7 @@ func listenerScreen(lScreen net.Listener) {
       fmt.Println("Error accepting for screen: ", err.Error())
       os.Exit(1)
     }
-    fmt.Printf("a new Screen connection: %v; remote client is: %v", conn, conn.RemoteAddr().String())
+    // fmt.Printf("a new Screen connection: %v; remote client is: %v", conn, conn.RemoteAddr().String())
     // create & manage connections in a new goroutine.
     go createScreenConn(conn)
   }
@@ -187,7 +187,7 @@ func createFamilyConn(conn net.Conn) {
             var res []byte
             res = append(byteSN, buf...)
             // 
-            fmt.Println(res[:dataLen+4])
+            fmt.Println("【Res】", res[:dataLen+4])
             familyScreen[sn].Screen[uid][sid].Write(res[:dataLen+4])
           } else {
             fmt.Println("Screen is not exist.")
@@ -302,6 +302,7 @@ func createScreenConn(conn net.Conn) {
     }
     // send to family
     if familyScreen[sn].Family != nil {
+      fmt.Println("【Req】", buf[8:dataLen])
       familyScreen[sn].Family.Write(buf[8:dataLen])
     }
 

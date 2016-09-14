@@ -41,3 +41,4 @@ userSchema.pre('save', function(next) {
 // db.getIndexes();
 // db.users.dropIndex('loginName_1');
 // db.users.update({}, {$set: {state: 0}}, {multi: true})
+// db.users.update({}, {$set: {password: '16b4d433eeef71946e93341822786a196549c2c5'}})

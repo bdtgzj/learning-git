@@ -90,9 +90,10 @@ function updateDialog(state = {isVisible: false, name: {}, fid: {}, address: {va
     case OPEN_UPDATE_DIALOG:
       if (action.open) {
         return Object.assign({}, state,
-          { isVisible: true, 
+          { isVisible: true,
             id: action.selectedRow.id,
             name: {value: action.selectedRow.name, valid: true},
+            fid: {value: action.selectedRow.fid, valid: true},
             address: {value: action.selectedRow.address, valid: true}
           })
       } else {

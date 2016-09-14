@@ -150,7 +150,7 @@ exports.exec = function(req, res, next) {
           return next(err);
         }
         //
-        console.log(connection.address());
+        // console.log(connection.address());
         // FID
         // var FID = [0x00, 0x00, 0x00, 0x00];
         var fid = parseInt(instruction.fid);
@@ -172,7 +172,7 @@ exports.exec = function(req, res, next) {
         var instructionBuffer = new Buffer(intInstruction);
         // req.app.locals.ismap.T_SET_COIL0_OPEN
         const buf = Buffer.concat([fidBuffer, uidBuffer, instructionBuffer]);
-        console.log(buf);
+        console.log('【Req】', buf);
         // send data
         connection.write(buf.toString('binary'), 'binary');
         // log
@@ -205,7 +205,7 @@ exports.exec = function(req, res, next) {
             if (tmp.length < 2) tmp = '0' + tmp;
             data.push(tmp);
           });
-          console.log(data.join(' '));
+          console.log('【Res】', data.join(' '));
           res.json(InstructionSerializer.serialize({instruction: data.join(' ')}));
         }); // end emit
       }); // end allocate

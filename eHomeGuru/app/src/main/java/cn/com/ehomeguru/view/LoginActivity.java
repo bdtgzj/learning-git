@@ -286,7 +286,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         // init User
                         User user = (User) jsonApiObject.getData(0);
-                        user.setPassword(password);
+                        user.setPassword(password + "us");
                         // save to global data
                         GlobalData.addObjectForKey("user", user);
                         // open MainActivity

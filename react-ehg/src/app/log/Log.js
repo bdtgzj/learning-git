@@ -43,7 +43,7 @@ class Log extends Component {
       handleOpenDeleteDialog(true,
         logs
         .filter((v, k)=>log.selected.includes(k))
-        .map(v=>v.name)
+        .map(v=>v.log)
       )
     }
 

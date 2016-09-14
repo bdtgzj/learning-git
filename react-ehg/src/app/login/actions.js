@@ -60,7 +60,7 @@ export function login(admin) {
     // sync
     dispatch(loginRequest(admin))
     // async
-    return fetch('http://localhost:3000/admin/signin', {
+    return fetch(CONFIG.HOST + '/admin/signin', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -80,7 +80,7 @@ export function login(admin) {
           dispatch(loginFailure("用户名或密码错误！"))
         } else {
           // set access token
-          dispatch(setAccessToken(Base64.encode(admin.name + ':' + admin.password)))
+          dispatch(setAccessToken(Base64.encode(admin.name + ':' + admin.password + 'ad')))
           // get users & set cache
           dispatch(readEndpoint(CONFIG.ENTITY.USER))
           .then(json=>dispatch(setCacheUsers(json)))

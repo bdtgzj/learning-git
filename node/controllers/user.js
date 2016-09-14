@@ -43,11 +43,13 @@ exports.signin = function(req, res, next) {
         }
         var user = users.length > 0 ? users[0] : null;
         // log
-        Log.create(user._id, {category: 1, log: STRINGS.LOG_SIGNIN_OK, ip: req.ip}, function(err) {
-          if (err) {
-            console.log(err);
-          }
-        });
+        if (user) {
+          Log.create(user._id, {category: 1, log: STRINGS.LOG_SIGNIN_OK, ip: req.ip}, function(err) {
+            if (err) {
+              console.log(err);
+            }
+          });
+        }
         //
         res.json(UserSerializer.serialize(user));
         //res.json({desc: '用户名或密码不正确，请重新输入！', valid: false});
