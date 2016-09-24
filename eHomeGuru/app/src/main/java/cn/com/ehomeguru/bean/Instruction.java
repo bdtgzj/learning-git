@@ -19,9 +19,32 @@ public class Instruction extends Resource {
     private String deviceName;
     private String sceneId;
     private String sceneName;
-    private String status;
     private int order;
     private String log;
+
+    // control instruction
+    private int switcher;
+
+    private int airSwitcher;
+    private int airTemperature;
+    private int airTemperatureControl;
+    private int airSpeed;
+    private int airMode;
+
+    private int tvSwitcher;
+    private int tvVolume;
+    private int tvChannel;
+    private int tvMode;
+
+    private int[] positiveReverseStop;
+    private int shift;
+    private int checkValue;
+    private int setValue;
+    private int checkAlarm;
+
+    public Instruction() {
+        positiveReverseStop = new int[]{0, 0, 0};
+    }
 
     public int getUid() {
         return uid;
@@ -103,14 +126,6 @@ public class Instruction extends Resource {
         this.sceneName = sceneName;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public int getOrder() {
         return order;
     }
@@ -125,5 +140,125 @@ public class Instruction extends Resource {
 
     public void setLog(String log) {
         this.log = log;
+    }
+
+    public int getSwitcher() {
+        return switcher;
+    }
+
+    public void setSwitcher(int switcher) {
+        this.switcher = switcher;
+    }
+
+    public int getAirSwitcher() {
+        return airSwitcher;
+    }
+
+    public void setAirSwitcher(int airSwitcher) {
+        this.airSwitcher = airSwitcher;
+    }
+
+    public int getAirTemperature() {
+        return airTemperature;
+    }
+
+    public void setAirTemperature(int airTemperature) {
+        this.airTemperature = airTemperature;
+    }
+
+    public int getAirTemperatureControl() {
+        return airTemperatureControl;
+    }
+
+    public void setAirTemperatureControl(int airTemperatureControl) {
+        this.airTemperatureControl = airTemperatureControl;
+    }
+
+    public int getAirSpeed() {
+        return airSpeed;
+    }
+
+    public void setAirSpeed(int airSpeed) {
+        this.airSpeed = airSpeed;
+    }
+
+    public int getAirMode() {
+        return airMode;
+    }
+
+    public void setAirMode(int airMode) {
+        this.airMode = airMode;
+    }
+
+    public int getTvSwitcher() {
+        return tvSwitcher;
+    }
+
+    public void setTvSwitcher(int tvSwitcher) {
+        this.tvSwitcher = tvSwitcher;
+    }
+
+    public int getTvVolume() {
+        return tvVolume;
+    }
+
+    public void setTvVolume(int tvVolume) {
+        this.tvVolume = tvVolume;
+    }
+
+    public int getTvChannel() {
+        return tvChannel;
+    }
+
+    public void setTvChannel(int tvChannel) {
+        this.tvChannel = tvChannel;
+    }
+
+    public int getTvMode() {
+        return tvMode;
+    }
+
+    public void setTvMode(int tvMode) {
+        this.tvMode = tvMode;
+    }
+
+    public int[] getPositiveReverseStop() {
+        return positiveReverseStop;
+    }
+
+    public void setPositiveReverseStop(int[] positiveReverseStop) {
+        this.positiveReverseStop = positiveReverseStop;
+    }
+
+    public int getShift() {
+        return shift;
+    }
+
+    public void setShift(int shift) {
+        this.shift = shift;
+    }
+
+    public int getCheckValue() {
+        return checkValue;
+    }
+
+    public void setCheckValue(int checkValue) {
+        this.checkValue = checkValue;
+    }
+
+    public int getSetValue() {
+        return setValue;
+    }
+
+    public void setSetValue(int setValue) {
+        this.setValue = setValue;
+    }
+
+    public int getCheckAlarm() {
+        return checkAlarm;
+    }
+
+    public void setCheckAlarm(int checkAlarm) {
+        this.checkAlarm = checkAlarm;
     }
 }

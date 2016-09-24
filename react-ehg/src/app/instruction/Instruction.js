@@ -104,7 +104,7 @@ class Instruction extends Component {
       return !form.name.valid || 
              !form.instruction.valid ||
              !form.category.id ||
-             !form.device.id ||
+             //!form.device.id ||
              //!form.scene.id ||
              !form.order.valid ||
              !instruction.user.id
@@ -289,7 +289,7 @@ class Instruction extends Component {
             hintText={strings.instruction_dialog_selectfield_placeholder_device}
             value={instruction.createDialog.device.id}
             onChange={(event, key, payload) => handleDeviceChangeCreate(payload)}>
-            {menuitemDevices}
+            {menuitemDevicesImmutable}
           </SelectField>
           <br />
           <SelectField
@@ -388,7 +388,7 @@ class Instruction extends Component {
             hintText={strings.instruction_dialog_selectfield_placeholder_device}
             value={instruction.updateDialog.device.id}
             onChange={(event, key, payload) => handleDeviceChangeUpdate(payload)}>
-            {menuitemDevices}
+            {menuitemDevicesImmutable}
           </SelectField>
           <br />
           <SelectField

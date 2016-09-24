@@ -27,7 +27,7 @@ function validateID(id) {
 
 function validateName(name) {
   var result = {};
-  if (!name || !validator.trim(name.toString()) || !validator.isLength(name, {min: 1, max: 10})) {
+  if (!name || !validator.trim(name.toString()) || !validator.isLength(name, {min: 1, max: 20})) {
     result =  {isValid: false, error: STRINGS.ERROR_PARAM_NAME};
   } else {
     result =  {isValid: true, data: name};

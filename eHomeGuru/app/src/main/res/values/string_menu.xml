@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- bottom menu -->
     <string name="menu_home">首页</string>
     <string name="menu_region">区域</string>
     <string name="menu_scene">场景</string>
     <string name="menu_me">我</string>
+    <!-- app bar menu -->
+    <string name="menu_refresh">刷新</string>
 </resources>

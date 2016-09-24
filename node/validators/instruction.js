@@ -93,11 +93,15 @@ function validateInstruction(instruction) {
     validatedInstruction['categoryId'] = validatedCategoryId.data;
   }
 
-  var validatedDeviceId = validatorCommon.validateID(instruction.deviceId);
-  if (!validatedDeviceId.isValid) {
-    return validatedDeviceId;
+  if (instruction.deviceId) {
+    var validatedDeviceId = validatorCommon.validateID(instruction.deviceId);
+    if (!validatedDeviceId.isValid) {
+      return validatedDeviceId;
+    } else {
+      validatedInstruction['deviceId'] = validatedDeviceId.data;
+    }
   } else {
-    validatedInstruction['deviceId'] = validatedDeviceId.data;
+    validatedInstruction['deviceId'] = null;
   }
 
   if (instruction.sceneId) {

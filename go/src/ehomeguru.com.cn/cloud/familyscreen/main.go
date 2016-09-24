@@ -28,9 +28,9 @@ var (
   R_HEADER = []byte{ 0x00, 0x01, 0x00, 0x00, 0x00, 0x02}
   // get the family id/sn of host1 according Modbus RTU
   T_GET_SN = []byte{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x06,
-                      0x01, 0x03, 0x00, 0x00, 0x00, 0x02 }            
+                      0x32, 0x03, 0x13, 0x88, 0x00, 0x02 }
   R_GET_SN = []byte{ 0x00, 0x01, 0x00, 0x00, 0x00, 0x07,
-                     0x01, 0x03, 0x04 }
+                     0x32, 0x03, 0x04 }
 )
 
 // Screen {1: {"android": conn, "ios": conn}, 2: {"android": conn, "ios": conn}}
@@ -265,7 +265,14 @@ func createScreenConn(conn net.Conn) {
       // mapSocket[sn] = [2]net.Conn{conn}
       // fmt.Println("SN have added to map by screen:", sn)
       fmt.Println("ERROR:family not exist: ", sn)
-      conn.Write([]byte("ERROR:抱歉，家端不在线。"))
+      // add sn to packet
+      byteSN := make([]byte, 4)
+      binary.BigEndian.PutUint32(byteSN, sn)
+      byteError := []byte("ERROR:抱歉，家端不在线。")
+      var res []byte
+      res = append(byteSN, byteError...)
+      //
+      conn.Write(res[:len(res)])
       continue
     }
     // add screen socket

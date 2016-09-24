@@ -24,13 +24,32 @@
     <string name="error_homecard_no_data">抱歉,数据异常!</string>
 
     <!-- Strings related to ControllerActivity -->
+    <string name="label_switch">开关</string>
+    <string name="label_air_switch">空调开关</string>
+    <string name="label_air_temperature">当前温度</string>
+    <string name="label_air_temperature_control">温度设置</string>
+    <string name="label_air_speed">空调风速</string>
+    <string name="label_air_mode">空调模式</string>
+    <string name="label_tv_switch">电视开关</string>
+    <string name="label_tv_volume">电视音量</string>
+    <string name="label_tv_channel">电视频道</string>
+    <string name="label_tv_mode">电视模式</string>
+
+    <string name="text_raido_air_speed_1">一档</string>
+    <string name="text_raido_air_speed_2">二档</string>
+    <string name="text_raido_air_speed_3">三档</string>
+    <string name="text_raido_air_mode_cold">制冷</string>
+    <string name="text_raido_air_mode_heat">制热</string>
+    <string name="text_raido_air_mode_wind">通风</string>
+
+    <string name="text_raido_tv_mode_tv">电视</string>
+    <string name="text_raido_tv_mode_dvd">DVD</string>
+    <string name="text_raido_tv_mode_hdmi">电脑</string>
+
     <string name="label_current_status">当前状态:</string>
     <string name="title_activity_controller">Controller</string>
 
     <!-- MeActivity -->
     <string name="title_activity_me">Me</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

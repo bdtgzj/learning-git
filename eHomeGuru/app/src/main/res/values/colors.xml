@@ -10,4 +10,7 @@
     <color name="divider">#cecece</color>
     <!-- MeFragment -->
     <color name="fragment_me_linearlayout_bg">#cecece</color>
+    <!-- for Text -->
+    <color name="colorPrimaryText">@android:color/secondary_text_light</color>
+    <color name="colorBlack">#000000</color>
 </resources>

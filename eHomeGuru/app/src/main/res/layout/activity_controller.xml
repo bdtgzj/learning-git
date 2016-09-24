@@ -12,19 +12,21 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.NoActionBar.AppBarOverlay">
 
+        <!--app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay"-->
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar_conroller"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay" />
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
         android:id="@+id/conroller_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_below="@+id/appbar_conroller"
         android:gravity="center_horizontal">

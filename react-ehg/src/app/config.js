@@ -1,5 +1,6 @@
 const CONFIG = {
-  HOST: 'http://localhost:3000',
+  HOST: 'http://192.168.1.46:9000',
+  // HOST: 'http://localhost:3000',
   // HOST: 'http://151070wv41.iok.la:9000',
   PATH: '', 
   JSONAPI_DESERIALIZER_CONFIG: {

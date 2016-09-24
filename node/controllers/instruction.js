@@ -184,17 +184,17 @@ exports.exec = function(req, res, next) {
           });
         }
         // pass http's res object for response to screen client.
-        connection.emit('handlerData', fid, function(error, buf) {
+        connection.emit('handlerData', fid, function(ex, buf) {
           // handle error
-          if (error) {
-            return next(error);
+          if (ex) {
+            return next(ex);
           }
           // handle error
-          if (buf.length > 6) {
+          if (buf.length >= 10) {
             var str = buf.toString();
-            var err = str.substr(0, 6);
+            var err = buf.slice(4, 10).toString();
             if (err === 'ERROR:') {
-              res.json(error(STRINGS.ERROR_EXCEPTION_STATE, str.substr(6)));
+              res.json(error(STRINGS.ERROR_EXCEPTION_STATE, buf.slice(10).toString()));
               return ;
             }
           }

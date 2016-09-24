@@ -11,6 +11,7 @@ var strings = {
   button_label_cancel: '取消',
   // error prompt
   error_prompt_name: '请输入1至10个字符！',
+  error_prompt_name_instruction: '请输入1至20个字符！',
   error_prompt_order: '请输入数字字符！',
   error_prompt_icon: '请输入1至50个字符！',
   error_prompt_color: '请输入7至9个字符！',

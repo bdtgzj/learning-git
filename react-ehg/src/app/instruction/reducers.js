@@ -42,10 +42,10 @@ function createDialog(state = {isVisible: false, name: {}, instruction: {}, cate
         return Object.assign({}, state, {isVisible: false})
       }
     case VALIDATE_NAME_CREATE:
-      if (isLength(trim(action.name), {min: 1, max: 10})) {
+      if (isLength(trim(action.name), {min: 1, max: 20})) {
         return Object.assign({}, state, {name:{value: action.name, valid: true}})
       } else {
-        return Object.assign({}, state, {name:{value: action.name, valid: false, error: strings.error_prompt_name}})
+        return Object.assign({}, state, {name:{value: action.name, valid: false, error: strings.error_prompt_name_instruction}})
       }
     case VALIDATE_INSTRUCTION_CREATE:
       if (isLength(trim(action.instruction), {min: 1, max: 300})) {
@@ -56,7 +56,11 @@ function createDialog(state = {isVisible: false, name: {}, instruction: {}, cate
     case SET_CATEGORY_ID_CREATE:
       return Object.assign({}, state, {category:{id: action.id}})
     case SET_DEVICE_ID_CREATE:
-      return Object.assign({}, state, {device:{id: action.id}})
+      if (action.id === -1) {
+        return Object.assign({}, state, {device:{}})
+      } else {
+        return Object.assign({}, state, {device:{id: action.id}})
+      }
     case SET_SCENE_ID_CREATE:
       if (action.id === -1) {
         return Object.assign({}, state, {scene:{}})
@@ -83,10 +87,10 @@ function readDialog(state = {isVisible: false, name: {}, device: {}, scene: {}},
         return Object.assign({}, state, {isVisible: false})
       }
     case VALIDATE_NAME_READ:
-      if (isLength(trim(action.name), {min: 0, max: 10})) {
+      if (isLength(trim(action.name), {min: 0, max: 20})) {
         return Object.assign({}, state, {name:{value: action.name, valid: true}})
       } else {
-        return Object.assign({}, state, {name:{value: action.name, valid: false, error: strings.error_prompt_name}})
+        return Object.assign({}, state, {name:{value: action.name, valid: false, error: strings.error_prompt_name_instruction}})
       }
     case SET_DEVICE_ID_READ:
       if (action.id === -1) {
@@ -123,10 +127,10 @@ function updateDialog(state = {isVisible: false, name: {}, instruction: {}, cate
         return Object.assign({}, state, {isVisible: false})
       }
     case VALIDATE_NAME_UPDATE:
-      if (isLength(trim(action.name), {min: 1, max: 10})) {
+      if (isLength(trim(action.name), {min: 1, max: 20})) {
         return Object.assign({}, state, {name:{value: action.name, valid: true}})
       } else {
-        return Object.assign({}, state, {name:{value: action.name, valid: false, error: strings.error_prompt_name}})
+        return Object.assign({}, state, {name:{value: action.name, valid: false, error: strings.error_prompt_name_instruction}})
       }
     case VALIDATE_INSTRUCTION_UPDATE:
       if (isLength(trim(action.instruction), {min: 1, max: 300})) {
@@ -137,7 +141,11 @@ function updateDialog(state = {isVisible: false, name: {}, instruction: {}, cate
     case SET_CATEGORY_ID_UPDATE:
       return Object.assign({}, state, {category:{id: action.id}})
     case SET_DEVICE_ID_UPDATE:
-      return Object.assign({}, state, {device:{id: action.id}})
+      if (action.id === -1) {
+        return Object.assign({}, state, {device:{}})
+      } else {
+        return Object.assign({}, state, {device:{id: action.id}})
+      }
     case SET_SCENE_ID_UPDATE:
       if (action.id === -1) {
         return Object.assign({}, state, {scene:{}})
