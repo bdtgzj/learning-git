@@ -644,7 +644,7 @@ public class InstructionListViewAdapter extends BaseAdapter{
                 }
                 break;
             case "检测值":
-                if (convertView == null) {
+                if (true) {
                     // set LayoutParams for LinearLayout in ListView, so use android.widget.AbsListView.LayoutParams
                     LinearLayout linearLayout = new LinearLayout(parent.getContext());
                     linearLayout.setOrientation(LinearLayout.HORIZONTAL);
@@ -667,7 +667,7 @@ public class InstructionListViewAdapter extends BaseAdapter{
                 }
                 break;
             case "设置值":
-                if (convertView == null) {
+                if (true) {
                     // set LayoutParams for LinearLayout in ListView, so use android.widget.AbsListView.LayoutParams
                     LinearLayout linearLayout = new LinearLayout(parent.getContext());
                     linearLayout.setOrientation(LinearLayout.HORIZONTAL);
@@ -705,7 +705,7 @@ public class InstructionListViewAdapter extends BaseAdapter{
                 }
                 break;
             case "报警检测":
-                if (convertView == null) {
+                if (true) {
                     // set LayoutParams for LinearLayout in ListView, so use android.widget.AbsListView.LayoutParams
                     LinearLayout linearLayout = new LinearLayout(parent.getContext());
                     linearLayout.setOrientation(LinearLayout.HORIZONTAL);

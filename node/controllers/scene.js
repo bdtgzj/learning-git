@@ -20,6 +20,8 @@ var JSONAPIDeserializer = require('jsonapi-serializer').Deserializer;
 var SceneSerializer = require('../serializers').SceneSerializer;
 // tcp client socket
 var net = require('net');
+// connections pool
+var connections = {};
 
 /*
 exports.retrieve = function(req, res, next) {
@@ -156,6 +158,46 @@ exports.deleteOne = function(req, res, next) {
 /**
  * command execute
  */
+var execLoop = function(fidBuffer, uidBuffer, scene, instructions, socket) {
+  // instruction string to int
+  var instructionLen = instructions.length;
+  instructions.forEach(function(instruction) {
+    //var strInstruction = instruction.instruction.split('@')[1].replace(/[\[\]]/g, '');
+    var strInstruction = '';
+    // scene action
+    switch (scene.action) {
+      // set off
+      case 0:
+        strInstruction = instruction.instruction.split('@')[1].replace(/\[.*\]/g, '00 00');
+        break;
+      // set on
+      case 1:
+        strInstruction = instruction.instruction.split('@')[1].replace(/\[.*\]/g, 'FF 00');
+        break;
+      // read state
+      case 2:
+        strInstruction = instruction.instruction.split('@')[0];
+        break;
+      default:
+        break;
+    }
+    // string to array
+    var arrStrInstruction = strInstruction.split(' ');
+    var arrIntInstruction = [];
+    for(var i=0, len=arrStrInstruction.length; i < len; i++) {
+      arrIntInstruction.push('0x' + arrStrInstruction[i]);
+    }
+    //
+    var instructionBuffer = new Buffer(arrIntInstruction);
+    // req.app.locals.ismap.T_SET_COIL0_OPEN
+    // const buf = new Buffer(SN.concat(UID, intInstruction));
+    const buf = Buffer.concat([fidBuffer, uidBuffer, instructionBuffer]);
+    console.log('【Req】', buf);
+    // send data
+    socket.write(buf.toString('binary'), 'binary');
+  }); // end forEach
+};
+
 exports.exec = function(req, res, next) {
   new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(req.body)
     .then(function(scene) {
@@ -176,46 +218,63 @@ exports.exec = function(req, res, next) {
           // SID
           // var sid = 'default';
           
+          // get connection by fid. one family one connection.
           // prepare tcp client socket
-          var socket = new net.Socket;
-          // configure
-          socket.setTimeout(60000);
-          // connect, async api
-          socket.connect(CONFIG.screenHostPort, CONFIG.screenHostName);
-          // on connect
-          socket.on('connect', function(conn) {
-            console.log(socket.address());
-            
-            // instruction string to int
-            instructionLen = instructions.length;
-            instructions.forEach(function(instruction) {
-              var strInstruction = instruction.instruction.split('@')[1].replace(/[\[\]]/g, '');
-              // string to array
-              var arrStrInstruction = strInstruction.split(' ');
-              var arrIntInstruction = [];
-              for(var i=0, len=arrStrInstruction.length; i < len; i++) {
-                arrIntInstruction.push('0x' + arrStrInstruction[i]);
-              }
-              // 
-              var instructionBuffer = new Buffer(arrIntInstruction);
-              // req.app.locals.ismap.T_SET_COIL0_OPEN
-              // const buf = new Buffer(SN.concat(UID, intInstruction));
-              const buf = Buffer.concat([fidBuffer, uidBuffer, instructionBuffer]);
-              console.log(buf);
-              // send data
-              socket.write(buf.toString('binary'), 'binary');
-            }); // end forEach
-          });
+          var socket = null;
+          if (connections[fid]) {
+            socket = connections[fid];
+            // send data
+            execLoop(fidBuffer, uidBuffer, scene, instructions, socket);
+          } else {
+            socket = new net.Socket;
+            connections[fid] = socket;
+            // configure
+            socket.setTimeout(30000);
+            // connect, async api
+            socket.connect(CONFIG.screenHostPort, CONFIG.screenHostName);
+            // on connect
+            socket.on('connect', function(conn) {
+              // console.log(socket.address());
+              execLoop(fidBuffer, uidBuffer, scene, instructions, socket);
+            });
+            // on error
+            socket.on('error', function(err) {
+              //var handlerData = handlerDatas.pop();
+              //if (typeof handlerData  === 'function') handlerData(err);
+              console.log(err);
+              delete connections[fid];
+              socket.destroy();
+            });
+            // on timeout
+            socket.on('timeout', function() {
+              console.log('timeout');
+              delete connections[fid];
+              // Half-closes the socket.sends a FIN packet.server will still send some data.
+              socket.end();
+              socket.destroy();
+            });
+            // received a FIN packet from server.
+            socket.on('end', function() {
+              console.log('end');
+              delete connections[fid];
+              // Half-closes the socket.sends a FIN packet.server will still send some data.
+              socket.end();
+              socket.destroy();
+            });
+          }
           // on received data
           var retNum = 0;
           var instructionLen = instructions.length;
-          socket.on('data', function(buf) {
-            console.log(buf);
+          socket.once('data', function(buf) {
+            console.log('【Res】', buf);
             // handle error
             if (buf.length > 6) {
               var str = buf.toString();
               var err = str.substr(0, 6);
               if (err === 'ERROR:') {
+                // close socket
+                socket.end();
+                //
                 res.json(error(STRINGS.ERROR_EXCEPTION_STATE, str.substr(6)));
                 return ;
               }
@@ -223,35 +282,49 @@ exports.exec = function(req, res, next) {
             retNum++;
             if (retNum == instructionLen) {
               // close socket
-              socket.end();
+              // socket.end();
               // log
-              Log.create(uid, {category: 2, log: scene.regionName + ' > ' + scene.name, ip: req.ip}, function(err) {
-                if (err) {
-                  console.log(err);
+              if (scene.action != 2) {
+                Log.create(uid, {category: 2, log: scene.regionName + ' > ' + scene.name, ip: req.ip}, function(err) {
+                  if (err) {
+                    console.log(err);
+                  }
+                });
+              }
+              // read status
+              var status = -1;
+              if (scene.action == 2) {
+                switch (instructions[instructionLen-1].categoryName) {
+                  case '开关': // 0 or 1
+                    // 00 00 00 01 00 01 00 00 00 04 01 01 01 00 after 36 are data, and data = address/number(normal 1byte) + actual data
+                    // uid(4) + tcp modbus header(6) + host(1) + function(1) + data
+                    var dataHex = [];
+                    buf.forEach((v, i) => {
+                      var tmp = v.toString(16);
+                      if (tmp.length < 2) tmp = '0' + tmp;
+                      dataHex.push(tmp);
+                    });
+                    //
+                    var strStatus = '';
+                    for(var i = 13, len = dataHex.length; i < len; i++) {
+                      strStatus += buf[i];
+                    }
+                    status = parseInt(strStatus, 16);
+                    break;
+                  case '正反停': // -1
+                    status = -1;
+                    break;
+                  case '档位': // -2
+                    status = -2;
+                    break;
+                  default:
+                    break;
                 }
-              });
+              }
               // response to screen
-              res.json(SceneSerializer.serialize({_id: scene.id}));
+              console.log({_id: scene.id, action: scene.action, status: status});
+              res.json(SceneSerializer.serialize({_id: scene.id, action: scene.action, status: status}));
             }
-          });
-          // on error
-          socket.on('error', function(err) {
-            //var handlerData = handlerDatas.pop();
-            //if (typeof handlerData  === 'function') handlerData(err);
-            console.log(err);
-            socket.destroy();
-          });
-          // on timeout
-          socket.on('timeout', function() {
-            console.log('timeout');
-            // Half-closes the socket.sends a FIN packet.server will still send some data.
-            socket.end();
-          });
-          // received a FIN packet from server.
-          socket.on('end', function() {
-            console.log('end');
-            // Half-closes the socket.sends a FIN packet.server will still send some data.
-            socket.end();
           });
         }); // end getInstructionByScene
     }) // end then

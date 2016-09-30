@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -189,13 +190,6 @@ public class ControllerActivity extends AppCompatActivity implements Instruction
                     instructionRead.setInstruction(instructionOriginal.getInstruction().split("@")[0]);
                     getDeviceStateRefreshUIHelper(instructionOriginal, instructionRead);
             }
-            /*
-            try {
-                Thread.sleep(1000);
-            } catch(InterruptedException e) {
-                System.out.println(e);
-            }
-            */
         }
     }
 
@@ -287,6 +281,13 @@ public class ControllerActivity extends AppCompatActivity implements Instruction
                 Toast.makeText(ControllerActivity.this, R.string.error_network, Toast.LENGTH_SHORT).show();
             }
         });
+        //
+        try {
+            // prevent the request data is combined by server , and register multiple times on data event.
+            Thread.sleep(100);
+        } catch(InterruptedException e) {
+            System.out.println(e);
+        }
     }
 
     // set device
@@ -406,6 +407,14 @@ public class ControllerActivity extends AppCompatActivity implements Instruction
         for (Map.Entry<String, Instruction> entry : mapInstruction.entrySet()) {
             String data = (entry.getKey()==name) ? "FF 00" : "00 00";
             String log = entry.getKey();
+            /*
+            try {
+                // prevent the request data is combined by server, and register multiple times on data event.
+                Thread.sleep(100);
+            } catch(InterruptedException e) {
+                System.out.println(e);
+            }
+            */
             execInstruction(entry.getValue(), data, log);
         }
         for (Map.Entry<String, Button> entry : mapButton.entrySet()) {

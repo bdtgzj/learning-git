@@ -16,10 +16,7 @@ var Log = require('../proxy').Log;
 // json api
 var JSONAPIDeserializer = require('jsonapi-serializer').Deserializer;
 var InstructionSerializer = require('../serializers').InstructionSerializer;
-// tcp client socket
-var net = require('net');
-// connections pool
-var connections = {};
+
 /**
  * Retrieve
  */
@@ -146,103 +143,61 @@ exports.deleteOne = function(req, res, next) {
 exports.exec = function(req, res, next) {
   new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(req.body)
     .then(function(instruction) {
-      // FID
-      // var FID = [0x00, 0x00, 0x00, 0x00];
-      var fid = parseInt(instruction.fid);
-      var fidBuffer = new Buffer(4);
-      fidBuffer.writeUInt32BE(fid);
-      // UID
-      // const UID = [0x00, 0x00, 0x00, 0x00];
-      var uid = parseInt(instruction.uid);
-      var uidBuffer = new Buffer(4);
-      uidBuffer.writeUInt32BE(uid);
-      // SID
-      // var sid = 'default';
-      // prepare for instruction data
-      // instruction string to int
-      var strInstruction = instruction.instruction.split(' ');
-      var intInstruction = [];
-      for(var i=0, len=strInstruction.length; i < len; i++) {
-        intInstruction.push('0x' + strInstruction[i]);
-      }
-      var instructionBuffer = new Buffer(intInstruction);
-      // req.app.locals.ismap.T_SET_COIL0_OPEN
-      const bufSend = Buffer.concat([fidBuffer, uidBuffer, instructionBuffer]);
-      
-      // get connection by fid. one family one connection.
-      // prepare tcp client socket
-      var socket = null;
-      if (connections[fid]) {
-        socket = connections[fid];
-        // send data
-        socket.write(bufSend.toString('binary'), 'binary');
-        console.log('【Req】', bufSend);
-      } else {
-        socket = new net.Socket;
-        connections[fid] = socket;
-        // configure
-        socket.setTimeout(30000);
-        // connect, async api
-        socket.connect(CONFIG.screenHostPort, CONFIG.screenHostName);
-        // on connect
-        socket.on('connect', function(conn) {
-          // can look every socket
-          console.log(socket.address());
-          // send data
-          socket.write(bufSend.toString('binary'), 'binary');
-          console.log('【Req】', bufSend);
-        }); // end socket.on
-        // on error
-        socket.on('error', function(err) {
-          //var handlerData = handlerDatas.pop();
-          //if (typeof handlerData  === 'function') handlerData(err);
-          console.log(err);
-          delete connections[fid];
-          socket.destroy();
-        });
-        // on timeout
-        socket.on('timeout', function() {
-          console.log('timeout');
-          delete connections[fid];
-          // Half-closes the socket.sends a FIN packet.server will still send some data.
-          socket.end();
-          socket.destroy();
-        });
-        // received a FIN packet from server.
-        socket.on('end', function() {
-          console.log('end');
-          delete connections[fid];
-          // Half-closes the socket.sends a FIN packet.server will still send some data.
-          socket.end();
-          socket.destroy();
-        });
-      }
-      // on received data
-      // note: concurrent request result in multiple register, and one time execute.
-      socket.once('data', function(buf) {
-        // console.log(buf);
-        // handle error
-        if (buf.length >= 10) {
-          var str = buf.toString();
-          var err = buf.slice(4, 10).toString();
-          if (err === 'ERROR:') {
-            res.json(error(STRINGS.ERROR_EXCEPTION_STATE, buf.slice(10).toString()));
-            return ;
-          }
+      // get a connection from ConnectionPool. pull
+      // async api
+      req.app.locals.connectionPool.allocate(function (err, connection) {
+        if (err) {
+          return next(err);
         }
-
-        if (true) {
-          // close socket
-          // socket.end();
-          // log
-          if (instruction.log) {
-            Log.create(uid, {category: 2, log: instruction.log, ip: req.ip}, function(err) {
-              if (err) {
-                console.log(err);
-              }
-            });
+        //
+        // console.log(connection.address());
+        // FID
+        // var FID = [0x00, 0x00, 0x00, 0x00];
+        var fid = parseInt(instruction.fid);
+        var fidBuffer = new Buffer(4);
+        fidBuffer.writeUInt32BE(fid);
+        // UID
+        // const UID = [0x00, 0x00, 0x00, 0x00];
+        var uid = parseInt(instruction.uid);
+        var uidBuffer = new Buffer(4);
+        uidBuffer.writeUInt32BE(uid);
+        // SID
+        // var sid = 'default';
+        // instruction string to int
+        var strInstruction = instruction.instruction.split(' ');
+        var intInstruction = [];
+        for(var i=0, len=strInstruction.length; i < len; i++) {
+          intInstruction.push('0x' + strInstruction[i]);
+        }
+        var instructionBuffer = new Buffer(intInstruction);
+        // req.app.locals.ismap.T_SET_COIL0_OPEN
+        const buf = Buffer.concat([fidBuffer, uidBuffer, instructionBuffer]);
+        console.log('【Req】', buf);
+        // send data
+        connection.write(buf.toString('binary'), 'binary');
+        // log
+        if (instruction.log) {
+          Log.create(uid, {category: 2, log: instruction.log, ip: req.ip}, function(err) {
+            if (err) {
+              console.log(err);
+            }
+          });
+        }
+        // pass http's res object for response to screen client.
+        connection.emit('handlerData', fid, function(ex, buf) {
+          // handle error
+          if (ex) {
+            return next(ex);
           }
-          // response to screen
+          // handle error
+          if (buf.length >= 10) {
+            var str = buf.toString();
+            var err = buf.slice(4, 10).toString();
+            if (err === 'ERROR:') {
+              res.json(error(STRINGS.ERROR_EXCEPTION_STATE, buf.slice(10).toString()));
+              return ;
+            }
+          }
           // var data = new Uint8Array(buf).join(' ');
           var data = [];
           buf.forEach((v, i) => {
@@ -252,8 +207,8 @@ exports.exec = function(req, res, next) {
           });
           console.log('【Res】', data.join(' '));
           res.json(InstructionSerializer.serialize({instruction: data.join(' ')}));
-        }
-      });
+        }); // end emit
+      }); // end allocate
     }) // end then
     .catch(function(err) {
       return next(err);

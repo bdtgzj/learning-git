@@ -18,6 +18,15 @@ public class Scene extends Resource {
     private String regionName;
     private int order;
 
+    // 0 = set off, 1 = set on, 2 = get status; set action according to status
+    private int action;
+    // 0 = off
+    private int status;
+
+    public Scene() {
+        this.status = -4; // default ""
+    }
+
     public int getUid() {
         return uid;
     }
@@ -80,5 +89,21 @@ public class Scene extends Resource {
 
     public void setOrder(int order) {
         this.order = order;
+    }
+
+    public int getAction() {
+        return action;
+    }
+
+    public void setAction(int action) {
+        this.action = action;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

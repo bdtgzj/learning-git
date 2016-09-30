@@ -12,7 +12,6 @@ var app = express();
 // error
 var error = require('./libs/error');
 
-/*
 // tcp connection pool
 var net = require('net');
 var ConnectionPool = require('jackpot');
@@ -58,7 +57,6 @@ connectionPool.factory(function () {
 });
 
 var ismap = require('./ismap');
-*/
 
 // set(configuration)
 app.enable('trust proxy'); // trust nginx
@@ -84,8 +82,8 @@ app.use(function(req, res, next) {
 //static helpers(for the lifetime of the application.)
 // how to use? `req.app.locals`
 app.locals.config = config;
-// app.locals.connectionPool = connectionPool;
-// app.locals.ismap = ismap;
+app.locals.connectionPool = connectionPool;
+app.locals.ismap = ismap;
 //dynamic helpers(for the lifetime of the request.)
 /**app.use(function(req, res, next) {
   *res.locals.ip = req.ip;

@@ -16,6 +16,8 @@ module.exports = new JSONAPISerializer('scene', {
     'colorName',
     'regionId',
     'regionName',
-    'order'
+    'order',
+    'action',
+    'status'
   ]
 });

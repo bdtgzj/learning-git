@@ -45,8 +45,24 @@ public class SceneRecyclerViewAdapter extends RecyclerView.Adapter<SceneRecycler
         );
         holder.mSceneIconView.setImageDrawable(drawable);
 
+        // name
         holder.mSceneNameView.setText(mListScene.get(position).getName());
-        holder.mSceneStatusView.setText("");
+        // status
+        int iStatus = mListScene.get(position).getStatus();
+        String sStatus = "";
+        switch (iStatus) {
+            case 0:
+            case 1:
+                sStatus = (iStatus == 0) ? "关" : "开";
+                break;
+            case -1:
+                sStatus = "";
+                break;
+            case -2:
+                sStatus = "";
+                break;
+        }
+        holder.mSceneStatusView.setText(sStatus);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +70,7 @@ public class SceneRecyclerViewAdapter extends RecyclerView.Adapter<SceneRecycler
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onSceneListFragmentInteraction(holder.mScene);
+                    mListener.onSceneListFragmentInteraction(holder.mScene, holder.mSceneStatusView);
                 }
             }
         });

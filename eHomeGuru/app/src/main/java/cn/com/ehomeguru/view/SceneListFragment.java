@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gustavofao.jsonapi.Models.JSONApiObject;
@@ -25,12 +26,15 @@ import cn.com.ehomeguru.R;
 import cn.com.ehomeguru.adapter.DeviceRecyclerViewAdapter;
 import cn.com.ehomeguru.adapter.SceneRecyclerViewAdapter;
 import cn.com.ehomeguru.bean.Device;
+import cn.com.ehomeguru.bean.Instruction;
 import cn.com.ehomeguru.bean.Scene;
 import cn.com.ehomeguru.bean.User;
 import cn.com.ehomeguru.model.GlobalData;
 import cn.com.ehomeguru.service.DeviceService;
+import cn.com.ehomeguru.service.InstructionService;
 import cn.com.ehomeguru.service.SceneService;
 import cn.com.ehomeguru.service.ServiceGenerator;
+import cn.com.ehomeguru.util.CommonUtil;
 import cn.com.ehomeguru.util.DividerItemDecoration;
 import cn.com.ehomeguru.util.ResponseUtil;
 import retrofit2.Call;
@@ -50,6 +54,7 @@ public class SceneListFragment extends Fragment {
     private OnSceneListFragmentInteractionListener mListener;
     private SceneRecyclerViewAdapter mSceneRecyclerViewAdapter;
     private List<Scene> mListScene;
+    private RecyclerView mRecyclerView;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -83,21 +88,21 @@ public class SceneListFragment extends Fragment {
 
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+            mRecyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+                mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             // Divider between Items in RecyclerView.
-            recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), R.drawable.shape_divider));
+            mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), R.drawable.shape_divider));
 
             // set Adapter
             mListScene = new ArrayList<Scene>();
             mSceneRecyclerViewAdapter = new SceneRecyclerViewAdapter(mListScene, mListener);
-            recyclerView.setAdapter(mSceneRecyclerViewAdapter);
+            mRecyclerView.setAdapter(mSceneRecyclerViewAdapter);
 
-            // request for device data. set dataset for RecyclerViewAdapater.
+            // request for scene data. set dataset for RecyclerViewAdapater.
             User user = (User) GlobalData.getObjectForKey("user");
             SceneService sceneService = ServiceGenerator.createService(SceneService.class, user.getName(), user.getPassword());
             Call<JSONApiObject> call = sceneService.getSceneByRegion(user.getId(), regionId);
@@ -110,7 +115,10 @@ public class SceneListFragment extends Fragment {
                             Scene scene = (Scene) resource;
                             mListScene.add(scene);
                         }
+                        // init ui
                         mSceneRecyclerViewAdapter.notifyDataSetChanged();
+                        // refresh ui
+                        getSceneStateRefreshUI();
                     }
                 }
 
@@ -124,6 +132,48 @@ public class SceneListFragment extends Fragment {
         return view;
     }
 
+    // get scene state and refresh ui
+    public void getSceneStateRefreshUI() {
+        User user = (User) GlobalData.getObjectForKey("user");
+        final Scene scene = new Scene();
+        scene.setUid(Integer.parseInt(user.getId()));
+        scene.setFid(user.getFid());
+        // read status
+        scene.setAction(2);
+        //
+        SceneService sceneService = ServiceGenerator.createService(SceneService.class, user.getName(), user.getPassword());
+        for (final Scene sceneOriginal : mListScene) {
+            scene.setId(sceneOriginal.getId());
+            scene.setName(sceneOriginal.getName());
+            scene.setRegionName(sceneOriginal.getRegionName());
+            Call<JSONApiObject> call = sceneService.execScene(scene);
+            call.enqueue(new Callback<JSONApiObject>() {
+                @Override
+                public void onResponse(Call<JSONApiObject> call, retrofit2.Response<JSONApiObject> response) {
+                    List<Resource> resources = ResponseUtil.parseResponse(response, getContext());
+                    if (resources != null) {
+                        Scene sceneRet = (Scene) resources.get(0);
+                        if (CommonUtil.equals(sceneRet.getId(), sceneOriginal.getId())) {
+                            sceneOriginal.setStatus(sceneRet.getStatus());
+                            //Toast.makeText(getContext(), R.string.toast_scene_exec_yes, Toast.LENGTH_SHORT).show();
+                        } else {
+                            //Toast.makeText(getContext(), R.string.toast_scene_exec_no, Toast.LENGTH_SHORT).show();
+                        }
+                        // refresh ui
+                        mRecyclerView.setAdapter(mSceneRecyclerViewAdapter);
+                        mSceneRecyclerViewAdapter.notifyDataSetChanged();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JSONApiObject> call, Throwable t) {
+                    Toast.makeText(getContext(), R.string.error_network, Toast.LENGTH_SHORT).show();
+                    // System.out.println(t.getMessage());
+                }
+            });
+        }
+
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -154,7 +204,7 @@ public class SceneListFragment extends Fragment {
      */
     public interface OnSceneListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onSceneListFragmentInteraction(Scene scene);
+        void onSceneListFragmentInteraction(Scene scene, TextView sceneStatus);
     }
 
 }

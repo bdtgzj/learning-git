@@ -26,7 +26,14 @@ exports.retrieve = function(uid, page, condition, callback) {
 
 exports.getInstructionByScene = function(uid, sceneId, callback) {
   var Instruction = mongoose.model('Instruction_' + uid, InstructionSchema);
-  Instruction.find({sceneId: mongoose.Types.ObjectId(sceneId)}, callback);
+  // Instruction.find({sceneId: mongoose.Types.ObjectId(sceneId)}, callback);
+  var aggr = [
+    { $match: {sceneId: mongoose.Types.ObjectId(sceneId)} },
+    { $lookup: { from: "inscats", localField: "categoryId", foreignField: "_id", as: "inscat_docs" } },
+    { $unwind: {path: "$inscat_docs", preserveNullAndEmptyArrays: true} },
+    { $project: { name: 1, instruction: 1, categoryId: 1, deviceId: 1, sceneId: 1, categoryName: "$inscat_docs.name", order: 1 } }
+  ];
+  Instruction.aggregate(aggr).exec(callback);
 };
 /*
 exports.getInstructionByDevice = function(uid, deviceId, callback) {

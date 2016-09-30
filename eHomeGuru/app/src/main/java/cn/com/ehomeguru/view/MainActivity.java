@@ -7,6 +7,7 @@ import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gustavofao.jsonapi.Models.JSONApiObject;
@@ -163,7 +164,7 @@ public class MainActivity extends AppCompatActivity
 
     // HomeFragment
     @Override
-    public void onHomeFragmentInteraction(HomeCard homeCard) {
+    public void onHomeFragmentInteraction(final HomeCard homeCard) {
         // get instruction from server
         User user = (User) GlobalData.getObjectForKey("user");
 
@@ -200,9 +201,11 @@ public class MainActivity extends AppCompatActivity
                 @Override
                 public void onResponse(Call<JSONApiObject> call, retrofit2.Response<JSONApiObject> response) {
                     List<Resource> resources = ResponseUtil.parseResponse(response, MainActivity.this);
+                    Scene sceneRet = (Scene) resources.get(0);
+                    sceneRet.setStatus(homeCard.getStatus());
                     if (resources != null) {
                         SceneExecDialogFragment
-                            .create((Scene) resources.get(0))
+                            .create(sceneRet, null)
                             .show(getSupportFragmentManager(), getString(R.string.fragment_sceneexecdialog_name));
                     }
                 }
@@ -232,7 +235,11 @@ public class MainActivity extends AppCompatActivity
 
     // SceneListFragment
     @Override
-    public void onSceneListFragmentInteraction(final Scene scene) {
+    public void onSceneListFragmentInteraction(Scene scene, TextView sceneStatus) {
+        SceneExecDialogFragment
+                .create(scene, sceneStatus)
+                .show(getSupportFragmentManager(), getString(R.string.fragment_sceneexecdialog_name));
+        /*
         // get instruction from server
         User user = (User) GlobalData.getObjectForKey("user");
         SceneService sceneService = ServiceGenerator.createService(SceneService.class, user.getName(), user.getPassword());
@@ -259,6 +266,7 @@ public class MainActivity extends AppCompatActivity
                 System.out.println(t.getMessage());
             }
         });
+        */
     }
 
     // MeFragment

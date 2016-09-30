@@ -23,10 +23,13 @@ import cn.com.ehomeguru.R;
 import cn.com.ehomeguru.adapter.HomeRecyclerViewAdapter;
 import cn.com.ehomeguru.bean.HomeCard;
 import cn.com.ehomeguru.bean.HttpError;
+import cn.com.ehomeguru.bean.Scene;
 import cn.com.ehomeguru.bean.User;
 import cn.com.ehomeguru.model.GlobalData;
 import cn.com.ehomeguru.service.HomeCardService;
+import cn.com.ehomeguru.service.SceneService;
 import cn.com.ehomeguru.service.ServiceGenerator;
+import cn.com.ehomeguru.util.CommonUtil;
 import cn.com.ehomeguru.util.ErrorUtil;
 import cn.com.ehomeguru.util.ResponseUtil;
 import retrofit2.Call;
@@ -128,7 +131,10 @@ public class HomeFragment extends Fragment {
                     for (Resource resource : resources) {
                         mListHomeCard.add((HomeCard) resource);
                     }
+                    // init ui
                     mAdapter.notifyDataSetChanged();
+                    // refresh ui
+                    getSceneStateRefreshUI();
                 }
             }
 
@@ -140,6 +146,52 @@ public class HomeFragment extends Fragment {
         });
 
         return v;
+
+    }
+
+    // get scene state and refresh ui
+    public void getSceneStateRefreshUI() {
+        User user = (User) GlobalData.getObjectForKey("user");
+        final Scene scene = new Scene();
+        scene.setUid(Integer.parseInt(user.getId()));
+        scene.setFid(user.getFid());
+        // read status
+        scene.setAction(2);
+        //
+        SceneService sceneService = ServiceGenerator.createService(SceneService.class, user.getName(), user.getPassword());
+        for (final HomeCard homeCardOriginal : mListHomeCard) {
+            if (homeCardOriginal.getSceneId() == null || homeCardOriginal.getSceneId() == "") {
+                continue;
+            }
+            scene.setId(homeCardOriginal.getSceneId());
+            scene.setName(homeCardOriginal.getName());
+            scene.setRegionName("");
+            Call<JSONApiObject> call = sceneService.execScene(scene);
+            call.enqueue(new Callback<JSONApiObject>() {
+                @Override
+                public void onResponse(Call<JSONApiObject> call, retrofit2.Response<JSONApiObject> response) {
+                    List<Resource> resources = ResponseUtil.parseResponse(response, getContext());
+                    if (resources != null) {
+                        Scene sceneRet = (Scene) resources.get(0);
+                        if (CommonUtil.equals(sceneRet.getId(), scene.getId())) {
+                            homeCardOriginal.setStatus(sceneRet.getStatus());
+                            //Toast.makeText(getContext(), R.string.toast_scene_exec_yes, Toast.LENGTH_SHORT).show();
+                        } else {
+                            //Toast.makeText(getContext(), R.string.toast_scene_exec_no, Toast.LENGTH_SHORT).show();
+                        }
+                        // refresh ui
+                        // recyclerView.setAdapter(mSceneRecyclerViewAdapter);
+                        mAdapter.notifyDataSetChanged();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JSONApiObject> call, Throwable t) {
+                    Toast.makeText(getContext(), R.string.error_network, Toast.LENGTH_SHORT).show();
+                    // System.out.println(t.getMessage());
+                }
+            });
+        }
 
     }
 
