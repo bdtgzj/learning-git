@@ -1,0 +1,4 @@
+node_modules
+other
+jmeter.log
+.DS_Store

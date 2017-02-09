@@ -1,0 +1,11 @@
+node_modules
+other/data
+
+# Ignore Mac OS desktop services store
+.DS_Store
+
+# Ignore Windows desktop setting file
+desktop.ini
+
+# Ignore JMeter's log
+jmeter.log
