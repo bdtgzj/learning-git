@@ -9,3 +9,6 @@ desktop.ini
 
 # Ignore JMeter's log
 jmeter.log
+
+# NPM Debug Log
+npm-debug.log

@@ -1,6 +1,9 @@
 run:
 	node app.js
 
+debug:
+	npm debug
+
 start-nginx:
 	sudo nginx
 

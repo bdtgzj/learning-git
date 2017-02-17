@@ -8,7 +8,8 @@
             "type": "node",
             "request": "launch",
             "name": "Launch via NPM",
-            "runtimeExecutable": "/usr/local/node-v6.9.5-darwin-x64/bin/npm",
+            // "runtimeExecutable": "/usr/local/node-v6.9.5-darwin-x64/bin/npm",
+            "runtimeExecutable": "npm",
             "windows": {
                 "runtimeExecutable": "npm.cmd"
             },
