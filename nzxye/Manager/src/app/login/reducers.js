@@ -6,7 +6,7 @@ import isLength from 'validator/lib/isLength'
 function name(state = {value: '', valid: false}, action) {
   switch (action.type) {
     case VALIDATE_NAME:
-      if (isLength(trim(action.name), {min: 6, max: 18})) {
+      if (isLength(trim(action.name), {min: 5, max: 18})) {
         return {
           value: action.name,
           valid: true
@@ -15,7 +15,7 @@ function name(state = {value: '', valid: false}, action) {
         return {
           value: action.name,
           valid: false,
-          error: '请输入6至18个字符！'
+          error: '请输入5至18个字符！'
         }
       }
     default:

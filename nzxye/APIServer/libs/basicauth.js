@@ -14,7 +14,7 @@ var basicAuth = function(req, res, next) {
     return res.status(401).end('Access denied.');
   }
   // parse client key, id/tname/tpass
-  var key = hashcrypt.decrypt(personPass, config.clientSecret).split('\t');
+  var key = hashcrypt.decrypt(credentials.pass, config.clientSecret).split('\t');
   //
   User.getUserByNameEmailMPhonePass(credentials.name, key[2], function(err, users) { // hashcrypt.sha1(personPass)
     if (err) {

@@ -34,10 +34,10 @@ export function validatePassword(password) {
   }
 }
 
-export function loginRequest(admin) {
+export function loginRequest(user) {
   return {
     type: LOGIN_REQUEST,
-    admin
+    user
   }
 }
 
@@ -48,19 +48,19 @@ export function loginFailure(e) {
   }
 }
 
-export function loginSuccess(admin) {
+export function loginSuccess(user) {
   return {
     type: LOGIN_SUCCESS,
-    admin
+    user
   }
 }
 
-export function login(admin) {
+export function login(user) {
   return function(dispatch) {
     // sync
-    dispatch(loginRequest(admin))
+    dispatch(loginRequest(user))
     // async
-    return fetch(CONFIG.HOST + '/admin/signin', {
+    return fetch(CONFIG.HOST + '/user/signin', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -68,8 +68,8 @@ export function login(admin) {
       },
       body: JSON.stringify({
         data: {
-          type: 'admin',
-          attributes: admin
+          type: 'user',
+          attributes: user
         }
       })
     })
@@ -80,27 +80,11 @@ export function login(admin) {
           dispatch(loginFailure("用户名或密码错误！"))
         } else {
           // set access token
-          dispatch(setAccessToken(Base64.encode(admin.name + ':' + admin.password + 'ad')))
+          dispatch(setAccessToken(Base64.encode(user.name + ':' + user.key)))
           // get users & set cache
           dispatch(readEndpoint(CONFIG.ENTITY.USER))
           .then(json=>dispatch(setCacheUsers(json)))
           .catch(err=>dispatch(openAlertDialog(true, strings.cache_error_prompt_get_user)))
-          // get icons  & set cache
-          dispatch(readEndpoint(CONFIG.ENTITY.ICON))
-          .then(json=>dispatch(setCacheIcons(json)))
-          .catch(err=>dispatch(openAlertDialog(true, strings.cache_error_prompt_get_icon)))
-          // get colors
-          dispatch(readEndpoint(CONFIG.ENTITY.COLOR))
-          .then(json=>dispatch(setCacheColors(json)))
-          .catch(err=>dispatch(openAlertDialog(true, strings.cache_error_prompt_get_color)))
-          // get inscats
-          dispatch(readEndpoint(CONFIG.ENTITY.INSCAT))
-          .then(json=>dispatch(setCacheInscats(json)))
-          .catch(err=>dispatch(openAlertDialog(true, strings.cache_error_prompt_get_color)))
-          // get familys
-          dispatch(readEndpoint(CONFIG.ENTITY.FAMILY))
-          .then(json=>dispatch(setCacheFamilys(json)))
-          .catch(err=>dispatch(openAlertDialog(true, strings.cache_error_prompt_get_family)))
           // update state
           dispatch(loginSuccess(json))
           // route to main

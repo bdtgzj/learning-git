@@ -1,5 +1,5 @@
 const CONFIG = {
-  HOST: 'https://api.ehomeguru.com.cn:9000',
+  HOST: 'http://api.ehomeguru.com.cn:3000',
   // HOST: 'http://192.168.1.46:9000',
   // HOST: 'http://localhost:3000',
   // HOST: 'http://151070wv41.iok.la:9000',

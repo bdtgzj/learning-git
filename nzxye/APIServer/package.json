@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "//": "/usr/local/node-v6.9.5-darwin-x64/bin/node app.js",
-    "debug": "node app.js",
+    "debug": "node --debug-brk=5858 --nolazy app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

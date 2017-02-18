@@ -17,7 +17,7 @@ module.exports = {
       {
         test: /\.js?$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           presets: ['react', 'es2015']
         }
@@ -29,6 +29,6 @@ module.exports = {
       { from: 'www', to: '../'}
     ], path.join(__dirname, 'src'))
   ],
-  debug: true,
+  // debug: true,
   devtool: 'source-map'
 }

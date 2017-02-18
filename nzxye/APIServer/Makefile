@@ -11,7 +11,7 @@ start-bind:
 	sudo named
 
 start-mongod:
-	mongod -dbpath ./other/data/
+	mongod -dbpath ./other/db/
 
 start-mongo:
 	mongo

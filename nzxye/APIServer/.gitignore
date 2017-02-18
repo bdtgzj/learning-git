@@ -1,5 +1,5 @@
 node_modules
-other/data
+other/db
 
 # Ignore Mac OS desktop services store
 .DS_Store

@@ -12,8 +12,8 @@ var userSchema = new Schema({
   state: {type: Number, default: 1}, // 1=enable, 2=disable, 3=delete
   retrieveToken: {type: String},
   retrieveTime: {type: Number},
-  familyId: {type: Schema.ObjectId},
-  screenId: {type: Schema.ObjectId}
+  screenId: {type: Schema.ObjectId},
+  isAdmin: {type: Number, default: 1} // 1=user, 2=admin
 });
 
 userSchema.index({name: 1}, {unique: true});
@@ -27,6 +27,7 @@ mongoose.model('User', userSchema);
 // hashgen.encrypt('1'+'\t'+'yxdc002'+'\t'+'88d06914018b61c84ec77884a6f53ec033ed1b8c','ehome_guru8c');
 // admin6 = 88d06914018b61c84ec77884a6f53ec033ed1b8c
 // db.users.update({name: "yxdc002"}, {$set: {password: '88d06914018b61c84ec77884a6f53ec033ed1b8c'}})
+// db.users.save({name:'nzxye', nickName:'俞晓东', password:'16b4d433eeef71946e93341822786a196549c2c5', email:'it@nzxye.com', mphone:'13222880055'});
 
 // hashgen.sha1('Admin_6'+'ehome_guru8s');
 // Admin_6 = 9beccf05867f703e93f8eb1ca122d9da29bae198
