@@ -29,6 +29,8 @@ function router(getState, persistor) {
       <Route path="/login" component={LoginContainer} />
       <Route path="/" component={LayoutContainer} onEnter={auth}>
         <IndexRoute component={Home} onEnter={auth} />
+        <Route path="face" component={UserContainer} />
+        <Route path="stats" component={UserContainer} />
         <Route path="user" component={UserContainer} />
         <Route path="signout" onEnter={signout} />
         <Route path="*" component={NoMatch} onEnter={auth} />
