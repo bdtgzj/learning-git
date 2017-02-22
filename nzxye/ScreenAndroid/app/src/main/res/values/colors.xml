@@ -5,4 +5,8 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="black_overlay">#66000000</color>
+    <!-- for control-->
+    <color name="colorControlNormal">@color/colorAccent</color>
+    <!-- for text-->
+    <color name="textColorPrimary">#dadbdd</color>
 </resources>

@@ -20,4 +20,11 @@
         <item name="android:background">@color/black_overlay</item>
     </style>
 
+    <style name="ButtonStyle" parent="android:Widget">
+        <item name="android:background">@drawable/selector_button</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:height">10dp</item>
+    </style>
+
 </resources>

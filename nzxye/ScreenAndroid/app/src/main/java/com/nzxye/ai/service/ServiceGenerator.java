@@ -1,49 +1,87 @@
 package com.nzxye.ai.service;
 
-import android.provider.MediaStore;
+import android.app.Application;
+import android.content.Context;
+import android.util.Base64;
+
+import com.gustavofao.jsonapi.Retrofit.JSONConverterFactory;
 
 import java.io.IOException;
-import java.util.Random;
+import java.io.InputStream;
+import java.security.KeyStore;
+import java.security.SecureRandom;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManagerFactory;
+
+import com.nzxye.ai.R;
+
+import com.nzxye.ai.bean.User;
+import com.nzxye.ai.util.MyApplication;
 import okhttp3.Interceptor;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-
+/**
+ * Created by xiaodongyu on 6/13/2016 AD.
+ */
 public class ServiceGenerator {
 
-    public static final String API_BASE_URL = "https://api-cn.faceplusplus.com/facepp/v3/";
-    // Trial API Key
-    public static final String API_KEY = "3MFQsFtElFW-lkygRE9q9GACWaj72FLi";
-    public static final String API_SECRET = "pgdbEKWuxrCL-gEUcNtQtBxcZo9yNJqb";
+    public static final String API_BASE_URL = "https://api.ehomeguru.com.cn:9000";
+    //public static final String API_BASE_URL = "http://192.168.1.46:9000";
+    //public static final String API_BASE_URL = "http://192.168.8.46:3000";
+    //public static final String API_BASE_URL = "http://151070wv41.iok.la:9000";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-    private static String boundaryString = getBoundary();
 
     private static Retrofit.Builder builder = new Retrofit.Builder()
             .baseUrl(API_BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create());
-            //.addConverterFactory(JSONConverterFactory.create(User.class, HomeCard.class, Region.class, Device.class, Instruction.class, Scene.class, Log.class));
+            //.addConverterFactory(GsonConverterFactory.create());
+            .addConverterFactory(JSONConverterFactory.create(User.class));
 
     public static <S> S createService(Class<S> serviceClass) {
-        httpClient.addInterceptor(new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request original = chain.request();
+        return createService(serviceClass, null, null);
+    }
 
-                Request.Builder requestBuilder = original.newBuilder()
-                        // .header("Content-Type", "multipart/form-data; boundary=" + boundaryString)
-                        .header("Accept", "application/json")
-                        // .header("connection", "Keep-Alive")
-                        .method(original.method(), original.body());
-                Request request = requestBuilder.build();
-                return chain.proceed(request);
-            }
-        });
+    public static <S> S createService(Class<S> serviceClass, String name, String password) {
+        // add basic authentication header fields to OkHttpClient.
+        if (name != null && password != null) {
+            String credentials = name + ":" + password;
+            final String basic = "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
+
+            httpClient.addInterceptor(new Interceptor() {
+                @Override
+                public Response intercept(Chain chain) throws IOException {
+                    Request original = chain.request();
+
+                    Request.Builder requestBuilder = original.newBuilder()
+                            .header("Authorization", basic)
+                            .header("Accept", "application/json")
+                            .method(original.method(), original.body());
+                    Request request = requestBuilder.build();
+                    return chain.proceed(request);
+                }
+            });
+
+        }
+
+        // add https to OKHttpClient for unkonw or self-signed certificates.
+        /*
+        int[] certificates = new int[]{ R.raw.ehomeguru };
+        httpClient.sslSocketFactory(getSSLSocketFactory(MyApplication.getAppContext(), certificates));
+        String hosts[] = {"api.ehomeguru.com.cn"};
+        httpClient.hostnameVerifier(getHostnameVerifier(hosts));
+        */
 
         OkHttpClient client = httpClient.build();
         Retrofit retrofit = builder.client(client).build();
@@ -59,15 +97,69 @@ public class ServiceGenerator {
         return retrofit;
     }
 
-    private static String getBoundary() {
-        StringBuilder sb = new StringBuilder();
-        Random random = new Random();
-
-        for(int i = 0; i < 32; ++i) {
-            sb.append("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-".charAt(random.nextInt("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_".length())));
+    // Customize TrustManager for HTTPS
+    protected static SSLSocketFactory getSSLSocketFactory(Context context, int[] certificates) {
+        if (context == null) {
+            throw new NullPointerException("context == null");
         }
 
-        return sb.toString();
+        // CertificateFactory is used for generate certificate.
+        CertificateFactory certificateFactory;
+        try {
+            certificateFactory = CertificateFactory.getInstance("X.509");
+
+            //Create a KeyStore containing our trusted CAs
+            KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
+            keyStore.load(null, "bdtgzj".toCharArray());
+
+            // Read certificate from raw/, and set to keystore
+            for (int i = 0; i < certificates.length; i++) {
+                InputStream inputStream = context.getResources().openRawResource(certificates[i]);
+                // generate certificate
+                Certificate certificate = certificateFactory.generateCertificate(inputStream);
+                //System.out.println("CA=" + ((X509Certificate) certificate).getSubjectDN());
+                keyStore.setCertificateEntry(String.valueOf(i), certificate);
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+            }
+
+            // Create a TrustManager that trusts the CAs in our keyStore
+            TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+            trustManagerFactory.init(keyStore);
+
+            // Create an SSLContext that uses our TrustManager
+            SSLContext sslContext = SSLContext.getInstance("TLS"); // use TLS 1.0 protocol
+            sslContext.init(null, trustManagerFactory.getTrustManagers(), new SecureRandom());
+            //
+            //SSLSocketFactory noSSLv3SocketFactory = new NoSSLv3SocketFactory(sslContext.getSocketFactory());
+
+            //return noSSLv3SocketFactory;
+            return sslContext.getSocketFactory();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return null;
+    }
+
+    // Customize TrustManager for HTTPS
+    protected static HostnameVerifier getHostnameVerifier(final String[] hosts) {
+        HostnameVerifier TRUSTED_VERIFIER = new HostnameVerifier() {
+            @Override
+            public boolean verify(String hostname, SSLSession session) {
+                boolean ret = false;
+                for (String host : hosts) {
+                    if (host.equalsIgnoreCase(hostname)) {
+                        ret = true;
+                    }
+                }
+                return ret;
+            }
+        };
+
+        return TRUSTED_VERIFIER;
     }
 
 }

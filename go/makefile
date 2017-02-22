@@ -1,11 +1,18 @@
 # makefile
 package:=ehomeguru.com.cn/cloud/familyscreen/
 export GOPATH:=$(HOME)/Learning/learning-git/go
+# export PATH:=$(GOPATH)/bin:$(PATH)
 
 all: install-all
 
 build:
 	go build $(package)
+
+build-hello:
+	go build github.com/bdtgzj/hello
+
+install-golint:
+	go get -u -v github.com/golang/lint
 
 build-windows:
 	GOOS=windows GOARCH=386 go build $(package)
@@ -22,6 +29,26 @@ install-all:
 	GOOS=darwin GOARCH=amd64 go install $(package)
 	GOOS=windows GOARCH=amd64 go install $(package)
 	GOOS=windows GOARCH=386 go install $(package)
+
+test-all:
+	go test -v -bench . github.com/bdtgzj/hello
+
+test-hello:
+	go test -v github.com/bdtgzj/hello
+
+test-hello-sub:
+	go test -v -run /T=1 github.com/bdtgzj/hello
+
+test-hello-parallel:
+	go test -v -run Parallel github.com/bdtgzj/hello
+
+test-benchmark-hello:
+	cd $(GOPATH)/src/github.com/bdtgzj/hello && \
+	go test -v -bench Hel/B=
+
+test-example-hello:
+	cd $(GOPATH)/src/github.com/bdtgzj/hello && \
+	go test -v hello_example_test.go
 
 get-beanstalkd:
 	brew install beanstalkd

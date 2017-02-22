@@ -1,3 +1,7 @@
 bin/
 pkg/
+golang.org/
+sourcegraph.com/
+github.com/*
+!github.com/bdtgzj/
 .DS_Store
