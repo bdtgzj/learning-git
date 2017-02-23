@@ -1,7 +1,5 @@
 package com.nzxye.ai.view;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -17,18 +15,16 @@ import android.widget.Toast;
 
 import com.gustavofao.jsonapi.Models.JSONApiObject;
 import com.gustavofao.jsonapi.Models.Resource;
-
-import java.util.List;
-
 import com.nzxye.ai.R;
-import com.nzxye.ai.bean.HomeCard;
 import com.nzxye.ai.bean.User;
 import com.nzxye.ai.model.GlobalData;
-import com.nzxye.ai.service.HomeCardService;
 import com.nzxye.ai.service.ServiceGenerator;
 import com.nzxye.ai.service.UserService;
 import com.nzxye.ai.util.CommonUtil;
 import com.nzxye.ai.util.ResponseUtil;
+
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 

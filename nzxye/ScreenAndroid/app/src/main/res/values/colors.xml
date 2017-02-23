@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-
-    <color name="black_overlay">#66000000</color>
+    <!-- for Theme -->
+    <color name="colorPrimaryDark">#1f2022</color>
+    <color name="colorAccent">#585c5f</color>
+    <color name="colorPrimary">#1f2022</color>
+    <color name="windowBackground">#23272a</color>
+    <color name="textColorPrimary">#dadbdd</color>
+    <color name="textColorPrimaryGray">#a7a7a7</color>
+    <color name="textColorActive">#efb317</color>
+    <color name="normalColor">#292c31</color>
+    <color name="effectColor">#313439</color>
+    <color name="windowBackgroundTransparent">#5523272a</color>
     <!-- for control-->
     <color name="colorControlNormal">@color/colorAccent</color>
-    <!-- for text-->
-    <color name="textColorPrimary">#dadbdd</color>
+    <!-- for icon-->
+    <color name="colorIcon">#c4934e</color>
+    <!-- for gradient -->
+    <color name="gradient_start">#313439</color>
+    <color name="gradient_center">#313439</color>
+    <color name="gradient_end">#313439</color>
 </resources>

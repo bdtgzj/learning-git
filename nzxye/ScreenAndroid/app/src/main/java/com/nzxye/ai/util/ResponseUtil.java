@@ -1,21 +1,16 @@
 package com.nzxye.ai.util;
 
 import android.content.Context;
-import android.content.Intent;
 import android.widget.Toast;
 
 import com.gustavofao.jsonapi.Models.ErrorModel;
 import com.gustavofao.jsonapi.Models.JSONApiObject;
 import com.gustavofao.jsonapi.Models.Resource;
+import com.nzxye.ai.R;
+import com.nzxye.ai.bean.HttpError;
 
 import java.io.IOException;
 import java.util.List;
-
-import com.nzxye.ai.R;
-import com.nzxye.ai.bean.HttpError;
-import com.nzxye.ai.bean.Instruction;
-import com.nzxye.ai.view.LoginActivity;
-import com.nzxye.ai.view.MainActivity;
 
 /**
  * Created by xiaodongyu on 7/8/2016 AD.

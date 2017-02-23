@@ -58,20 +58,16 @@ public class LoginActivity extends AppCompatActivity {
     private CheckBox rememberMeView;
     private View progressView;
     private View loginFormView;
-    // realm
+    // Realm
     private Realm realm;
-    private RealmConfiguration realmConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // init realm
-        realmConfiguration = new RealmConfiguration.Builder(this)
-                                                   .deleteRealmIfMigrationNeeded()
-                                                   .build();
-        realm = Realm.getInstance(realmConfiguration);
+        // Realm
+        realm = CommonUtil.getRealm();
 
         // auto login
         UserKey userKey = realm.where(UserKey.class).findFirst();
@@ -85,8 +81,8 @@ public class LoginActivity extends AppCompatActivity {
             user.setEmail(userKey.getEmail());
             user.setMphone(userKey.getMphone());
             GlobalData.addObjectForKey("user", user);
-            // open MainActivity
-            Intent intent=new Intent(LoginActivity.this, LoadingActivity.class);
+            // open Activity
+            Intent intent=new Intent(LoginActivity.this, MainActivity.class);
             //intent.putExtra("user", new Gson().toJson(user));
             startActivity(intent);
             finish();
