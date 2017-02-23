@@ -37,10 +37,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ServiceGenerator {
 
-    public static final String API_BASE_URL = "https://api.ehomeguru.com.cn:9000";
-    //public static final String API_BASE_URL = "http://192.168.1.46:9000";
-    //public static final String API_BASE_URL = "http://192.168.8.46:3000";
-    //public static final String API_BASE_URL = "http://151070wv41.iok.la:9000";
+    public static final String API_BASE_URL = "http://api.nzxye.com:3000";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 

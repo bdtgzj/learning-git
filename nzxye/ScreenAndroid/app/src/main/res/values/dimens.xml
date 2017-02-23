@@ -5,4 +5,14 @@
     <!-- activity_login -->
     <dimen name="activity_login_component_marginTop">23dp</dimen>
     <dimen name="activity_login_drawable_padding">10dp</dimen>
+
+    <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
+         https://developer.android.com/design/patterns/navigation-drawer.html -->
+    <dimen name="navigation_drawer_width">240dp</dimen>
+
+    <!-- UserInfoFragment -->
+    <dimen name="fragment_userinfo_linearlayout_padding">10dp</dimen>
+    <dimen name="fragment_userinfo_linearlayout_item_margin">2dp</dimen>
+    <dimen name="fragment_userinfo_linearlayout_item_margin_big">10dp</dimen>
+    <dimen name="fragment_userinfo_linearlayout_item_padding">5dp</dimen>
 </resources>

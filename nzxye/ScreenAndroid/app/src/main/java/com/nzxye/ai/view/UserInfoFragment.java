@@ -59,7 +59,7 @@ public class UserInfoFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user_info, container, false);
         // set parent activity's title.
-        getActivity().setTitle(getString(R.string.fragment_me_user_info));
+        //getActivity().setTitle(getString(R.string.fragment_me_user_info));
         // get User info
         mUser = (User) GlobalData.getObjectForKey("user");
         //
