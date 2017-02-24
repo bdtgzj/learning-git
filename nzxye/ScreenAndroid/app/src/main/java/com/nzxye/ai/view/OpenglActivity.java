@@ -1,21 +1,16 @@
 package com.nzxye.ai.view;
 
-import android.app.Service;
 import android.graphics.Bitmap;
-import android.graphics.ImageFormat;
-import android.graphics.Rect;
 import android.graphics.SurfaceTexture;
-import android.graphics.YuvImage;
 import android.hardware.Camera;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
-import android.os.Environment;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -23,10 +18,9 @@ import android.widget.TextView;
 
 import com.megvii.facepp.sdk.Facepp;
 import com.nzxye.ai.R;
-import com.nzxye.ai.bean.DetectRequest;
 import com.nzxye.ai.bean.DetectResponse;
 import com.nzxye.ai.service.DetectService;
-import com.nzxye.ai.service.ServiceGenerator;
+import com.nzxye.ai.service.ServiceGeneratorFace;
 import com.nzxye.ai.util.CameraMatrix;
 import com.nzxye.ai.util.ConUtil;
 import com.nzxye.ai.util.DialogUtil;
@@ -40,11 +34,6 @@ import com.nzxye.ai.util.Screen;
 import com.nzxye.ai.util.SensorEventUtil;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOError;
-import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -426,10 +415,10 @@ public class OpenglActivity extends AppCompatActivity implements Camera.PreviewC
                                     //
                                     // DetectRequest detectRequest = new DetectRequest();
                                     // detectRequest.setImage_file(imgData);
-                                    DetectService detectService = ServiceGenerator.createService(DetectService.class);
+                                    DetectService detectService = ServiceGeneratorFace.createService(DetectService.class);
                                     Call<DetectResponse> call = detectService.detectByte(
-                                            RetrofitUtil.getPartFromString(ServiceGenerator.API_KEY),
-                                            RetrofitUtil.getPartFromString(ServiceGenerator.API_SECRET),
+                                            RetrofitUtil.getPartFromString(ServiceGeneratorFace.API_KEY),
+                                            RetrofitUtil.getPartFromString(ServiceGeneratorFace.API_SECRET),
                                             RetrofitUtil.getPartFromBytes("image_file", byteJPEG)
                                             //RetrofitUtil.getPartFromFile("image_file", "dd1.jpeg")
                                     );

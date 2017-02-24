@@ -222,7 +222,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean isNameValid(String name) {
-        return name.length() >= 6;
+        return name.length() >= 5;
     }
 
     private boolean isPasswordValid(String password) {
@@ -320,7 +320,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         // init User
                         final User user = (User) jsonApiObject.getData(0);
-                        user.setPassword(user.getKey() + "us"); // us: user ad: admin
+                        user.setPassword(user.getKey());
                         // save to global data
                         GlobalData.addObjectForKey("user", user);
                         // remember me
@@ -329,8 +329,8 @@ public class LoginActivity extends AppCompatActivity {
                             // if (userKeys.size() < 1) {}
                             CommonUtil.updateRememberMe(getBaseContext(), user);
                         }
-                        // open MainActivity
-                        Intent intent=new Intent(LoginActivity.this, LoadingActivity.class);
+                        // open Activity
+                        Intent intent=new Intent(LoginActivity.this, MainActivity.class);
                         //intent.putExtra("user", new Gson().toJson(user));
                         startActivity(intent);
                         finish();

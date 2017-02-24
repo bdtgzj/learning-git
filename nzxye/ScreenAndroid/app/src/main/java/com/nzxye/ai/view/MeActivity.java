@@ -1,4 +1,4 @@
-package cn.com.ehomeguru.view;
+package com.nzxye.ai.view;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,19 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.nzxye.ai.R;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 
-import cn.com.ehomeguru.R;
-import cn.com.ehomeguru.adapter.InstructionListViewAdapter;
-import cn.com.ehomeguru.bean.Instruction;
 
 public class MeActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
-    private Instruction mInstruction;
-    private InstructionListViewAdapter instructionListViewAdapter;
     private final String NEW_METHOD_NAME = "newInstance";
     private Object o;
 

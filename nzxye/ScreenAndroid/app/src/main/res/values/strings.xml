@@ -4,6 +4,7 @@
     <!-- Common error -->
     <string name="error_network">抱歉,网络错误!</string>
     <string name="error_system">抱歉,系统错误!</string>
+    <string name="fragment_data_nonexistent">数据不存在或未初始化!</string>
 
     <!-- LoginActivity -->
     <string name="title_activity_login">登录</string>
@@ -12,8 +13,8 @@
     <string name="prompt_urememberme">记住我</string>
     <string name="action_sign_in">登录</string>
     <string name="action_sign_in_short">登录</string>
-    <string name="error_invalid_name">用户名至少需要六个字符</string>
-    <string name="error_invalid_password">密码至少需要六个字符</string>
+    <string name="error_invalid_name">用户名至少需要5个字符</string>
+    <string name="error_invalid_password">密码至少需要6个字符</string>
     <string name="error_incorrect_password">密码不正确</string>
     <string name="error_name_field_required">请输入用户名</string>
     <string name="error_password_field_required">请输入密码</string>
@@ -22,4 +23,38 @@
     <string name="title_activity_loading">LoadingActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_main">MainActivity</string>
+    <!-- UserInfoFragment -->
+    <string name="fragment_userinfo_nickname">用户昵称</string>
+    <string name="fragment_userinfo_mphone">手机号码</string>
+    <string name="fragment_userinfo_email">电子邮箱</string>
+    <string name="fragment_userinfo_oldpass">原用密码</string>
+    <string name="fragment_userinfo_newpass">新设密码</string>
+    <string name="fragment_userinfo_submit">修改</string>
+    <string name="fragment_userinfo_reset">重置</string>
+    <string name="fragment_userinfo_error_nickname_empty">请输入用户昵称!</string>
+    <string name="fragment_userinfo_error_nickname_length">长度范围2至18!</string>
+    <string name="fragment_userinfo_error_oldpass_empty">请输入新密码!</string>
+    <string name="fragment_userinfo_error_oldpass_length">长度范围6至18!</string>
+    <string name="fragment_userinfo_error_newpass_empty">请输入新密码!</string>
+    <string name="fragment_userinfo_error_newpass_length">长度范围6至18!</string>
+    <string name="fragment_userinfo_toast_submit_no">信息无需更新!</string>
+    <string name="fragment_userinfo_toast_submit_ok">信息更新成功!</string>
+    <!-- ExitDialogFragment -->
+    <string name="fragment_exitdialog_name">fragment_exitdialog</string>
+    <string name="fragment_exitdialog_title">确定退出系统!</string>
+    <string name="fragment_exitdialog_ok">确定</string>
+    <string name="fragment_exitdialog_cancel">取消</string>
+
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
