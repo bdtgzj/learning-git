@@ -19,4 +19,6 @@
     <color name="gradient_start">#313439</color>
     <color name="gradient_center">#313439</color>
     <color name="gradient_end">#313439</color>
+    <!--  LogFragment -->
+    <color name="fragment_log_linearlayout_bg">#292c31</color>
 </resources>

@@ -45,11 +45,15 @@
     <string name="fragment_exitdialog_title">确定退出系统!</string>
     <string name="fragment_exitdialog_ok">确定</string>
     <string name="fragment_exitdialog_cancel">取消</string>
-
-
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <!-- NavigationDrawerFragment -->
+    <string name="fragment_navigationdrawer_face">人脸采集</string>
+    <string name="fragment_navigationdrawer_stats">统计报表</string>
+    <string name="fragment_navigationdrawer_user_info">我的信息</string>
+    <string name="fragment_navigationdrawer_log_login">登录日志</string>
+    <string name="fragment_navigationdrawer_log_operation">操作记录</string>
+    <string name="fragment_navigationdrawer_exit">退出系统</string>
+    <!-- MeActivity -->
+    <string name="title_activity_me">我的信息</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

@@ -1,5 +1,6 @@
 package com.nzxye.ai.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -78,6 +79,7 @@ public class MeActivity extends AppCompatActivity {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
                 NavUtils.navigateUpFromSameTask(this);
+                startActivity(new Intent(this, OpenglActivity.class));
                 return true;
         }
 

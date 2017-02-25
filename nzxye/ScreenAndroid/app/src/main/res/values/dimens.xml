@@ -15,4 +15,7 @@
     <dimen name="fragment_userinfo_linearlayout_item_margin">2dp</dimen>
     <dimen name="fragment_userinfo_linearlayout_item_margin_big">10dp</dimen>
     <dimen name="fragment_userinfo_linearlayout_item_padding">5dp</dimen>
+    <!-- LogFragment -->
+    <dimen name="fragment_log_recyclerview_margin">8dp</dimen>
+    <dimen name="fragment_log_linearlayout_border">2dp</dimen>
 </resources>

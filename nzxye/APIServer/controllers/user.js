@@ -35,7 +35,7 @@ exports.signin = function(req, res, next) {
       if (!validatedUser.isValid) {
         return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedUser.error));
       }
-      User.getUserByNameEmailMPhonePass(validatedUser.data.name, hashcrypt.sha1(validatedUser.data.password + CONFIG.serverSalt), function(err, users) {
+      User.getUserByNameEmailMPhonePass(validatedUser.data.name, hashcrypt.sha256(validatedUser.data.password + CONFIG.serverSalt), function(err, users) {
         if (err) {
           return next(err);
         }

@@ -9,7 +9,7 @@
 
 var express = require('express');
 var user = require('./controllers/user');
-//var log = require('./controllers/log');
+var log = require('./controllers/log');
 
 var router = express.Router();
 
@@ -50,11 +50,10 @@ router.put('/user', user.update);
 
 /**
  * log
-
+ */
 router.get('/log', log.retrieve);
 router.post('/log', log.create);
 router.put('/log/:id', log.updateOne);
 router.delete('/log/:id', log.deleteOne);
- */
 
 module.exports = router;

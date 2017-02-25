@@ -23,6 +23,7 @@ import javax.net.ssl.TrustManagerFactory;
 
 import com.nzxye.ai.R;
 
+import com.nzxye.ai.bean.Log;
 import com.nzxye.ai.bean.User;
 import com.nzxye.ai.util.MyApplication;
 import okhttp3.Interceptor;
@@ -44,7 +45,7 @@ public class ServiceGenerator {
     private static Retrofit.Builder builder = new Retrofit.Builder()
             .baseUrl(API_BASE_URL)
             //.addConverterFactory(GsonConverterFactory.create());
-            .addConverterFactory(JSONConverterFactory.create(User.class));
+            .addConverterFactory(JSONConverterFactory.create(User.class, Log.class));
 
     public static <S> S createService(Class<S> serviceClass) {
         return createService(serviceClass, null, null);

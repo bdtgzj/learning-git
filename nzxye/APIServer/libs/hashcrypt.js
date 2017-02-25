@@ -34,8 +34,17 @@ exports.md5 = function(str) {
   return str;
 };
 
+// 40 length
 exports.sha1 = function(str) {
   var sha1sum = crypto.createHash('sha1');
+  sha1sum.update(str);
+  str = sha1sum.digest('hex');
+  return str;
+};
+
+// 64 length
+exports.sha256 = function(str) {
+  var sha1sum = crypto.createHash('sha256');
   sha1sum.update(str);
   str = sha1sum.digest('hex');
   return str;

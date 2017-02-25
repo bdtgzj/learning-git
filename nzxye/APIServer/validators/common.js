@@ -80,7 +80,7 @@ function validateInstruction(instruction) {
  */
 function validateLoginName(loginName) {
   var result = {};
-  if (!loginName || !validator.trim(loginName.toString()) || !validator.isLength(loginName, {min: 6, max: 18})) {
+  if (!loginName || !validator.trim(loginName.toString()) || !validator.isLength(loginName, {min: 5, max: 18})) {
     result =  {isValid: false, error: STRINGS.ERROR_PARAM_LOGIN_NAME};
   } else {
     result =  {isValid: true, data: validator.trim(loginName)};

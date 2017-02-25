@@ -1,5 +1,6 @@
 package com.nzxye.ai.view;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -45,7 +47,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class OpenglActivity extends AppCompatActivity implements Camera.PreviewCallback, GLSurfaceView.Renderer, SurfaceTexture.OnFrameAvailableListener {
+public class OpenglActivity extends AppCompatActivity implements
+        Camera.PreviewCallback,
+        GLSurfaceView.Renderer,
+        SurfaceTexture.OnFrameAvailableListener,
+        NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     // params
     private boolean isStartRecorder, is3DPose, isDebug, isROIDetect, is106Points, isBackCamera, isFaceProperty, isSmooth;
@@ -71,6 +77,9 @@ public class OpenglActivity extends AppCompatActivity implements Camera.PreviewC
 
     private int Angle;
 
+    // Navigation Drawer
+    private NavigationDrawerFragment mNavigationDrawerFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +95,13 @@ public class OpenglActivity extends AppCompatActivity implements Camera.PreviewC
                 startRecorder();
             }
         }, 2000);
+
+        // Setup Navigation Drawer
+        mNavigationDrawerFragment = (NavigationDrawerFragment)
+                getFragmentManager().findFragmentById(R.id.navigation_drawer_fragment);
+        mNavigationDrawerFragment.setUp(
+                R.id.navigation_drawer_fragment,
+                (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
     @Override
@@ -564,4 +580,40 @@ public class OpenglActivity extends AppCompatActivity implements Camera.PreviewC
         // Log.d("dd", "onFrameAvailable.\n");
     }
 
+    @Override
+    public void onNavigationDrawerItemSelected(int position) {
+        Intent intent;
+        switch (position) {
+            // face
+            case 0:
+                break;
+            // stats
+            case 1:
+                break;
+            // user info
+            case 2:
+                intent = new Intent(OpenglActivity.this, MeActivity.class);
+                intent.putExtra("fragmentName", "com.nzxye.ai.view.UserInfoFragment");
+                startActivity(intent);
+                break;
+            // log login
+            case 3:
+                intent = new Intent(OpenglActivity.this, MeActivity.class);
+                intent.putExtra("fragmentName", "com.nzxye.ai.view.LogFragment");
+                intent.putExtra("category", 1);
+                startActivity(intent);
+                break;
+            // log operation
+            case 4:
+                intent = new Intent(OpenglActivity.this, MeActivity.class);
+                intent.putExtra("fragmentName", "com.nzxye.ai.view.LogFragment");
+                intent.putExtra("category", 2);
+                startActivity(intent);
+                break;
+            // exit
+            case 5:
+                ExitDialogFragment.create().show(getSupportFragmentManager(), getString(R.string.fragment_exitdialog_name));
+                break;
+        }
+    }
 }

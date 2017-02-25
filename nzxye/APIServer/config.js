@@ -14,8 +14,8 @@ var config = {
   debug: debug,
 
   // security
-  clientSecret: 'ehome_guru8c',
-  serverSalt: 'ehome_guru8s',
+  clientSecret: 'nzxye_8c',
+  serverSalt: 'nzxye_8s',
   token: 'token',
   tokenId: 'tokenId',
   tokenStatus: 'tokenStatus',

@@ -22,12 +22,4 @@ require('./user');
 exports.User = mongoose.model('User');
 
 // schema
-/*
-exports.HomecardSchema = require('./homecard');
-exports.RegionSchema = require('./region');
-exports.CategorySchema = require('./category');
-exports.DeviceSchema = require('./device');
-exports.SceneSchema = require('./scene');
-exports.InstructionSchema = require('./instruction');
 exports.LogSchema = require('./log');
-*/

@@ -23,11 +23,6 @@ import android.widget.Toast;
 
 import com.gustavofao.jsonapi.Models.ErrorModel;
 import com.gustavofao.jsonapi.Models.JSONApiObject;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.nzxye.ai.R;
 import com.nzxye.ai.bean.User;
 import com.nzxye.ai.model.GlobalData;
@@ -37,8 +32,12 @@ import com.nzxye.ai.service.ServiceGenerator;
 import com.nzxye.ai.service.UserService;
 import com.nzxye.ai.util.CommonUtil;
 import com.nzxye.ai.util.ResourceUtil;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import io.realm.Realm;
-import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 import retrofit2.Call;
 
@@ -82,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
             user.setMphone(userKey.getMphone());
             GlobalData.addObjectForKey("user", user);
             // open Activity
-            Intent intent=new Intent(LoginActivity.this, MainActivity.class);
+            Intent intent=new Intent(LoginActivity.this, LoadingActivity.class);
             //intent.putExtra("user", new Gson().toJson(user));
             startActivity(intent);
             finish();
@@ -303,7 +302,7 @@ public class LoginActivity extends AppCompatActivity {
             if (jsonApiObject != null) {
                 if (jsonApiObject.hasErrors()) {
                     List<ErrorModel> errorList = jsonApiObject.getErrors();
-                    Toast.makeText(getApplicationContext(), errorList.get(0).getStatus(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), errorList.get(0).getDetail(), Toast.LENGTH_LONG).show();
                 } else {
                     if (jsonApiObject.getData().size() > 0) {
                         // add to realm
@@ -330,7 +329,7 @@ public class LoginActivity extends AppCompatActivity {
                             CommonUtil.updateRememberMe(getBaseContext(), user);
                         }
                         // open Activity
-                        Intent intent=new Intent(LoginActivity.this, MainActivity.class);
+                        Intent intent=new Intent(LoginActivity.this, LoadingActivity.class);
                         //intent.putExtra("user", new Gson().toJson(user));
                         startActivity(intent);
                         finish();
