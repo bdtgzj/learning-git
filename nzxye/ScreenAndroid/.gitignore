@@ -1,6 +1,8 @@
 build
 .gradle
 .idea
+local.properties
+app.iml
 
 # Ignore Mac OS desktop services store
 .DS_Store
