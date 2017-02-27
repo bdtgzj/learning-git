@@ -11,10 +11,10 @@
         android:id="@+id/opengl_layout_rootRel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_opengl_vertical_margin"
+        android:paddingLeft="@dimen/activity_opengl_horizontal_margin"
+        android:paddingRight="@dimen/activity_opengl_horizontal_margin"
+        android:paddingTop="@dimen/activity_opengl_vertical_margin"
         tools:context="com.nzxye.ai.view.OpenglActivity">
 
         <android.opengl.GLSurfaceView

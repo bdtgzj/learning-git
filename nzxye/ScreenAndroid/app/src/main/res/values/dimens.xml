@@ -10,6 +10,9 @@
          https://developer.android.com/design/patterns/navigation-drawer.html -->
     <dimen name="navigation_drawer_width">240dp</dimen>
 
+    <!-- OpenglActivity -->
+    <dimen name="activity_opengl_horizontal_margin">0dp</dimen>
+    <dimen name="activity_opengl_vertical_margin">0dp</dimen>
     <!-- UserInfoFragment -->
     <dimen name="fragment_userinfo_linearlayout_padding">10dp</dimen>
     <dimen name="fragment_userinfo_linearlayout_item_margin">2dp</dimen>

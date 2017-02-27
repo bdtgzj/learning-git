@@ -198,6 +198,12 @@ public class OpenglActivity extends AppCompatActivity implements
         detection_interval = getIntent().getIntExtra("interval", detection_interval);
         // 相机分辨率，默认 640*480
         resolutionMap = (HashMap<String, Integer>) getIntent().getSerializableExtra("resolution");
+        // 手动强制指定相机分辨率，需根据相机支持的最佳分辨率来设置。
+        if (resolutionMap == null) {
+            resolutionMap = new HashMap<>();
+            resolutionMap.put("width", 800);
+            resolutionMap.put("height", 480);
+        }
 
         facepp = new Facepp();
 
@@ -586,6 +592,8 @@ public class OpenglActivity extends AppCompatActivity implements
         switch (position) {
             // face
             case 0:
+                intent = new Intent(OpenglActivity.this, RegisterActivity.class);
+                startActivity(intent);
                 break;
             // stats
             case 1:

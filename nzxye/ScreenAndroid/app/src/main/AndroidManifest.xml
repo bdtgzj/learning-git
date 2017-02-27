@@ -31,21 +31,24 @@
             android:name=".view.LoadingActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_loading"
-            android:theme="@style/FullscreenTheme">
-        </activity>
+            android:theme="@style/FullscreenTheme"></activity>
         <activity
             android:name=".view.OpenglActivity"
-            android:launchMode="singleTop">
-        </activity>
+            android:launchMode="singleTop"></activity>
         <activity
             android:name=".view.MeActivity"
             android:label="@string/title_activity_me"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".view.OpenglActivity">
+            android:parentActivityName=".view.OpenglActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.OpenglActivity" />
+        </activity>
+        <activity
+            android:name=".view.RegisterActivity"
+            android:parentActivityName=".view.OpenglActivity">
         </activity>
     </application>
 
