@@ -41,8 +41,3 @@ mongoose.model('User', userSchema);
 // db.users.dropIndex('loginName_1');
 // db.users.update({}, {$set: {state: 0}}, {multi: true})
 // db.users.update({name: "ehg-27"}, {$set: {password: '88d06914018b61c84ec77884a6f53ec033ed1b8c'}})
-
-
-
-
-
