@@ -66,6 +66,8 @@
     <string name="register_activity_sex_male">男</string>
     <string name="register_activity_sex_female">女</string>
     <string name="register_activity_face_register">人脸注册</string>
+    <string name="register_activity_error_name">客户姓名至少需要2个字符</string>
+    <string name="register_activity_error_mphone">手机号码格式不正确</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

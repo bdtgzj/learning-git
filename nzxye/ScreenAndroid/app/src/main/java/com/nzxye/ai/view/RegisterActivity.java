@@ -1,48 +1,98 @@
 package com.nzxye.ai.view;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
+import com.mobsandgeeks.saripaar.ValidationError;
+import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.DecimalMin;
+import com.mobsandgeeks.saripaar.annotation.Digits;
+import com.mobsandgeeks.saripaar.annotation.Length;
+import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+import com.mobsandgeeks.saripaar.annotation.Pattern;
 import com.nzxye.ai.R;
 import com.nzxye.ai.util.MyApplication;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
-public class RegisterActivity extends AppCompatActivity {
+import static android.text.TextUtils.isEmpty;
+
+public class RegisterActivity extends AppCompatActivity implements Validator.ValidationListener {
 
     private Camera mCamera;
     private Camera.Parameters mCameraParameters;
-    private Camera.CameraInfo mCameraInfo;
     private CameraPreviewView mCameraPreviewView;
+    private int mCameraId = 0;// 0 = 后置摄像头, 1 = 前置摄像头
+    public int mCameraWidth;
+    public int mCameraHeight;
     private Camera.PictureCallback mJPEG;
+    //
+    @NotEmpty(message = "")
+    @Length(min = 2, max = 20, message = "客户姓名至少需要2个字符")
+    private EditText mName;
+    @NotEmpty(message = "")
+    @Pattern(regex = "\\d{11,13}", message = "手机号码至少需要11个数字字符")
+    private EditText mMphone;
+    private Validator mValidator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        //
+        mName = (EditText) findViewById(R.id.activity_register_name);
+        mMphone = (EditText) findViewById(R.id.activity_register_mphone);
+
+        // validator
+        mValidator = new Validator(this);
+        mValidator.setValidationListener(this);
+
         // Create an instance of Camera
         mCamera = getCameraInstance();
-        mCamera.setDisplayOrientation(90);
+        // set orientation
+        setCameraDisplayOrientation(this, mCameraId, mCamera);
+        // mCamera.setDisplayOrientation(90);
 
-        // Get Parameters of Camera
+        // Set Parameters of Camera, PreviewSize & PictureSize.
+        int defaultWidth = 640;
+        int defaultHeight = 480;
         mCameraParameters = mCamera.getParameters();
-        // mCameraParameters.setPreviewSize(640, 480);
-        // mCamera.setParameters(mCameraParameters);
-        mCameraInfo = new Camera.CameraInfo();
+        Camera.Size bestPreviewSize = getBestPreviewSize(mCameraParameters, defaultWidth, defaultHeight);
+        mCameraWidth = bestPreviewSize.width;
+        mCameraHeight = bestPreviewSize.height;
+        mCameraParameters.setPreviewSize(mCameraWidth, mCameraHeight);
+        mCameraParameters.setPictureSize(mCameraWidth, mCameraHeight);
+        mCamera.setParameters(mCameraParameters);
+        // Get Infos of Camera Hardware
+        /*
+        Camera.CameraInfo mCameraInfo = new Camera.CameraInfo();
         Camera.getCameraInfo(0, mCameraInfo);
         int rotation = getWindowManager().getDefaultDisplay().getRotation();
+        */
 
         // Create our Preview view and set it as the content of our activity.
         mCameraPreviewView = new CameraPreviewView(this, mCamera);
@@ -54,6 +104,9 @@ public class RegisterActivity extends AppCompatActivity {
         buttonCapture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // validate
+                mValidator.validate();
+                // mphone
                 // get an image from the camera
                 mCamera.takePicture(null, null, mJPEG);
             }
@@ -63,6 +116,7 @@ public class RegisterActivity extends AppCompatActivity {
         mJPEG = new Camera.PictureCallback() {
             @Override
             public void onPictureTaken(byte[] bytes, Camera camera) {
+                bytes = jpegRotateScale(bytes, mCameraId == 1);
                 try {
                     FileOutputStream fos = new FileOutputStream(Environment.getExternalStorageDirectory() + "/d.jpeg");
                     fos.write(bytes);
@@ -84,6 +138,9 @@ public class RegisterActivity extends AppCompatActivity {
         closeCamera();
     }
 
+    /**
+     * get camera
+     */
     public static Camera getCameraInstance(){
         Camera c = null;
         try {
@@ -94,6 +151,92 @@ public class RegisterActivity extends AppCompatActivity {
             Log.d(MyApplication.LOG_TAG, "Error open camera: " + e.getMessage());
         }
         return c; // returns null if camera is unavailable
+    }
+
+    /**
+     * If you want to make the camera image show in the same orientation as the display, you can use the following code.
+     */
+    public static void setCameraDisplayOrientation(AppCompatActivity activity, int cameraId, Camera camera) {
+        //
+        Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
+        Camera.getCameraInfo(cameraId, cameraInfo);
+        //
+        int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
+        //
+        int degrees = 0;
+        //
+        switch (rotation) {
+            case Surface.ROTATION_0: degrees = 0; break;
+            case Surface.ROTATION_90: degrees = 90; break;
+            case Surface.ROTATION_180: degrees = 180; break;
+            case Surface.ROTATION_270: degrees = 270; break;
+        }
+        //
+        int result;
+        if (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+            result = (cameraInfo.orientation + degrees) % 360;
+            // compensate the mirror
+            result = (360 - result) % 360;
+        } else {
+            result = (cameraInfo.orientation - degrees + 360) % 360;
+        }
+        camera.setDisplayOrientation(result);
+    }
+
+    /**
+     * 通过传入的宽高算出最接近于宽高值的相机大小，比较像素多少。
+     */
+    public Camera.Size getBestPreviewSize(Camera.Parameters camPara, final int width, final int height) {
+        List<Camera.Size> allSupportedSize = camPara.getSupportedPreviewSizes();
+        ArrayList<Camera.Size> widthLargerSize = new ArrayList<Camera.Size>();
+        for (Camera.Size tmpSize : allSupportedSize) {
+            Log.w(MyApplication.LOG_TAG, "tmpSize.width===" + tmpSize.width + ", tmpSize.height===" + tmpSize.height);
+            if (tmpSize.width > tmpSize.height) {
+                widthLargerSize.add(tmpSize);
+            }
+        }
+
+        Collections.sort(widthLargerSize, new Comparator<Camera.Size>() {
+            @Override
+            public int compare(Camera.Size lhs, Camera.Size rhs) {
+                int off_one = Math.abs(lhs.width * lhs.height - width * height);
+                int off_two = Math.abs(rhs.width * rhs.height - width * height);
+                return off_one - off_two;
+            }
+        });
+
+        return widthLargerSize.get(0);
+    }
+
+    /**
+     *
+     */
+    public byte[] jpegRotateScale(byte[] bytesJPEG, boolean isFrontCamera) {
+        Bitmap tmpBitmap = BitmapFactory.decodeByteArray(bytesJPEG, 0, bytesJPEG.length);
+        Matrix matrix = new Matrix();
+        matrix.reset();
+        // rotate pic
+        if (isFrontCamera) {
+            matrix.setRotate(-90);
+        } else {
+            matrix.setRotate(90);
+        }
+        tmpBitmap = Bitmap.createBitmap(tmpBitmap, 0, 0, tmpBitmap.getWidth(), tmpBitmap.getHeight(), matrix, true);
+        tmpBitmap = tmpBitmap.copy(Bitmap.Config.ARGB_8888, true);
+        // scale to 800
+        int hight = tmpBitmap.getHeight() > tmpBitmap.getWidth() ? tmpBitmap.getHeight() : tmpBitmap.getWidth();
+        float scale = hight / 800.0f;
+        if (scale > 1) {
+            tmpBitmap = Bitmap.createScaledBitmap(
+                    tmpBitmap,
+                    (int) (tmpBitmap.getWidth() / scale),
+                    (int) (tmpBitmap.getHeight() / scale), false
+            );
+        }
+        // bitmap to jpeg
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        tmpBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        return baos.toByteArray();
     }
 
     public void closeCamera() {
@@ -119,7 +262,7 @@ public class RegisterActivity extends AppCompatActivity {
             mSurfaceHolder = getHolder();
             mSurfaceHolder.addCallback(this);
             // set size of SurfaceHolder
-            mSurfaceHolder.setFixedSize(480, 640);
+            mSurfaceHolder.setFixedSize(mCameraHeight, mCameraWidth);
             // deprecated setting, but required on Android versions prior to 3.0
             mSurfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         }
@@ -178,5 +321,23 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onValidationSucceeded() {
+
+    }
+
+    @Override
+    public void onValidationFailed(List<ValidationError> errors) {
+        for (ValidationError error : errors) {
+            View view = error.getView();
+            String message = error.getCollatedErrorMessage(this);
+            // Display error message
+            if (view instanceof EditText) {
+                ((EditText) view).setError(message);
+            } else {
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 }
 

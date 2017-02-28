@@ -28,6 +28,7 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.gustavofao:JSONApi:1.0.9.1@aar'
+    compile 'com.mobsandgeeks:android-saripaar:2.0.3'
     compile(name:'MGFaceppSDK-0.4.1', ext:'aar')
     compile(name:'MGLicenseManagerSDK-0.2.0', ext:'aar')
     testCompile 'junit:junit:4.12'
