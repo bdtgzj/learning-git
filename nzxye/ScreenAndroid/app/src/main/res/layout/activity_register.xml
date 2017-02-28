@@ -1,23 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_register"
+    android:id="@+id/scrollview_activity_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.nzxye.ai.view.RegisterActivity">
-    
-    <FrameLayout
-        android:id="@+id/framelayout_camera_preview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </FrameLayout>
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/button_capture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/framelayout_camera_preview"
-        android:text="Capture"
-        android:layout_gravity="center" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!-- Camera Preview -->
+        <FrameLayout
+            android:id="@+id/framelayout_camera_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </FrameLayout>
+        <!-- register -->
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/button_capture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/register_activity_face_register"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/activity_register_linearlayout_item_padding"/>
+        <!-- name -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="@dimen/activity_register_linearlayout_item_padding">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="@dimen/activity_register_linearlayout_item_padding"
+                android:src="@drawable/ic_login_name"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_register_linearlayout_item_padding"
+                android:text="@string/register_activity_name"/>
+            <EditText
+                android:id="@+id/activity_register_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_register_linearlayout_item_padding"
+                android:singleLine="true"
+                android:layout_weight="1"
+                android:imeOptions="actionNext" />
+        </LinearLayout>
+        <!-- mphone -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="@dimen/activity_register_linearlayout_item_padding">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="@dimen/activity_register_linearlayout_item_padding"
+                android:src="@drawable/ic_mphone"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_register_linearlayout_item_padding"
+                android:text="@string/register_activity_mphone"/>
+            <EditText
+                android:id="@+id/activity_register_mphone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_register_linearlayout_item_padding"
+                android:singleLine="true"
+                android:layout_weight="1"
+                android:imeOptions="actionNext" />
+        </LinearLayout>
+        <!-- idcard -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="@dimen/activity_register_linearlayout_item_padding">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="@dimen/activity_register_linearlayout_item_padding"
+                android:src="@drawable/ic_register_idcard"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_register_linearlayout_item_padding"
+                android:text="@string/register_activity_idcard"/>
+            <EditText
+                android:id="@+id/activity_register_idcard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_register_linearlayout_item_padding"
+                android:singleLine="true"
+                android:layout_weight="1"
+                android:imeOptions="actionNext" />
+        </LinearLayout>
+        <!-- sex -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="@dimen/activity_register_linearlayout_item_padding">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="@dimen/activity_register_linearlayout_item_padding"
+                android:src="@drawable/ic_register_sex"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/activity_register_linearlayout_item_padding"
+                android:text="@string/register_activity_sex"/>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/activity_register_sex_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/activity_register_linearlayout_item_padding"
+                    android:text="@string/register_activity_sex_male"/>
+                <RadioButton
+                    android:id="@+id/activity_register_sex_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/activity_register_linearlayout_item_padding"
+                    android:text="@string/register_activity_sex_female"/>
+            </RadioGroup>
+        </LinearLayout>
+        <!-- email -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="@dimen/activity_register_linearlayout_item_padding">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="@dimen/activity_register_linearlayout_item_padding"
+                android:src="@drawable/ic_email"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_register_linearlayout_item_padding"
+                android:text="@string/register_activity_email"/>
+            <EditText
+                android:id="@+id/activity_register_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_register_linearlayout_item_padding"
+                android:singleLine="true"
+                android:layout_weight="1"
+                android:imeOptions="actionNext" />
+        </LinearLayout>
+        <!-- nickname -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="@dimen/activity_register_linearlayout_item_padding">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="@dimen/activity_register_linearlayout_item_padding"
+                android:src="@drawable/ic_register_nickname"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_register_linearlayout_item_padding"
+                android:text="@string/register_activity_nickname"/>
+            <EditText
+                android:id="@+id/activity_register_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_register_linearlayout_item_padding"
+                android:singleLine="true"
+                android:layout_weight="1"
+                android:imeOptions="actionNext" />
+        </LinearLayout>
+        <!-- address -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="@dimen/activity_register_linearlayout_item_padding">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="@dimen/activity_register_linearlayout_item_padding"
+                android:src="@drawable/ic_register_address"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_register_linearlayout_item_padding"
+                android:text="@string/register_activity_address"/>
+            <EditText
+                android:id="@+id/activity_register_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_register_linearlayout_item_padding"
+                android:singleLine="true"
+                android:layout_weight="1"
+                android:imeOptions="actionNext" />
+        </LinearLayout>
+        <!-- remark -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="@dimen/activity_register_linearlayout_item_padding">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="@dimen/activity_register_linearlayout_item_padding"
+                android:src="@drawable/ic_register_remark"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_register_linearlayout_item_padding"
+                android:text="@string/register_activity_remark"/>
+            <EditText
+                android:id="@+id/activity_register_remark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_register_linearlayout_item_padding"
+                android:singleLine="true"
+                android:layout_weight="1"
+                android:imeOptions="actionNext" />
+        </LinearLayout>
 
-</RelativeLayout>
+    </LinearLayout>
+
+</ScrollView>

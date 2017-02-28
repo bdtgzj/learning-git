@@ -2,31 +2,28 @@ package com.nzxye.ai.view;
 
 import android.content.Context;
 import android.hardware.Camera;
+import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.nzxye.ai.R;
 import com.nzxye.ai.util.MyApplication;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
-import static com.nzxye.ai.util.CommonUtil.getOutputMediaFile;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private Camera mCamera;
     private Camera.Parameters mCameraParameters;
+    private Camera.CameraInfo mCameraInfo;
     private CameraPreviewView mCameraPreviewView;
     private Camera.PictureCallback mJPEG;
 
@@ -37,11 +34,15 @@ public class RegisterActivity extends AppCompatActivity {
 
         // Create an instance of Camera
         mCamera = getCameraInstance();
+        mCamera.setDisplayOrientation(90);
 
         // Get Parameters of Camera
         mCameraParameters = mCamera.getParameters();
         // mCameraParameters.setPreviewSize(640, 480);
         // mCamera.setParameters(mCameraParameters);
+        mCameraInfo = new Camera.CameraInfo();
+        Camera.getCameraInfo(0, mCameraInfo);
+        int rotation = getWindowManager().getDefaultDisplay().getRotation();
 
         // Create our Preview view and set it as the content of our activity.
         mCameraPreviewView = new CameraPreviewView(this, mCamera);
@@ -71,6 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     Log.d(MyApplication.LOG_TAG, "Error accessing file: " + e.getMessage());
                 }
+                // restart Preview
                 mCamera.startPreview();
             }
         };
@@ -103,6 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    // a view for display camera data
     public class CameraPreviewView extends SurfaceView implements SurfaceHolder.Callback {
 
         private SurfaceHolder mSurfaceHolder;

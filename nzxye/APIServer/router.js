@@ -10,6 +10,8 @@
 var express = require('express');
 var user = require('./controllers/user');
 var log = require('./controllers/log');
+var customer = require('./controllers/customer');
+var checkin = require('./controllers/checkin');
 
 var router = express.Router();
 
@@ -55,5 +57,21 @@ router.get('/log', log.retrieve);
 router.post('/log', log.create);
 router.put('/log/:id', log.updateOne);
 router.delete('/log/:id', log.deleteOne);
+
+/**
+ * customer
+ */
+router.get('/customer', customer.retrieve);
+router.post('/customer', customer.create);
+router.put('/customer/:id', customer.updateOne);
+router.delete('/customer/:id', customer.deleteOne);
+
+/**
+ * checkin
+ */
+router.get('/checkin', checkin.retrieve);
+router.post('/checkin', checkin.create);
+router.put('/checkin/:id', checkin.updateOne);
+router.delete('/checkin/:id', checkin.deleteOne);
 
 module.exports = router;

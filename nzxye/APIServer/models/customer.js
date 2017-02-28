@@ -14,8 +14,9 @@ var CustomerSchema = new Schema({
   modified: {type: Date, default: Date.now}
 });
 
-customerSchema.index({name: 1}, {unique: true});
-customerSchema.index({email: 1}, {unique: true});
-customerSchema.index({mphone: 1}, {unique: true});
+// customerSchema.index({name: 1}, {unique: true});
+CustomerSchema.index({idCard: 1}, {unique: true});
+CustomerSchema.index({email: 1}, {unique: true});
+CustomerSchema.index({mphone: 1}, {unique: true});
 
 module.exports = CustomerSchema;

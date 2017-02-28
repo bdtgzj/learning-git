@@ -23,3 +23,4 @@ exports.User = mongoose.model('User');
 // schema
 exports.LogSchema = require('./log');
 exports.CustomerSchema = require('./customer');
+exports.CheckinSchema = require('./checkin');

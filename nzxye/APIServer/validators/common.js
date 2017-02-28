@@ -27,7 +27,7 @@ function validateID(id) {
 
 function validateName(name) {
   var result = {};
-  if (!name || !validator.trim(name.toString()) || !validator.isLength(name, {min: 1, max: 20})) {
+  if (!name || !validator.trim(name.toString()) || !validator.isLength(name, {min: 2, max: 20})) {
     result =  {isValid: false, error: STRINGS.ERROR_PARAM_NAME};
   } else {
     result =  {isValid: true, data: name};
@@ -234,6 +234,54 @@ function validatePage(page) {
 }
 
 /**
+ * Customer
+ */
+function validateSex(sex) {
+  var result = {};
+  if (sex !== '男' || sex !== '女') {
+    result =  {isValid: false, error: STRINGS.ERROR_PARAM_SEX};
+  } else {
+    result =  {isValid: true, data: sex};
+  }
+  return result;
+}
+
+function validateIdCard(idCard) {
+  var result = {};
+  if (isEmpty(idCard) || !validator.isLength(idCard, {min: 18, max: 18})) {
+    result =  {isValid: false, error: STRINGS.ERROR_PARAM_IDCARD};
+  } else {
+    result =  {isValid: true, data: validator.trim(idCard)};
+  }
+  return result;
+}
+
+function validateRemark(remark) {
+  var result = {};
+  if (isEmpty(remark) || !validator.isLength(idCard, {min: 1, max: 50})) {
+    result =  {isValid: false, error: STRINGS.ERROR_PARAM_REMARK};
+  } else {
+    result =  {isValid: true, data: validator.trim(remark)};
+  }
+  return result;
+}
+
+/**
+ * Checkin
+ * var v = require('/Users/xiaodongyu/Learning/learning-git/nzxye/APIServer/node_modules/validator');
+ * v.matches('2017-02-27', /^\d{4}\-\d{2}\-\d{2}$/i);
+ */
+function validateDate(date) {
+  var result = {};
+  if (!validator.matches(date, /^\d{4}\-\d{2}\-\d{2}$/i)) {
+    result =  {isValid: false, error: STRINGS.ERROR_PARAM_DATE};
+  } else {
+    result =  {isValid: true, data: sex};
+  }
+  return result;
+}
+
+/**
  * Common
  */
 function isObject(obj) {
@@ -271,6 +319,12 @@ module.exports = {
   validateLog: validateLog,
   validateCategory: validateCategory,
   validateIp: validateIp,
+  // customer
+  validateSex: validateSex,
+  validateIdCard: validateIdCard,
+  validateRemark: validateRemark,
+  // checkin
+  validateDate: validateDate,
   // common
   isObject: isObject,
   isEmpty: isEmpty,

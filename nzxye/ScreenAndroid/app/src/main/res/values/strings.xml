@@ -54,6 +54,18 @@
     <string name="fragment_navigationdrawer_exit">退出系统</string>
     <!-- MeActivity -->
     <string name="title_activity_me">我的信息</string>
+    <!-- RegisterActivity -->
+    <string name="register_activity_name">客户姓名</string>
+    <string name="register_activity_mphone">手机号码</string>
+    <string name="register_activity_idcard">身份证码</string>
+    <string name="register_activity_sex">客户性别</string>
+    <string name="register_activity_email">电子邮件</string>
+    <string name="register_activity_nickname">客户昵称</string>
+    <string name="register_activity_address">家庭住址</string>
+    <string name="register_activity_remark">备注信息</string>
+    <string name="register_activity_sex_male">男</string>
+    <string name="register_activity_sex_female">女</string>
+    <string name="register_activity_face_register">人脸注册</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
