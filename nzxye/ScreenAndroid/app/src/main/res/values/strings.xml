@@ -66,8 +66,13 @@
     <string name="register_activity_sex_male">男</string>
     <string name="register_activity_sex_female">女</string>
     <string name="register_activity_face_register">人脸注册</string>
-    <string name="register_activity_error_name">客户姓名至少需要2个字符</string>
-    <string name="register_activity_error_mphone">手机号码格式不正确</string>
+    <string name="register_activity_error_name">客户姓名字符长度：2-20</string>
+    <string name="register_activity_error_mphone">手机号码数字长度：11-13</string>
+    <string name="register_activity_error_idcard">身份证码字符长度：18</string>
+    <string name="register_activity_error_email">Email 格式不正确</string>
+    <string name="register_activity_error_nickname">客户昵称字符长度：1-18</string>
+    <string name="register_activity_error_address">家庭住址字符长度：2-50</string>
+    <string name="register_activity_error_remark">备注信息字符长度：1-50</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

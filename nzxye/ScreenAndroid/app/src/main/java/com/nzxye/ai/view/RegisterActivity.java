@@ -19,12 +19,16 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.gustavofao.jsonapi.Annotations.Id;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.AssertTrue;
 import com.mobsandgeeks.saripaar.annotation.DecimalMin;
 import com.mobsandgeeks.saripaar.annotation.Digits;
+import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.Length;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+import com.mobsandgeeks.saripaar.annotation.Optional;
 import com.mobsandgeeks.saripaar.annotation.Pattern;
 import com.nzxye.ai.R;
 import com.nzxye.ai.util.MyApplication;
@@ -50,13 +54,21 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
     public int mCameraHeight;
     private Camera.PictureCallback mJPEG;
     //
-    @NotEmpty(message = "")
-    @Length(min = 2, max = 20, message = "客户姓名至少需要2个字符")
-    private EditText mName;
-    @NotEmpty(message = "")
-    @Pattern(regex = "\\d{11,13}", message = "手机号码至少需要11个数字字符")
-    private EditText mMphone;
     private Validator mValidator;
+    @Length(min = 2, max = 20, messageResId = R.string.register_activity_error_name)
+    private EditText mName;
+    @Pattern(regex = "\\d{11,13}", messageResId = R.string.register_activity_error_mphone)
+    private EditText mMphone;
+    @Pattern(regex = "^$|\\w{18}", messageResId = R.string.register_activity_error_idcard)
+    private EditText mIdCard;
+    @Pattern(regex = "^$|^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$", messageResId = R.string.register_activity_error_email)
+    private EditText mEmail;
+    @Pattern(regex = "^$|.{1,18}", messageResId = R.string.register_activity_error_nickname)
+    private EditText mNickName;
+    @Pattern(regex = "^$|.{2,50}", messageResId = R.string.register_activity_error_address)
+    private EditText mAddress;
+    @Pattern(regex = "^$|.{1,50}", messageResId = R.string.register_activity_error_remark)
+    private EditText mRemark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +78,11 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
         //
         mName = (EditText) findViewById(R.id.activity_register_name);
         mMphone = (EditText) findViewById(R.id.activity_register_mphone);
+        mIdCard = (EditText) findViewById(R.id.activity_register_idcard);
+        mEmail = (EditText) findViewById(R.id.activity_register_email);
+        mNickName = (EditText) findViewById(R.id.activity_register_nickname);
+        mAddress = (EditText) findViewById(R.id.activity_register_address);
+        mRemark = (EditText) findViewById(R.id.activity_register_remark);
 
         // validator
         mValidator = new Validator(this);
@@ -106,9 +123,6 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
             public void onClick(View view) {
                 // validate
                 mValidator.validate();
-                // mphone
-                // get an image from the camera
-                mCamera.takePicture(null, null, mJPEG);
             }
         });
 
@@ -323,7 +337,8 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
 
     @Override
     public void onValidationSucceeded() {
-
+        // get an image from the camera
+        mCamera.takePicture(null, null, mJPEG);
     }
 
     @Override
@@ -334,6 +349,7 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
             // Display error message
             if (view instanceof EditText) {
                 ((EditText) view).setError(message);
+                view.requestFocus();
             } else {
                 Toast.makeText(this, message, Toast.LENGTH_LONG).show();
             }
