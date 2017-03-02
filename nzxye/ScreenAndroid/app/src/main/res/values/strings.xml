@@ -73,6 +73,7 @@
     <string name="register_activity_error_nickname">客户昵称字符长度：1-18</string>
     <string name="register_activity_error_address">家庭住址字符长度：2-50</string>
     <string name="register_activity_error_remark">备注信息字符长度：1-50</string>
+    <string name="register_activity_success_register">人脸注册成功！</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

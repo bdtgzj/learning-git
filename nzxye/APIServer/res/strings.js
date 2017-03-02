@@ -21,6 +21,7 @@ const STRINGS = {
   ERROR_PARAM_NICKNAME: '非法参数nickname！',
   ERROR_PARAM_EMAIL: '非法参数email！',
   ERROR_PARAM_MPHONE: '非法参数mphone！',
+  ERROR_PARAM_MPHONE_EXIST: '手机号码已存在！',
   ERROR_PARAM_SEX: '非法参数sex！',
   ERROR_PARAM_IDCARD: '非法参数idCard！',
   ERROR_PARAM_DATE: '非法参数date！',

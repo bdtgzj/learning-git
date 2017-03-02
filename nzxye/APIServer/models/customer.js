@@ -15,8 +15,8 @@ var CustomerSchema = new Schema({
 });
 
 // customerSchema.index({name: 1}, {unique: true});
-CustomerSchema.index({idCard: 1}, {unique: true});
-CustomerSchema.index({email: 1}, {unique: true});
+// CustomerSchema.index({idCard: 1}, {unique: true});
+// CustomerSchema.index({email: 1}, {unique: true});
 CustomerSchema.index({mphone: 1}, {unique: true});
 
 module.exports = CustomerSchema;

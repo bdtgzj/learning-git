@@ -15,6 +15,11 @@ var Customer = require('../proxy').Customer;
 // json api
 var JSONAPIDeserializer = require('jsonapi-serializer').Deserializer;
 var CustomerSerializer = require('../serializers').CustomerSerializer;
+// promise api
+var P = require('bluebird');
+P.config({cancellation: true});
+// var retrieve = P.promisify(require('../proxy').Customer.retrieve);
+var CustomerAsync = P.promisifyAll(require('../proxy').Customer);
 
 // Retrieve
 exports.retrieve = function(req, res, next) {
@@ -44,12 +49,24 @@ exports.retrieve = function(req, res, next) {
 
 // Create
 exports.create = function(req, res, next) {
-  new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(req.body)
+  var customer = null;
+  var p = new JSONAPIDeserializer(CONFIG.JSONAPI_DESERIALIZER_CONFIG).deserialize(req.body)
     .then((customer) => validatorCustomer.validateCustomer(customer))
-    .then((validatedCustomer)=>{
+    .then((validatedCustomer) => {
       if (!validatedCustomer.isValid) {
+        p.cancel();
         return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedCustomer.error));
       }
+      customer = validatedCustomer.data;
+      return CustomerAsync.retrieveAsync(req.uid, validatorCommon.validatePage(null).data, {mphone: validatedCustomer.data.mphone});
+    })
+    .then((customers)=>{
+      if (customers.length > 0) {
+        p.cancel();
+        return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, STRINGS.ERROR_PARAM_MPHONE_EXIST));
+      }
+      return CustomerAsync.createAsync(req.uid, customer);
+      /*
       // var uid = validatedCustomer.data.uid;
       // delete validatedCustomer.data.uid;
       Customer.create(req.uid, validatedCustomer.data, function(err, customer) {
@@ -58,6 +75,10 @@ exports.create = function(req, res, next) {
         }
         res.json(CustomerSerializer.serialize(customer));
       });
+      */
+    })
+    .then((data)=>{
+      return res.json(CustomerSerializer.serialize(data));
     })
     .catch((err)=>{
       return next(err);

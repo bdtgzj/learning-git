@@ -17,21 +17,26 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.gustavofao.jsonapi.Annotations.Id;
+import com.gustavofao.jsonapi.Models.JSONApiObject;
+import com.gustavofao.jsonapi.Models.Resource;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
-import com.mobsandgeeks.saripaar.annotation.AssertTrue;
-import com.mobsandgeeks.saripaar.annotation.DecimalMin;
-import com.mobsandgeeks.saripaar.annotation.Digits;
-import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.Length;
-import com.mobsandgeeks.saripaar.annotation.NotEmpty;
-import com.mobsandgeeks.saripaar.annotation.Optional;
 import com.mobsandgeeks.saripaar.annotation.Pattern;
 import com.nzxye.ai.R;
+import com.nzxye.ai.bean.Customer;
+import com.nzxye.ai.bean.User;
+import com.nzxye.ai.model.GlobalData;
+import com.nzxye.ai.service.CustomerService;
+import com.nzxye.ai.service.ServiceGenerator;
+import com.nzxye.ai.service.UserService;
+import com.nzxye.ai.util.CommonUtil;
 import com.nzxye.ai.util.MyApplication;
+import com.nzxye.ai.util.ResponseUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -42,7 +47,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import static android.text.TextUtils.isEmpty;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class RegisterActivity extends AppCompatActivity implements Validator.ValidationListener {
 
@@ -69,12 +75,20 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
     private EditText mAddress;
     @Pattern(regex = "^$|.{1,50}", messageResId = R.string.register_activity_error_remark)
     private EditText mRemark;
+    //
+    private RadioGroup mSex;
+    private RadioButton mSexMale;
+    private RadioButton mSexFemale;
+    //
+    private User mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        // Get User Info
+        mUser = (User) GlobalData.getObjectForKey("user");
         //
         mName = (EditText) findViewById(R.id.activity_register_name);
         mMphone = (EditText) findViewById(R.id.activity_register_mphone);
@@ -83,6 +97,10 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
         mNickName = (EditText) findViewById(R.id.activity_register_nickname);
         mAddress = (EditText) findViewById(R.id.activity_register_address);
         mRemark = (EditText) findViewById(R.id.activity_register_remark);
+        //
+        mSex = (RadioGroup) findViewById(R.id.activity_register_sex);
+        mSexMale = (RadioButton) findViewById(R.id.activity_register_sex_male);
+        mSexFemale = (RadioButton) findViewById(R.id.activity_register_sex_female);
 
         // validator
         mValidator = new Validator(this);
@@ -339,6 +357,50 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
     public void onValidationSucceeded() {
         // get an image from the camera
         mCamera.takePicture(null, null, mJPEG);
+        // Create Customer
+        Customer customer = new Customer();
+        customer.setName(mName.getText().toString());
+        customer.setMphone(mMphone.getText().toString());
+        if (!TextUtils.isEmpty(mIdCard.getText().toString()))
+            customer.setIdCard(mIdCard.getText().toString());
+        if (!TextUtils.isEmpty(mEmail.getText().toString()))
+            customer.setEmail(mEmail.getText().toString());
+        if (!TextUtils.isEmpty(mNickName.getText().toString()))
+            customer.setNickName(mNickName.getText().toString());
+        if (!TextUtils.isEmpty(mAddress.getText().toString()))
+            customer.setAddress(mAddress.getText().toString());
+        if (!TextUtils.isEmpty(mRemark.getText().toString()))
+            customer.setRemark(mRemark.getText().toString());
+        switch (mSex.getCheckedRadioButtonId()) {
+            case R.id.activity_register_sex_male:
+                customer.setSex(mSexMale.getText().toString());
+            case R.id.activity_register_sex_female:
+                customer.setSex(mSexFemale.getText().toString());
+        }
+        //
+        CustomerService customerService = ServiceGenerator.createService(CustomerService.class, mUser.getName(), mUser.getPassword());
+        Call<JSONApiObject> call = customerService.create(customer);
+        call.enqueue(new Callback<JSONApiObject>() {
+            @Override
+            public void onResponse(Call<JSONApiObject> call, retrofit2.Response<JSONApiObject> response) {
+                List<Resource> resources = ResponseUtil.parseResponse(response, getBaseContext());
+                if (resources != null) {
+                    if (resources.size() > 0) {
+                        Customer customerRet = (Customer) resources.get(0);
+                        Toast.makeText(getBaseContext(), R.string.register_activity_success_register, Toast.LENGTH_SHORT).show();
+                        //
+
+
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JSONApiObject> call, Throwable t) {
+                Toast.makeText(getBaseContext(), R.string.error_network, Toast.LENGTH_SHORT).show();
+                System.out.println(t.getMessage());
+            }
+        });
     }
 
     @Override
