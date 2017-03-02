@@ -21,7 +21,7 @@ import android.widget.TextView;
 import com.megvii.facepp.sdk.Facepp;
 import com.nzxye.ai.R;
 import com.nzxye.ai.bean.DetectResponse;
-import com.nzxye.ai.service.DetectService;
+import com.nzxye.ai.service.FaceService;
 import com.nzxye.ai.service.ServiceGeneratorFace;
 import com.nzxye.ai.util.CameraMatrix;
 import com.nzxye.ai.util.ConUtil;
@@ -437,24 +437,7 @@ public class OpenglActivity extends AppCompatActivity implements
                                     //
                                     // DetectRequest detectRequest = new DetectRequest();
                                     // detectRequest.setImage_file(imgData);
-                                    DetectService detectService = ServiceGeneratorFace.createService(DetectService.class);
-                                    Call<DetectResponse> call = detectService.detectByte(
-                                            RetrofitUtil.getPartFromString(ServiceGeneratorFace.API_KEY),
-                                            RetrofitUtil.getPartFromString(ServiceGeneratorFace.API_SECRET),
-                                            RetrofitUtil.getPartFromBytes("image_file", byteJPEG)
-                                            //RetrofitUtil.getPartFromFile("image_file", "dd1.jpeg")
-                                    );
-                                    call.enqueue(new Callback<DetectResponse>() {
-                                        @Override
-                                        public void onResponse(Call<DetectResponse> call, Response<DetectResponse> response) {
-                                            Log.d("dd", "onResponse");
-                                        }
 
-                                        @Override
-                                        public void onFailure(Call<DetectResponse> call, Throwable t) {
-                                            Log.d("dd", "onFailure");
-                                        }
-                                    });
                                 }
 
                             }

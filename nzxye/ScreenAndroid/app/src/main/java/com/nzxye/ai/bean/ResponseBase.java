@@ -10,27 +10,28 @@ public class ResponseBase {
     private int time_used;
     private String error_message;
 
-    public String getRequest_id() {
+    public String getRequestID() {
         return request_id;
     }
 
-    public void setRequest_id(String request_id) {
+    public void setRequestID(String request_id) {
         this.request_id = request_id;
     }
 
-    public int getTime_used() {
+    public int getTimeUsed() {
         return time_used;
     }
 
-    public void setTime_used(int time_used) {
+    public void setTimeUsed(int time_used) {
         this.time_used = time_used;
     }
 
-    public String getError_message() {
+    public String getErrorMessage() {
         return error_message;
     }
 
-    public void setError_message(String error_message) {
+    public void setErrorMessage(String error_message) {
         this.error_message = error_message;
     }
+
 }

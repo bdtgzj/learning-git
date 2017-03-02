@@ -28,15 +28,21 @@ import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Length;
 import com.mobsandgeeks.saripaar.annotation.Pattern;
 import com.nzxye.ai.R;
+import com.nzxye.ai.bean.AddFaceResponse;
 import com.nzxye.ai.bean.Customer;
+import com.nzxye.ai.bean.DetectResponse;
+import com.nzxye.ai.bean.ResponseBase;
+import com.nzxye.ai.bean.SetUserIDResponse;
 import com.nzxye.ai.bean.User;
 import com.nzxye.ai.model.GlobalData;
 import com.nzxye.ai.service.CustomerService;
+import com.nzxye.ai.service.FaceService;
 import com.nzxye.ai.service.ServiceGenerator;
-import com.nzxye.ai.service.UserService;
+import com.nzxye.ai.service.ServiceGeneratorFace;
 import com.nzxye.ai.util.CommonUtil;
 import com.nzxye.ai.util.MyApplication;
 import com.nzxye.ai.util.ResponseUtil;
+import com.nzxye.ai.util.RetrofitUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -49,6 +55,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity implements Validator.ValidationListener {
 
@@ -58,7 +65,9 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
     private int mCameraId = 0;// 0 = 后置摄像头, 1 = 前置摄像头
     public int mCameraWidth;
     public int mCameraHeight;
-    private Camera.PictureCallback mJPEG;
+    private Camera.PictureCallback mPic;
+    private byte[] mJPEG;
+    private static final String OUTER_ID  = "CustomerFaceSet";
     //
     private Validator mValidator;
     @Length(min = 2, max = 20, messageResId = R.string.register_activity_error_name)
@@ -145,13 +154,13 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
         });
 
         // Capture JPEG
-        mJPEG = new Camera.PictureCallback() {
+        mPic = new Camera.PictureCallback() {
             @Override
             public void onPictureTaken(byte[] bytes, Camera camera) {
-                bytes = jpegRotateScale(bytes, mCameraId == 1);
+                mJPEG = jpegRotateScale(bytes, mCameraId == 1);
                 try {
                     FileOutputStream fos = new FileOutputStream(Environment.getExternalStorageDirectory() + "/d.jpeg");
-                    fos.write(bytes);
+                    fos.write(mJPEG);
                     fos.close();
                 } catch (FileNotFoundException e) {
                     Log.d(MyApplication.LOG_TAG, "File not found: " + e.getMessage());
@@ -356,7 +365,7 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
     @Override
     public void onValidationSucceeded() {
         // get an image from the camera
-        mCamera.takePicture(null, null, mJPEG);
+        mCamera.takePicture(null, null, mPic);
         // Create Customer
         Customer customer = new Customer();
         customer.setName(mName.getText().toString());
@@ -377,7 +386,9 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
             case R.id.activity_register_sex_female:
                 customer.setSex(mSexFemale.getText().toString());
         }
-        //
+        /**
+         * Create Customer
+         */
         CustomerService customerService = ServiceGenerator.createService(CustomerService.class, mUser.getName(), mUser.getPassword());
         Call<JSONApiObject> call = customerService.create(customer);
         call.enqueue(new Callback<JSONApiObject>() {
@@ -387,9 +398,85 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
                 if (resources != null) {
                     if (resources.size() > 0) {
                         Customer customerRet = (Customer) resources.get(0);
-                        Toast.makeText(getBaseContext(), R.string.register_activity_success_register, Toast.LENGTH_SHORT).show();
-                        //
+                        final String customerID = customerRet.getId();
+                        /**
+                         * Detect JPEG for face_token
+                         */
+                        final FaceService faceService = ServiceGeneratorFace.createService(FaceService.class);
+                        Call<DetectResponse> callDetect = faceService.detectByByte(
+                                RetrofitUtil.getPartFromString(ServiceGeneratorFace.API_KEY),
+                                RetrofitUtil.getPartFromString(ServiceGeneratorFace.API_SECRET),
+                                RetrofitUtil.getPartFromBytes("image_file", mJPEG)
+                        );
+                        callDetect.enqueue(new Callback<DetectResponse>() {
+                            @Override
+                            public void onResponse(Call<DetectResponse> call, Response<DetectResponse> response) {
+                                DetectResponse detectResponse = ResponseUtil.parseResponseFaceDetect(response, getBaseContext());
+                                if (detectResponse != null) {
+                                    final String faceToken = detectResponse.getFaces().get(0).getFaceToken();
+                                    /**
+                                     * Add face_token to FaceSet
+                                     */
+                                    Call<AddFaceResponse> callAddFace = faceService.addFace(
+                                            RetrofitUtil.getPartFromString(ServiceGeneratorFace.API_KEY),
+                                            RetrofitUtil.getPartFromString(ServiceGeneratorFace.API_SECRET),
+                                            RetrofitUtil.getPartFromString(OUTER_ID),
+                                            RetrofitUtil.getPartFromString(faceToken)
+                                    );
+                                    callAddFace.enqueue(new Callback<AddFaceResponse>() {
+                                        @Override
+                                        public void onResponse(Call<AddFaceResponse> call, Response<AddFaceResponse> response) {
+                                            AddFaceResponse addFaceResponse = ResponseUtil.parseResponseFaceAddFace(response, getBaseContext());
+                                            if (addFaceResponse != null) {
+                                                if (addFaceResponse.getFaceAdded() > 0) {
+                                                    /**
+                                                     * Set User ID on FaceToken.
+                                                     */
+                                                    Call<SetUserIDResponse> callSetUserID = faceService.setUserID(
+                                                            RetrofitUtil.getPartFromString(ServiceGeneratorFace.API_KEY),
+                                                            RetrofitUtil.getPartFromString(ServiceGeneratorFace.API_SECRET),
+                                                            RetrofitUtil.getPartFromString(faceToken),
+                                                            RetrofitUtil.getPartFromString(customerID)
+                                                    );
+                                                    callSetUserID.enqueue(new Callback<SetUserIDResponse>() {
+                                                        @Override
+                                                        public void onResponse(Call<SetUserIDResponse> call, Response<SetUserIDResponse> response) {
+                                                            SetUserIDResponse setUserIDResponse = ResponseUtil.parseResponseFaceSetUserID(response, getBaseContext());
+                                                            if (setUserIDResponse != null) {
+                                                                if (CommonUtil.equals(setUserIDResponse.getFaceToken(), faceToken)) {
+                                                                    Toast.makeText(getBaseContext(), R.string.register_activity_success_register, Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            }
 
+                                                        }
+
+                                                        @Override
+                                                        public void onFailure(Call<SetUserIDResponse> call, Throwable t) {
+                                                            Toast.makeText(getBaseContext(), R.string.error_network, Toast.LENGTH_SHORT).show();
+                                                            Log.d(MyApplication.LOG_TAG, t.getMessage());
+                                                        }
+                                                    });
+                                                }
+                                            }
+
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<AddFaceResponse> call, Throwable t) {
+                                            Toast.makeText(getBaseContext(), R.string.error_network, Toast.LENGTH_SHORT).show();
+                                            Log.d(MyApplication.LOG_TAG, t.getMessage());
+                                        }
+                                    });
+                                }
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<DetectResponse> call, Throwable t) {
+                                Toast.makeText(getBaseContext(), R.string.error_network, Toast.LENGTH_SHORT).show();
+                                Log.d(MyApplication.LOG_TAG, t.getMessage());
+                            }
+                        });
 
                     }
                 }

@@ -9,14 +9,14 @@ import java.util.ArrayList;
 
 public class DetectResponse extends ResponseBase {
 
-    private ArrayList<Object> faces;
+    private ArrayList<Face> faces;
     private String image_id;
 
-    public ArrayList<Object> getFaces() {
+    public ArrayList<Face> getFaces() {
         return faces;
     }
 
-    public void setFaces(ArrayList<Object> faces) {
+    public void setFaces(ArrayList<Face> faces) {
         this.faces = faces;
     }
 
