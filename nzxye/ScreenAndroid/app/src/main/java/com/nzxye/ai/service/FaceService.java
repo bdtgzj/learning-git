@@ -3,6 +3,7 @@ package com.nzxye.ai.service;
 import com.nzxye.ai.bean.AddFaceResponse;
 import com.nzxye.ai.bean.DetectResponse;
 import com.nzxye.ai.bean.ResponseBase;
+import com.nzxye.ai.bean.SearchResponse;
 import com.nzxye.ai.bean.SetUserIDResponse;
 
 import okhttp3.MultipartBody;
@@ -20,7 +21,11 @@ public interface FaceService {
 
     @Multipart
     @POST("detect")
-    Call<DetectResponse> detectByByte(@Part("api_key") RequestBody apiKey, @Part("api_secret") RequestBody apiSecret, @Part MultipartBody.Part imageFile);
+    Call<DetectResponse> detectByByte(
+            @Part("api_key") RequestBody apiKey,
+            @Part("api_secret") RequestBody apiSecret,
+            @Part MultipartBody.Part imageFile
+    );
 
     @Multipart
     @POST("faceset/addface")
@@ -38,7 +43,15 @@ public interface FaceService {
             @Part("api_secret") RequestBody apiSecret,
             @Part("face_token") RequestBody faceToken,
             @Part("user_id") RequestBody userID
+    );
 
+    @Multipart
+    @POST("search")
+    Call<SearchResponse> searchByByte(
+            @Part("api_key") RequestBody apiKey,
+            @Part("api_secret") RequestBody apiSecret,
+            @Part MultipartBody.Part imageFile,
+            @Part("outer_id") RequestBody outerID
     );
 
 }

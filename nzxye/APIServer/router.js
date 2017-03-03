@@ -62,6 +62,7 @@ router.delete('/log/:id', log.deleteOne);
  * customer
  */
 router.get('/customer', customer.retrieve);
+router.get('/customer/:id', customer.retrieveOne);
 router.post('/customer', customer.create);
 router.put('/customer/:id', customer.updateOne);
 router.delete('/customer/:id', customer.deleteOne);

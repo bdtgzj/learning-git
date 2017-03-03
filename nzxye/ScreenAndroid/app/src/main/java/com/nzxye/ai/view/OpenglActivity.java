@@ -17,20 +17,36 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.gustavofao.jsonapi.Models.JSONApiObject;
+import com.gustavofao.jsonapi.Models.Resource;
 import com.megvii.facepp.sdk.Facepp;
 import com.nzxye.ai.R;
+import com.nzxye.ai.bean.Checkin;
+import com.nzxye.ai.bean.Customer;
 import com.nzxye.ai.bean.DetectResponse;
+import com.nzxye.ai.bean.SearchResponse;
+import com.nzxye.ai.bean.SearchResult;
+import com.nzxye.ai.bean.SetUserIDResponse;
+import com.nzxye.ai.bean.User;
+import com.nzxye.ai.model.GlobalData;
+import com.nzxye.ai.service.CheckinService;
+import com.nzxye.ai.service.CustomerService;
 import com.nzxye.ai.service.FaceService;
+import com.nzxye.ai.service.ServiceGenerator;
 import com.nzxye.ai.service.ServiceGeneratorFace;
 import com.nzxye.ai.util.CameraMatrix;
+import com.nzxye.ai.util.CommonUtil;
 import com.nzxye.ai.util.ConUtil;
 import com.nzxye.ai.util.DialogUtil;
 import com.nzxye.ai.util.ICamera;
 import com.nzxye.ai.util.MediaRecorderUtil;
+import com.nzxye.ai.util.MyApplication;
 import com.nzxye.ai.util.OpenGLDrawRect;
 import com.nzxye.ai.util.OpenGLUtil;
 import com.nzxye.ai.util.PointsMatrix;
+import com.nzxye.ai.util.ResponseUtil;
 import com.nzxye.ai.util.RetrofitUtil;
 import com.nzxye.ai.util.Screen;
 import com.nzxye.ai.util.SensorEventUtil;
@@ -39,6 +55,7 @@ import java.io.ByteArrayOutputStream;
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -80,10 +97,15 @@ public class OpenglActivity extends AppCompatActivity implements
     // Navigation Drawer
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
+    //
+    private User mUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opengl);
+        // Get User Info
+        mUser = (User) GlobalData.getObjectForKey("user");
         //
         Screen.initialize(this);
         //
@@ -437,7 +459,81 @@ public class OpenglActivity extends AppCompatActivity implements
                                     //
                                     // DetectRequest detectRequest = new DetectRequest();
                                     // detectRequest.setImage_file(imgData);
+                                    /**
+                                     * Search
+                                     */
+                                    FaceService faceService = ServiceGeneratorFace.createService(FaceService.class);
+                                    Call<SearchResponse> callSearch= faceService.searchByByte(
+                                            RetrofitUtil.getPartFromString(ServiceGeneratorFace.API_KEY),
+                                            RetrofitUtil.getPartFromString(ServiceGeneratorFace.API_SECRET),
+                                            RetrofitUtil.getPartFromBytes("image_file", byteJPEG),
+                                            RetrofitUtil.getPartFromString("CustomerFaceSet")
+                                    );
+                                    callSearch.enqueue(new Callback<SearchResponse>() {
+                                        @Override
+                                        public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
+                                            SearchResponse searchResponse = ResponseUtil.parseResponseFaceSearch(response, getBaseContext());
+                                            if (searchResponse != null) {
+                                                ArrayList<SearchResult> searchResults = searchResponse.getResults();
+                                                if (searchResults.size() > 0) {
+                                                    final String userID = searchResults.get(0).getUserId();
+                                                    /**
+                                                     * Create Checkin
+                                                     */
+                                                    Checkin checkin = new Checkin();
+                                                    checkin.setCid(userID);
+                                                    CheckinService checkinService = ServiceGenerator.createService(CheckinService.class, mUser.getName(), mUser.getPassword());
+                                                    Call<JSONApiObject> callCheckin = checkinService.create(checkin);
+                                                    callCheckin.enqueue(new Callback<JSONApiObject>() {
+                                                        @Override
+                                                        public void onResponse(Call<JSONApiObject> call, retrofit2.Response<JSONApiObject> response) {
+                                                            List<Resource> resources = ResponseUtil.parseResponse(response, getBaseContext());
+                                                            if (resources != null) {
+                                                                if (resources.size() > 0) {
+                                                                    /**
+                                                                     * Get Customer Info
+                                                                     */
+                                                                    CustomerService customerService = ServiceGenerator.createService(CustomerService.class, mUser.getName(), mUser.getPassword());
+                                                                    Call<JSONApiObject> callCustomer = customerService.retrieveByID(userID);
+                                                                    callCustomer.enqueue(new Callback<JSONApiObject>() {
+                                                                        @Override
+                                                                        public void onResponse(Call<JSONApiObject> call, Response<JSONApiObject> response) {
+                                                                            List<Resource> resources = ResponseUtil.parseResponse(response, getBaseContext());
+                                                                            if (resources != null) {
+                                                                                if (resources.size() > 0) {
+                                                                                    Customer customerRet = (Customer) resources.get(0);
+                                                                                    Toast.makeText(getBaseContext(), customerRet.getName(), Toast.LENGTH_SHORT).show();
+                                                                                }
+                                                                            }
+                                                                        }
 
+                                                                        @Override
+                                                                        public void onFailure(Call<JSONApiObject> call, Throwable t) {
+                                                                            Toast.makeText(getBaseContext(), R.string.error_network, Toast.LENGTH_SHORT).show();
+                                                                            System.out.println(t.getMessage());
+                                                                        }
+                                                                    });
+                                                                }
+                                                            }
+                                                        }
+
+                                                        @Override
+                                                        public void onFailure(Call<JSONApiObject> call, Throwable t) {
+                                                            Toast.makeText(getBaseContext(), R.string.error_network, Toast.LENGTH_SHORT).show();
+                                                            System.out.println(t.getMessage());
+                                                        }
+                                                    });
+                                                }
+                                            }
+
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<SearchResponse> call, Throwable t) {
+                                            Toast.makeText(getBaseContext(), R.string.error_network, Toast.LENGTH_SHORT).show();
+                                            Log.d(MyApplication.LOG_TAG, t.getMessage());
+                                        }
+                                    });
                                 }
 
                             }

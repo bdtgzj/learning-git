@@ -47,6 +47,20 @@ exports.retrieve = function(req, res, next) {
   });
 };
 
+exports.retrieveOne = function(req, res, next) {
+  var validatedID = validatorCommon.validateID(req.params.id);
+  if (!validatedID.isValid) {
+    return res.json(error(STRINGS.ERROR_EXCEPTION_DATA, validatedID.error));
+  }
+  
+  Customer.retrieveOne(req.uid, validatedID.data, function(err, customer) {
+    if (err) {
+      return next(err);
+    }
+    res.json(CustomerSerializer.serialize(customer));
+  });
+};
+
 // Create
 exports.create = function(req, res, next) {
   var customer = null;

@@ -402,7 +402,7 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
                         /**
                          * Detect JPEG for face_token
                          */
-                        final FaceService faceService = ServiceGeneratorFace.createService(FaceService.class);
+                            final FaceService faceService = ServiceGeneratorFace.createService(FaceService.class);
                         Call<DetectResponse> callDetect = faceService.detectByByte(
                                 RetrofitUtil.getPartFromString(ServiceGeneratorFace.API_KEY),
                                 RetrofitUtil.getPartFromString(ServiceGeneratorFace.API_SECRET),
