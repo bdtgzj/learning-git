@@ -20,3 +20,5 @@ var CustomerSchema = new Schema({
 CustomerSchema.index({mphone: 1}, {unique: true});
 
 module.exports = CustomerSchema;
+
+// db.users.update({"_id": ObjectId("58bb973886ce8659fdf29546")}, {$set: {state: 0}})

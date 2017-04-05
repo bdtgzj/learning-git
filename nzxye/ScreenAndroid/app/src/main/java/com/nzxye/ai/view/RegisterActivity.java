@@ -31,7 +31,6 @@ import com.nzxye.ai.R;
 import com.nzxye.ai.bean.AddFaceResponse;
 import com.nzxye.ai.bean.Customer;
 import com.nzxye.ai.bean.DetectResponse;
-import com.nzxye.ai.bean.ResponseBase;
 import com.nzxye.ai.bean.SetUserIDResponse;
 import com.nzxye.ai.bean.User;
 import com.nzxye.ai.model.GlobalData;
@@ -176,6 +175,7 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        // Camera
         closeCamera();
     }
 
@@ -504,5 +504,6 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
             }
         }
     }
+
 }
 
