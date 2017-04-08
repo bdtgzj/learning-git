@@ -11,7 +11,7 @@ import android.content.Context;
 public class MyApplication extends Application {
 
     private static Context context;
-    public static String LOG_TAG = "nzxye";
+    public static final String LOG_TAG = Config.;
 
     public void onCreate() {
         super.onCreate();

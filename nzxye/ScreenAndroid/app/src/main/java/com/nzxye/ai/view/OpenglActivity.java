@@ -17,20 +17,43 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.baidu.tts.auth.AuthInfo;
+import com.baidu.tts.client.SpeechError;
+import com.baidu.tts.client.SpeechSynthesizer;
+import com.baidu.tts.client.SpeechSynthesizerListener;
+import com.baidu.tts.client.SynthesizerTool;
+import com.baidu.tts.client.TtsMode;
+import com.gustavofao.jsonapi.Models.JSONApiObject;
+import com.gustavofao.jsonapi.Models.Resource;
 import com.megvii.facepp.sdk.Facepp;
 import com.nzxye.ai.R;
+import com.nzxye.ai.bean.Checkin;
+import com.nzxye.ai.bean.Customer;
 import com.nzxye.ai.bean.DetectResponse;
+import com.nzxye.ai.bean.SearchResponse;
+import com.nzxye.ai.bean.SearchResult;
+import com.nzxye.ai.bean.SetUserIDResponse;
+import com.nzxye.ai.bean.User;
+import com.nzxye.ai.model.GlobalData;
+import com.nzxye.ai.service.CheckinService;
+import com.nzxye.ai.service.CustomerService;
 import com.nzxye.ai.service.FaceService;
+import com.nzxye.ai.service.ServiceGenerator;
 import com.nzxye.ai.service.ServiceGeneratorFace;
 import com.nzxye.ai.util.CameraMatrix;
+import com.nzxye.ai.util.CommonUtil;
 import com.nzxye.ai.util.ConUtil;
+import com.nzxye.ai.util.Config;
 import com.nzxye.ai.util.DialogUtil;
 import com.nzxye.ai.util.ICamera;
 import com.nzxye.ai.util.MediaRecorderUtil;
+import com.nzxye.ai.util.MyApplication;
 import com.nzxye.ai.util.OpenGLDrawRect;
 import com.nzxye.ai.util.OpenGLUtil;
 import com.nzxye.ai.util.PointsMatrix;
+import com.nzxye.ai.util.ResponseUtil;
 import com.nzxye.ai.util.RetrofitUtil;
 import com.nzxye.ai.util.Screen;
 import com.nzxye.ai.util.SensorEventUtil;
@@ -39,6 +62,7 @@ import java.io.ByteArrayOutputStream;
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -47,11 +71,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.nzxye.ai.util.Config.ASSETS_HOME;
+
 public class OpenglActivity extends AppCompatActivity implements
         Camera.PreviewCallback,
         GLSurfaceView.Renderer,
         SurfaceTexture.OnFrameAvailableListener,
-        NavigationDrawerFragment.NavigationDrawerCallbacks {
+        NavigationDrawerFragment.NavigationDrawerCallbacks,
+        SpeechSynthesizerListener {
 
     // params
     private boolean isStartRecorder, is3DPose, isDebug, isROIDetect, is106Points, isBackCamera, isFaceProperty, isSmooth;
@@ -80,10 +107,24 @@ public class OpenglActivity extends AppCompatActivity implements
     // Navigation Drawer
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
+    //
+    private User mUser;
+
+    // TTS
+    private SpeechSynthesizer mSpeechSynthesizer;
+    private static final String TEXT_MODEL_NAME = "bd_etts_text.dat";
+    private static final String SPEECH_FEMALE_MODEL_NAME = "bd_etts_speech_female.dat";
+    private static final String SPEECH_MALE_MODEL_NAME = "bd_etts_speech_male.dat";
+    private static final String TEXT_MODEL_NAME_ENGLISH = "bd_etts_text_en.dat";
+    private static final String SPEECH_FEMALE_MODEL_NAME_ENGLISH = "bd_etts_speech_female_en.dat";
+    private static final String SPEECH_MALE_MODEL_NAME_ENGLISH = "bd_etts_speech_male_en.dat";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opengl);
+        // Get User Info
+        mUser = (User) GlobalData.getObjectForKey("user");
         //
         Screen.initialize(this);
         //
@@ -102,6 +143,9 @@ public class OpenglActivity extends AppCompatActivity implements
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer_fragment,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        // TTS
+        initialTTS();
     }
 
     @Override
@@ -169,7 +213,10 @@ public class OpenglActivity extends AppCompatActivity implements
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        // face++
         facepp.release();
+        // TTS
+        this.mSpeechSynthesizer.release();
     }
 
     private void init() {
@@ -437,7 +484,82 @@ public class OpenglActivity extends AppCompatActivity implements
                                     //
                                     // DetectRequest detectRequest = new DetectRequest();
                                     // detectRequest.setImage_file(imgData);
+                                    /**
+                                     * Search
+                                     */
+                                    FaceService faceService = ServiceGeneratorFace.createService(FaceService.class);
+                                    Call<SearchResponse> callSearch= faceService.searchByByte(
+                                            RetrofitUtil.getPartFromString(ServiceGeneratorFace.API_KEY),
+                                            RetrofitUtil.getPartFromString(ServiceGeneratorFace.API_SECRET),
+                                            RetrofitUtil.getPartFromBytes("image_file", byteJPEG),
+                                            RetrofitUtil.getPartFromString("CustomerFaceSet")
+                                    );
+                                    callSearch.enqueue(new Callback<SearchResponse>() {
+                                        @Override
+                                        public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
+                                            SearchResponse searchResponse = ResponseUtil.parseResponseFaceSearch(response, getBaseContext());
+                                            if (searchResponse != null) {
+                                                ArrayList<SearchResult> searchResults = searchResponse.getResults();
+                                                if (searchResults.size() > 0) {
+                                                    final String userID = searchResults.get(0).getUserId();
+                                                    /**
+                                                     * Create Checkin
+                                                     */
+                                                    Checkin checkin = new Checkin();
+                                                    checkin.setCid(userID);
+                                                    CheckinService checkinService = ServiceGenerator.createService(CheckinService.class, mUser.getName(), mUser.getPassword());
+                                                    Call<JSONApiObject> callCheckin = checkinService.create(checkin);
+                                                    callCheckin.enqueue(new Callback<JSONApiObject>() {
+                                                        @Override
+                                                        public void onResponse(Call<JSONApiObject> call, retrofit2.Response<JSONApiObject> response) {
+                                                            List<Resource> resources = ResponseUtil.parseResponse(response, getBaseContext());
+                                                            if (resources != null) {
+                                                                if (resources.size() > 0) {
+                                                                    /**
+                                                                     * Get Customer Info
+                                                                     */
+                                                                    CustomerService customerService = ServiceGenerator.createService(CustomerService.class, mUser.getName(), mUser.getPassword());
+                                                                    Call<JSONApiObject> callCustomer = customerService.retrieveByID(userID);
+                                                                    callCustomer.enqueue(new Callback<JSONApiObject>() {
+                                                                        @Override
+                                                                        public void onResponse(Call<JSONApiObject> call, Response<JSONApiObject> response) {
+                                                                            List<Resource> resources = ResponseUtil.parseResponse(response, getBaseContext());
+                                                                            if (resources != null) {
+                                                                                if (resources.size() > 0) {
+                                                                                    Customer customerRet = (Customer) resources.get(0);
+                                                                                    // Toast.makeText(getBaseContext(), customerRet.getName(), Toast.LENGTH_SHORT).show();
+                                                                                    speak(customerRet.getName());
+                                                                                }
+                                                                            }
+                                                                        }
 
+                                                                        @Override
+                                                                        public void onFailure(Call<JSONApiObject> call, Throwable t) {
+                                                                            Toast.makeText(getBaseContext(), R.string.error_network, Toast.LENGTH_SHORT).show();
+                                                                            System.out.println(t.getMessage());
+                                                                        }
+                                                                    });
+                                                                }
+                                                            }
+                                                        }
+
+                                                        @Override
+                                                        public void onFailure(Call<JSONApiObject> call, Throwable t) {
+                                                            Toast.makeText(getBaseContext(), R.string.error_network, Toast.LENGTH_SHORT).show();
+                                                            System.out.println(t.getMessage());
+                                                        }
+                                                    });
+                                                }
+                                            }
+
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<SearchResponse> call, Throwable t) {
+                                            Toast.makeText(getBaseContext(), R.string.error_network, Toast.LENGTH_SHORT).show();
+                                            Log.d(MyApplication.LOG_TAG, t.getMessage());
+                                        }
+                                    });
                                 }
 
                             }
@@ -607,4 +729,140 @@ public class OpenglActivity extends AppCompatActivity implements
                 break;
         }
     }
+
+    /**
+     * TTS
+     */
+    private void initialTTS() {
+        this.mSpeechSynthesizer = SpeechSynthesizer.getInstance();
+        this.mSpeechSynthesizer.setContext(this);
+        this.mSpeechSynthesizer.setSpeechSynthesizerListener(this);
+        // 文本模型文件路径 (离线引擎使用)
+        this.mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_TTS_TEXT_MODEL_FILE, ASSETS_HOME + TEXT_MODEL_NAME);
+        // 声学模型文件路径 (离线引擎使用)
+        this.mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_TTS_SPEECH_MODEL_FILE, ASSETS_HOME + SPEECH_FEMALE_MODEL_NAME);
+        // App ID (离线授权)
+        this.mSpeechSynthesizer.setAppId(Config.BD_APP_ID);
+        // apikey 和 secretkey (在线授权)
+        this.mSpeechSynthesizer.setApiKey(Config.BD_API_KEY, Config.BD_SECRET_KEY);
+        // 发音人（在线引擎）0--普通女声，1--普通男声，2--特别男声，3--情感男声<度逍遥>，4--情感儿童声<度丫丫>
+        this.mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEAKER, "0");
+        // 设置Mix模式的合成策略
+        this.mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_MIX_MODE, SpeechSynthesizer.MIX_MODE_DEFAULT);
+        // 授权检测接口(只是通过AuthInfo进行检验授权是否成功。)
+        // AuthInfo接口用于测试开发者是否成功申请了在线或者离线授权，如果测试授权成功了，可以删除AuthInfo部分的代码（该接口首次验证时比较耗时），不会影响正常使用（合成使用时SDK内部会自动验证授权）
+        AuthInfo authInfo = this.mSpeechSynthesizer.auth(TtsMode.MIX);
+        if (authInfo.isSuccess()) {
+            toPrint("auth success");
+        } else {
+            String errorMsg = authInfo.getTtsError().getDetailMessage();
+            toPrint("auth failed errorMsg=" + errorMsg);
+        }
+
+        // 初始化 TTS
+        this.mSpeechSynthesizer.initTts(TtsMode.MIX);
+        // 加载离线英文资源（提供离线英文合成功能）
+        int result = mSpeechSynthesizer.loadEnglishModel(ASSETS_HOME + TEXT_MODEL_NAME_ENGLISH, ASSETS_HOME + SPEECH_FEMALE_MODEL_NAME_ENGLISH);
+        toPrint("loadEnglishModel result=" + result);
+
+        // 打印引擎信息和model基本信息
+        printEngineInfo();
+    }
+
+    /**
+     * 打印引擎so库版本号及基本信息和model文件的基本信息
+     */
+    private void printEngineInfo() {
+        toPrint("EngineVersioin=" + SynthesizerTool.getEngineVersion());
+        toPrint("EngineInfo=" + SynthesizerTool.getEngineInfo());
+        String textModelInfo = SynthesizerTool.getModelInfo(Config.ASSETS_HOME + TEXT_MODEL_NAME);
+        toPrint("textModelInfo=" + textModelInfo);
+        String speechModelInfo = SynthesizerTool.getModelInfo(Config.ASSETS_HOME + SPEECH_FEMALE_MODEL_NAME);
+        toPrint("speechModelInfo=" + speechModelInfo);
+    }
+
+    private void toPrint(String msg) {
+        Log.d(Config.LOG_TAG, msg);
+    }
+
+    private void speak(String text) {
+        int result = this.mSpeechSynthesizer.speak(text);
+        if (result < 0) {
+            toPrint("error");
+        }
+    }
+
+
+    /**
+     * SpeechSynthesizerListener interface method
+     */
+    @Override
+    public void onSynthesizeStart(String utteranceId) {
+        toPrint("onSynthesizeStart utteranceId=" + utteranceId);
+    }
+
+    /**
+     * 合成数据和进度的回调接口，分多次回调
+     *
+     * @param utteranceId
+     * @param data 合成的音频数据。该音频数据是采样率为16K，2字节精度，单声道的pcm数据。
+     * @param progress 文本按字符划分的进度，比如:你好啊 进度是0-3
+     */
+    @Override
+    public void onSynthesizeDataArrived(String utteranceId, byte[] data, int progress) {
+
+    }
+
+    /**
+     * 合成正常结束，每句合成正常结束都会回调，如果过程中出错，则回调onError，不再回调此接口
+     *
+     * @param utteranceId
+     */
+    @Override
+    public void onSynthesizeFinish(String utteranceId) {
+        toPrint("onSynthesizeFinish utteranceId=" + utteranceId);
+    }
+
+    /**
+     * 播放开始，每句播放开始都会回调
+     *
+     * @param utteranceId
+     */
+    @Override
+    public void onSpeechStart(String utteranceId) {
+        toPrint("onSpeechStart utteranceId=" + utteranceId);
+    }
+
+    /**
+     * 播放进度回调接口，分多次回调
+     *
+     * @param utteranceId
+     * @param progress 文本按字符划分的进度，比如:你好啊 进度是0-3
+     */
+    @Override
+    public void onSpeechProgressChanged(String utteranceId, int progress) {
+
+    }
+
+    /**
+     * 播放正常结束，每句播放正常结束都会回调，如果过程中出错，则回调onError,不再回调此接口
+     *
+     * @param utteranceId
+     */
+    @Override
+    public void onSpeechFinish(String utteranceId) {
+        toPrint("onSpeechFinish utteranceId=" + utteranceId);
+    }
+
+    /**
+     * 当合成或者播放过程中出错时回调此接口
+     *
+     * @param utteranceId
+     * @param error 包含错误码和错误信息
+     */
+    @Override
+    public void onError(String utteranceId, SpeechError error) {
+        toPrint("onError error=" + "(" + error.code + ")" + error.description + "--utteranceId=" + utteranceId);
+    }
+
 }

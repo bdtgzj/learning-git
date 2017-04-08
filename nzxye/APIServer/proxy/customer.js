@@ -10,6 +10,11 @@ exports.retrieve = function(uid, page, condition, callback) {
   Customer.find(condition).skip(page.skip).limit(page.limit).sort({created: page.sort}).exec(callback);
 }
 
+exports.retrieveOne = function(uid, id, callback) {
+  var Customer = mongoose.model('Customer_' + uid, CustomerSchema);
+  Customer.findOne({_id: mongoose.Types.ObjectId(id)}).exec(callback);
+}
+
 exports.create = function(uid, customer, callback) {
   var Customer = mongoose.model('Customer_' + uid, CustomerSchema);
   Customer.create(customer, callback);

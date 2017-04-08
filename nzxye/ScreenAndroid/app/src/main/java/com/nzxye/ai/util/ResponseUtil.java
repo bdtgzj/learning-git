@@ -12,6 +12,7 @@ import com.nzxye.ai.bean.AddFaceResponse;
 import com.nzxye.ai.bean.DetectResponse;
 import com.nzxye.ai.bean.HttpError;
 import com.nzxye.ai.bean.ResponseBase;
+import com.nzxye.ai.bean.SearchResponse;
 import com.nzxye.ai.bean.SetUserIDResponse;
 
 import java.io.IOException;
@@ -143,6 +144,39 @@ public class ResponseUtil {
         // i.e. 200
         if (response.isSuccessful()) {
             SetUserIDResponse responseBase = response.body();
+            if (responseBase != null) {
+                if (responseBase.getErrorMessage() != null) {
+                    Toast.makeText(context, responseBase.getErrorMessage(), Toast.LENGTH_SHORT).show();
+                } else {
+                    return responseBase;
+                }
+            } else {
+                Toast.makeText(context, R.string.fragment_data_nonexistent, Toast.LENGTH_SHORT).show();
+            }
+            // i.e. 401, 500 etc.
+        } else {
+            switch (response.code()) {
+                case 401:
+                    try {
+                        Toast.makeText(context, response.errorBody().string(), Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        Log.d(MyApplication.LOG_TAG, e.getMessage());
+                    }
+                    break;
+                case 500:
+                default:
+                    Toast.makeText(context, R.string.error_system, Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
+        return null;
+    }
+
+    public static SearchResponse parseResponseFaceSearch(retrofit2.Response<SearchResponse> response, Context context) {
+        // i.e. 200
+        if (response.isSuccessful()) {
+            SearchResponse responseBase = response.body();
             if (responseBase != null) {
                 if (responseBase.getErrorMessage() != null) {
                     Toast.makeText(context, responseBase.getErrorMessage(), Toast.LENGTH_SHORT).show();
