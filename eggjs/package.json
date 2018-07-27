@@ -1,0 +1,25 @@
+{
+  "name": "eggjs",
+  "version": "1.0.0",
+  "description": "eggjs",
+  "main": "index.js",
+  "scripts": {
+    "dev-inspect": "egg-bin dev --inspect",
+    "dev-debug": "egg-bin dev --debug",
+    "test": "egg-bin test"
+  },
+  "keywords": [
+    "egg"
+  ],
+  "author": "bdtgzj",
+  "license": "ISC",
+  "dependencies": {
+    "egg": "^1.1.0",
+    "egg-view-nunjucks": "^2.0.0"
+  },
+  "devDependencies": {
+    "egg-bin": "^3.3.0",
+    "egg-mock": "^3.5.0",
+    "supertest": "^3.0.0"
+  }
+}

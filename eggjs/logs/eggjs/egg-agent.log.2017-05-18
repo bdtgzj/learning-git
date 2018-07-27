@@ -1,0 +1,12 @@
+2017-04-27 15:28:12,968 INFO 12806 [egg:logger] init all loggers with options: {"dir":"/Users/xiaodongyu/Learning/learning-git/eggjs/logs/eggjs","encoding":"utf8","env":"unittest","level":"INFO","consoleLevel":"WARN","outputJSON":false,"buffer":false,"appLogName":"eggjs-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{},"type":"agent"}
+2017-04-27 15:28:13,042 INFO 12806 [ClusterClient:Watcher] has seized port 63528, and serves as leader client.
+2017-04-27 15:28:13,042 INFO 12806 [egg-watcher:agent] watcher start success
+2017-04-27 15:28:13,508 INFO 12806 [Leader:Watcher] socket connected, port: 63549
+2017-05-18 10:28:57,510 INFO 2532 [egg:logger] init all loggers with options: {"dir":"/Users/xiaodongyu/Learning/learning-git/eggjs/logs/eggjs","encoding":"utf8","env":"local","level":"DEBUG","consoleLevel":"INFO","outputJSON":false,"buffer":false,"appLogName":"eggjs-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"type":"agent"}
+2017-05-18 10:28:57,603 INFO 2532 [ClusterClient:Watcher] subscribe ["/Users/xiaodongyu/Learning/learning-git/eggjs/app","/Users/xiaodongyu/Learning/learning-git/eggjs/config","/Users/xiaodongyu/Learning/learning-git/eggjs/mocks","/Users/xiaodongyu/Learning/learning-git/eggjs/mocks_proxy"]
+2017-05-18 10:28:58,046 INFO 2532 [ClusterClient:Watcher] has seized port 51573, and serves as leader client.
+2017-05-18 10:28:58,050 INFO 2532 [egg-watcher:agent] watcher start success
+2017-05-18 10:29:03,250 INFO 2532 [Leader:Watcher] socket connected, port: 51584
+2017-05-18 17:20:49,093 INFO 2532 [Leader:Watcher] socket connected, port: 55545
+2017-05-19 00:00:02,220 INFO 2532 [egg-schedule] send message: sendRandom egg-schedule:/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/rotate_by_file.js
+2017-05-19 00:00:02,241 INFO 2532 [egg-schedule] send message: sendRandom egg-schedule:/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/clean_log.js

@@ -1,0 +1,17 @@
+{
+  "name": "koajs",
+  "version": "1.0.0",
+  "description": "koa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "koa"
+  ],
+  "author": "bdtgzj",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.2.0"
+  }
+}

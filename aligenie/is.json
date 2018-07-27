@@ -1,0 +1,28 @@
+{
+    "returnCode": "0",
+    "returnErrorSolution": "",
+    "returnMessage": "",
+    "returnValue": {
+        "reply": "哈哈哈",
+        "resultType": "RESULT",
+        "actions": [
+            {
+                "name": "audioPlayOneTime",
+                "properties": {
+                    "audioUrl": "http://music.mp3"
+                }
+            }
+        ],
+        "properties": {},
+        "sessionEntries": {
+            "CONTEXT_ENTRY_KEY_HAS_NLU_GA_PUBLIC_DOMAIN ": {
+                "timeToLive": 0,
+                "liveTime": 0,
+                "timeStamp": 1491889193833,
+                "value": "false"
+            }
+        },
+        "executeCode": "SUCCESS",
+        "msgInfo": ""
+    }
+}

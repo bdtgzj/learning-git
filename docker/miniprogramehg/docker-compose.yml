@@ -1,0 +1,40 @@
+version: '3.5'
+
+services:
+  tomcat:
+    build: .
+    restart: always
+    links:
+      - tomcatdb:mysql
+    ports:
+      - 8001:8080
+#    environment:
+#      TOMCAT_DB_HOST: tomcatdb
+#      TOMCAT_DB_USER: root
+#      TOMCAT_DB_PASSWORD: mysqlpass
+#      TOMCAT_DB_NAME: platform_wechat_mall
+    volumes:
+#      - type: volume
+#        source: joomla
+      - type: bind
+        source: /Users/xiaodongyu/tmp/volume/webapps
+        target: /usr/local/tomcat/webapps
+
+  tomcatdb:
+    image: mysql:5.6
+    command: ["--character-set-server=utf8"]
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mysqlpass
+    volumes:
+      - type: volume
+        source: mysql
+        target: /var/lib/mysql
+
+  tomcatcache:
+    image: redis:4.0
+    restart: always
+
+volumes:
+  tomcat:
+  mysql:
