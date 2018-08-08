@@ -4,26 +4,42 @@ services:
   node1:
     build: .
     restart: always
-    stdin_open: true
+#    stdin_open: true
     tty: true
 #    links:
 #      - tomcatdb:mysql
     command: ["--nodiscover", "--maxpeers=1",
               "--rpc", "--rpcport=8545", "--rpcapi=db,eth,net,web3", "--rpccorsdomain=*",
-              "--datadir=/root/.ethereum", "--networkid=15", "--identity=Node1"] #, "console"
+              "--datadir=/root/.ethereum", "--networkid=15", "--identity=Node1", "--verbosity=5"] #, "console"
     ports:
       - "8545:8545"
       - "30303:30303"
 #      - "30303:30303/udp"
 #    environment:
 #      TOMCAT_DB_HOST: tomcatdb
-#    volumes:
-#      - type: volume
-#        source: joomla
+    volumes:
+      - type: volume
+        source: node1
 #      - type: bind
-#        source: ./data #/Users/xiaodongyu/Learning/learning-git/ethereum/ethereumprivate/data
-#        target: /root/.ethereum
+#        source: ./data/node1 #/Users/xiaodongyu/Learning/learning-git/ethereum/ethereumprivate/data
+        target: /root/.ethereum
 
-#volumes:
-#  node1:
-#  node2:
+  node2:
+#    image: ethereum/client-go
+    build: .
+    restart: always
+    tty: true
+    command: ["--nodiscover", "--maxpeers=1",
+              "--rpc", "--rpcport=8545", "--rpcapi=db,eth,net,web3", "--rpccorsdomain=*",
+              "--datadir=/root/.ethereum", "--networkid=15", "--identity=Node2", "--verbosity=5", "console"]
+    ports:
+      - "8546:8545"
+      - "30304:30303"
+    volumes:
+      - type: volume
+        source: node2 #/Users/xiaodongyu/Learning/learning-git/ethereum/ethereumprivate/data
+        target: /root/.ethereum
+
+volumes:
+  node1:
+  node2:
