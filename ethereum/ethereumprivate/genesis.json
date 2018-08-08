@@ -5,9 +5,7 @@
         "eip155Block": 0,
         "eip158Block": 0
     },
-    "alloc"      : {
-        "account_id": { "balance": "1000000" }
-    },
+    "alloc"      : {},
     "coinbase"   : "0x0000000000000000000000000000000000000000",
     "difficulty" : "0x400",
     "extraData"  : "",

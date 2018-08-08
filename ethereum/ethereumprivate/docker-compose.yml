@@ -23,6 +23,9 @@ services:
 #      - type: bind
 #        source: ./data/node1 #/Users/xiaodongyu/Learning/learning-git/ethereum/ethereumprivate/data
         target: /root/.ethereum
+    networks:
+      default:
+        ipv4_address: 172.16.0.2
 
   node2:
 #    image: ethereum/client-go
@@ -31,7 +34,7 @@ services:
     tty: true
     command: ["--nodiscover", "--maxpeers=1",
               "--rpc", "--rpcport=8545", "--rpcapi=db,eth,net,web3", "--rpccorsdomain=*",
-              "--datadir=/root/.ethereum", "--networkid=15", "--identity=Node2", "--verbosity=5", "console"]
+              "--datadir=/root/.ethereum", "--networkid=15", "--identity=Node2", "--verbosity=5"] #, "console"
     ports:
       - "8546:8545"
       - "30304:30303"
@@ -39,7 +42,17 @@ services:
       - type: volume
         source: node2 #/Users/xiaodongyu/Learning/learning-git/ethereum/ethereumprivate/data
         target: /root/.ethereum
+    networks:
+      default:
+        ipv4_address: 172.16.0.3
 
 volumes:
   node1:
   node2:
+
+networks:
+  default:
+    ipam:
+      config:
+      - subnet: 172.16.0.0/24
+#        gateway: 172.16.0.254
