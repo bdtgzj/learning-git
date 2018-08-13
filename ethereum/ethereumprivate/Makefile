@@ -1,3 +1,5 @@
+TAIL ?= 100
+
 build-image:
 	docker-compose build --no-cache
 
@@ -23,6 +25,12 @@ attach-node1:
 attach-console1:
 	docker exec -it ethereumprivate_node1_1 geth attach
 
+attach-console1e:
+	docker exec -it ethereumprivate_node1_1 geth attach --jspath "/root/.ethereum" --preload "utils.js"
+
+logs-node1:
+	docker-compose logs --tail=$(TAIL) node1
+
 attach-node2:
 	docker exec -it ethereumprivate_node2_1 /bin/sh
 
@@ -32,6 +40,9 @@ attach-console2:
 # attach-console2-with-custom-js:
 attach-console2e:
 	docker exec -it ethereumprivate_node2_1 geth attach --jspath "/root/.ethereum" --preload "utils.js"
+
+logs-node2:
+	docker-compose logs --tail=100 node2
 
 copy-file-from-host-to-container:
 	docker cp utils.js ethereumprivate_node2_1:/root/.ethereum
