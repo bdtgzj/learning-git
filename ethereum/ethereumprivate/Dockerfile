@@ -16,9 +16,12 @@ ADD static-nodes.json /root/.ethereum/
 # add custom js
 ADD utils.js /root/.ethereum/
 
+# add bash profile
+ADD .profile /root/
+
 # create volume
 VOLUME /root/.ethereum/
 
-# 
+#
 # ENTRYPOINT ["geth"]
 # CMD [""]

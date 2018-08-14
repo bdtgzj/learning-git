@@ -20,7 +20,7 @@ list-container:
 	# docker-compose ps
 
 attach-node1:
-	docker exec -it ethereumprivate_node1_1 /bin/sh
+	docker exec -it ethereumprivate_node1_1 /bin/sh -l
 
 attach-console1:
 	docker exec -it ethereumprivate_node1_1 geth attach
@@ -32,7 +32,7 @@ logs-node1:
 	docker-compose logs --tail=$(TAIL) node1
 
 attach-node2:
-	docker exec -it ethereumprivate_node2_1 /bin/sh
+	docker exec -it ethereumprivate_node2_1 /bin/sh -l
 
 attach-console2:
 	docker exec -it ethereumprivate_node2_1 geth attach
