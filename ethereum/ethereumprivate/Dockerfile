@@ -1,5 +1,10 @@
 FROM ethereum/client-go
 
+# add software
+RUN \
+apk add --update curl && \
+rm -rf /var/cache/apk/*
+
 # create account
 ADD pass /root/
 RUN geth --password /root/pass account new; \
