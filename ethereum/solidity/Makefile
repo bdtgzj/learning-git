@@ -1,4 +1,4 @@
-SF=HelloWorld.sol
+SF=SimpleContract.sol
 
 #attach-solc:
 #	docker run -it --rm ethereum/solc:stable /bin/sh -l
