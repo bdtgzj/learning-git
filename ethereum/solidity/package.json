@@ -1,0 +1,20 @@
+{
+  "name": "solidity",
+  "version": "1.0.0",
+  "description": "solidity helper",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "solidity",
+    "web3",
+    "ethereum"
+  ],
+  "author": "bdtgzj",
+  "license": "ISC",
+  "dependencies": {
+    "web3": "^0.20.7"
+  },
+  "devDependencies": {}
+}

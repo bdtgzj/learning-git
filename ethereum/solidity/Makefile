@@ -12,7 +12,8 @@ FunctionNameArgument=0xc6888fa10000000000000000000000000000000000000000000000000
 solc-help:
 	docker run -it --rm ethereum/solc:stable solc --help
 
-solc-run:
+# solc-run
+compile:
 	docker run -it --rm -v $(PWD):/root/ ethereum/solc:stable --overwrite --gas --bin --metadata -o /root/bin /root/src/$(SF)
 
 eth.coinbase:
