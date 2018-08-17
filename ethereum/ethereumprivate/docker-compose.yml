@@ -9,7 +9,7 @@ services:
 #    links:
 #      - tomcatdb:mysql
     command: ["--nodiscover", "--maxpeers=1",
-              "--rpc", "--rpcaddr=0.0.0.0", "--rpcport=8545", "--rpcapi=db,eth,net,web3", "--rpccorsdomain=*",
+              "--rpc", "--rpcaddr=0.0.0.0", "--rpcport=8545", "--rpcapi=eth, web3, admin, miner, personal, txpool, debug, db, net", "--rpccorsdomain=*",
               "--datadir=/root/.ethereum", "--ethash.dagdir=/root/.ethereum/.ethash", "--networkid=15", "--identity=Node1", "--verbosity=5"] #, "console"
     ports:
       - "8545:8545"
@@ -33,7 +33,7 @@ services:
     restart: always
     tty: true
     command: ["--nodiscover", "--maxpeers=1",
-              "--rpc", "--rpcaddr=0.0.0.0", "--rpcport=8545", "--rpcapi=db,eth,net,web3", "--rpccorsdomain=*",
+              "--rpc", "--rpcaddr=0.0.0.0", "--rpcport=8545", "--rpcapi=eth, web3, admin, miner, personal, txpool, debug, db, net", "--rpccorsdomain=*",
               "--datadir=/root/.ethereum", "--ethash.dagdir=/root/.ethereum/.ethash", "--networkid=15", "--identity=Node2", "--verbosity=5"] #, "console"
     ports:
       - "8555:8545"
