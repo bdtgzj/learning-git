@@ -10,9 +10,11 @@ services:
 #      - tomcatdb:mysql
     command: ["--nodiscover", "--maxpeers=1",
               "--rpc", "--rpcaddr=0.0.0.0", "--rpcport=8545", "--rpcapi=eth, web3, admin, miner, personal, txpool, debug, db, net", "--rpccorsdomain=*",
+              "--ws", "--wsaddr=0.0.0.0", "--wsport=8546", "--wsapi=eth, web3, admin, miner, personal, txpool, debug, db, net", "--wsorigins=*",
               "--datadir=/root/.ethereum", "--ethash.dagdir=/root/.ethereum/.ethash", "--networkid=15", "--identity=Node1", "--verbosity=5"] #, "console"
     ports:
       - "8545:8545"
+      - "8546:8546"
       - "30303:30303"
 #      - "30303:30303/udp"
 #    environment:
@@ -34,9 +36,11 @@ services:
     tty: true
     command: ["--nodiscover", "--maxpeers=1",
               "--rpc", "--rpcaddr=0.0.0.0", "--rpcport=8545", "--rpcapi=eth, web3, admin, miner, personal, txpool, debug, db, net", "--rpccorsdomain=*",
+              "--ws", "--wsaddr=0.0.0.0", "--wsport=8546", "--wsapi=eth, web3, admin, miner, personal, txpool, debug, db, net", "--wsorigins=*",
               "--datadir=/root/.ethereum", "--ethash.dagdir=/root/.ethereum/.ethash", "--networkid=15", "--identity=Node2", "--verbosity=5"] #, "console"
     ports:
       - "8555:8545"
+      - "8666:8546"
       - "30304:30303"
     volumes:
       - type: volume
