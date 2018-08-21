@@ -41,9 +41,6 @@ web3.eth.getCoinbase()
     let contract = new web3.eth.Contract(contractInterface);
     // deploy contract
     return contract.deploy({data: contractByteCode}).send({from: accountID, gas: 2000000})
-    .on('error', function(err) {
-        console.log(err);
-    })
     .on('transactionHash', function(data) {
         transactionHashDeploy = data;
         console.log('TransactionHashDeploy: ' + transactionHashDeploy);
@@ -63,16 +60,14 @@ web3.eth.getCoinbase()
         transactionHashInteract = data;
         console.log('TransactionHashInteract: ' + transactionHashInteract);
     })
-    .on('receipt', function(receipt) {
-        contractAddressInteract = receipt.contractAddress;
-        console.log('ContractAddressInteract: ' + contractAddressInteract);
-    })
     .on('confirmation', function(onfirmationNumber, receipt) {
         console.log('Confirmation: ' + onfirmationNumber);
     });
 })
-.then(data => {
-    console.log('TransactionHash: ' + data);
+.then(receipt => {
+    contractAddressInteract = receipt.contractAddress;
+    console.log('ReturnValue: ' + JSON.stringify(receipt.events.Print.returnValues));
+    console.log('ReceiptInteraction: ' + JSON.stringify(receipt));
 })
 .catch(err => console.log(err));
 
