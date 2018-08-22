@@ -1,0 +1,62 @@
+version: '3.5'
+
+services:
+  node1:
+    build: .
+    restart: always
+#    stdin_open: true
+    tty: true
+#    links:
+#      - tomcatdb:mysql
+    command: ["--nodiscover", "--maxpeers=1",
+              "--rpc", "--rpcaddr=0.0.0.0", "--rpcport=8545", "--rpcapi=eth, web3, admin, miner, personal, txpool, debug, db, net", "--rpccorsdomain=*",
+              "--ws", "--wsaddr=0.0.0.0", "--wsport=8546", "--wsapi=eth, web3, admin, miner, personal, txpool, debug, db, net", "--wsorigins=*",
+              "--datadir=/root/.ethereum", "--ethash.dagdir=/root/.ethereum/.ethash", "--networkid=15", "--identity=Node1", "--verbosity=5"] #, "console"
+    ports:
+      - "8545:8545"
+      - "8546:8546"
+      - "30303:30303"
+#      - "30303:30303/udp"
+#    environment:
+#      TOMCAT_DB_HOST: tomcatdb
+    volumes:
+      - type: volume
+        source: node1
+#      - type: bind
+#        source: ./data/node1 #/Users/xiaodongyu/Learning/learning-git/ethereum/ethereumprivate/data
+        target: /root/.ethereum
+    networks:
+      default:
+        ipv4_address: 172.16.0.2
+
+  node2:
+#    image: ethereum/client-go
+    build: .
+    restart: always
+    tty: true
+    command: ["--nodiscover", "--maxpeers=1",
+              "--rpc", "--rpcaddr=0.0.0.0", "--rpcport=8545", "--rpcapi=eth, web3, admin, miner, personal, txpool, debug, db, net", "--rpccorsdomain=*",
+              "--ws", "--wsaddr=0.0.0.0", "--wsport=8546", "--wsapi=eth, web3, admin, miner, personal, txpool, debug, db, net", "--wsorigins=*",
+              "--datadir=/root/.ethereum", "--ethash.dagdir=/root/.ethereum/.ethash", "--networkid=15", "--identity=Node2", "--verbosity=5"] #, "console"
+    ports:
+      - "8555:8545"
+      - "8666:8546"
+      - "30304:30303"
+    volumes:
+      - type: volume
+        source: node2 #/Users/xiaodongyu/Learning/learning-git/ethereum/ethereumprivate/data
+        target: /root/.ethereum
+    networks:
+      default:
+        ipv4_address: 172.16.0.3
+
+volumes:
+  node1:
+  node2:
+
+networks:
+  default:
+    ipam:
+      config:
+      - subnet: 172.16.0.0/24
+#        gateway: 172.16.0.254
