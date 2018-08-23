@@ -12,6 +12,9 @@ remove-service:
 start-service:
 	docker-compose start
 
+start-service-node1:
+	docker-compose up node1
+
 stop-service:
 	docker-compose stop
 
@@ -20,7 +23,13 @@ list-container:
 	# docker-compose ps
 
 attach-node1:
-	docker exec -it ethereumprivate_node1_1 /bin/sh -l
+	docker exec -it eosdevnode_node1_1 /bin/bash
+
+run-cleos:
+	docker exec -it eosdevnode_node1_1 /opt/eosio/bin/cleos -u http://localhost:8888
+
+alias-cleos:
+	alias cleos='docker exec -it eosdevnode_node1_1 /opt/eosio/bin/cleos -u http://localhost:8888'
 
 attach-console1:
 	docker exec -it ethereumprivate_node1_1 geth attach

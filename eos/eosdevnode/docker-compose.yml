@@ -1,0 +1,68 @@
+version: '3.5'
+
+services:
+  node1:
+    build: .
+    restart: always
+#    stdin_open: true
+#    tty: true
+#    links:
+#      - tomcatdb:mysql
+    command: ["/bin/bash", "-c", "nodeos -e -p eosio --plugin eosio::producer_plugin --plugin eosio::history_plugin --plugin eosio::chain_api_plugin --plugin eosio::history_api_plugin --plugin eosio::http_plugin -d /mnt/dev/data --config-dir /mnt/dev/config --http-server-address=0.0.0.0:8888 --access-control-allow-origin=* --contracts-console --http-validate-host=false"]
+    ports:
+      - "8888:8888"
+      - "9876:9876"
+#      - "30303:30303/udp"
+#    environment:
+#      TOMCAT_DB_HOST: tomcatdb
+    volumes:
+      - type: volume
+        source: node1_work
+#      - type: bind
+#        source: ./data/node1 #/Users/xiaodongyu/Learning/learning-git/ethereum/ethereumprivate/data
+        target: /work
+      - type: volume
+        source: node1_data
+        target: /mnt/dev/data
+      - type: volume
+        source: node1_config
+        target: /mnt/dev/config
+    networks:
+      default:
+        ipv4_address: 172.16.1.2
+
+  node2:
+    build: .
+    restart: always
+    command: ["/bin/bash", "-c", "nodeos -e -p eosio --plugin eosio::producer_plugin --plugin eosio::history_plugin --plugin eosio::chain_api_plugin --plugin eosio::history_api_plugin --plugin eosio::http_plugin -d /mnt/dev/data --config-dir /mnt/dev/config --http-server-address=0.0.0.0:8888 --access-control-allow-origin=* --contracts-console --http-validate-host=false"]
+    ports:
+      - "8889:8888"
+      - "9877:9876"
+    volumes:
+      - type: volume
+        source: node2_work
+        target: /work
+      - type: volume
+        source: node2_data
+        target: /mnt/dev/data
+      - type: volume
+        source: node2_config
+        target: /mnt/dev/config
+    networks:
+      default:
+        ipv4_address: 172.16.1.3
+
+volumes:
+  node1_work:
+  node1_data:
+  node1_config:
+  node2_work:
+  node2_data:
+  node2_config:
+
+networks:
+  default:
+    ipam:
+      config:
+      - subnet: 172.16.1.0/24
+#        gateway: 172.16.0.254

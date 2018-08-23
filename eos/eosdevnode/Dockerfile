@@ -1,0 +1,1 @@
+FROM eosio/eos-dev
