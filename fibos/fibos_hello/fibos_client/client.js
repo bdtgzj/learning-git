@@ -18,6 +18,14 @@ var fibos = FIBOS({
   }
 });
 
-var result = fibos.getBlockSync(1);
+var blockChainInfo = fibos.getInfoSync();
+console.log('blockChainInfo');
+console.log(blockChainInfo);
 
-console.log(result);
+var blockInfo = fibos.getBlockSync(1);
+console.log('blockInfo');
+console.log(blockInfo);
+
+var accountInfo = fibos.getAccountSync("eosio");
+console.log('accountInfo');
+console.log(accountInfo);

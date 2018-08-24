@@ -6,14 +6,14 @@ build-image:
 create-service:
 	docker-compose up -d
 
+create-service-node1:
+	docker-compose up -d node1
+
 remove-service:
 	docker-compose down # add -v to delete volume
 
 start-service:
 	docker-compose start
-
-start-service-node1:
-	docker-compose up node1
 
 stop-service:
 	docker-compose stop
@@ -25,36 +25,24 @@ list-container:
 attach-node1:
 	docker exec -it eosdevnode_node1_1 /bin/bash
 
+backup-wallet:
+	docker cp eosdevnode_node1_1:/root/eosio-wallet/default.wallet ~/Learning/learning-git/eos/eosdevnode/
+
+restore-wallet:
+	docker exec eosdevnode_node1_1 mkdir -p /root/eosio-wallet/
+	docker cp ~/Learning/learning-git/eos/eosdevnode/default.wallet eosdevnode_node1_1:/root/eosio-wallet/
+
 run-cleos:
 	docker exec -it eosdevnode_node1_1 /opt/eosio/bin/cleos -u http://localhost:8888
 
 alias-cleos:
 	alias cleos='docker exec -it eosdevnode_node1_1 /opt/eosio/bin/cleos -u http://localhost:8888'
 
-copy-wallet:
-	docker cp eosdevnode_node1_1:/root/eosio-wallet/default.wallet ~/Learning/learning-git/eos/eosdevnode/
-
-attach-console1:
-	docker exec -it ethereumprivate_node1_1 geth attach
-
-attach-console1e:
-	docker exec -it ethereumprivate_node1_1 geth attach --jspath "/root/.ethereum" --preload "utils.js"
-
 logs-node1:
 	docker-compose logs --tail=$(TAIL) node1
 
 attach-node2:
-	docker exec -it ethereumprivate_node2_1 /bin/sh -l
-
-attach-console2:
-	docker exec -it ethereumprivate_node2_1 geth attach
-
-# attach-console2-with-custom-js:
-attach-console2e:
-	docker exec -it ethereumprivate_node2_1 geth attach --jspath "/root/.ethereum" --preload "utils.js"
+	docker exec -it eosdevnode_node2_1 /bin/bash
 
 logs-node2:
 	docker-compose logs --tail=$(TAIL) node2
-
-copy-file-from-host-to-container:
-	docker cp utils.js ethereumprivate_node2_1:/root/.ethereum

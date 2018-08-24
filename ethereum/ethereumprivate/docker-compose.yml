@@ -3,7 +3,7 @@ version: '3.5'
 services:
   node1:
     build: .
-    restart: always
+    restart: "no" # always
 #    stdin_open: true
     tty: true
 #    links:
@@ -32,7 +32,7 @@ services:
   node2:
 #    image: ethereum/client-go
     build: .
-    restart: always
+    restart: "no"
     tty: true
     command: ["--nodiscover", "--maxpeers=1",
               "--rpc", "--rpcaddr=0.0.0.0", "--rpcport=8545", "--rpcapi=eth, web3, admin, miner, personal, txpool, debug, db, net", "--rpccorsdomain=*",

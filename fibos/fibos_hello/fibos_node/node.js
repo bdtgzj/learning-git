@@ -16,4 +16,8 @@ fibos.load("producer", {
   'enable-stale-production': true
 });
 
+// default dir on Mac: ~/Library/Application Support/eosio/nodeos
+// fibos.config_dir = "fibos_config_dir/";
+// fibos.data_dir = "fibos_data_dir/";
+
 fibos.start();

@@ -11,6 +11,8 @@ var fibos = FIBOS(config["private-key"]);
 
 //call abi
 var ctx = fibos.contractSync(config['contractName']);
+// console.log(ctx);
 let i = ctx.hiSync('hello', {
     authorization: config['contractName']
 });
+console.log(i);
