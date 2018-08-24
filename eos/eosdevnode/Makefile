@@ -31,6 +31,9 @@ run-cleos:
 alias-cleos:
 	alias cleos='docker exec -it eosdevnode_node1_1 /opt/eosio/bin/cleos -u http://localhost:8888'
 
+copy-wallet:
+	docker cp eosdevnode_node1_1:/root/eosio-wallet/default.wallet ~/Learning/learning-git/eos/eosdevnode/
+
 attach-console1:
 	docker exec -it ethereumprivate_node1_1 geth attach
 
