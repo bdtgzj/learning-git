@@ -1,7 +1,7 @@
 var fibos = require('fibos');
 
-// fibos.config_dir = "sync_data_Dir";
-// fibos.data_dir = "sync_data_Dir";
+fibos.config_dir = "sync_node_dir";
+fibos.data_dir = "sync_node_dir";
 
 console.notice("config_dir:", fibos.config_dir);
 console.notice("data_dir:", fibos.data_dir);

@@ -1,15 +1,14 @@
 var fibos = require('fibos');
 var fs = require("fs");
 var config = {
-    "producer-name": "producer-name",
-    "public-key": "producer public key",
-    "private-key": "producer private key"
+    "producer-name": "testid4fibos",
+    "public-key": "FO87ziTh2BFA7KNcdu57WtM2fUvZzZMXfwqJ9TVyupxVphr135ue",
+    "private-key": "5K4ADapxcnjLZ6GFtmnA22q5f5yYbsJzBmbXdWjepsMbchZzYdq"
 };
 
-
 console.notice("正在启动FIBOS name:", config["producer-name"]);
-fibos.config_dir = config["producer-name"] + "_Dir";
-fibos.data_dir = config["producer-name"] + "_Dir"
+fibos.config_dir = config["producer-name"] + "_dir";
+fibos.data_dir = config["producer-name"] + "_dir"
 
 console.notice("config_dir:", fibos.config_dir);
 console.notice("data_dir:", fibos.data_dir);
@@ -38,3 +37,5 @@ fibos.load("chain");
 fibos.load("chain_api");
 fibos.load("wallet");
 fibos.load("wallet_api");
+
+fibos.start();
