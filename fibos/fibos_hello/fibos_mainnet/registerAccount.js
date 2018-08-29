@@ -16,6 +16,8 @@ var rep = httpClient.post(httpServerHost, {
         account: account,
         pubkey: pubkey
     }
-}).json();
+});
+// console.log(rep);
+rep = rep.json()
 if (rep.account) rep.prikey = prikey;
 console.log(rep);
