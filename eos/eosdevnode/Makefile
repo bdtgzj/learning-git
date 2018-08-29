@@ -18,6 +18,9 @@ start-service:
 stop-service:
 	docker-compose stop
 
+restart-service:
+	docker-compose restart
+
 list-container:
 	docker ps
 	# docker-compose ps
@@ -28,7 +31,7 @@ attach-node1:
 backup-wallet:
 	docker cp eosdevnode_node1_1:/root/eosio-wallet/default.wallet ~/Learning/learning-git/eos/eosdevnode/
 
-restore-wallet:
+restore-wallet1:
 	docker exec eosdevnode_node1_1 mkdir -p /root/eosio-wallet/
 	docker cp ~/Learning/learning-git/eos/eosdevnode/default.wallet eosdevnode_node1_1:/root/eosio-wallet/
 
@@ -46,3 +49,11 @@ attach-node2:
 
 logs-node2:
 	docker-compose logs --tail=$(TAIL) node2
+
+restore-wallet2:
+	docker exec eosdevnode_node2_1 mkdir -p /root/eosio-wallet/
+	docker cp ~/Learning/learning-git/eos/eosdevnode/default.wallet eosdevnode_node2_1:/root/eosio-wallet/
+
+restart-service2:
+	docker-compose restart node2
+

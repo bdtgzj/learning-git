@@ -2,6 +2,8 @@ var FIBOS = require('fibos.js');
 
 var prikey = FIBOS.modules.ecc.randomKeySync();
 var pubkey = FIBOS.modules.ecc.privateToPublic(prikey);
+console.log(pubkey);
+return;
 
 var http = require('http');
 var httpClient = new http.Client();
