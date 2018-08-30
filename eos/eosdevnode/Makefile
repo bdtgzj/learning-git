@@ -54,6 +54,20 @@ restore-wallet2:
 	docker exec eosdevnode_node2_1 mkdir -p /root/eosio-wallet/
 	docker cp ~/Learning/learning-git/eos/eosdevnode/default.wallet eosdevnode_node2_1:/root/eosio-wallet/
 
+start-service2:
+	docker-compose up -d node2
+
 restart-service2:
 	docker-compose restart node2
 
+remove-service2:
+	docker container stop eosdevnode_node2_1 && docker container rm eosdevnode_node2_1
+
+get-transaction:
+	curl -i -X POST \
+    -H "Content-Type:application/json" \
+    -d \
+    '{"id":"1244d5afb9088ca91e70ffdb61fd4066386835cf3ff0fb1af9b627425e320bd3"}' \
+    'http://127.0.0.1:8889/v1/history/get_transaction'
+
+	https://github.com/EOSIO/eos/issues/3887

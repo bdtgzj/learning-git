@@ -2,11 +2,13 @@
     {
         "wallet_name": "default",
         "pass": "PW5JQJTMP2iqVSYnfwYgw3zL12Df5FeR1CUe7uw8UP6rtaysFxQyq",
-        "public_key_owner": "EOS8k8oeMMj2qQ71K8nk9Jn3mLYS1yyisy7rsYp1dxRfE5qGqdkNC",
+        "accounts": "owner/mycount/eosio.token/exchange/eosio.msig",
+        "public_key": "EOS8k8oeMMj2qQ71K8nk9Jn3mLYS1yyisy7rsYp1dxRfE5qGqdkNC",
         "private_key": "5KVRkHzanWShx55pvvTc9D18wM7YfpkFsm2HyTMn7yJdQgRNGcg"
     },
     {
-        "public_key_active": "EOS5DDc5xqvwpRqBv3NsuhgRfRA2jkzCw1eAsc8d9XH79RyiQiaoQ",
+        "accounts": "active/user/tester",
+        "public_key": "EOS5DDc5xqvwpRqBv3NsuhgRfRA2jkzCw1eAsc8d9XH79RyiQiaoQ",
         "private_key": "5KgLxjyVrGwTLMkH3Ey5pTGVutURoMTVwVub6c2cPDSgGVetoXH"
     }
 ]

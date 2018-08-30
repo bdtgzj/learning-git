@@ -8,7 +8,7 @@ services:
 #    tty: true
 #    links:
 #      - tomcatdb:mysql
-    command: ["/bin/bash", "-c", "nodeos -e -p eosio --plugin eosio::producer_plugin --plugin eosio::history_plugin --plugin eosio::chain_api_plugin --plugin eosio::history_api_plugin --plugin eosio::http_plugin -d /mnt/dev/data --config-dir /mnt/dev/config --http-server-address=0.0.0.0:8888 --access-control-allow-origin=* --contracts-console --http-validate-host=false"]
+    command: ["/bin/bash", "-c", "nodeos -e -p eosio --plugin eosio::producer_plugin --plugin eosio::history_plugin --plugin eosio::chain_api_plugin --plugin eosio::history_api_plugin --plugin eosio::http_plugin --plugin eosio::net_plugin -d /mnt/dev/data --config-dir /mnt/dev/config --p2p-listen-endpoint=0.0.0.0:9876 --p2p-peer-address=172.16.1.3:9876 --http-server-address=0.0.0.0:8888 --access-control-allow-origin=* --contracts-console --http-validate-host=false"]
     ports:
       - "8888:8888"
       - "9876:9876"
@@ -34,7 +34,7 @@ services:
   node2:
     build: .
     restart: "no"
-    command: ["/bin/bash", "-c", "nodeos -e -p mycount --plugin eosio::producer_plugin --plugin eosio::history_plugin --plugin eosio::chain_api_plugin --plugin eosio::history_api_plugin --plugin eosio::http_plugin -d /mnt/dev/data --config-dir /mnt/dev/config --http-server-address=0.0.0.0:8888 --access-control-allow-origin=* --contracts-console --http-validate-host=false"]
+    command: ["/bin/bash", "-c", "nodeos -e -p mycount --plugin eosio::producer_plugin --plugin eosio::history_plugin --plugin eosio::chain_api_plugin --plugin eosio::history_api_plugin --plugin eosio::http_plugin --plugin eosio::net_plugin -d /mnt/dev/data --config-dir /mnt/dev/config --signature-provider=EOS8k8oeMMj2qQ71K8nk9Jn3mLYS1yyisy7rsYp1dxRfE5qGqdkNC=KEY:5KVRkHzanWShx55pvvTc9D18wM7YfpkFsm2HyTMn7yJdQgRNGcg --p2p-listen-endpoint=0.0.0.0:9876 --p2p-peer-address=172.16.1.2:9876 --http-server-address=0.0.0.0:8888 --access-control-allow-origin=* --contracts-console --http-validate-host=false --filter-on=*"]
     ports:
       - "8889:8888"
       - "9877:9876"
