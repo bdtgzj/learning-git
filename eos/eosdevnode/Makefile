@@ -1,4 +1,5 @@
 TAIL?=100
+TXID?=0a3a355a93adb0a2b8d8beb05e6fe089d6040a8930249364d749c28480e96080
 
 build-image:
 	docker-compose build --no-cache
@@ -67,7 +68,5 @@ get-transaction:
 	curl -i -X POST \
     -H "Content-Type:application/json" \
     -d \
-    '{"id":"1244d5afb9088ca91e70ffdb61fd4066386835cf3ff0fb1af9b627425e320bd3"}' \
+    '{"id":"$(TXID)"}' \
     'http://127.0.0.1:8889/v1/history/get_transaction'
-
-	https://github.com/EOSIO/eos/issues/3887

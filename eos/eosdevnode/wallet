@@ -7,7 +7,7 @@
         "private_key": "5KVRkHzanWShx55pvvTc9D18wM7YfpkFsm2HyTMn7yJdQgRNGcg"
     },
     {
-        "accounts": "active/user/tester",
+        "accounts": "active/user/tester/hello.code",
         "public_key": "EOS5DDc5xqvwpRqBv3NsuhgRfRA2jkzCw1eAsc8d9XH79RyiQiaoQ",
         "private_key": "5KgLxjyVrGwTLMkH3Ey5pTGVutURoMTVwVub6c2cPDSgGVetoXH"
     }
