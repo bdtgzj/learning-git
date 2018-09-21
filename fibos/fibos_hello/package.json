@@ -7,6 +7,6 @@
   "author": "bdtgzj",
   "license": "ISC",
   "dependencies": {
-    "fibos.js": "^0.1.0"
+    "fibos.js": "^0.2.0"
   }
 }
