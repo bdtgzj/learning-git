@@ -1,7 +1,9 @@
 var path = require('path');
 var TransferWebpackPlugin = require('transfer-webpack-plugin');
+var webpack = require('webpack');
 
 module.exports = {
+  mode: 'production', // development
   context: __dirname,
   entry: {
     //login: ['babel-polyfill', './src/app/login/index.js'],
@@ -19,7 +21,7 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
         options: {
-          presets: ['env', 'react']
+          presets: ['@babel/env', '@babel/react']
         }
       }
     ]
@@ -27,7 +29,11 @@ module.exports = {
   plugins: [
     new TransferWebpackPlugin([
       { from: 'www', to: '../'}
-    ], path.join(__dirname, 'src'))
+    ], path.join(__dirname, 'src')),
+    new webpack.ContextReplacementPlugin(
+      /graphql-language-service-interface[\\/]dist$/,
+      new RegExp(`^\\./.*\\.js$`)
+    )
   ],
   // debug: true,
   devtool: 'source-map'
