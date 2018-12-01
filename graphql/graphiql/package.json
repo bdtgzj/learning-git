@@ -1,0 +1,31 @@
+{
+  "name": "graphiql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "build-graphiql": "webpack --config webpack.config.js",
+    "run-graphiql": "webpack-dev-server -d --inline --hot --config webpack.config.js --content-base build/",
+    "debug": "node --inspect-brk=9229 graphql.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "graphiql": "^0.12.0",
+    "isomorphic-fetch": "^2.2.1",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "graphql": "^14.0.2",
+    "transfer-webpack-plugin": "^0.1.4",
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}
