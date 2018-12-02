@@ -7,6 +7,7 @@ print(ts.__version__)
 pro = ts.pro_api()
 # 日线行情
 # df = pro.query('daily', ts_code='000001.sz', start_date='20180921', end_date='20180921')
-df = pro.query('daily', trade_date='20180925')
+df = pro.query('daily', trade_date='20181130')
 rows = df.shape[0]
-print(df.sort_values(by='pct_change', ascending=False).iloc[int(rows/2)])
+# print(df)
+print(df.sort_values(by='pct_chg', ascending=False).iloc[int(rows/2)])

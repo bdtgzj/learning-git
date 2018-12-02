@@ -8,16 +8,16 @@
             "type": "node",
             "request": "launch",
             "name": "Launch via NPM",
-            "runtimeExecutable": "npm",
+            "runtimeExecutable": "${NODE10_HOME}/bin/npm",
             "windows": {
                 "runtimeExecutable": "npm.cmd"
             },
             "runtimeArgs": [
                 "run-script",
-                "dev-debug"
+                "dev-inspect" // dev-debug is invalid
             ],
-            "protocol": "legacy", //inspector
-            "port": 5859 // 9229 // master: 5858, agent: 5856, worker: 5859
+            "protocol": "inspector", //inspector, legacy
+            "port": 9230 // 9229 // master: 9229, agent: 5800, worker: 9230
         },
         {
             "type": "node",

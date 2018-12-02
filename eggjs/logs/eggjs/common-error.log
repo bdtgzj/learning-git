@@ -1,0 +1,151 @@
+2018-12-02 15:22:52,345 ERROR 30664 [-/127.0.0.1/-/53ms GET /] nodejs.TypeError: this.get is not a function
+    at robotMiddleware (/Users/yuxiaodong/Learning/learning-git/eggjs/app/middleware/robot.js:21:25)
+    at dispatch (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/koa-compose/index.js:42:32)
+    at /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-development/app/middleware/egg_loader_trace.js:9:56
+    at dispatch (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/koa-compose/index.js:42:32)
+    at i18n (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-i18n/app/middleware/i18n.js:13:12)
+    at dispatch (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/koa-compose/index.js:42:32)
+    at dispatch (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/koa-compose/index.js:42:32)
+    at dta (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-security/lib/middlewares/dta.js:12:12)
+    at dispatch (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/koa-compose/index.js:42:32)
+    at xframe (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-security/lib/middlewares/xframe.js:7:11)
+
+pid: 30664
+hostname: yus-MacBook-Air.local
+
+2018-12-02 15:23:05,605 ERROR 30664 [-/127.0.0.1/-/18ms GET /news] nodejs.TypeError: this.get is not a function
+    at robotMiddleware (/Users/yuxiaodong/Learning/learning-git/eggjs/app/middleware/robot.js:21:25)
+    at dispatch (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/koa-compose/index.js:42:32)
+    at /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-development/app/middleware/egg_loader_trace.js:9:56
+    at dispatch (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/koa-compose/index.js:42:32)
+    at i18n (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-i18n/app/middleware/i18n.js:13:12)
+    at dispatch (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/koa-compose/index.js:42:32)
+    at dispatch (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/koa-compose/index.js:42:32)
+    at dta (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-security/lib/middlewares/dta.js:12:12)
+    at dispatch (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/koa-compose/index.js:42:32)
+    at xframe (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-security/lib/middlewares/xframe.js:7:11)
+
+pid: 30664
+hostname: yus-MacBook-Air.local
+
+2018-12-02 15:34:53,481 ERROR 31682 [-/undefined/-/5229ms GET /news] nodejs.ConnectionTimeoutError: Connect timeout for 5000ms, GET https://hacker-news.firebaseio.com/v0/topstories.json -2 (connected: false, keepalive socket: false, agent status: {"createSocketCount":1,"createSocketErrorCount":0,"closeSocketCount":1,"errorSocketCount":0,"timeoutSocketCount":0,"requestCount":0,"freeSockets":{},"sockets":{},"requests":{}}, socketHandledRequests: 1, socketHandledResponses: 0)
+headers: {}
+headers: {}
+    at Timeout._onTimeout (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/urllib/lib/urllib.js:849:15)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+name: "ConnectionTimeoutError"
+requestId: 1
+data: undefined
+path: "/v0/topstories.json?orderBy=%22%24key%22&startAt=%220%22&endAt=%224%22"
+status: -2
+headers: {}
+res: {"status":-2,"statusCode":-2,"headers":{},"size":0,"aborted":false,"rt":5170,"keepAliveSocket":false,"requestUrls":["https://hacker-news.firebaseio.com/v0/topstories.json"],"timing":null,"remoteAddress":"35.201.97.85","remotePort":"","socketHandledRequests":1,"socketHandledResponses":0}
+headerSent: true
+pid: 31682
+hostname: yus-MacBook-Air.local
+
+2018-12-02 18:05:34,060 ERROR 38192 nodejs.ClusterClientNoResponseError: client no response in 417014ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout.Leader._heartbeatTimer.setInterval [as _onTimeout] (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/cluster-client/lib/leader.js:74:23)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+name: "ClusterClientNoResponseError"
+pid: 38192
+hostname: yus-MacBook-Air.local
+
+2018-12-02 18:15:31,175 ERROR 39263 nodejs.ClusterClientNoResponseError: client no response in 71714ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout.Leader._heartbeatTimer.setInterval [as _onTimeout] (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/cluster-client/lib/leader.js:74:23)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+name: "ClusterClientNoResponseError"
+pid: 39263
+hostname: yus-MacBook-Air.local
+
+2018-12-02 18:18:21,123 ERROR 39562 nodejs.ClusterClientNoResponseError: client no response in 66190ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout.Leader._heartbeatTimer.setInterval [as _onTimeout] (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/cluster-client/lib/leader.js:74:23)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+name: "ClusterClientNoResponseError"
+pid: 39562
+hostname: yus-MacBook-Air.local
+
+2018-12-02 18:22:11,402 ERROR 39814 nodejs.ClusterClientNoResponseError: client no response in 73927ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout.Leader._heartbeatTimer.setInterval [as _onTimeout] (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/cluster-client/lib/leader.js:74:23)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+name: "ClusterClientNoResponseError"
+pid: 39814
+hostname: yus-MacBook-Air.local
+
+2018-12-02 18:29:28,545 ERROR 40400 nodejs.ClusterClientNoResponseError: client no response in 73722ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout.Leader._heartbeatTimer.setInterval [as _onTimeout] (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/cluster-client/lib/leader.js:74:23)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+name: "ClusterClientNoResponseError"
+pid: 40400
+hostname: yus-MacBook-Air.local
+
+2018-12-02 18:29:40,629 ERROR 40402 [-/undefined/-/71566ms GET /stocks] nodejs.Template render error: (/Users/yuxiaodong/Learning/learning-git/eggjs/app/view/stocks/list.tpl) [Line 11, Column 24]
+  expected variable end
+  expected variable end
+    at Object._prettifyError (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/lib.js:36:11)
+    at Template.render (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/environment.js:526:21)
+    at /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/environment.js:350:27
+    at createTemplate (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/environment.js:299:9)
+    at handle (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/environment.js:311:11)
+    at /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/environment.js:323:9
+    at next (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/lib.js:280:7)
+    at Object.asyncIter (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/lib.js:286:3)
+    at NunjucksEnvironment.getTemplate (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/environment.js:305:9)
+    at NunjucksEnvironment.render (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/environment.js:344:10)
+name: "Template render error"
+headerSent: true
+pid: 40402
+hostname: yus-MacBook-Air.local
+
+2018-12-02 18:30:18,632 ERROR 40591 [-/127.0.0.1/-/1556ms GET /stocks] nodejs.Template render error: (/Users/yuxiaodong/Learning/learning-git/eggjs/app/view/stocks/list.tpl) [Line 11, Column 24]
+  expected variable end
+  expected variable end
+    at Object._prettifyError (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/lib.js:36:11)
+    at Template.render (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/environment.js:526:21)
+    at /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/environment.js:350:27
+    at createTemplate (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/environment.js:299:9)
+    at handle (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/environment.js:311:11)
+    at /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/environment.js:323:9
+    at next (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/lib.js:280:7)
+    at Object.asyncIter (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/lib.js:286:3)
+    at NunjucksEnvironment.getTemplate (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/environment.js:305:9)
+    at NunjucksEnvironment.render (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/environment.js:344:10)
+name: "Template render error"
+pid: 40591
+hostname: yus-MacBook-Air.local
+
+2018-12-02 18:30:30,651 ERROR 40591 [-/127.0.0.1/-/1650ms GET /stocks] nodejs.Template render error: (/Users/yuxiaodong/Learning/learning-git/eggjs/app/view/stocks/list.tpl) [Line 11, Column 24]
+  expected variable end
+  expected variable end
+    at Object._prettifyError (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/lib.js:36:11)
+    at Template.render (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/environment.js:526:21)
+    at /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/environment.js:350:27
+    at createTemplate (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/environment.js:299:9)
+    at handle (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/environment.js:311:11)
+    at /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/environment.js:323:9
+    at next (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/lib.js:280:7)
+    at Object.asyncIter (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/lib.js:286:3)
+    at NunjucksEnvironment.getTemplate (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/environment.js:305:9)
+    at NunjucksEnvironment.render (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/nunjucks/src/environment.js:344:10)
+name: "Template render error"
+pid: 40591
+hostname: yus-MacBook-Air.local
+

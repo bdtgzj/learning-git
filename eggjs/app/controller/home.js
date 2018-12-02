@@ -1,11 +1,9 @@
-module.exports = app => {
+const Controller = require('egg').Controller;
 
-    class HomeController extends app.Controller {
-        async index() {
-            this.ctx.body = "Hello Egg!";
-        }
+class HomeController extends Controller {
+    async index() {
+        this.ctx.body = "Hello Egg!";
     }
+}
 
-    return HomeController;
-
-};
+module.exports = HomeController;

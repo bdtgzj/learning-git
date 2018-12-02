@@ -1,0 +1,38 @@
+2018-12-02 17:48:06,870 WARN 38198 [-/127.0.0.1/-/300ms GET /stocks] nodejs.JSONResponseFormatError: Unexpected token < in JSON at position 0 (data json format: "<html><title>405: Method Not Allowed</title><body>405: Method Not Allowed</body></html>"), GET http://api.tushare.pro 405 (connected: true, keepalive socket: false, agent status: {"createSocketCount":1,"createSocketErrorCount":0,"closeSocketCount":0,"errorSocketCount":0,"timeoutSocketCount":0,"requestCount":0,"freeSockets":{},"sockets":{"api.tushare.pro:80:":1},"requests":{}}, socketHandledRequests: 1, socketHandledResponses: 1)
+headers: {"server":"nginx/1.15.0","date":"Sun, 02 Dec 2018 09:48:06 GMT","content-type":"text/html; charset=UTF-8","content-length":"87","connection":"keep-alive"}
+headers: {"server":"nginx/1.15.0","date":"Sun, 02 Dec 2018 09:48:06 GMT","content-type":"text/html; charset=UTF-8","content-length":"87","connection":"keep-alive"}
+    at JSON.parse (<anonymous>)
+    at parseJSON (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/urllib/lib/urllib.js:1076:24)
+    at /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/urllib/lib/urllib.js:806:23
+    at decodeContent (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/urllib/lib/urllib.js:613:14)
+    at IncomingMessage.<anonymous> (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/urllib/lib/urllib.js:787:7)
+    at IncomingMessage.emit (events.js:187:15)
+    at endReadableNT (_stream_readable.js:1094:12)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+name: "JSONResponseFormatError"
+data: "<html><title>405: Method Not Allowed</title><body>405: Method Not Allowed</body></html>"
+path: "/?api_name=stock_basic&token=b85254a8d942276a15c01626314b5a0efe4348fd88bdc19186560228&params=&fields=ts_code%2Cname%2Carea%2Cindustry%2Clist_date"
+status: 405
+headers: {"server":"nginx/1.15.0","date":"Sun, 02 Dec 2018 09:48:06 GMT","content-type":"text/html; charset=UTF-8","content-length":"87","connection":"keep-alive"}
+res: {"status":405,"statusCode":405,"headers":{"server":"nginx/1.15.0","date":"Sun, 02 Dec 2018 09:48:06 GMT","content-type":"text/html; charset=UTF-8","content-length":"87","connection":"keep-alive"},"size":87,"aborted":false,"rt":231,"keepAliveSocket":false,"data":"<html><title>405: Method Not Allowed</title><body>405: Method Not Allowed</body></html>","requestUrls":["http://api.tushare.pro/"],"timing":null,"remoteAddress":"103.235.227.77","remotePort":80,"socketHandledRequests":1,"socketHandledResponses":1}
+pid: 38198
+hostname: yus-MacBook-Air.local
+
+2018-12-02 18:29:40,705 WARN 40402 [-/127.0.0.1/-/70137ms GET /stocks] nodejs.ResponseTimeoutError: Response timeout for 5000ms, POST http://api.tushare.pro 200 (connected: true, keepalive socket: false, agent status: {"createSocketCount":2,"createSocketErrorCount":0,"closeSocketCount":2,"errorSocketCount":0,"timeoutSocketCount":1,"requestCount":1,"freeSockets":{},"sockets":{},"requests":{}}, socketHandledRequests: 1, socketHandledResponses: 1)
+headers: {"server":"nginx/1.15.0","date":"Sun, 02 Dec 2018 10:28:30 GMT","content-type":"application/json; charset=UTF-8","content-length":"337991","connection":"keep-alive","vary":"Accept-Encoding"}
+headers: {"server":"nginx/1.15.0","date":"Sun, 02 Dec 2018 10:28:30 GMT","content-type":"application/json; charset=UTF-8","content-length":"337991","connection":"keep-alive","vary":"Accept-Encoding"}
+    at Timeout._onTimeout (/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/urllib/lib/urllib.js:863:15)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+name: "ResponseTimeoutError"
+requestId: 2
+data: "<Buffer 7b 22 72 65 71 75 65 73 74 5f 69 64 22 3a 20 22 30 33 37 30 63 31 39 61 66 36 31 64 31 31 65 38 39 64 36 33 64 30 30 64 64 33 36 37 31 30 30 34 31 35 ...(234093) >"
+path: "/"
+status: 200
+headers: {"server":"nginx/1.15.0","date":"Sun, 02 Dec 2018 10:28:30 GMT","content-type":"application/json; charset=UTF-8","content-length":"337991","connection":"keep-alive","vary":"Accept-Encoding"}
+res: {"status":200,"statusCode":200,"headers":{"server":"nginx/1.15.0","date":"Sun, 02 Dec 2018 10:28:30 GMT","content-type":"application/json; charset=UTF-8","content-length":"337991","connection":"keep-alive","vary":"Accept-Encoding"},"size":234093,"aborted":true,"rt":70115,"keepAliveSocket":false,"data":"<Buffer 7b 22 72 65 71 75 65 73 74 5f 69 64 22 3a 20 22 30 33 37 30 63 31 39 61 66 36 31 64 31 31 65 38 39 64 36 33 64 30 30 64 64 33 36 37 31 30 30 34 31 35 ...(234093) >","requestUrls":["http://api.tushare.pro/"],"timing":null,"remoteAddress":"103.235.227.77","remotePort":80,"socketHandledRequests":1,"socketHandledResponses":1}
+pid: 40402
+hostname: yus-MacBook-Air.local
+
