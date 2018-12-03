@@ -2,5 +2,5 @@ type User {
   id: ID!
   username: String!
   password: String!
-  age: Number
+  age: Int
 }

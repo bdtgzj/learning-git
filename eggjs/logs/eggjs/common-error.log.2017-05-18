@@ -1,9 +1,0 @@
-2017-05-18 17:20:49,014 ERROR 2532 nodejs.ClusterClientNoResponseError: client no response in 48245ms exceeding maxIdleTime 30000ms, maybe the connection is close on other side.
-    at Timeout.Leader._heartbeatTimer.setInterval [as _onTimeout] (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/cluster-client/lib/leader.js:71:23)
-    at ontimeout (timers.js:386:14)
-    at tryOnTimeout (timers.js:250:5)
-    at Timer.listOnTimeout (timers.js:214:5)
-name: 'ClusterClientNoResponseError'
-pid: 2532
-hostname: chen-lins-MacBook-Pro.local
-

@@ -18,7 +18,8 @@
         "sessionName": "csrfToken",
         "headerName": "x-csrf-token",
         "bodyName": "_csrf",
-        "queryName": "_csrf"
+        "queryName": "_csrf",
+        "ignore": "<Function ignore>"
       },
       "xframe": {
         "enable": true,
@@ -73,7 +74,7 @@
     "onerror": {
       "errorPageUrl": "",
       "appErrorFilter": null,
-      "templatePath": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-onerror/lib/onerror_page.mustache"
+      "templatePath": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-onerror/lib/onerror_page.mustache"
     },
     "i18n": {
       "defaultLocale": "en_US",
@@ -85,14 +86,14 @@
     "watcher": {
       "type": "development",
       "eventSources": {
-        "default": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-watcher/lib/event-sources/default",
-        "development": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-watcher/lib/event-sources/development"
+        "default": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-watcher/lib/event-sources/default",
+        "development": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-watcher/lib/event-sources/development"
       }
     },
     "customLogger": {
       "scheduleLogger": {
         "consoleLevel": "NONE",
-        "file": "/Users/xiaodongyu/Learning/learning-git/eggjs/logs/eggjs/egg-schedule.log"
+        "file": "/Users/yuxiaodong/Learning/learning-git/eggjs/logs/eggjs/egg-schedule.log"
       }
     },
     "multipart": {
@@ -106,7 +107,7 @@
       "files": 10,
       "fileExtensions": [],
       "whitelist": null,
-      "tmpdir": "/var/folders/c2/g099m2_n2lsbp38txq8rs5t00000gp/T/egg-multipart-tmp/eggjs",
+      "tmpdir": "/var/folders/s1/fs68tmf55csfvth837nhd8nm0000gn/T/egg-multipart-tmp/eggjs",
       "cleanSchedule": {
         "cron": "0 30 4 * * *"
       }
@@ -129,14 +130,14 @@
     },
     "static": {
       "prefix": "/public/",
-      "dir": "/Users/xiaodongyu/Learning/learning-git/eggjs/app/public",
+      "dir": "/Users/yuxiaodong/Learning/learning-git/eggjs/app/public",
       "dynamic": true,
       "preload": false,
       "buffer": false,
       "maxFiles": 1000
     },
     "view": {
-      "root": "/Users/xiaodongyu/Learning/learning-git/eggjs/app/view",
+      "root": "/Users/yuxiaodong/Learning/learning-git/eggjs/app/view",
       "cache": false,
       "defaultExtension": ".html",
       "defaultViewEngine": "nunjacks",
@@ -161,6 +162,14 @@
         "url": "mongodb://127.0.0.1/db_eggjs",
         "options": {}
       }
+    },
+    "graphql": {
+      "router": "/graphql",
+      "app": true,
+      "agent": false,
+      "graphiql": true,
+      "onPreGraphQL": "<GeneratorFunction onPreGraphQL>",
+      "onPreGraphiQL": "<GeneratorFunction onPreGraphiQL>"
     },
     "env": "local",
     "name": "eggjs",
@@ -187,6 +196,7 @@
       "license": "ISC",
       "dependencies": {
         "egg": "^2.14.1",
+        "egg-graphql": "^2.3.0",
         "egg-mongoose": "^3.1.1",
         "egg-view-nunjucks": "^2.2.0"
       },
@@ -196,9 +206,9 @@
         "supertest": "^3.3.0"
       }
     },
-    "baseDir": "/Users/xiaodongyu/Learning/learning-git/eggjs",
-    "HOME": "/Users/xiaodongyu",
-    "rundir": "/Users/xiaodongyu/Learning/learning-git/eggjs/run",
+    "baseDir": "/Users/yuxiaodong/Learning/learning-git/eggjs",
+    "HOME": "/Users/yuxiaodong",
+    "rundir": "/Users/yuxiaodong/Learning/learning-git/eggjs/run",
     "dump": {
       "ignore": "<Set>"
     },
@@ -228,7 +238,7 @@
       }
     },
     "logger": {
-      "dir": "/Users/xiaodongyu/Learning/learning-git/eggjs/logs/eggjs",
+      "dir": "/Users/yuxiaodong/Learning/learning-git/eggjs/logs/eggjs",
       "encoding": "utf8",
       "env": "local",
       "level": "INFO",
@@ -299,8 +309,13 @@
       "serverUrl": "http://api.tushare.pro"
     },
     "middleware": [
-      "robot"
+      "robot",
+      "graphql"
     ],
+    "cors": {
+      "origin": "*",
+      "allowMethods": "GET,HEAD,PUT,POST,DELETE,PATCH"
+    },
     "robot": {
       "ua": [
         {}
@@ -318,8 +333,8 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
-      "path": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-session",
+      "from": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
+      "path": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-session",
       "version": "3.1.0"
     },
     "security": {
@@ -331,8 +346,8 @@
         "session"
       ],
       "env": [],
-      "from": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
-      "path": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-security",
+      "from": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
+      "path": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-security",
       "version": "2.4.1"
     },
     "jsonp": {
@@ -344,8 +359,8 @@
         "security"
       ],
       "env": [],
-      "from": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
-      "path": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-jsonp",
+      "from": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
+      "path": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-jsonp",
       "version": "2.0.0"
     },
     "onerror": {
@@ -357,8 +372,8 @@
         "jsonp"
       ],
       "env": [],
-      "from": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
-      "path": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-onerror",
+      "from": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
+      "path": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-onerror",
       "version": "2.1.0"
     },
     "i18n": {
@@ -368,8 +383,8 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
-      "path": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-i18n",
+      "from": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
+      "path": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-i18n",
       "version": "2.0.0"
     },
     "watcher": {
@@ -379,8 +394,8 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
-      "path": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-watcher",
+      "from": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
+      "path": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-watcher",
       "version": "3.1.0"
     },
     "schedule": {
@@ -390,8 +405,8 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
-      "path": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-schedule",
+      "from": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
+      "path": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-schedule",
       "version": "3.4.0"
     },
     "multipart": {
@@ -403,8 +418,8 @@
         "schedule"
       ],
       "env": [],
-      "from": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
-      "path": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-multipart",
+      "from": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
+      "path": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-multipart",
       "version": "2.3.0"
     },
     "development": {
@@ -418,8 +433,8 @@
       "env": [
         "local"
       ],
-      "from": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
-      "path": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-development",
+      "from": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
+      "path": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-development",
       "version": "2.4.1"
     },
     "logrotator": {
@@ -431,8 +446,8 @@
       ],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
-      "path": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-logrotator",
+      "from": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
+      "path": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator",
       "version": "3.0.4"
     },
     "static": {
@@ -442,8 +457,8 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
-      "path": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-static",
+      "from": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
+      "path": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-static",
       "version": "2.1.1"
     },
     "view": {
@@ -453,8 +468,8 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
-      "path": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-view",
+      "from": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg/config/plugin.js",
+      "path": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-view",
       "version": "2.1.0"
     },
     "nunjucks": {
@@ -467,8 +482,8 @@
       ],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/xiaodongyu/Learning/learning-git/eggjs/config/plugin.js",
-      "path": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-view-nunjucks",
+      "from": "/Users/yuxiaodong/Learning/learning-git/eggjs/config/plugin.js",
+      "path": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-view-nunjucks",
       "version": "2.2.0"
     },
     "mongoose": {
@@ -478,9 +493,20 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/xiaodongyu/Learning/learning-git/eggjs/config/plugin.js",
-      "path": "/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-mongoose",
+      "from": "/Users/yuxiaodong/Learning/learning-git/eggjs/config/plugin.js",
+      "path": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-mongoose",
       "version": "3.1.1"
+    },
+    "graphql": {
+      "enable": true,
+      "package": "egg-graphql",
+      "name": "graphql",
+      "dependencies": [],
+      "optionalDependencies": [],
+      "env": [],
+      "from": "/Users/yuxiaodong/Learning/learning-git/eggjs/config/plugin.js",
+      "path": "/Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-graphql",
+      "version": "2.3.0"
     }
   }
 }

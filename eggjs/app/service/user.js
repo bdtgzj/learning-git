@@ -1,9 +1,14 @@
 const Service = require('egg').Service;
+const { Types } = require('mongoose');
 
 class UserService extends Service {
 
   async getById(id) {
-    return this.ctx.model.User.findOne({_id: id});
+    return this.ctx.model.User.findOne({_id: Types.ObjectId(id)});
+  }
+
+  async getByName(name) {
+    return this.ctx.model.User.findOne({username: name});
   }
 
   async getAll() {

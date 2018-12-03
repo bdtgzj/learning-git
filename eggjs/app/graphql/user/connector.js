@@ -4,19 +4,21 @@ class UserConnector {
 
   constructor(ctx) {
     this.ctx = ctx;
-    this.load = new DataLoader(this.fetch.bind(this));
+    this.loader = new DataLoader(this.fetch.bind(this));
   }
 
   fetch(id) {
-    const user = this.ctx.service.user;
+    return this.ctx.service.user.getById(id);
+    /*
     return new Promise(function(resolve, reject) {
       const users = user.getById(id);
       resolve(users);
     });
+    */
   }
 
   fetchById(id) {
-    return this.loader.load(id)
+    return this.loader.load(id);
   }
 
   fetchAll() {
@@ -24,9 +26,12 @@ class UserConnector {
     return users;
   }
 
+  async fetchByName(name) {
+    return await this.ctx.service.user.getByName(name);
+  }
+
   removeOne(id) {
-    let user = this.ctx.service.user.removeOne(id)
-    return user
+    this.ctx.service.user.removeOne(id)
   }
 
 }

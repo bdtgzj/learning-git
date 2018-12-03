@@ -15,6 +15,7 @@
   "author": "bdtgzj",
   "license": "ISC",
   "dependencies": {
+    "dataloader": "^1.4.0",
     "egg": "^2.14.1",
     "egg-graphql": "^2.3.0",
     "egg-mongoose": "^3.1.1",

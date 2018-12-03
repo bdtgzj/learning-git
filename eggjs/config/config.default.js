@@ -19,8 +19,21 @@ exports.stocks = {
 
 // mount middleware
 exports.middleware = [
-  'robot'
+  'robot',
+  'graphql',
 ];
+
+// security
+exports.security = {
+  csrf: {
+    ignore: () => true,
+  }
+};
+
+exports.cors = {
+  origin: '*',
+  allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
+};
 
 // middle config
 exports.robot = {
