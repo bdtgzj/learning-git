@@ -1,1 +1,304 @@
 2017-05-19 00:00:02,335 INFO 2533 [egg-logrotator] app logger reload: got log-reload message
+2018-12-02 15:09:49,547 INFO 30664 [egg:logger] init all loggers with options: {"dir":"/Users/yuxiaodong/Learning/learning-git/eggjs/logs/eggjs","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"eggjs-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2018-12-02 15:09:49,744 INFO 30664 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/clean_log.js
+2018-12-02 15:09:49,744 INFO 30664 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/rotate_by_file.js
+2018-12-02 15:09:49,745 INFO 30664 [egg-multipart] stream mode enable
+2018-12-02 15:09:51,114 INFO 30664 [egg-static] starting static serve /public/ -> /Users/yuxiaodong/Learning/learning-git/eggjs/app/public
+2018-12-02 15:09:51,120 INFO 30664 [egg-security] use csrf middleware
+2018-12-02 15:09:51,122 INFO 30664 [egg-security] use methodnoallow middleware
+2018-12-02 15:09:51,123 INFO 30664 [egg-security] use noopen middleware
+2018-12-02 15:09:51,125 INFO 30664 [egg-security] use nosniff middleware
+2018-12-02 15:09:51,127 INFO 30664 [egg-security] use xssProtection middleware
+2018-12-02 15:09:51,128 INFO 30664 [egg-security] use xframe middleware
+2018-12-02 15:09:51,129 INFO 30664 [egg-security] use dta middleware
+2018-12-02 15:09:51,129 INFO 30664 [egg-security] compose 7 middlewares into one security middleware
+2018-12-02 15:09:51,149 INFO 30664 [egg:core] dump config after load, 12ms
+2018-12-02 15:09:51,298 INFO 30664 [egg-watcher:application] watcher start success
+2018-12-02 15:09:51,350 INFO 30664 [egg:core] dump config after ready, 29ms
+2018-12-02 15:24:40,327 INFO 31437 [egg:logger] init all loggers with options: {"dir":"/Users/yuxiaodong/Learning/learning-git/eggjs/logs/eggjs","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"eggjs-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2018-12-02 15:24:40,558 INFO 31437 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/clean_log.js
+2018-12-02 15:24:40,560 INFO 31437 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/rotate_by_file.js
+2018-12-02 15:24:40,562 INFO 31437 [egg-multipart] stream mode enable
+2018-12-02 15:24:40,915 INFO 31437 [egg-static] starting static serve /public/ -> /Users/yuxiaodong/Learning/learning-git/eggjs/app/public
+2018-12-02 15:24:40,920 INFO 31437 [egg-security] use csrf middleware
+2018-12-02 15:24:40,923 INFO 31437 [egg-security] use methodnoallow middleware
+2018-12-02 15:24:40,924 INFO 31437 [egg-security] use noopen middleware
+2018-12-02 15:24:40,925 INFO 31437 [egg-security] use nosniff middleware
+2018-12-02 15:24:40,926 INFO 31437 [egg-security] use xssProtection middleware
+2018-12-02 15:24:40,927 INFO 31437 [egg-security] use xframe middleware
+2018-12-02 15:24:40,928 INFO 31437 [egg-security] use dta middleware
+2018-12-02 15:24:40,928 INFO 31437 [egg-security] compose 7 middlewares into one security middleware
+2018-12-02 15:24:40,992 INFO 31437 [egg:core] dump config after load, 33ms
+2018-12-02 15:24:41,041 INFO 31437 [egg-watcher:application] watcher start success
+2018-12-02 15:24:41,057 INFO 31437 [egg:core] dump config after ready, 10ms
+2018-12-02 15:24:45,403 INFO 31449 [egg:logger] init all loggers with options: {"dir":"/Users/yuxiaodong/Learning/learning-git/eggjs/logs/eggjs","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"eggjs-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2018-12-02 15:24:45,763 INFO 31449 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/clean_log.js
+2018-12-02 15:24:45,763 INFO 31449 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/rotate_by_file.js
+2018-12-02 15:24:45,764 INFO 31449 [egg-multipart] stream mode enable
+2018-12-02 15:24:46,230 INFO 31449 [egg-static] starting static serve /public/ -> /Users/yuxiaodong/Learning/learning-git/eggjs/app/public
+2018-12-02 15:24:46,238 INFO 31449 [egg-security] use csrf middleware
+2018-12-02 15:24:46,239 INFO 31449 [egg-security] use methodnoallow middleware
+2018-12-02 15:24:46,246 INFO 31449 [egg-security] use noopen middleware
+2018-12-02 15:24:46,251 INFO 31449 [egg-security] use nosniff middleware
+2018-12-02 15:24:46,253 INFO 31449 [egg-security] use xssProtection middleware
+2018-12-02 15:24:46,255 INFO 31449 [egg-security] use xframe middleware
+2018-12-02 15:24:46,256 INFO 31449 [egg-security] use dta middleware
+2018-12-02 15:24:46,256 INFO 31449 [egg-security] compose 7 middlewares into one security middleware
+2018-12-02 15:24:46,281 INFO 31449 [egg:core] dump config after load, 13ms
+2018-12-02 15:24:46,335 INFO 31449 [egg-watcher:application] watcher start success
+2018-12-02 15:24:46,385 INFO 31449 [egg:core] dump config after ready, 21ms
+2018-12-02 15:30:25,492 INFO 31682 [egg:logger] init all loggers with options: {"dir":"/Users/yuxiaodong/Learning/learning-git/eggjs/logs/eggjs","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"eggjs-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2018-12-02 15:30:25,606 INFO 31682 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/clean_log.js
+2018-12-02 15:30:25,606 INFO 31682 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/rotate_by_file.js
+2018-12-02 15:30:25,607 INFO 31682 [egg-multipart] stream mode enable
+2018-12-02 15:30:25,995 INFO 31682 [egg-static] starting static serve /public/ -> /Users/yuxiaodong/Learning/learning-git/eggjs/app/public
+2018-12-02 15:30:26,000 INFO 31682 [egg-security] use csrf middleware
+2018-12-02 15:30:26,002 INFO 31682 [egg-security] use methodnoallow middleware
+2018-12-02 15:30:26,004 INFO 31682 [egg-security] use noopen middleware
+2018-12-02 15:30:26,005 INFO 31682 [egg-security] use nosniff middleware
+2018-12-02 15:30:26,007 INFO 31682 [egg-security] use xssProtection middleware
+2018-12-02 15:30:26,008 INFO 31682 [egg-security] use xframe middleware
+2018-12-02 15:30:26,009 INFO 31682 [egg-security] use dta middleware
+2018-12-02 15:30:26,009 INFO 31682 [egg-security] compose 7 middlewares into one security middleware
+2018-12-02 15:30:26,042 INFO 31682 [egg:core] dump config after load, 18ms
+2018-12-02 15:30:26,132 INFO 31682 [egg-watcher:application] watcher start success
+2018-12-02 15:30:26,160 INFO 31682 [egg:core] dump config after ready, 8ms
+2018-12-02 16:52:27,699 INFO 34849 [egg:logger] init all loggers with options: {"dir":"/Users/yuxiaodong/Learning/learning-git/eggjs/logs/eggjs","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"eggjs-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2018-12-02 16:52:27,775 INFO 34849 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/clean_log.js
+2018-12-02 16:52:27,775 INFO 34849 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/rotate_by_file.js
+2018-12-02 16:52:27,818 INFO 34849 [egg-multipart] stream mode enable
+2018-12-02 16:52:28,234 INFO 34849 [egg-static] starting static serve /public/ -> /Users/yuxiaodong/Learning/learning-git/eggjs/app/public
+2018-12-02 16:52:28,239 INFO 34849 [egg-security] use csrf middleware
+2018-12-02 16:52:28,241 INFO 34849 [egg-security] use methodnoallow middleware
+2018-12-02 16:52:28,242 INFO 34849 [egg-security] use noopen middleware
+2018-12-02 16:52:28,244 INFO 34849 [egg-security] use nosniff middleware
+2018-12-02 16:52:28,246 INFO 34849 [egg-security] use xssProtection middleware
+2018-12-02 16:52:28,248 INFO 34849 [egg-security] use xframe middleware
+2018-12-02 16:52:28,249 INFO 34849 [egg-security] use dta middleware
+2018-12-02 16:52:28,249 INFO 34849 [egg-security] compose 7 middlewares into one security middleware
+2018-12-02 16:52:28,275 INFO 34849 [egg:core] dump config after load, 17ms
+2018-12-02 16:52:28,300 INFO 34849 [egg-watcher:application] watcher start success
+2018-12-02 16:52:28,317 INFO 34849 [egg:core] dump config after ready, 14ms
+2018-12-02 17:47:55,572 INFO 38198 [egg:logger] init all loggers with options: {"dir":"/Users/yuxiaodong/Learning/learning-git/eggjs/logs/eggjs","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"eggjs-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2018-12-02 17:47:55,688 INFO 38198 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/clean_log.js
+2018-12-02 17:47:55,688 INFO 38198 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/rotate_by_file.js
+2018-12-02 17:47:55,690 INFO 38198 [egg-multipart] stream mode enable
+2018-12-02 17:47:55,846 INFO 38198 [egg-static] starting static serve /public/ -> /Users/yuxiaodong/Learning/learning-git/eggjs/app/public
+2018-12-02 17:47:55,850 INFO 38198 [egg-security] use csrf middleware
+2018-12-02 17:47:55,852 INFO 38198 [egg-security] use methodnoallow middleware
+2018-12-02 17:47:55,853 INFO 38198 [egg-security] use noopen middleware
+2018-12-02 17:47:55,855 INFO 38198 [egg-security] use nosniff middleware
+2018-12-02 17:47:55,857 INFO 38198 [egg-security] use xssProtection middleware
+2018-12-02 17:47:55,860 INFO 38198 [egg-security] use xframe middleware
+2018-12-02 17:47:55,861 INFO 38198 [egg-security] use dta middleware
+2018-12-02 17:47:55,861 INFO 38198 [egg-security] compose 7 middlewares into one security middleware
+2018-12-02 17:47:55,882 INFO 38198 [egg:core] dump config after load, 12ms
+2018-12-02 17:47:55,954 INFO 38198 [egg-watcher:application] watcher start success
+2018-12-02 17:47:55,973 INFO 38198 [egg:core] dump config after ready, 14ms
+2018-12-02 18:05:34,055 WARN 38198 [ClusterClient:Watcher] follower closed, and try to init it again
+2018-12-02 18:13:37,891 INFO 39265 [egg:logger] init all loggers with options: {"dir":"/Users/yuxiaodong/Learning/learning-git/eggjs/logs/eggjs","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"eggjs-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2018-12-02 18:13:38,380 INFO 39265 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/clean_log.js
+2018-12-02 18:13:38,380 INFO 39265 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/rotate_by_file.js
+2018-12-02 18:13:38,384 INFO 39265 [egg-multipart] stream mode enable
+2018-12-02 18:13:38,950 INFO 39265 [egg-static] starting static serve /public/ -> /Users/yuxiaodong/Learning/learning-git/eggjs/app/public
+2018-12-02 18:13:38,958 INFO 39265 [egg-security] use csrf middleware
+2018-12-02 18:13:38,962 INFO 39265 [egg-security] use methodnoallow middleware
+2018-12-02 18:13:38,963 INFO 39265 [egg-security] use noopen middleware
+2018-12-02 18:13:38,967 INFO 39265 [egg-security] use nosniff middleware
+2018-12-02 18:13:38,970 INFO 39265 [egg-security] use xssProtection middleware
+2018-12-02 18:13:38,975 INFO 39265 [egg-security] use xframe middleware
+2018-12-02 18:13:38,977 INFO 39265 [egg-security] use dta middleware
+2018-12-02 18:13:38,977 INFO 39265 [egg-security] compose 7 middlewares into one security middleware
+2018-12-02 18:13:39,187 INFO 39265 [egg:core] dump config after load, 183ms
+2018-12-02 18:13:39,430 INFO 39265 [egg-watcher:application] watcher start success
+2018-12-02 18:13:39,485 INFO 39265 [egg:core] dump config after ready, 16ms
+2018-12-02 18:13:56,034 INFO 39265 [egg-view-nunjucks] loading templates from ["/Users/yuxiaodong/Learning/learning-git/eggjs/app/view"]
+2018-12-02 18:15:36,565 WARN 39265 [TCPBase] socket is closed by other side while there were still unhandled data in the socket buffer
+2018-12-02 18:15:36,608 WARN 39265 [ClusterClient:Watcher] follower closed, and try to init it again
+2018-12-02 18:17:13,810 INFO 39565 [egg:logger] init all loggers with options: {"dir":"/Users/yuxiaodong/Learning/learning-git/eggjs/logs/eggjs","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"eggjs-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2018-12-02 18:17:14,045 INFO 39565 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/clean_log.js
+2018-12-02 18:17:14,045 INFO 39565 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/rotate_by_file.js
+2018-12-02 18:17:14,046 INFO 39565 [egg-multipart] stream mode enable
+2018-12-02 18:17:14,690 INFO 39565 [egg-static] starting static serve /public/ -> /Users/yuxiaodong/Learning/learning-git/eggjs/app/public
+2018-12-02 18:17:14,706 INFO 39565 [egg-security] use csrf middleware
+2018-12-02 18:17:14,709 INFO 39565 [egg-security] use methodnoallow middleware
+2018-12-02 18:17:14,710 INFO 39565 [egg-security] use noopen middleware
+2018-12-02 18:17:14,714 INFO 39565 [egg-security] use nosniff middleware
+2018-12-02 18:17:14,720 INFO 39565 [egg-security] use xssProtection middleware
+2018-12-02 18:17:14,722 INFO 39565 [egg-security] use xframe middleware
+2018-12-02 18:17:14,725 INFO 39565 [egg-security] use dta middleware
+2018-12-02 18:17:14,725 INFO 39565 [egg-security] compose 7 middlewares into one security middleware
+2018-12-02 18:17:14,773 INFO 39565 [egg:core] dump config after load, 29ms
+2018-12-02 18:17:14,938 INFO 39565 [egg-watcher:application] watcher start success
+2018-12-02 18:17:14,986 INFO 39565 [egg:core] dump config after ready, 18ms
+2018-12-02 18:19:35,144 INFO 39718 [egg:logger] init all loggers with options: {"dir":"/Users/yuxiaodong/Learning/learning-git/eggjs/logs/eggjs","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"eggjs-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2018-12-02 18:19:35,202 INFO 39718 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/clean_log.js
+2018-12-02 18:19:35,202 INFO 39718 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/rotate_by_file.js
+2018-12-02 18:19:35,203 INFO 39718 [egg-multipart] stream mode enable
+2018-12-02 18:19:35,348 INFO 39718 [egg-static] starting static serve /public/ -> /Users/yuxiaodong/Learning/learning-git/eggjs/app/public
+2018-12-02 18:19:35,353 INFO 39718 [egg-security] use csrf middleware
+2018-12-02 18:19:35,355 INFO 39718 [egg-security] use methodnoallow middleware
+2018-12-02 18:19:35,356 INFO 39718 [egg-security] use noopen middleware
+2018-12-02 18:19:35,357 INFO 39718 [egg-security] use nosniff middleware
+2018-12-02 18:19:35,358 INFO 39718 [egg-security] use xssProtection middleware
+2018-12-02 18:19:35,358 INFO 39718 [egg-security] use xframe middleware
+2018-12-02 18:19:35,359 INFO 39718 [egg-security] use dta middleware
+2018-12-02 18:19:35,359 INFO 39718 [egg-security] compose 7 middlewares into one security middleware
+2018-12-02 18:19:35,384 INFO 39718 [egg:core] dump config after load, 15ms
+2018-12-02 18:19:35,408 INFO 39718 [egg-watcher:application] watcher start success
+2018-12-02 18:19:35,416 INFO 39718 [egg:core] dump config after ready, 6ms
+2018-12-02 18:19:36,741 INFO 39729 [egg:logger] init all loggers with options: {"dir":"/Users/yuxiaodong/Learning/learning-git/eggjs/logs/eggjs","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"eggjs-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2018-12-02 18:19:36,821 INFO 39729 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/clean_log.js
+2018-12-02 18:19:36,821 INFO 39729 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/rotate_by_file.js
+2018-12-02 18:19:36,822 INFO 39729 [egg-multipart] stream mode enable
+2018-12-02 18:19:37,040 INFO 39729 [egg-static] starting static serve /public/ -> /Users/yuxiaodong/Learning/learning-git/eggjs/app/public
+2018-12-02 18:19:37,045 INFO 39729 [egg-security] use csrf middleware
+2018-12-02 18:19:37,046 INFO 39729 [egg-security] use methodnoallow middleware
+2018-12-02 18:19:37,046 INFO 39729 [egg-security] use noopen middleware
+2018-12-02 18:19:37,047 INFO 39729 [egg-security] use nosniff middleware
+2018-12-02 18:19:37,047 INFO 39729 [egg-security] use xssProtection middleware
+2018-12-02 18:19:37,048 INFO 39729 [egg-security] use xframe middleware
+2018-12-02 18:19:37,048 INFO 39729 [egg-security] use dta middleware
+2018-12-02 18:19:37,048 INFO 39729 [egg-security] compose 7 middlewares into one security middleware
+2018-12-02 18:19:37,066 INFO 39729 [egg:core] dump config after load, 8ms
+2018-12-02 18:19:37,091 INFO 39729 [egg-watcher:application] watcher start success
+2018-12-02 18:19:37,128 INFO 39729 [egg:core] dump config after ready, 34ms
+2018-12-02 18:19:40,398 INFO 39748 [egg:logger] init all loggers with options: {"dir":"/Users/yuxiaodong/Learning/learning-git/eggjs/logs/eggjs","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"eggjs-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2018-12-02 18:19:40,438 INFO 39748 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/clean_log.js
+2018-12-02 18:19:40,438 INFO 39748 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/rotate_by_file.js
+2018-12-02 18:19:40,439 INFO 39748 [egg-multipart] stream mode enable
+2018-12-02 18:19:40,491 INFO 39748 [egg-static] starting static serve /public/ -> /Users/yuxiaodong/Learning/learning-git/eggjs/app/public
+2018-12-02 18:19:40,494 INFO 39748 [egg-security] use csrf middleware
+2018-12-02 18:19:40,494 INFO 39748 [egg-security] use methodnoallow middleware
+2018-12-02 18:19:40,495 INFO 39748 [egg-security] use noopen middleware
+2018-12-02 18:19:40,495 INFO 39748 [egg-security] use nosniff middleware
+2018-12-02 18:19:40,495 INFO 39748 [egg-security] use xssProtection middleware
+2018-12-02 18:19:40,496 INFO 39748 [egg-security] use xframe middleware
+2018-12-02 18:19:40,496 INFO 39748 [egg-security] use dta middleware
+2018-12-02 18:19:40,496 INFO 39748 [egg-security] compose 7 middlewares into one security middleware
+2018-12-02 18:19:40,511 INFO 39748 [egg:core] dump config after load, 9ms
+2018-12-02 18:19:40,527 INFO 39748 [egg-watcher:application] watcher start success
+2018-12-02 18:19:40,536 INFO 39748 [egg:core] dump config after ready, 5ms
+2018-12-02 18:20:35,849 INFO 39816 [egg:logger] init all loggers with options: {"dir":"/Users/yuxiaodong/Learning/learning-git/eggjs/logs/eggjs","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"eggjs-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2018-12-02 18:20:36,119 INFO 39816 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/clean_log.js
+2018-12-02 18:20:36,119 INFO 39816 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/rotate_by_file.js
+2018-12-02 18:20:36,126 INFO 39816 [egg-multipart] stream mode enable
+2018-12-02 18:20:36,823 INFO 39816 [egg-static] starting static serve /public/ -> /Users/yuxiaodong/Learning/learning-git/eggjs/app/public
+2018-12-02 18:20:36,830 INFO 39816 [egg-security] use csrf middleware
+2018-12-02 18:20:36,831 INFO 39816 [egg-security] use methodnoallow middleware
+2018-12-02 18:20:36,833 INFO 39816 [egg-security] use noopen middleware
+2018-12-02 18:20:36,835 INFO 39816 [egg-security] use nosniff middleware
+2018-12-02 18:20:36,836 INFO 39816 [egg-security] use xssProtection middleware
+2018-12-02 18:20:36,837 INFO 39816 [egg-security] use xframe middleware
+2018-12-02 18:20:36,839 INFO 39816 [egg-security] use dta middleware
+2018-12-02 18:20:36,839 INFO 39816 [egg-security] compose 7 middlewares into one security middleware
+2018-12-02 18:20:36,971 INFO 39816 [egg:core] dump config after load, 57ms
+2018-12-02 18:20:37,439 INFO 39816 [egg-watcher:application] watcher start success
+2018-12-02 18:20:37,522 INFO 39816 [egg:core] dump config after ready, 52ms
+2018-12-02 18:20:55,593 INFO 39816 [egg-view-nunjucks] loading templates from ["/Users/yuxiaodong/Learning/learning-git/eggjs/app/view"]
+2018-12-02 18:22:31,535 WARN 39816 [TCPBase] socket is closed by other side while there were still unhandled data in the socket buffer
+2018-12-02 18:22:31,538 WARN 39816 [ClusterClient:Watcher] follower closed, and try to init it again
+2018-12-02 18:24:51,911 INFO 40087 [egg:logger] init all loggers with options: {"dir":"/Users/yuxiaodong/Learning/learning-git/eggjs/logs/eggjs","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"eggjs-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2018-12-02 18:24:52,370 INFO 40087 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/clean_log.js
+2018-12-02 18:24:52,438 INFO 40087 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/rotate_by_file.js
+2018-12-02 18:24:52,571 INFO 40087 [egg-multipart] stream mode enable
+2018-12-02 18:24:52,900 INFO 40087 [egg-static] starting static serve /public/ -> /Users/yuxiaodong/Learning/learning-git/eggjs/app/public
+2018-12-02 18:24:52,907 INFO 40087 [egg-security] use csrf middleware
+2018-12-02 18:24:52,909 INFO 40087 [egg-security] use methodnoallow middleware
+2018-12-02 18:24:52,910 INFO 40087 [egg-security] use noopen middleware
+2018-12-02 18:24:52,912 INFO 40087 [egg-security] use nosniff middleware
+2018-12-02 18:24:52,914 INFO 40087 [egg-security] use xssProtection middleware
+2018-12-02 18:24:52,919 INFO 40087 [egg-security] use xframe middleware
+2018-12-02 18:24:52,920 INFO 40087 [egg-security] use dta middleware
+2018-12-02 18:24:52,920 INFO 40087 [egg-security] compose 7 middlewares into one security middleware
+2018-12-02 18:24:52,962 INFO 40087 [egg:core] dump config after load, 30ms
+2018-12-02 18:24:53,197 INFO 40087 [egg-watcher:application] watcher start success
+2018-12-02 18:24:53,221 INFO 40087 [egg:core] dump config after ready, 11ms
+2018-12-02 18:24:57,790 INFO 40087 [egg-view-nunjucks] loading templates from ["/Users/yuxiaodong/Learning/learning-git/eggjs/app/view"]
+2018-12-02 18:26:43,453 INFO 40272 [egg:logger] init all loggers with options: {"dir":"/Users/yuxiaodong/Learning/learning-git/eggjs/logs/eggjs","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"eggjs-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2018-12-02 18:26:43,521 INFO 40272 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/clean_log.js
+2018-12-02 18:26:43,521 INFO 40272 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/rotate_by_file.js
+2018-12-02 18:26:43,522 INFO 40272 [egg-multipart] stream mode enable
+2018-12-02 18:26:43,695 INFO 40272 [egg-static] starting static serve /public/ -> /Users/yuxiaodong/Learning/learning-git/eggjs/app/public
+2018-12-02 18:26:43,699 INFO 40272 [egg-security] use csrf middleware
+2018-12-02 18:26:43,701 INFO 40272 [egg-security] use methodnoallow middleware
+2018-12-02 18:26:43,702 INFO 40272 [egg-security] use noopen middleware
+2018-12-02 18:26:43,703 INFO 40272 [egg-security] use nosniff middleware
+2018-12-02 18:26:43,704 INFO 40272 [egg-security] use xssProtection middleware
+2018-12-02 18:26:43,706 INFO 40272 [egg-security] use xframe middleware
+2018-12-02 18:26:43,707 INFO 40272 [egg-security] use dta middleware
+2018-12-02 18:26:43,707 INFO 40272 [egg-security] compose 7 middlewares into one security middleware
+2018-12-02 18:26:43,730 INFO 40272 [egg:core] dump config after load, 11ms
+2018-12-02 18:26:43,772 INFO 40272 [egg-watcher:application] watcher start success
+2018-12-02 18:26:43,782 INFO 40272 [egg:core] dump config after ready, 7ms
+2018-12-02 18:26:48,190 INFO 40272 [egg-view-nunjucks] loading templates from ["/Users/yuxiaodong/Learning/learning-git/eggjs/app/view"]
+2018-12-02 18:28:13,177 INFO 40402 [egg:logger] init all loggers with options: {"dir":"/Users/yuxiaodong/Learning/learning-git/eggjs/logs/eggjs","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"eggjs-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2018-12-02 18:28:13,654 INFO 40402 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/clean_log.js
+2018-12-02 18:28:13,654 INFO 40402 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/rotate_by_file.js
+2018-12-02 18:28:13,656 INFO 40402 [egg-multipart] stream mode enable
+2018-12-02 18:28:14,178 INFO 40402 [egg-static] starting static serve /public/ -> /Users/yuxiaodong/Learning/learning-git/eggjs/app/public
+2018-12-02 18:28:14,226 INFO 40402 [egg-security] use csrf middleware
+2018-12-02 18:28:14,243 INFO 40402 [egg-security] use methodnoallow middleware
+2018-12-02 18:28:14,255 INFO 40402 [egg-security] use noopen middleware
+2018-12-02 18:28:14,296 INFO 40402 [egg-security] use nosniff middleware
+2018-12-02 18:28:14,333 INFO 40402 [egg-security] use xssProtection middleware
+2018-12-02 18:28:14,353 INFO 40402 [egg-security] use xframe middleware
+2018-12-02 18:28:14,356 INFO 40402 [egg-security] use dta middleware
+2018-12-02 18:28:14,356 INFO 40402 [egg-security] compose 7 middlewares into one security middleware
+2018-12-02 18:28:14,548 INFO 40402 [egg:core] dump config after load, 143ms
+2018-12-02 18:28:14,936 INFO 40402 [egg-watcher:application] watcher start success
+2018-12-02 18:28:14,978 INFO 40402 [egg:core] dump config after ready, 37ms
+2018-12-02 18:29:40,566 INFO 40402 [egg-view-nunjucks] loading templates from ["/Users/yuxiaodong/Learning/learning-git/eggjs/app/view"]
+2018-12-02 18:29:40,632 WARN 40402 [TCPBase] socket is closed by other side while there were still unhandled data in the socket buffer
+2018-12-02 18:29:40,634 WARN 40402 [ClusterClient:Watcher] follower closed, and try to init it again
+2018-12-02 18:30:10,754 INFO 40591 [egg:logger] init all loggers with options: {"dir":"/Users/yuxiaodong/Learning/learning-git/eggjs/logs/eggjs","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"eggjs-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2018-12-02 18:30:12,424 INFO 40591 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/clean_log.js
+2018-12-02 18:30:12,424 INFO 40591 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/rotate_by_file.js
+2018-12-02 18:30:12,425 INFO 40591 [egg-multipart] stream mode enable
+2018-12-02 18:30:14,645 INFO 40591 [egg-static] starting static serve /public/ -> /Users/yuxiaodong/Learning/learning-git/eggjs/app/public
+2018-12-02 18:30:14,656 INFO 40591 [egg-security] use csrf middleware
+2018-12-02 18:30:14,659 INFO 40591 [egg-security] use methodnoallow middleware
+2018-12-02 18:30:14,663 INFO 40591 [egg-security] use noopen middleware
+2018-12-02 18:30:14,667 INFO 40591 [egg-security] use nosniff middleware
+2018-12-02 18:30:14,761 INFO 40591 [egg-security] use xssProtection middleware
+2018-12-02 18:30:14,809 INFO 40591 [egg-security] use xframe middleware
+2018-12-02 18:30:14,817 INFO 40591 [egg-security] use dta middleware
+2018-12-02 18:30:14,817 INFO 40591 [egg-security] compose 7 middlewares into one security middleware
+2018-12-02 18:30:15,174 INFO 40591 [egg:core] dump config after load, 149ms
+2018-12-02 18:30:15,440 INFO 40591 [egg-watcher:application] watcher start success
+2018-12-02 18:30:15,470 INFO 40591 [egg:core] dump config after ready, 22ms
+2018-12-02 18:30:18,551 INFO 40591 [egg-view-nunjucks] loading templates from ["/Users/yuxiaodong/Learning/learning-git/eggjs/app/view"]
+2018-12-02 18:41:32,459 INFO 41343 [egg:logger] init all loggers with options: {"dir":"/Users/yuxiaodong/Learning/learning-git/eggjs/logs/eggjs","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"eggjs-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2018-12-02 18:41:32,871 INFO 41343 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/clean_log.js
+2018-12-02 18:41:32,871 INFO 41343 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/rotate_by_file.js
+2018-12-02 18:41:32,872 INFO 41343 [egg-multipart] stream mode enable
+2018-12-02 18:41:33,511 INFO 41343 [egg-static] starting static serve /public/ -> /Users/yuxiaodong/Learning/learning-git/eggjs/app/public
+2018-12-02 18:41:33,517 INFO 41343 [egg-security] use csrf middleware
+2018-12-02 18:41:33,519 INFO 41343 [egg-security] use methodnoallow middleware
+2018-12-02 18:41:33,521 INFO 41343 [egg-security] use noopen middleware
+2018-12-02 18:41:33,523 INFO 41343 [egg-security] use nosniff middleware
+2018-12-02 18:41:33,525 INFO 41343 [egg-security] use xssProtection middleware
+2018-12-02 18:41:33,529 INFO 41343 [egg-security] use xframe middleware
+2018-12-02 18:41:33,531 INFO 41343 [egg-security] use dta middleware
+2018-12-02 18:41:33,531 INFO 41343 [egg-security] compose 7 middlewares into one security middleware
+2018-12-02 18:41:33,572 INFO 41343 [egg:core] dump config after load, 19ms
+2018-12-02 18:41:33,819 INFO 41343 [egg-watcher:application] watcher start success
+2018-12-02 18:41:34,002 INFO 41343 [egg:core] dump config after ready, 166ms
+2018-12-02 18:41:48,734 INFO 41343 [egg-view-nunjucks] loading templates from ["/Users/yuxiaodong/Learning/learning-git/eggjs/app/view"]
+2018-12-02 22:01:15,685 INFO 48590 [egg:logger] init all loggers with options: {"dir":"/Users/yuxiaodong/Learning/learning-git/eggjs/logs/eggjs","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"eggjs-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2018-12-02 22:01:15,773 INFO 48590 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/clean_log.js
+2018-12-02 22:01:15,773 INFO 48590 [egg-schedule]: register schedule /Users/yuxiaodong/Learning/learning-git/eggjs/node_modules/egg-logrotator/app/schedule/rotate_by_file.js
+2018-12-02 22:01:15,773 INFO 48590 [egg-multipart] stream mode enable
+2018-12-02 22:01:15,972 INFO 48590 [egg-static] starting static serve /public/ -> /Users/yuxiaodong/Learning/learning-git/eggjs/app/public
+2018-12-02 22:01:15,977 INFO 48590 [egg-security] use csrf middleware
+2018-12-02 22:01:15,979 INFO 48590 [egg-security] use methodnoallow middleware
+2018-12-02 22:01:15,980 INFO 48590 [egg-security] use noopen middleware
+2018-12-02 22:01:15,981 INFO 48590 [egg-security] use nosniff middleware
+2018-12-02 22:01:15,982 INFO 48590 [egg-security] use xssProtection middleware
+2018-12-02 22:01:15,983 INFO 48590 [egg-security] use xframe middleware
+2018-12-02 22:01:15,984 INFO 48590 [egg-security] use dta middleware
+2018-12-02 22:01:15,984 INFO 48590 [egg-security] compose 7 middlewares into one security middleware
+2018-12-02 22:01:16,019 INFO 48590 [egg:core] dump config after load, 22ms
+2018-12-02 22:01:16,137 INFO 48590 [egg-watcher:application] watcher start success
+2018-12-02 22:01:16,158 INFO 48590 [egg:core] dump config after ready, 10ms
+2018-12-02 22:01:18,091 INFO 48590 [egg-view-nunjucks] loading templates from ["/Users/yuxiaodong/Learning/learning-git/eggjs/app/view"]
