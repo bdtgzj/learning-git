@@ -5,9 +5,9 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch via NPM",
             "type": "node",
             "request": "launch",
-            "name": "Launch via NPM",
             "runtimeExecutable": "${NODE10_HOME}/bin/npm",
             "windows": {
                 "runtimeExecutable": "npm.cmd"
@@ -16,8 +16,11 @@
                 "run-script",
                 "dev-inspect" // dev-debug is invalid
             ],
-            "protocol": "inspector", //inspector, legacy
-            "port": 9230 // 9229 // master: 9229, agent: 5800, worker: 9230
+            "console": "integratedTerminal",
+            "restart": true,
+            "autoAttachChildProcesses": true,
+            "protocol": "auto", //auto, inspector, legacy
+            "port": 9229 // 9229 // master: 9229, agent: 5800, worker: 9230
         },
         {
             "type": "node",
@@ -30,7 +33,7 @@
             "request": "attach",
             "name": "Attach to Port",
             "address": "localhost",
-            "port": 5858
+            "port": 9230
         }
     ]
 }

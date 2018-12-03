@@ -149,3 +149,231 @@ name: "Template render error"
 pid: 40591
 hostname: yus-MacBook-Air.local
 
+2018-12-03 14:15:43,129 ERROR 13628 [-/127.0.0.1/-/1ms GET /] nodejs.SyntaxError: [egg-core] load file: /Users/xiaodongyu/Learning/learning-git/eggjs/app/model/user.js, error: Missing initializer in const declaration
+  const mongoose
+        ^^^^^^^^
+
+SyntaxError: Missing initializer in const declaration
+    at new Script (vm.js:79:7)
+    at createScript (vm.js:251:10)
+    at Object.runInThisContext (vm.js:303:10)
+    at Module._compile (internal/modules/cjs/loader.js:656:28)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:699:10)
+    at Module.load (internal/modules/cjs/loader.js:598:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:537:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:529:3)
+    at Module.require (internal/modules/cjs/loader.js:636:17)
+    at require (internal/modules/cjs/helpers.js:20:18)
+    at Object.loadFile (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/utils/index.js:19:19)
+    at getExports (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/file_loader.js:199:23)
+    at FileLoader.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/file_loader.js:158:25)
+    at FileLoader.load (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/file_loader.js:67:24)
+    at AppWorkerLoader.loadToApp (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/egg_loader.js:387:25)
+    at loadModelToApp (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-mongoose/lib/mongoose.js:103:14)
+
+pid: 13628
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-03 14:15:45,156 ERROR 13631 [-/127.0.0.1/-/1ms GET /] nodejs.SyntaxError: [egg-core] load file: /Users/xiaodongyu/Learning/learning-git/eggjs/app/model/user.js, error: Unexpected token }
+};
+^
+
+SyntaxError: Unexpected token }
+    at new Script (vm.js:79:7)
+    at createScript (vm.js:251:10)
+    at Object.runInThisContext (vm.js:303:10)
+    at Module._compile (internal/modules/cjs/loader.js:656:28)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:699:10)
+    at Module.load (internal/modules/cjs/loader.js:598:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:537:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:529:3)
+    at Module.require (internal/modules/cjs/loader.js:636:17)
+    at require (internal/modules/cjs/helpers.js:20:18)
+    at Object.loadFile (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/utils/index.js:19:19)
+    at getExports (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/file_loader.js:199:23)
+    at FileLoader.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/file_loader.js:158:25)
+    at FileLoader.load (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/file_loader.js:67:24)
+    at AppWorkerLoader.loadToApp (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/egg_loader.js:387:25)
+    at loadModelToApp (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-mongoose/lib/mongoose.js:103:14)
+
+pid: 13631
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-03 14:15:47,572 ERROR 13641 [-/127.0.0.1/-/0ms GET /] nodejs.SyntaxError: [egg-core] load file: /Users/xiaodongyu/Learning/learning-git/eggjs/app/model/user.js, error: Unexpected token }
+};
+^
+
+SyntaxError: Unexpected token }
+    at new Script (vm.js:79:7)
+    at createScript (vm.js:251:10)
+    at Object.runInThisContext (vm.js:303:10)
+    at Module._compile (internal/modules/cjs/loader.js:656:28)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:699:10)
+    at Module.load (internal/modules/cjs/loader.js:598:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:537:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:529:3)
+    at Module.require (internal/modules/cjs/loader.js:636:17)
+    at require (internal/modules/cjs/helpers.js:20:18)
+    at Object.loadFile (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/utils/index.js:19:19)
+    at getExports (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/file_loader.js:199:23)
+    at FileLoader.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/file_loader.js:158:25)
+    at FileLoader.load (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/file_loader.js:67:24)
+    at AppWorkerLoader.loadToApp (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/egg_loader.js:387:25)
+    at loadModelToApp (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-mongoose/lib/mongoose.js:103:14)
+
+pid: 13641
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-03 14:17:07,310 ERROR 13751 [egg-mongoose] mongodb://127.0.0.1/db_eggjs disconnected
+2018-12-03 14:17:07,314 ERROR 13751 nodejs.MongoNetworkError: [egg-mongoose]failed to connect to server [127.0.0.1:27017] on first connect [MongoNetworkError: connection 0 to 127.0.0.1:27017 timed out]
+    at Pool.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/topologies/server.js:564:11)
+    at Pool.emit (events.js:182:13)
+    at Connection.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/connection/pool.js:317:12)
+    at Object.onceWrapper (events.js:273:13)
+    at Connection.emit (events.js:182:13)
+    at Socket.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/connection/connection.js:257:10)
+    at Object.onceWrapper (events.js:273:13)
+    at Socket.emit (events.js:182:13)
+    at Socket._onTimeout (net.js:449:8)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+name: "MongoNetworkError"
+errorLabels: ["TransientTransactionError"]
+pid: 13751
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-03 14:17:07,441 ERROR 13751 [-/127.0.0.1/-/1ms GET /] nodejs.TypeError: Scheme is not a constructor
+    at module.exports.app (/Users/xiaodongyu/Learning/learning-git/eggjs/app/model/user.js:5:22)
+    at getExports (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/file_loader.js:220:15)
+    at FileLoader.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/file_loader.js:158:25)
+    at FileLoader.load (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/file_loader.js:67:24)
+    at AppWorkerLoader.loadToApp (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/egg_loader.js:387:25)
+    at loadModelToApp (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-mongoose/lib/mongoose.js:103:14)
+    at app.beforeStart (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-mongoose/lib/mongoose.js:43:7)
+    at Object.callFn (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/utils/index.js:36:42)
+    at process.nextTick (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/lifecycle.js:249:13)
+    at process._tickCallback (internal/process/next_tick.js:61:11)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:744:11)
+    at startup (internal/bootstrap/node.js:285:19)
+    at bootstrapNodeJSCore (internal/bootstrap/node.js:739:3)
+
+pid: 13751
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-03 14:17:07,564 ERROR 13751 [-/127.0.0.1/-/0ms GET /] nodejs.MongoNetworkError: [egg-mongoose]failed to connect to server [127.0.0.1:27017] on first connect [MongoNetworkError: connection 0 to 127.0.0.1:27017 timed out]
+    at Pool.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/topologies/server.js:564:11)
+    at Pool.emit (events.js:182:13)
+    at Connection.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/connection/pool.js:317:12)
+    at Object.onceWrapper (events.js:273:13)
+    at Connection.emit (events.js:182:13)
+    at Socket.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/connection/connection.js:257:10)
+    at Object.onceWrapper (events.js:273:13)
+    at Socket.emit (events.js:182:13)
+    at Socket._onTimeout (net.js:449:8)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+name: "MongoNetworkError"
+errorLabels: ["TransientTransactionError"]
+pid: 13751
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-03 14:17:51,736 ERROR 13889 [-/127.0.0.1/-/1ms GET /] nodejs.TypeError: Scheme is not a constructor
+    at module.exports.app (/Users/xiaodongyu/Learning/learning-git/eggjs/app/model/user.js:5:22)
+    at getExports (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/file_loader.js:220:15)
+    at FileLoader.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/file_loader.js:158:25)
+    at FileLoader.load (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/file_loader.js:67:24)
+    at AppWorkerLoader.loadToApp (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/egg_loader.js:387:25)
+    at loadModelToApp (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-mongoose/lib/mongoose.js:103:14)
+    at app.beforeStart (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-mongoose/lib/mongoose.js:43:7)
+    at Object.callFn (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/utils/index.js:36:42)
+    at process.nextTick (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/lifecycle.js:249:13)
+    at process._tickCallback (internal/process/next_tick.js:61:11)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:744:11)
+    at startup (internal/bootstrap/node.js:285:19)
+    at bootstrapNodeJSCore (internal/bootstrap/node.js:739:3)
+
+pid: 13889
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-03 14:18:42,623 ERROR 13980 [-/127.0.0.1/-/1ms GET /] nodejs.TypeError: Scheme is not a constructor
+    at module.exports.app (/Users/xiaodongyu/Learning/learning-git/eggjs/app/model/user.js:5:22)
+    at getExports (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/file_loader.js:220:15)
+    at FileLoader.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/file_loader.js:158:25)
+    at FileLoader.load (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/file_loader.js:67:24)
+    at AppWorkerLoader.loadToApp (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/egg_loader.js:387:25)
+    at loadModelToApp (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-mongoose/lib/mongoose.js:103:14)
+    at app.beforeStart (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-mongoose/lib/mongoose.js:43:7)
+    at Object.callFn (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/utils/index.js:36:42)
+    at process.nextTick (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/lifecycle.js:249:13)
+    at process._tickCallback (internal/process/next_tick.js:61:11)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:744:11)
+    at startup (internal/bootstrap/node.js:285:19)
+    at bootstrapNodeJSCore (internal/bootstrap/node.js:739:3)
+
+pid: 13980
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-03 14:19:02,960 ERROR 14003 [-/127.0.0.1/-/0ms GET /] nodejs.TypeError: Scheme is not a constructor
+    at module.exports.app (/Users/xiaodongyu/Learning/learning-git/eggjs/app/model/user.js:5:22)
+    at getExports (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/file_loader.js:220:15)
+    at FileLoader.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/file_loader.js:158:25)
+    at FileLoader.load (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/file_loader.js:67:24)
+    at AppWorkerLoader.loadToApp (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/loader/egg_loader.js:387:25)
+    at loadModelToApp (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-mongoose/lib/mongoose.js:103:14)
+    at app.beforeStart (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-mongoose/lib/mongoose.js:43:7)
+    at Object.callFn (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/utils/index.js:36:42)
+    at process.nextTick (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-core/lib/lifecycle.js:249:13)
+    at process._tickCallback (internal/process/next_tick.js:61:11)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:744:11)
+    at startup (internal/bootstrap/node.js:285:19)
+    at bootstrapNodeJSCore (internal/bootstrap/node.js:739:3)
+
+pid: 14003
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-03 15:09:15,075 ERROR 17677 [-/127.0.0.1/-/14623ms GET /user] nodejs.AssertionError [ERR_ASSERTION]: Can't find user/index from /Users/xiaodongyu/Learning/learning-git/eggjs/app/view
+    at Map.resolve (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/egg-view/lib/view_manager.js:74:5)
+generatedMessage: false
+name: "AssertionError [ERR_ASSERTION]"
+code: "ERR_ASSERTION"
+actual: undefined
+expected: true
+operator: "=="
+pid: 17677
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-03 15:29:48,336 ERROR 17666 nodejs.ClusterClientNoResponseError: client no response in 79414ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout.Leader._heartbeatTimer.setInterval [as _onTimeout] (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/cluster-client/lib/leader.js:74:23)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+name: "ClusterClientNoResponseError"
+pid: 17666
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-03 15:32:16,198 ERROR 19383 nodejs.Error [ERR_IPC_DISCONNECTED]: IPC channel is already disconnected (uncaughtException throw 1 times on pid:19383)
+    at process.target.disconnect (internal/child_process.js:768:26)
+    at Server.checkWaitingCount (internal/cluster/child.js:203:17)
+    at Object.onceWrapper (events.js:273:13)
+    at Server.emit (events.js:182:13)
+    at emitCloseNT (net.js:1618:8)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+
+pid: 19383
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-03 15:32:17,234 ERROR 19383 nodejs.Error [ERR_IPC_CHANNEL_CLOSED]: Channel closed (uncaughtException throw 2 times on pid:19383)
+    at process.target.send (internal/child_process.js:628:16)
+    at Worker.send (internal/cluster/worker.js:40:28)
+    at process.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graceful/index.js:100:16)
+    at process.emit (events.js:182:13)
+    at process._fatalException (internal/bootstrap/node.js:491:27)
+
+pid: 19383
+hostname: chen-lins-MacBook-Pro.local
+
