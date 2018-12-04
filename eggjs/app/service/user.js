@@ -3,12 +3,16 @@ const { Types } = require('mongoose');
 
 class UserService extends Service {
 
+  async getByIds(ids) {
+    return await this.ctx.model.User.find({_id: {$in: ids}});
+  }
+
   async getById(id) {
-    return this.ctx.model.User.findOne({_id: Types.ObjectId(id)});
+    return await this.ctx.model.User.findOne({_id: id});
   }
 
   async getByName(name) {
-    return this.ctx.model.User.findOne({username: name});
+    return await this.ctx.model.User.findOne({username: name});
   }
 
   async getAll() {

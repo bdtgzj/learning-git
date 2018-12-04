@@ -1,6 +1,6 @@
 type Query {
   user(id: ID!): User,
-  user1(username: String!): User,
+  user1(name: String!): User,
   users: [User],
-  dd: String 
+  dd: String,
 }

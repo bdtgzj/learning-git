@@ -33,3 +33,1162 @@ errorLabels: ["TransientTransactionError"]
 pid: 1152
 hostname: yus-MacBook-Air.local
 
+2018-12-04 10:06:32,545 ERROR 2167 nodejs.ClusterClientNoResponseError: client no response in 61145ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout.Leader._heartbeatTimer.setInterval [as _onTimeout] (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/cluster-client/lib/leader.js:74:23)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+name: "ClusterClientNoResponseError"
+pid: 2167
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:09:31,148 ERROR 2832 [egg-mongoose] mongodb://127.0.0.1/db_eggjs disconnected
+2018-12-04 10:09:31,151 ERROR 2832 nodejs.MongoNetworkError: [egg-mongoose]failed to connect to server [127.0.0.1:27017] on first connect [MongoNetworkError: connection 0 to 127.0.0.1:27017 timed out]
+    at Pool.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/topologies/server.js:564:11)
+    at Pool.emit (events.js:182:13)
+    at Connection.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/connection/pool.js:317:12)
+    at Object.onceWrapper (events.js:273:13)
+    at Connection.emit (events.js:182:13)
+    at Socket.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/connection/connection.js:257:10)
+    at Object.onceWrapper (events.js:273:13)
+    at Socket.emit (events.js:182:13)
+    at Socket._onTimeout (net.js:449:8)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+name: "MongoNetworkError"
+errorLabels: ["TransientTransactionError"]
+pid: 2832
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:09:31,236 ERROR 2832 [-/127.0.0.1/-/0ms GET /] nodejs.MongoNetworkError: [egg-mongoose]failed to connect to server [127.0.0.1:27017] on first connect [MongoNetworkError: connection 0 to 127.0.0.1:27017 timed out]
+    at Pool.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/topologies/server.js:564:11)
+    at Pool.emit (events.js:182:13)
+    at Connection.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/connection/pool.js:317:12)
+    at Object.onceWrapper (events.js:273:13)
+    at Connection.emit (events.js:182:13)
+    at Socket.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/connection/connection.js:257:10)
+    at Object.onceWrapper (events.js:273:13)
+    at Socket.emit (events.js:182:13)
+    at Socket._onTimeout (net.js:449:8)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+name: "MongoNetworkError"
+errorLabels: ["TransientTransactionError"]
+pid: 2832
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:24:58,350 ERROR 3960 [egg-mongoose] mongodb://127.0.0.1/db_eggjs disconnected
+2018-12-04 10:24:58,352 ERROR 3960 nodejs.MongoNetworkError: [egg-mongoose]failed to connect to server [127.0.0.1:27017] on first connect [MongoNetworkError: connection 0 to 127.0.0.1:27017 timed out]
+    at Pool.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/topologies/server.js:564:11)
+    at Pool.emit (events.js:182:13)
+    at Connection.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/connection/pool.js:317:12)
+    at Object.onceWrapper (events.js:273:13)
+    at Connection.emit (events.js:182:13)
+    at Socket.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/connection/connection.js:257:10)
+    at Object.onceWrapper (events.js:273:13)
+    at Socket.emit (events.js:182:13)
+    at Socket._onTimeout (net.js:449:8)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+name: "MongoNetworkError"
+errorLabels: ["TransientTransactionError"]
+pid: 3960
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:24:58,432 ERROR 3960 [-/127.0.0.1/-/0ms GET /] nodejs.MongoNetworkError: [egg-mongoose]failed to connect to server [127.0.0.1:27017] on first connect [MongoNetworkError: connection 0 to 127.0.0.1:27017 timed out]
+    at Pool.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/topologies/server.js:564:11)
+    at Pool.emit (events.js:182:13)
+    at Connection.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/connection/pool.js:317:12)
+    at Object.onceWrapper (events.js:273:13)
+    at Connection.emit (events.js:182:13)
+    at Socket.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/connection/connection.js:257:10)
+    at Object.onceWrapper (events.js:273:13)
+    at Socket.emit (events.js:182:13)
+    at Socket._onTimeout (net.js:449:8)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+name: "MongoNetworkError"
+errorLabels: ["TransientTransactionError"]
+pid: 3960
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:25:33,012 ERROR 4109 [-/127.0.0.1/-/379ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4109
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:25:49,687 ERROR 4109 [-/127.0.0.1/-/3ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4109
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:25:50,355 ERROR 4109 [-/127.0.0.1/-/4ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4109
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:26:52,708 ERROR 4109 [-/127.0.0.1/-/6ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4109
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:26:53,422 ERROR 4109 [-/127.0.0.1/-/3ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4109
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:26:53,672 ERROR 4109 [-/127.0.0.1/-/5ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4109
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:26:53,858 ERROR 4109 [-/127.0.0.1/-/3ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4109
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:26:54,059 ERROR 4109 [-/127.0.0.1/-/5ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4109
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:26:54,309 ERROR 4109 [-/127.0.0.1/-/5ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4109
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:26:54,626 ERROR 4109 [-/127.0.0.1/-/2ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4109
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:27:03,815 ERROR 4109 [-/127.0.0.1/-/3ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4109
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:27:04,306 ERROR 4109 [-/127.0.0.1/-/4ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4109
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:27:04,648 ERROR 4109 [-/127.0.0.1/-/3ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4109
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:27:04,811 ERROR 4109 [-/127.0.0.1/-/4ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4109
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:27:04,975 ERROR 4109 [-/127.0.0.1/-/2ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4109
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:27:07,167 ERROR 4109 [-/127.0.0.1/-/5ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4109
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:27:07,211 ERROR 4109 [-/127.0.0.1/-/7ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4109
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:27:20,634 ERROR 4109 [-/127.0.0.1/-/5ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4109
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:27:21,283 ERROR 4109 [-/127.0.0.1/-/3ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4109
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:27:21,469 ERROR 4109 [-/127.0.0.1/-/5ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4109
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:27:56,635 ERROR 4361 [-/127.0.0.1/-/393ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4361
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:28:18,576 ERROR 4361 [-/127.0.0.1/-/7ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4361
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:28:19,279 ERROR 4361 [-/127.0.0.1/-/4ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4361
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:28:19,477 ERROR 4361 [-/127.0.0.1/-/4ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4361
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:28:19,686 ERROR 4361 [-/127.0.0.1/-/6ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4361
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:28:19,863 ERROR 4361 [-/127.0.0.1/-/4ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4361
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:28:21,337 ERROR 4406 [-/127.0.0.1/-/45ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4406
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:28:21,384 ERROR 4406 [-/127.0.0.1/-/14ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4406
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:28:26,204 ERROR 4406 [-/127.0.0.1/-/4ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4406
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:28:26,775 ERROR 4406 [-/127.0.0.1/-/2ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4406
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:28:26,937 ERROR 4406 [-/127.0.0.1/-/4ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4406
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:28:47,156 ERROR 4448 [-/127.0.0.1/-/46ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4448
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:28:48,149 ERROR 4448 [-/127.0.0.1/-/3ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4448
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:29:54,586 ERROR 4481 [-/127.0.0.1/-/45ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4481
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:29:55,266 ERROR 4481 [-/127.0.0.1/-/7ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4481
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:29:55,648 ERROR 4481 [-/127.0.0.1/-/5ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4481
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:29:55,817 ERROR 4481 [-/127.0.0.1/-/5ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4481
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:30:06,067 ERROR 4481 [-/127.0.0.1/-/2ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4481
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:30:06,705 ERROR 4481 [-/127.0.0.1/-/4ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4481
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:30:08,150 ERROR 4481 [-/127.0.0.1/-/3ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4481
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:30:08,197 ERROR 4481 [-/127.0.0.1/-/4ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4481
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:30:12,707 ERROR 4481 [-/127.0.0.1/-/3ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4481
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:30:12,743 ERROR 4481 [-/127.0.0.1/-/6ms POST /graphql?] nodejs.GraphQLError: Syntax Error: Expected Name, found )
+    at syntaxError (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/error/syntaxError.js:24:10)
+    at expect (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1299:32)
+    at parseName (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:92:15)
+    at parseInputValueDef (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:842:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1348:16)
+    at parseArgumentDefs (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:832:10)
+    at parseFieldDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:810:14)
+    at many (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:1350:16)
+    at parseFieldsDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:799:50)
+    at parseObjectTypeDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:757:16)
+    at parseTypeSystemDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:663:16)
+    at parseDefinition (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:143:16)
+    at parseDocument (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:110:22)
+    at Object.parse (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql/language/parser.js:38:10)
+    at Object.buildSchemaFromTypeDefinitions (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/generate/buildSchemaFromTypeDefinitions.js:20:33)
+    at makeExecutableSchema (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/graphql-tools/dist/makeExecutableSchema.js:27:29)
+message: "Syntax Error: Expected Name, found )"
+locations: [{"line":10,"column":9}]
+path: undefined
+pid: 4481
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:34:12,693 ERROR 2167 nodejs.ClusterClientNoResponseError: client no response in 64332ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout.Leader._heartbeatTimer.setInterval [as _onTimeout] (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/cluster-client/lib/leader.js:74:23)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+name: "ClusterClientNoResponseError"
+pid: 2167
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:36:32,700 ERROR 2167 nodejs.ClusterClientNoResponseError: client no response in 61053ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout.Leader._heartbeatTimer.setInterval [as _onTimeout] (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/cluster-client/lib/leader.js:74:23)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+name: "ClusterClientNoResponseError"
+pid: 2167
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:39:12,716 ERROR 2167 nodejs.ClusterClientNoResponseError: client no response in 64089ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout.Leader._heartbeatTimer.setInterval [as _onTimeout] (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/cluster-client/lib/leader.js:74:23)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+name: "ClusterClientNoResponseError"
+pid: 2167
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:40:54,788 ERROR 5269 [egg-mongoose] mongodb://127.0.0.1/db_eggjs disconnected
+2018-12-04 10:40:54,791 ERROR 5269 nodejs.MongoNetworkError: [egg-mongoose]failed to connect to server [127.0.0.1:27017] on first connect [MongoNetworkError: connection 0 to 127.0.0.1:27017 timed out]
+    at Pool.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/topologies/server.js:564:11)
+    at Pool.emit (events.js:182:13)
+    at Connection.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/connection/pool.js:317:12)
+    at Object.onceWrapper (events.js:273:13)
+    at Connection.emit (events.js:182:13)
+    at Socket.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/connection/connection.js:257:10)
+    at Object.onceWrapper (events.js:273:13)
+    at Socket.emit (events.js:182:13)
+    at Socket._onTimeout (net.js:449:8)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+name: "MongoNetworkError"
+errorLabels: ["TransientTransactionError"]
+pid: 5269
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 10:40:54,867 ERROR 5269 [-/127.0.0.1/-/0ms GET /] nodejs.MongoNetworkError: [egg-mongoose]failed to connect to server [127.0.0.1:27017] on first connect [MongoNetworkError: connection 0 to 127.0.0.1:27017 timed out]
+    at Pool.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/topologies/server.js:564:11)
+    at Pool.emit (events.js:182:13)
+    at Connection.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/connection/pool.js:317:12)
+    at Object.onceWrapper (events.js:273:13)
+    at Connection.emit (events.js:182:13)
+    at Socket.<anonymous> (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/mongodb-core/lib/connection/connection.js:257:10)
+    at Object.onceWrapper (events.js:273:13)
+    at Socket.emit (events.js:182:13)
+    at Socket._onTimeout (net.js:449:8)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+name: "MongoNetworkError"
+errorLabels: ["TransientTransactionError"]
+pid: 5269
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 11:01:16,833 ERROR 6203 nodejs.ReferenceError: id is not defined
+    at /Users/xiaodongyu/Learning/learning-git/eggjs/app/graphql/user/connector.js:15:34
+    at new Promise (<anonymous>)
+    at UserConnector.fetch (/Users/xiaodongyu/Learning/learning-git/eggjs/app/graphql/user/connector.js:14:13)
+    at dispatchQueueBatch (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/dataloader/index.js:246:22)
+    at dispatchQueue (/Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/dataloader/index.js:233:5)
+    at /Users/xiaodongyu/Learning/learning-git/eggjs/node_modules/dataloader/index.js:70:20
+    at process._tickCallback (internal/process/next_tick.js:61:11)
+
+pid: 6203
+hostname: chen-lins-MacBook-Pro.local
+
+2018-12-04 17:00:09,810 ERROR 7021 [egg-mongoose] mongodb://127.0.0.1/db_eggjs disconnected

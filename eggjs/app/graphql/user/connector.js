@@ -7,14 +7,18 @@ class UserConnector {
     this.loader = new DataLoader(this.fetch.bind(this));
   }
 
-  fetch(id) {
-    return this.ctx.service.user.getById(id);
-    /*
+  fetch(ids) {
+    // return this.ctx.service.user.getById(id);
+    // DataLoader must be constructed with a function which accepts Array<key> and returns Promise<Array<value>>
+    const user = this.ctx.service.user;
     return new Promise(function(resolve, reject) {
-      const users = user.getById(id);
+      const users = user.getByIds(ids);
       resolve(users);
     });
-    */
+  }
+
+  fetchByIds(ids) {
+    return this.loader.loadMany(ids);
   }
 
   fetchById(id) {
@@ -26,8 +30,8 @@ class UserConnector {
     return users;
   }
 
-  async fetchByName(name) {
-    return await this.ctx.service.user.getByName(name);
+  fetchByName(name) {
+    return this.ctx.service.user.getByName(name);
   }
 
   removeOne(id) {

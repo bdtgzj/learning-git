@@ -33,7 +33,7 @@
             "request": "attach",
             "name": "Attach to Port",
             "address": "localhost",
-            "port": 9230
+            "port": 9229
         }
     ]
 }
