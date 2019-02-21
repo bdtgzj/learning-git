@@ -41,7 +41,7 @@ var D = function() {
 }
 
 A()
-.then(function(result) { 
+.then(function(result) {
     return B();
 })
 .then(C)
