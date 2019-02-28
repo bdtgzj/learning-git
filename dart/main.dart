@@ -12,3 +12,15 @@ void funcName({@required String p1, String p2}) {
 void funcName1(String p1, String p2, [String p3, int p4]) {
   print(p2 + p3.toString());
 }
+
+void obj() {
+
+}
+
+class HelloClass {
+  num x = 0;
+  // Syntactic sugar: HelloClass(this.x)
+  HelloClass(num x) {
+    this.x = x;
+  }
+}
