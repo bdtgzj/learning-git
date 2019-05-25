@@ -25,16 +25,37 @@
   <body>
     <div class="reveal">
       <div class="slides">
-        <section data-transition="convex">
+        <section data-transition="none">
           <h1>电路基础</h1>
+          <!--http://localhost:8000/electronic-blocks/basic-circuit/circuit-intro/-->
+        </section>
+        <section data-transition="none">
+          <h1>电路基础</h1>
+          <audio data-autoplay src="header.mp3"></audio>
+          <!--同学们，今天我们学习电路基础，下面我们来一起跟着大熊博士学习电路的基本组成吧。-->
         </section>
         <section data-transition="convex">
           <video controls data-autoplay src="物理大爆炸02-三分钟学会制作好玩的电路，秒变小学霸！.mp4"></video>
         </section>
         <section data-transition="convex">
-          <h1>电路的四个组成部分</h1>
-          <h3>电源、用电器、开关、导线</h3>
+          <h1>电路基础</h1>
+          <audio data-autoplay src="key-content.mp3"></audio>
+          <!--听完大熊博士的讲解，同学们，有没有都理解啦？下面就来考考你们！-->
         </section>
+        <section data-transition="convex">
+          <h2>电路由哪四个组成部分？</h2>
+          <h3 style="text-align: left;">A. 电脑、用电器、开关、导线</h3>
+          <h3 style="text-align: left;">B. 电源、自行车、冰箱、导线</h3>
+          <h3 style="text-align: left;">C. 电源、用电器、开关、导线</h3>
+          <h3 style="text-align: left;">D. 电视机、用电器、开关、导线</h3>
+          <audio data-autoplay src="question.mp3"></audio>
+          <!--电路由哪四个组成部分？A，电脑、用电器、开关、导线。B，电源、自行车、冰箱、导线。C，电源、用电器、开关、导线。D，电视机、用电器、开关、导线。-->
+        </section>
+        <section data-transition="convex">
+            <h1>动手做一做</h1>
+            <audio data-autoplay src="do-it.mp3"></audio>
+            <!--同学们，接下来让我们动手做一做，搭建一个基础电路吧！-->
+          </section>
       </div>
     </div>
 
@@ -49,6 +70,10 @@
           { src: '/plugin/notes/notes.js', async: true },
           { src: '/plugin/highlight/highlight.js', async: true }
         ]
+      });
+      Reveal.addEventListener('ready', function(event) {
+        // event.currentSlide, event.indexh, event.indexv
+        //Reveal.slide(0);
       });
     </script>
   </body>
