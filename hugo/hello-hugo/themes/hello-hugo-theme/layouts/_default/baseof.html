@@ -4,6 +4,6 @@
     <body>
         {{- partial "header.html" . -}}
         {{- block "main" . }}{{- end }}
-        {{- partial "footer.html" . -}}
+        {{ if not (eq .Page.RelPermalink "/") }}{{- partial "footer.html" . -}}{{ end }}
     </body>
 </html>

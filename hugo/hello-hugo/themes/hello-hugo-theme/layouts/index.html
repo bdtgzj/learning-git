@@ -1,15 +1,12 @@
 {{ define "main" }}
-<div class="main">
-    <div class="section" style="background-color: blue;">...</div>
-    <div class="section" style="background-color: red;">...</div>
-</div>
-<link rel="stylesheet" href='css/jquery.pagepiling.css'>
-<script src="js/jquery.pagepiling.min.js"></script>
+{{- .Content -}}
+<link rel="stylesheet" href='/css/jquery.pagepiling.css'>
+<script src="/js/jquery.pagepiling.min.js"></script>
 <script>
   $(document).ready(function() {
     $(".main").pagepiling({
-      scrollingSpeed: 700,
-      easing: "easy", // swing, easy
+      scrollingSpeed: 500,
+      easing: "swing", // swing, easy
     });
   });
 </script>

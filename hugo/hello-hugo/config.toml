@@ -8,7 +8,7 @@ theme = "hello-hugo-theme"
     identifier = "new-product"
     name = "当季新品"
     title = "当季新品"
-    url = "/new-product/"
+    url = "/" # /new-product/
     weight = 101
   [[menu.main]]
     identifier = "product"
@@ -34,4 +34,5 @@ theme = "hello-hugo-theme"
     title = "人才招聘"
     url = "/hr/"
     weight = 105
+
 
