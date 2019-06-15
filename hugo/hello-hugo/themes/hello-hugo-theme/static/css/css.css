@@ -18,6 +18,12 @@ body {
 
 }
 
+/* Banner */
+.banner {
+  background: center center no-repeat;
+  height: 450px;
+}
+
 /* Footer */
 footer {
   background: #000;
@@ -28,6 +34,7 @@ footer {
 .footer-content {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-end;
   background-color: #000000;
