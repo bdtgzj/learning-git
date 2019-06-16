@@ -1,4 +1,11 @@
 {{ define "main" }}
-{{- partial "banner.html" . -}}
-{{- .Content -}}
+  {{- partial "banner.html" . -}}
+  {{- .Content -}}
+  <ul>
+  {{ range .Pages }}
+    <li>
+      <a href="{{.Permalink}}">{{.Title}}</a>
+    </li>
+  {{ end }}
+  </ul>
 {{ end }}

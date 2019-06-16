@@ -1,6 +1,6 @@
 /* Body */
 body {
-  padding-top: 56px;
+  padding-top: 3.5rem;
 }
 
 /* Nav */
@@ -10,8 +10,8 @@ body {
 }
 
 .navbar-logo {
-  width: 30px;
-  height: 30px;
+  width: 1.875rem; /*30px*/
+  height: 1.875rem;
 }
 
 .navbar-logo-text {
@@ -21,28 +21,21 @@ body {
 /* Banner */
 .banner {
   background: center center no-repeat;
-  height: 450px;
+  height: 450px; /*28.125rem*/
 }
 
 /* Footer */
 footer {
   background: #000;
+  font-size: .875rem;
   color: #fff;
   position: relative;
 }
-
-.footer-content {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: flex-end;
+.footer-row {
   background-color: #000000;
-  padding: 25px 50px 50px;
+  padding: 25px 25px 50px;
 }
-
 .footer-qr {
-  font-size: 14px;
   text-align: center;
   white-space: nowrap;
 }
@@ -53,7 +46,6 @@ footer {
   margin: 0 auto;
 }
 .footer-icp {
-  flex: 1;
-  font-size: 14px;
+  align-self: flex-end;
   text-align: center;
 }

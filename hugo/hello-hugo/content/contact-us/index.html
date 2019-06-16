@@ -4,4 +4,32 @@ date: 2019-06-14T20:20:15+08:00
 draft: true
 ---
 
-Contact Us
+<div class="container">
+  <div class="row">
+    <div class="col-md p-0 m-3">
+      <div id="cu-map" class="card cu-map"></div>
+    </div>
+    <div class="col-md-auto p-0 m-3 ml-md-0 cu-col">
+      <div class="card bg-primary text-white p-3 cu-info">
+        <p>苏州赫森网络科技有限公司</p>
+        <p>固话：0512-89883888</p>
+        <p>手机：17768311588</p>
+        <p>邮箱：market@hesen.biz</p>
+        <p>称呼：李先生</p>
+        <p>地址：江阴市古塘路60号</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=3aCPPzeROXGuhGDpp9YiOEqBfbpc8O3D"></script>
+<script type="text/javascript">
+  var map = new BMap.Map("cu-map");
+  var point = new BMap.Point(120.579588, 31.741584);
+  map.centerAndZoom(point, 17);
+  map.addControl(new BMap.NavigationControl());
+  var marker = new BMap.Marker(point);
+  map.addOverlay(marker);
+  var infoWindow = new BMap.InfoWindow("江阴市古塘路60号", {title: "赫森网络"});
+  map.openInfoWindow(infoWindow, map.getCenter());
+</script>
+
