@@ -1,11 +1,22 @@
 {{ define "main" }}
   {{- partial "banner.html" . -}}
-  {{- .Content -}}
-  <ul>
-  {{ range .Pages }}
-    <li>
-      <a href="{{.Permalink}}">{{.Title}}</a>
-    </li>
-  {{ end }}
-  </ul>
+  <div class="container">
+    {{- partial "menu-product.html" . -}}
+    <div class="row">
+    {{ range .Pages }}
+      <div class="col-md-4 mt-3">
+        <div class="card">
+          <a href="{{.Permalink}}">
+            <img src="{{ .Params.thumbnail }}" class="card-img-top pl-card-img" alt="{{.Title}}">
+          </a>
+          <div class="card-body">
+            <p class="card-text pl-card-text">{{.Title}}</p>
+          </div>
+        </div>
+      </div>
+    {{ end }}
+    </div>
+    {{- .Content -}}
+  </div>
+</div>
 {{ end }}

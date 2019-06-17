@@ -3,36 +3,4 @@ languageCode = "zh-cn"
 title = "赫森网络"
 theme = "hello-hugo-theme"
 
-[menu]
-  [[menu.main]]
-    identifier = "new-product"
-    name = "当季新品"
-    title = "当季新品"
-    url = "/" # /new-product/
-    weight = 101
-  [[menu.main]]
-    identifier = "product"
-    name = "产品中心"
-    title = "产品中心"
-    url = "/product/"
-    weight = 102
-  [[menu.main]]
-    identifier = "about-us"
-    name = "关于我们"
-    title = "关于我们"
-    url = "/about-us/"
-    weight = 103
-  [[menu.main]]
-    identifier = "contact-us"
-    name = "联系我们"
-    title = "联系我们"
-    url = "/contact-us/"
-    weight = 104
-  [[menu.main]]
-    identifier = "hr"
-    name = "人才招聘"
-    title = "人才招聘"
-    url = "/hr/"
-    weight = 105
-
 

@@ -1,6 +1,12 @@
 /* new-product */
 
 /* product */
+.pl-card-img {
+  height: 300px;
+}
+.pl-card-text {
+  height: 20px;
+}
 
 /* about-us */
 

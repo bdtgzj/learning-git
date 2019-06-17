@@ -1,0 +1,8 @@
+<ul class="nav nav-tabs">
+  {{ $currentPage := . }}
+  {{ range .Site.Menus.product }}
+    <li class="nav-item{{ if or ($currentPage.IsMenuCurrent "product" .) ($currentPage.HasMenuCurrent "product" .) }} active{{ end }}">
+      <a class="nav-link{{ if or ($currentPage.IsMenuCurrent "product" .) ($currentPage.HasMenuCurrent "product" .) }} active{{ end }}" href="{{ .URL }}">{{ .Name }}</a>
+    </li>
+  {{ end }}
+</ul>
