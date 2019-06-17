@@ -1,4 +1,4 @@
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs my-3">
   {{ $currentPage := . }}
   {{ range .Site.Menus.product }}
     <li class="nav-item{{ if or ($currentPage.IsMenuCurrent "product" .) ($currentPage.HasMenuCurrent "product" .) }} active{{ end }}">

@@ -2,10 +2,10 @@
 
 /* product */
 .pl-card-img {
-  height: 300px;
+  /*height: 350px;*/
 }
 .pl-card-text {
-  height: 20px;
+  text-align: center;
 }
 
 /* about-us */
