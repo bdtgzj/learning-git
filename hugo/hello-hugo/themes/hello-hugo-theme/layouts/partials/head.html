@@ -1,3 +1,14 @@
+<script>
+  var isIE = /*@cc_on!@*/false || !!document.documentMode;
+  if (isIE) {
+    var ua = window.navigator.userAgent;
+    var match = ua.match(/.*MSIE\ ([0-9]+)\./);
+    var ver = parseInt(match[1], 10);
+    if (ver < 10) {
+      alert('抱歉，请使用 IE 10+ 浏览器，或其他非 IE 浏览器！');
+    }
+  }
+</script>
 <head>
   <meta charset="utf-8">
   <!-- set render engine for 360 browser -->
