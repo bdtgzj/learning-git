@@ -9,4 +9,4 @@ start:
 	npm start
 
 curl:
-	curl http://localhost:8000
+	curl http://localhost:8000/lego-education/grades-1-2/wedo-2-science/glowing-snail/
