@@ -1,4 +1,7 @@
 /* new-product */
+#fullpage img {
+  width: 100%;
+}
 
 /* product */
 .pl-card-img {
@@ -6,6 +9,12 @@
 }
 .pl-card-text {
   text-align: center;
+}
+.ps-container {
+  text-align: center;
+}
+.ps-container img {
+  width: 100%;
 }
 
 /* about-us */
