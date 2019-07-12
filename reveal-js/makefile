@@ -4,6 +4,8 @@ install-reveal:
 
 link-resource:
 	ln -s ~/yxd/learning-git/reveal-js/* ~/tmp/reveal.js/
+	ln -s ~/Learning/learning-git/reveal-js/* /Volumes/TF64/tmp/program/reveal.js/
+	ln -s ~/Learning/learning-git/reveal-js/css/common.css /Volumes/TF64/tmp/program/reveal.js/css/
 
 start:
 	npm start
