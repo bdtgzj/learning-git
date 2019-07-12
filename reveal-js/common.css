@@ -1,0 +1,9 @@
+/* reveal.css override */
+.reveal .slides > section, .reveal .slides > section > section {
+  padding: 0 !important;
+}
+
+/* black.css override */
+.reveal section img {
+  margin: 0 !important;
+}
