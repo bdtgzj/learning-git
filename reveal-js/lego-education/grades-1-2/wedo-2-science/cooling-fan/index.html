@@ -14,8 +14,11 @@
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="/lib/css/monokai.css">
 
-    <!--custom-->
+    <!--material-design-icons-->
     <link rel="stylesheet" href="/icon/material-design-icons/material-icons.css">
+
+    <!--plyr-->
+    <link rel="stylesheet" href="/plyr/plyr.css">
 
     <!--custom-->
     <link rel="stylesheet" href="/css/common.css">
@@ -33,79 +36,89 @@
     <!--目的：学习使用电机模块（Motor Power Block），使用电机模块建模，并给电机模块编程。-->
     <div class="reveal">
       <div class="slides">
-        <section data-transition="none">
-          <h2>电动风扇<br>（Electric Fan）</h2>
+        <section class="section-first" data-transition="convex">
+          <h2>电动风扇</h2>
+          <h3>（Electric Fan）</h3>
           <div>
-            <i class="material-icons md-48 md-dark">schedule</i>30 min
-            <i class="material-icons md-48 md-dark">stars</i>初级
-            <i class="material-icons md-48 md-dark">face</i>适用于 1-2 年级
+            <span><i class="material-icons md-48 md-dark">schedule</i>30 分钟</span>
+            <span><i class="material-icons md-48 md-dark">stars</i>初级</span>
+            <span><i class="material-icons md-48 md-dark">face</i>1-2 年级</span>
           </div>
         </section>
-        <section data-transition="none" class="section-no-padding">
-          <h3>一. 故事场景（Story Scene）</h3>
-          <img src="connect.png" class="img-no-margin">
-          <audio data-autoplay src="connect.mp3"></audio>
-          <!--夏天到了，「马克斯」和「米娅」的科学实验室太热了，他们想做一个风扇来给科学实验室降降温。「麦克斯」和「米娅」需要你的帮助！-->
+        <section class="section-tpt" data-transition="convex">
+          <div>
+            <h3>一. 故事场景（Story Scene）</h3>
+            <div><img src="connect.png"></div>
+            <p>夏天到了，马克斯（Max）和米娅（Mia）的科学实验室太热了，他们想做一个风扇来给科学实验室降降温。麦克斯和米娅需要你的帮助！</p>
+            <audio src="connect.mp3" controls id="player"></audio>
+            <!--夏天到了，「马克斯」和「米娅」的科学实验室太热了，他们想做一个风扇来给科学实验室降降温。「麦克斯」和「米娅」需要你的帮助！-->
+          </div>
         </section>
         <section data-transition="convex">
-          <section data-transition="convex">
-            <h3>二. 构建电动风扇模型（Construct）</h3>
-          </section>
-          <section data-transition="convex">
-            <img src="construct.png"><!--940*685 / 950*693 / 960*700-->
-          </section>
-          <section data-transition="convex">
-            <img src="construct1.png">
-          </section>
-          <section data-transition="convex">
-            <img src="construct2.png">
-          </section>
-          <section data-transition="convex">
-            <img src="construct3.png">
-          </section>
-          <section data-transition="convex">
-            <img src="construct4.png">
-          </section>
-          <section data-transition="convex">
-            <img src="construct5.png">
-          </section>
-          <section data-transition="convex">
-            <img src="construct6.png">
-          </section>
-          <section data-transition="convex">
-            <img src="construct7.png">
-          </section>
-          <section data-transition="convex">
-            <img src="construct8.png">
-          </section>
-          <section data-transition="convex">
-            <img src="construct9.png">
-          </section>
+          <h3>二. 构建电动风扇模型（Construct）</h3>
         </section>
-        <section data-transition="none">
-          <h3>三. 连接电动风扇模型和电脑<br>（Connection）</h3>
-          <img src="connection-smarthub-device.jpg">
+        <section data-transition="fade">
+          <img src="construct.png"><!--940*685 / 950*693 / 960*700-->
         </section>
-        <section data-transition="none">
-          <h3>四. 给电动风扇模型编程（Program）</h3>
-          <img src="program.png">
+        <section data-transition="fade">
+          <img src="construct1.png">
+        </section>
+        <section data-transition="fade">
+          <img src="construct2.png">
+        </section>
+        <section data-transition="fade">
+          <img src="construct3.png">
+        </section>
+        <section data-transition="fade">
+          <img src="construct4.png">
+        </section>
+        <section data-transition="fade">
+          <img src="construct5.png">
+        </section>
+        <section data-transition="fade">
+          <img src="construct6.png">
+        </section>
+        <section data-transition="fade">
+          <img src="construct7.png">
+        </section>
+        <section data-transition="fade">
+          <img src="construct8.png">
+        </section>
+        <section data-transition="fade">
+          <img src="construct9.png">
+        </section>
+        <section class="section-tpt" data-transition="convex">
+          <div>
+            <h3>三. 连接电动风扇模型和电脑<br>（Connection）</h3>
+            <div><img src="connection-smarthub-device.jpg"></div>
+            <p>1. 按下「智能集线器」上的绿色按钮。<br>2. 在 WeDo 软件中，按下智能集线器的名称，与之连接。</p>
+          </div>
+          <audio data-autoplay src="connection.mp3"></audio>
+        </section>
+        <section class="section-tpt" data-transition="convex">
+          <div>
+            <h3>四. 给电动风扇模型编程（Program）</h3>
+            <div><img src="program.png"></div>
+            <p>1. 拖动黄色「运行程序模块」到屏幕。<br>2. 拖动绿色「电动机程序模块」到屏幕。<br>3. 修改「电动机程序模块」的转速。<br>4. 点击「运行程序模块」运行程序。</p>
+          </div>
           <audio data-autoplay src="program.mp3"></audio>
-          <!--拖动黄色「运行程序模块」到屏幕，拖动绿色「电动机程序模块」到屏幕，修改「电动机程序模块」的转速，点击「运行程序模块」运行程序。-->
+          <!--1. 拖动黄色「运行程序模块」到屏幕。2. 拖动绿色「电动机程序模块」到屏幕。3. 修改「电动机程序模块」的转速。4.点击「运行程序模块」运行程序。-->
         </section>
-        <section data-transition="none">
+        <section class="section-text" data-transition="convex">
           <h3>五. 思考（Contemplate）</h3>
-          <p style="text-align: left;">1. 程序是如何工作的？</p>
-          <p style="text-align: left;">2. 两个程序模块分别做了什么？</p>
+          <p>1. 模型是如何工作的？</p>
+          <p>2. 程序模块分别做了什么？</p>
         </section>
-        <section data-transition="none">
+        <section class="section-text" data-transition="convex">
           <h3>六. 扩展（Extend）</h3>
-          <p style="text-align: left;">1. 「指示灯显示程序模块」还可以如何使用？</p>
+          <p>1. 如何改变电动风扇的「转动速度」？</p>
+          <p>2. 如何改变电动风扇的「转动方向」？</p>
+          <p>3. 如何让电动风扇「停止转动」？</p>
         </section>
       </div>
     </div>
 
     <script src="/js/reveal.js"></script>
-
     <script>
       Reveal.initialize({
         width: 960,
@@ -119,5 +132,13 @@
         ]
       });
     </script>
+
+    <script src="/plyr/plyr.js"></script>
+    <script>
+      const player = new Plyr('#player',{
+        title: 'Example Title'
+      });
+    </script>
+
   </body>
 </html>
