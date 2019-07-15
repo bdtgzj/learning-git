@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <title>WeDo 2.0 编程（Program）</title>
-    <!--http://localhost:8000/lego-education/grades-1-2/wedo-2-science/program-->
+    <!--http://localhost:8000/lego-education/grades-1-2/wedo-2-science/Programming-->
 
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/reveal.css">
@@ -33,12 +33,12 @@
     </script>
   </head>
   <body>
-    <!--目的：学习使用电机模块（Motor Power Block），使用电机模块建模，并给电机模块编程。-->
+    <!--目的：学习编程 WeDo 2.0 编程基础。-->
     <div class="reveal">
       <div class="slides">
         <section class="section-first" data-transition="convex">
-          <h2>WeDo 2.0 编程（Program）</h2>
-          <h4>编程是 21 世纪的一项重要学习内容</h4>
+          <h2>WeDo 2.0 编程（Programming）</h2>
+          <h4>编程是 21 世纪的一项重要技能</h4>
           <h4>它赋予模型生命，教会学生计算机思维</h4>
           <div>
             <span><i class="material-icons md-48 md-dark">schedule</i>30 分钟</span>
@@ -48,22 +48,39 @@
         </section>
         <section class="section-tpt" data-transition="convex">
           <div>
-            <h3>一. 故事场景（Story Scene）</h3>
-            <div><img src="exploration.png"></div>
-            <p>麦克斯（Max）和米娅（Mia）想为一个朋友举办一个惊喜派对，但他们不知道朋友什么时候会来他们家。他们需要一个装置来通知他们。他们想建造一个间谍机器人。麦克斯和米娅需要你的帮助！</p>
-            <audio src="exploration.mp3" controls id="player"></audio>
-            <!--麦克斯和米娅想为朋友举办一个惊喜派对，但他们不知道朋友什么时候会来他们家。他们需要一个装置来通知他们。他们想建造一个间谍机器人。麦克斯和米娅需要你的帮助！-->
+            <h3>一. 什么是 WeDo 2.0 编程</h3>
+            <div><img src="what.png"></div><!--640 * 466-->
+            <p class="font-size-60">1. 【什么是编程？】编程即编写程序。<br>2. 【什么是程序？】程序即命令，能够让计算机一步一步去工作，完成某种特定的任务。<br>3. 【什么是计算机？】在 WeDo 2.0 中，智能集线器就是一个小计算机，能够按照程序一步一步工作。<br>4. 【什么是 WeDo 2.0 编程？】即编写程序，让智能集线器（SmartHub）按照你的意图一步一步去工作，帮助你完成某种特定任务。</p>
+            <audio src="what.mp3" controls id="player"></audio>
+            <!--1. 【什么是编程？】编程即编写程序。2. 【什么是程序？】程序即命令，能够让计算机一步一步去工作，完成某种特定的任务。3. 【什么是计算机？】在 WeDo 2.0 中，智能集线器就是一个小计算机，能够按照程序一步一步工作。4. 【什么是 WeDo 2.0 编程？】即编写程序，让智能集线器按照你的意图一步一步去工作，帮助你完成某种特定任务。-->
           </div>
         </section>
-        <section data-transition="convex">
-          <h3>二. 构建机器人模型（Construct）</h3>
-          <img src="construct.png" class="img-reset"><!--640 * 400-->
+        <section class="section-tpt" data-transition="convex">
+          <div>
+            <h3>二. WeDo 2.0 编程环境</h3>
+            <div><img src="env.png"></div><!--640 * 466-->
+            <p class="font-size-60">1. 【准备一台编程电脑】笔记本、平板都可以。<br>2. 【在编程电脑上下载并安装编程软件】程序就是在编程软件中编写的。编程软件可到应用商店或乐高官网下载。<br>3. 【连接编程电脑和智能集线器】按下智能集线器上的绿色按钮，在编程软件中，按下智能集线器的名称，通过蓝牙无线与之连接。连接成功即可开始编程。</p>
+            <audio src="env.mp3" controls id="player"></audio>
+            <!--1. 【准备一台编程电脑】笔记本、平板都可以。2. 【在编程电脑上下载并安装编程软件】程序就是在编程软件中编写的。编程软件可到应用商店或乐高官网下载。3. 【连接编程电脑和智能集线器】按下智能集线器上的绿色按钮，在编程软件中，按下智能集线器的名称，通过蓝牙无线与之连接。连接成功即可开始编程。-->
+          </div>
         </section>
-        <section data-transition="fade">
-          <img src="construct1.png"><!--940*685 / 950*693 / 960*700-->
+        <section class="section-tpt" data-transition="fade">
+          <div>
+            <h3>三. 程序组成</h3>
+            <div><img src="program.png"></div><!--640 * 466-->
+            <p class="font-size-60">1. 【程序组成】多个程序块连接在一起组成程序链，一个或多个程序链组成程序。<br>2. 【程序链】多个程序块连接在一起组成程序链，程序链上的程序块从左到右按次序执行，程序链的最后一个程序块标志着程序结束。<br>3. 【程序块】具有特定功能的一块程序。</p>
+            <audio src="program.mp3" controls id="player"></audio>
+            <!--1. 【准备一台编程电脑】笔记本、平板都可以。2. 【在编程电脑上下载并安装编程软件】程序就是在编程软件中编写的。编程软件可到应用商店或乐高官网下载。3. 【连接编程电脑和智能集线器】按下智能集线器上的绿色按钮，在编程软件中，按下智能集线器的名称，通过蓝牙无线与之连接。连接成功即可开始编程。-->
+          </div>
         </section>
-        <section data-transition="fade">
-          <img src="construct2.png">
+        <section class="section-tpt" data-transition="fade">
+          <div>
+            <h3>四. 程序链类型</h3>
+            <div><img src="program-chain.png"></div><!--960 * 450-->
+            <p class="font-size-60">1. 【串行程序链】由单条程序链组成，程序链上的程序块从左到右按次序执行。<br>2. 【并行程序链】由多条程序链组成，并通过相同的启动块来运行多条程序链。多条程序链上的程序块，分别从左到右按次序同时执行。希望同时执行两个或多个程序块时，需要使用并行程序链。</p>
+            <audio src="program-chain.mp3" controls id="player"></audio>
+            <!--1. 【准备一台编程电脑】笔记本、平板都可以。2. 【在编程电脑上下载并安装编程软件】程序就是在编程软件中编写的。编程软件可到应用商店或乐高官网下载。3. 【连接编程电脑和智能集线器】按下智能集线器上的绿色按钮，在编程软件中，按下智能集线器的名称，通过蓝牙无线与之连接。连接成功即可开始编程。-->
+          </div>
         </section>
         <section data-transition="fade">
           <img src="construct3.png">
@@ -102,7 +119,7 @@
           <img src="construct14.png">
         </section>
         <section data-transition="fade">
-          <img src="construct15.png">
+          <img src="construct15.png"><!--940*685 / 950*693 / 960*700-->
         </section>
         <section data-transition="fade">
           <img src="construct16.png">
