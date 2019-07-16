@@ -4,9 +4,6 @@
   box-shadow: inherit !important;
   background: inherit !important;
 }
-.font-size-60 {
-  font-size: 60%;
-}
 
 /* reveal.js - reveal.css override */
 .reveal .slides > section, .reveal .slides > section > section {
@@ -47,6 +44,7 @@
 }
 .section-tpt p {
   text-align: justify;
+  font-size: 65%;
 }
 
 /* section-text */
