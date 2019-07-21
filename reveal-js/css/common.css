@@ -47,6 +47,11 @@
   font-size: 65%;
 }
 
+/* section-tp */
+.section-tp img {
+  max-height: 600px;
+}
+
 /* section-text */
 .section-text p {
   text-align: left;
