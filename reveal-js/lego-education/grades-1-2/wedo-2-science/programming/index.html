@@ -156,13 +156,133 @@
           </table>
         </section>
         <section data-transition="fade">
-          <img src="construct7.png">
+          <table class="table-reset">
+            <thead>
+              <tr>
+                <th colspan="6">电机程序块</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2">1</td>
+                <td rowspan="2"><img src="motor-counterclockwise-block.png" class="img-reset"></td>
+                <td>【电机左转块】设置电机逆时针方向转动轮轴，并启动电机。点击程序块图标可更改旋转方向。</td>
+                <td rowspan="2">2</td>
+                <td rowspan="2"><img src="motor-clockwise-block.png" class="img-reset"></td>
+                <td>【电机右转块】设置电机顺时针方向转动轮轴，并启动电机。点击程序块图标可更改旋转方向。</td>
+              </tr>
+              <tr>
+                <td>【伪代码】使电机逆时针旋转。</td>
+                <td>【伪代码】使电机顺时针旋转。</td>
+              </tr>
+              <tr>
+                <td rowspan="2">3</td>
+                <td rowspan="2"><img src="motor-power-block.png" class="img-reset"></td>
+                <td>【电机功率块】设置电机的功率，并启动电机。功率范围 0 到 10。</td>
+                <td rowspan="2">4</td>
+                <td rowspan="2"><img src="motor-on-for-block.png" class="img-reset"></td>
+                <td>【电机定时块】设置电机的运行时间，并启动电机。时间可用整数或小数。</td>
+              </tr>
+              <tr>
+                <td>【伪代码】以功率 8 启动电机。</td>
+                <td>【伪代码】让电机运行 1 秒。</td>
+              </tr>
+              <tr>
+                <td rowspan="2">5</td>
+                <td rowspan="2"><img src="motor-off-block.png" class="img-reset"></td>
+                <td>【电机停止块】让电机停止运行。</td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>【伪代码】停止电机。</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
         </section>
         <section data-transition="fade">
-          <img src="construct8.png">
+          <table class="table-reset">
+            <thead>
+              <tr>
+                <th colspan="6">光程序块和声音程序块</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2">1</td>
+                <td rowspan="2"><img src="light-block.png" class="img-reset"></td>
+                <td>【闪灯块】让智能集线器上的 LED 灯闪一下。设置数字 0 到 10 可改变 LED 灯的颜色。</td>
+                <td rowspan="2">2</td>
+                <td rowspan="2"><img src="play-sound-block.png" class="img-reset"></td>
+                <td>【音乐块】让 WeDo 2.0 编程软件播放声音。设置数字可改变声音，设置数字 0 可播放自定义录制声音。</td>
+              </tr>
+              <tr>
+                <td>【伪代码】以颜色 9（红色）使 LED 灯闪一下。</td>
+                <td>【伪代码】播放声音 1。</td>
+              </tr>
+            </tbody>
+          </table>
         </section>
         <section data-transition="fade">
-          <img src="construct9.png">
+          <table class="table-reset">
+            <thead>
+              <tr>
+                <th colspan="6">输出显示程序块</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2">1</td>
+                <td rowspan="2"><img src="display-background-block.png" class="img-reset"></td>
+                <td>【显示背景块】在 WeDo 2.0 编程软件中显示一个带有背景图的窗口，背景图可通过数字设置。</td>
+                <td rowspan="2">2</td>
+                <td rowspan="2"><img src="display-content-block.png" class="img-reset"></td>
+                <td>【显示内容块】在背景图窗口中，显示自定义内容。内容可以是文本、数字。</td>
+              </tr>
+              <tr>
+                <td>【伪代码】显示图像 1。</td>
+                <td>【伪代码】显示内容 123。</td>
+              </tr>
+              <tr>
+                <td rowspan="2">3</td>
+                <td rowspan="2"><img src="add-to-display-block.png" class="img-reset"></td>
+                <td>【加法显示块】“当前窗口显示内容”与“加法显示块的数字”执行加法运算，结果显示在窗口中。</td>
+                <td rowspan="2">4</td>
+                <td rowspan="2"><img src="subtract-from-display-block.png" class="img-reset"></td>
+                <td>【减法显示块】“当前窗口显示内容”与“减法显示块的数字”执行减法运算，结果显示在窗口中。</td>
+              </tr>
+              <tr>
+                <td>【伪代码】执行加法运算，并显示结果。</td>
+                <td>【伪代码】执行减法运算，并显示结果。</td>
+              </tr>
+              <tr>
+                <td rowspan="2">5</td>
+                <td rowspan="2"><img src="multi-display-block.png" class="img-reset"></td>
+                <td>【乘法显示块】“当前窗口显示内容”与“乘法显示块的数字”执行乘法运算，结果显示在窗口中。</td>
+                <td rowspan="2">6</td>
+                <td rowspan="2"><img src="divide-display-block.png" class="img-reset"></td>
+                <td>【除法显示块】“当前窗口显示内容”与“除法显示块的数字”执行除法运算，结果显示在窗口中。</td>
+              </tr>
+              <tr>
+                <td>【伪代码】执行加法运算，并显示结果。</td>
+                <td>【伪代码】执行减法运算，并显示结果。</td>
+              </tr>
+              <tr>
+                <td rowspan="2">7</td>
+                <td rowspan="2"><img src="display-closed-block.png" class="img-reset"></td>
+                <td>【关闭显示块】关闭在 WeDo 2.0 编程软件中显示的窗口。</td>
+                <td rowspan="2">8</td>
+                <td rowspan="2"><img src="display-full-size-block.png" class="img-reset"></td>
+                <td>【全屏显示块】使 WeDo 2.0 编程软件中显示窗口全屏显示。</td>
+              </tr>
+              <tr>
+                <td>【伪代码】关闭显示窗口。</td>
+                <td>【伪代码】全屏显示窗口。</td>
+              </tr>
+            </tbody>
+          </table>
         </section>
         <section data-transition="fade">
           <img src="construct10.png">
