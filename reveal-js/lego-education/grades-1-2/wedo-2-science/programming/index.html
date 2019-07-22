@@ -109,7 +109,51 @@
             <!---->
         </section>
         <section data-transition="fade">
-          <img src="construct6.png">
+          <table class="table-reset">
+            <thead>
+              <tr>
+                <th colspan="6">流程程序块</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2">1</td>
+                <td rowspan="2"><img src="start-block.png" class="img-reset"></td>
+                <td>【启动块】始终放在程序链的开头，以触发程序链运行。</td>
+                <td rowspan="2">2</td>
+                <td rowspan="2"><img src="start-on-key-press-block.png" class="img-reset"></td>
+                <td>【按键块】始终放在程序链的开头，以触发程序链运行。</td>
+              </tr>
+              <tr>
+                <td>【伪代码】鼠标点击启动块图标，启动程序。</td>
+                <td>【伪代码】键盘按键“A”，启动程序。</td>
+              </tr>
+              <tr>
+                <td rowspan="2">3</td>
+                <td rowspan="2"><img src="start-on-message-block.png" class="img-reset"></td>
+                <td>【信息块】始终放在程序链的开头，以触发程序链运行。</td>
+                <td rowspan="2">4</td>
+                <td rowspan="2"><img src="send-message.png" class="img-reset"></td>
+                <td>【发送信息块】给“信息块”发送一条信息，触发程序链运行，信息格式可以是文本或数字。</td>
+              </tr>
+              <tr>
+                <td>【伪代码】接收到消息“abc”时，启动程序。</td>
+                <td>【伪代码】发送信息“abc”。</td>
+              </tr>
+              <tr>
+                <td rowspan="2">5</td>
+                <td rowspan="2"><img src="wait-for.png" class="img-reset"></td>
+                <td>【等待块】让程序暂停，在等待“设定时长”或“传感器输入特定信息”后再继续执行。</td>
+                <td rowspan="2">6</td>
+                <td rowspan="2"><img src="repeat-block.png" class="img-reset"></td>
+                <td>【重复块】重复块内的程序块将循环执行。循环可以无限重复、在一段时间内重复、在发生特定事件后停止。</td>
+              </tr>
+              <tr>
+                <td>【伪代码】等待 1 秒。</td>
+                <td>【伪代码】重复执行特定步骤。</td>
+              </tr>
+            </tbody>
+          </table>
         </section>
         <section data-transition="fade">
           <img src="construct7.png">
@@ -185,6 +229,10 @@
         width: 960,
 	      height: 700,
         controls: false,
+        hash: true,
+        keyboard: {
+          32: null
+        },
         dependencies: [
           { src: '/plugin/markdown/marked.js' },
           { src: '/plugin/markdown/markdown.js' },
