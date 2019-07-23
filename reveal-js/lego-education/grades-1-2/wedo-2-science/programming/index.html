@@ -67,7 +67,7 @@
         <section class="section-tpt" data-transition="fade">
           <div>
             <h3>三. 程序组成</h3>
-            <div><img src="program.png"></div><!--640 * 466-->
+            <div><img src="program-composition.png"></div><!--640 * 466-->
             <p>1. 【程序组成】多个程序块连接在一起组成程序链，一个或多个程序链组成程序。<br>2. 【程序链】多个程序块连接在一起组成程序链，程序链上的程序块从左到右按次序执行，程序链的最后一个程序块标志着程序结束。<br>3. 【程序块】具有特定功能的一块程序。</p>
             <audio src="program.mp3" controls id="player"></audio>
             <!--1. 【准备一台编程电脑】笔记本、平板都可以。2. 【在编程电脑上下载并安装编程软件】程序就是在编程软件中编写的。编程软件可到应用商店或乐高官网下载。3. 【连接编程电脑和智能集线器】按下智能集线器上的绿色按钮，在编程软件中，按下智能集线器的名称，通过蓝牙无线与之连接。连接成功即可开始编程。-->
@@ -266,79 +266,248 @@
                 <td>【除法显示块】“当前窗口显示内容”与“除法显示块的数字”执行除法运算，结果显示在窗口中。</td>
               </tr>
               <tr>
-                <td>【伪代码】执行加法运算，并显示结果。</td>
-                <td>【伪代码】执行减法运算，并显示结果。</td>
+                <td>【伪代码】执行乘法运算，并显示结果。</td>
+                <td>【伪代码】执行除法运算，并显示结果。</td>
               </tr>
+            </tbody>
+          </table>
+        </section>
+        <section data-transition="fade">
+          <table class="table-reset">
+            <thead>
+              <tr>
+                <th colspan="6">输出显示程序块</th>
+              </tr>
+            </thead>
+            <tbody>
               <tr>
                 <td rowspan="2">7</td>
                 <td rowspan="2"><img src="display-closed-block.png" class="img-reset"></td>
                 <td>【关闭显示块】关闭在 WeDo 2.0 编程软件中显示的窗口。</td>
                 <td rowspan="2">8</td>
                 <td rowspan="2"><img src="display-full-size-block.png" class="img-reset"></td>
-                <td>【全屏显示块】使 WeDo 2.0 编程软件中显示窗口全屏显示。</td>
+                <td>【全屏显示块】使 WeDo 2.0 编程软件中的显示窗口全屏显示。点击程序块图标可更改大小。</td>
               </tr>
               <tr>
                 <td>【伪代码】关闭显示窗口。</td>
                 <td>【伪代码】全屏显示窗口。</td>
               </tr>
+              <tr>
+                <td rowspan="2">9</td>
+                <td rowspan="2"><img src="display-medium-size-block.png" class="img-reset"></td>
+                <td>【小屏显示块】使 WeDo 2.0 编程软件中的显示窗口小屏显示。点击程序块图标可更改大小。</td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>【伪代码】小屏显示窗口。</td>
+                <td></td>
+              </tr>
             </tbody>
           </table>
         </section>
         <section data-transition="fade">
-          <img src="construct10.png">
+          <table class="table-reset">
+            <thead>
+              <tr>
+                <th colspan="6">传感器变化输入程序块</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2">1</td>
+                <td rowspan="2"><img src="any-distance-change-block.png" class="img-reset"></td>
+                <td>【距离变化输入块】运动传感器检测到和物体之间的距离发生变化，并输入给程序块。</td>
+                <td rowspan="2">2</td>
+                <td rowspan="2"><img src="distance-change-closer-block.png" class="img-reset"></td>
+                <td>【距离变近输入块】运动传感器检测到和物体之间的距离变近，并输入给程序块。</td>
+              </tr>
+              <tr>
+                <td>【伪代码】距离变化输入。</td>
+                <td>【伪代码】距离变近输入。</td>
+              </tr>
+              <tr>
+                <td rowspan="2">3</td>
+                <td rowspan="2"><img src="distance-change-further-block.png" class="img-reset"></td>
+                <td>【距离变远输入块】运动传感器检测到和物体之间的距离变远，并输入给程序块。</td>
+                <td rowspan="2">4</td>
+                <td rowspan="2"><img src="shake-block.png" class="img-reset"></td>
+                <td>【震动输入块】倾斜传感器检测到自身正在震动，并输入给程序块。</td>
+              </tr>
+              <tr>
+                <td>【伪代码】距离变远输入。</td>
+                <td>【伪代码】震动输入。</td>
+              </tr>
+              <tr>
+                <td rowspan="2">5</td>
+                <td rowspan="2"><img src="tilt-down-block.png" class="img-reset"></td>
+                <td>【向下倾斜输入块】倾斜传感器检测到自身正在向下倾斜，并输入给程序块。</td>
+                <td rowspan="2">6</td>
+                <td rowspan="2"><img src="tilt-up-block.png" class="img-reset"></td>
+                <td>【向上倾斜输入块】倾斜传感器检测到自身正在向上倾斜，并输入给程序块。</td>
+              </tr>
+              <tr>
+                <td>【伪代码】向下倾斜输入。</td>
+                <td>【伪代码】向上倾斜输入。</td>
+              </tr>
+            </tbody>
+          </table>
         </section>
         <section data-transition="fade">
-          <img src="construct11.png">
+          <table class="table-reset">
+            <thead>
+              <tr>
+                <th colspan="6">传感器变化输入程序块</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2">7</td>
+                <td rowspan="2"><img src="tilt-right-block.png" class="img-reset"></td>
+                <td>【向右倾斜输入块】倾斜传感器检测到自身正在向右倾斜，并输入给程序块。</td>
+                <td rowspan="2">8</td>
+                <td rowspan="2"><img src="tilt-left-block.png" class="img-reset"></td>
+                <td>【向左倾斜输入块】倾斜传感器检测到自身正在向左倾斜，并输入给程序块。</td>
+              </tr>
+              <tr>
+                <td>【伪代码】向右倾斜输入。</td>
+                <td>【伪代码】向左倾斜输入。</td>
+              </tr>
+              <tr>
+                <td rowspan="2">9</td>
+                <td rowspan="2"><img src="no-tilt-block.png" class="img-reset"></td>
+                <td>【不倾斜输入块】倾斜传感器检测到自身不倾斜，处于水平位置，并输入给程序块。</td>
+                <td rowspan="2">10</td>
+                <td rowspan="2"><img src="sound-change-block.png" class="img-reset"></td>
+                <td>【音量变化输入块】WeDo 2.0 编程设备上的麦克风检测到音量变化，并输入给程序块。</td>
+              </tr>
+              <tr>
+                <td>【伪代码】不倾斜（水平位置）输入。</td>
+                <td>【伪代码】音量变化输入。</td>
+              </tr>
+            </tbody>
+          </table>
         </section>
         <section data-transition="fade">
-          <img src="construct12.png">
+          <table class="table-reset">
+            <thead>
+              <tr>
+                <th colspan="6">数字、文本输入程序块</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2">1</td>
+                <td rowspan="2"><img src="tilt-sensor-input-block.png" class="img-reset"></td>
+                <td>【倾斜传感器输入块】向程序块输入倾斜传感器检测到的数值（0 到 9）。</td>
+                <td rowspan="2">2</td>
+                <td rowspan="2"><img src="distance-sensor-input-block.png" class="img-reset"></td>
+                <td>【运动传感器输入块】向程序块输入运动传感器检测到的数值（0 到 10）。</td>
+              </tr>
+              <tr>
+                <td>【伪代码】倾斜传感器数值输入。</td>
+                <td>【伪代码】运动传感器数值输入。</td>
+              </tr>
+              <tr>
+                <td rowspan="2">3</td>
+                <td rowspan="2"><img src="sound-sensor-input-block.png" class="img-reset"></td>
+                <td>【声音传感器输入块】向程序块输入声音传感器检测到的数值（0 到 10）。</td>
+                <td rowspan="2">4</td>
+                <td rowspan="2"><img src="number-input-block.png" class="img-reset"></td>
+                <td>【数字输入块】向程序块输入数值。</td>
+              </tr>
+              <tr>
+                <td>【伪代码】声音传感器数值输入。</td>
+                <td>【伪代码】数值输入。</td>
+              </tr>
+              <tr>
+                <td rowspan="2">5</td>
+                <td rowspan="2"><img src="text-input-block.png" class="img-reset"></td>
+                <td>【文本输入块】向程序块输入文本。</td>
+                <td rowspan="2">6</td>
+                <td rowspan="2"><img src="display-input-block.png" class="img-reset"></td>
+                <td>【窗口内容输入块】向程序块输入窗口显示的数值。</td>
+              </tr>
+              <tr>
+                <td>【伪代码】文本输入。</td>
+                <td>【伪代码】窗口内容输入。</td>
+              </tr>
+            </tbody>
+          </table>
         </section>
         <section data-transition="fade">
-          <img src="construct13.png">
+          <table class="table-reset">
+            <thead>
+              <tr>
+                <th colspan="6">数字、文本输入程序块</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2">7</td>
+                <td rowspan="2"><img src="random-input-block.png" class="img-reset"></td>
+                <td>【随机输入块】向程序块输入随机数值。数字范围由所附加的程序块确定。</td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>【伪代码】随机数字输入。</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
         </section>
         <section data-transition="fade">
-          <img src="construct14.png">
-        </section>
-        <section data-transition="fade">
-          <img src="construct15.png"><!--940*685 / 950*693 / 960*700-->
-        </section>
-        <section data-transition="fade">
-          <img src="construct16.png">
-        </section>
-        <section data-transition="fade">
-          <img src="construct17.png">
-        </section>
-        <section data-transition="fade">
-          <img src="construct18.png">
+          <table class="table-reset">
+            <thead>
+              <tr>
+                <th colspan="6">记录程序块</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2">1</td>
+                <td rowspan="2"><img src="bubble-block.png" class="img-reset"></td>
+                <td>【注释框】使用注解框给程序添加注释。这不是程序块。</td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>【伪代码】给程序添加注释。</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
         </section>
         <section class="section-tpt" data-transition="convex">
           <div>
-            <h3>三. 连接机器人模型和电脑<br>（Connection）</h3>
-            <div><img src="connection.jpg"></div>
-            <p>1. 按下「智能集线器」上的绿色按钮。<br>2. 在 WeDo 软件中，按下智能集线器的名称，与之连接。</p>
+            <h3>八. 流程图（Flowchart）</h3>
+            <div><img src="flowchart.png" class="img-reset"></div><!--960 * 450-->
+            <p>1.【什么是流程图？】使用图形表示程序运行的流程（即算法）。<br>2.【为什么要使用流程图？】千言万语不如一张图，使用图形化方式更清晰的表达程序的运行；流程图是练习抽象化能力的有效工具，可以帮助学生规划和构建自己的解决方案；<br>3.【如何制作流程图？】可手绘流程图，也可使用电脑工具绘制。<br>4.【流程图的规范有哪些？】圆圈（或椭圆）表示流程的开始和结束；箭头表示流程运行方向；矩形表示输入输出；使用菱形表示条件判断；</p>
             <audio src="connection.mp3" controls id="player"></audio>
-            <!--1. 按下「智能集线器」上的绿色按钮。2. 在 WeDo 软件中，按下智能集线器的名称，与之连接。-->
+            <!---->
           </div>
         </section>
         <section class="section-tpt" data-transition="convex">
           <div>
-            <h3>四. 给机器人模型编程（Program）</h3>
+            <h3>九. 练习（Excercise）</h3>
             <div><img src="program.png"></div>
-            <p>1. 拖动黄色「运行程序模块」到屏幕。<br>2. 拖动绿色「电动机程序模块」到屏幕。<br>3. 修改「电动机程序模块」的转速。<br>4. 点击「运行程序模块」运行程序。</p>
+            <p></p>
             <audio src="program.mp3" controls id="player"></audio>
-            <!--1. 拖动黄色「运行程序模块」到屏幕。2. 拖动绿色「电动机程序模块」到屏幕。3. 修改「电动机程序模块」的转速。4.点击「运行程序模块」运行程序。-->
+            <!---->
           </div>
         </section>
-        <section class="section-text" data-transition="convex">
-          <h3>五. 思考（Contemplate）</h3>
-          <p>1. 机器人模型是如何工作的？</p>
-          <p>2. 程序模块分别做了什么？</p>
-        </section>
-        <section class="section-text" data-transition="convex">
-          <h3>六. 扩展（Extend）</h3>
-          <p>1. 如何改变电动风扇的「转动速度」？</p>
-          <p>2. 如何改变电动风扇的「转动方向」？</p>
-          <p>3. 如何让电动风扇「停止转动」？</p>
+        <section class="section-tpt" data-transition="convex">
+          <div>
+            <h3>十. 项目（Project）</h3>
+            <div><img src="program.png"></div>
+            <p></p>
+            <audio src="program.mp3" controls id="player"></audio>
+            <!---->
+          </div>
         </section>
       </div>
     </div>

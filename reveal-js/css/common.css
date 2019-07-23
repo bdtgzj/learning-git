@@ -16,7 +16,7 @@
   text-align: center !important;
 }
 .table-reset td {
-  font-size: 49%;
+  font-size: 58%;
 }
 .table-reset tbody tr:nth-child(odd) td:nth-child(2), .table-reset tbody tr:nth-child(odd) td:nth-child(5) {
   width: 150px;
