@@ -18,6 +18,12 @@
 }
 
 /* about-us */
+.au-pic {
+  width: 100%;
+}
+.au-info {
+  height: 100%;
+}
 
 /* contact-us */
 .cu-map {
