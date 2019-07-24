@@ -21,3 +21,6 @@ curl:
 
 generate:
 	rm -rf public && hugo
+
+resize-img:
+	magick '*.jpg'  -resize x2160 -quality 50% 9-%03d.jpg
