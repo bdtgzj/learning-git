@@ -33,12 +33,12 @@
     </script>
   </head>
   <body>
-    <!--目的：设计一个设备，能够依据物理属性（如形状、大小）来分类物体。-->
+    <!--目的：设计一个原型设备，能够安全、有效地移动某些物体。-->
     <div class="reveal">
       <div class="slides">
         <section class="section-first" data-transition="convex">
-          <h2>生活垃圾分类回收</h2>
-          <h3>（Sort to Recycle）</h3>
+          <h2>移动物体</h2>
+          <h3>（Moving Materials）</h3>
           <div>
             <span><i class="material-icons md-48 md-dark">schedule</i>120+ 分钟</span>
             <span><i class="material-icons md-48 md-dark">stars</i>高级（Advanced）</span>
@@ -47,318 +47,282 @@
         </section>
         <section data-transition="convex">
           <h3>一. 探究（Explore）</h3>
-          <video controls src="explore.mp4"></video>
+          <video controls src="forklift.mp4"></video>
         </section>
         <section data-transition="convex">
           <section class="section-tp">
-            <h3>1. 什么是生活垃圾？</h3>
-            <img src="what-is-domestic-waste.png" class="img-reset"><!--823 * 600 / 640 * 400-->
+            <h3>1. 如何移动重大物体？</h3>
+            <img src="how-to-move-materials.jpg" class="img-reset"><!--823 * 600 / 640 * 400-->
           </section>
           <section class="section-tpt">
             <div>
-              <h3>1. 什么是生活垃圾？</h3>
-              <div><img src="what-is-domestic-waste.png" class="img-reset"></div><!--960 * 450-->
-              <p>日常生活中产生的固体废物。<br>如：塑料瓶、剩饭剩菜、废电池、过期药品、卫生废纸等。</p>
+              <h3>1. 如何移动重大物体？</h3>
+              <div><img src="how-to-move-materials.jpg" class="img-reset"></div><!--960 * 450-->
+              <p>人和动物之间最大的区别是：使用工具，如叉车等。</p>
               <audio src="explore.mp3" controls id="player"></audio>
             </div>
           </section>
         </section>
         <section data-transition="convex">
-          <section class="section-tp">
-            <h3>2. 生活垃圾会带来哪些问题？</h3>
-            <img src="what-problems-will-domestic-waste-bring.jpg" class="img-reset"><!--823 * 600 / 640 * 400-->
-          </section>
-          <section class="section-tpt">
-            <div>
-              <h3>2. 生活垃圾会带来哪些问题？</h3>
-              <div><img src="what-problems-will-domestic-waste-bring.jpg" class="img-reset"></div><!--960 * 450-->
-              <p>占用土地、污染环境、影响人们的健康。</p>
-              <audio src="explore.mp3" controls id="player"></audio>
-            </div>
-          </section>
-        </section>
-        <section data-transition="convex">
-          <section class="section-tp">
-            <h3>3. 生活垃圾的分类有哪些？</h3>
-            <img src="what-is-the-classification-of-domestic-waste.jpg" class="img-reset"><!--823 * 600 / 640 * 400-->
-          </section>
-          <section class="section-tpt">
-            <div>
-              <h3>3. 生活垃圾的分类有哪些？</h3>
-              <div><img src="what-is-the-classification-of-domestic-waste.jpg" class="img-reset"></div><!--960 * 450-->
-              <ul>
-                <li>《无锡市生活垃圾分类管理条例》将生活垃圾分为四类】有害垃圾（废电池、废日光灯管、废水银温度计、过期药品等）、可回收垃圾（纸类、金属、塑料、玻璃、织物、电子产品等）、易腐垃圾（剩菜剩饭、骨头、菜根菜叶）、其它垃圾（砖瓦陶瓷、渣土、卫生间废纸、尿不湿、烟头等）。</li>
-                <li>【条例 9 月 1 日起施行】试点小区和单位实施强制分类，暂时采用「四分类三投放」，可回收垃圾、有害垃圾单独设置箱体，易腐垃圾和其他垃圾共用箱体。将来条件逐步成熟后，将实施「四分类四投放」。不进行分类将受到处罚，单位处以3000元以上10000元以下罚款，个人处以50元以上200元以下罚款。。</li>
-              </ul>
-              <audio src="explore.mp3" controls id="player"></audio>
-            </div>
-          </section>
-        </section>
-        <section data-transition="convex">
-          <section class="section-tp">
-            <h3>4. 为什么要分类生活垃圾？</h3>
-            <img src="why-is-it-necessary-to-classify-demostic-waste.png" class="img-reset"><!--823 * 600 / 640 * 400-->
-          </section>
-          <section class="section-tpt">
-            <div>
-              <h3>4. 为什么要分类生活垃圾？</h3>
-              <div><img src="why-is-it-necessary-to-classify-demostic-waste.png" class="img-reset"></div><!--960 * 450-->
-              <p>为了更高效、更有效地处理生活垃圾。</p>
-              <audio src="explore.mp3" controls id="player"></audio>
-            </div>
-          </section>
-        </section>
-        <section data-transition="convex">
-          <section class="section-tp">
-            <h3>5. 如何辨别生活垃圾类型?</h3>
-            <img src="how-to-identify-types-of-domestic-waste.png" class="img-reset"><!--823 * 600 / 640 * 400-->
-          </section>
-          <section class="section-tpt">
-            <div>
-              <h3>5. 如何辨别生活垃圾类型?</h3>
-              <div><img src="how-to-identify-types-of-domestic-waste.png" class="img-reset"></div><!--960 * 450-->
-              <p>学习知识，并让知识随手可得。如垃圾分类图册、无锡市生活垃圾分类指导目录等。</p>
-              <audio src="explore.mp3" controls id="player"></audio>
-            </div>
-          </section>
-          <section data-transition="fade">
-            <img src="recyclable-waste.png">
-          </section>
-          <section data-transition="fade">
-            <img src="hazardous-waste.png">
-          </section>
-          <section data-transition="fade">
-            <img src="perishable-waste.png">
-          </section>
-          <section data-transition="fade">
-            <img src="other-waste.png">
-          </section>
-          <section data-transition="fade">
-            <img src="wuxi-domestic-waste-catalogue.jpg">
-            <p>无锡市生活垃圾分类指导目录</p>
-          </section>
-        </section>
-        <section data-transition="convex">
-          <section class="section-tp">
-            <h3>6. 生活垃圾是如何管理的？</h3>
-            <img src="how-to-manage-domestic-waste.jpg" class="img-reset"><!--823 * 600 / 640 * 400-->
-          </section>
-          <section class="section-tpt">
-            <div>
-              <h3>6. 生活垃圾是如何管理的？</h3>
-              <div><img src="how-to-manage-domestic-waste.jpg" class="img-reset"></div><!--960 * 450-->
-              <p>生活垃圾需要分类投放、分类收集、分类运输、分类处理。</p>
-              <audio src="explore.mp3" controls id="player"></audio>
-            </div>
-          </section>
-          <section data-transition="fade">
-            <img src="how-to-manage-recyclable-waste.jpg">
-            <p>可回收垃圾管理流程</p>
-          </section>
-          <section data-transition="fade">
-            <img src="how-to-manage-hazardous-waste.jpg">
-            <p>有害垃圾管理流程</p>
-          </section>
-          <section data-transition="fade">
-            <img src="how-to-manage-perishable-waste.jpg">
-            <p>易腐垃圾管理流程</p>
-          </section>
-          <section data-transition="fade">
-            <img src="how-to-manage-other-waste.jpg">
-            <p>其他垃圾管理流程</p>
-          </section>
-        </section>
-        <section data-transition="convex">
-          <section class="section-tp">
-            <h3>7. 生活垃圾是如何处理的？</h3>
-            <img src="how-is-domestic-waste-treated.jpg" class="img-reset"><!--823 * 600 / 640 * 400-->
-          </section>
-          <section class="section-tpt">
-            <div>
-              <h3>7. 生活垃圾是如何处理的？</h3>
-              <div><img src="how-is-domestic-waste-treated.jpg" class="img-reset"></div><!--960 * 450-->
-              <p>对可回收垃圾进行综合处理回收再利用。对易腐垃圾进行生物技术处理形成肥料。有害垃圾需要特殊安全处理。其他垃圾采取卫生填埋、焚烧处理。</p>
-              <audio src="explore.mp3" controls id="player"></audio>
-            </div>
-          </section>
-        </section>
-        <section data-transition="convex">
-          <section class="section-tp">
-            <h3>8. 是谁每天把生活垃圾搬运走的？</h3>
-            <img src="who-carry-away-the-domestic-waste.png" class="img-reset"><!--823 * 600 / 640 * 400-->
-          </section>
-          <section class="section-tpt">
-            <div>
-              <h3>8. 是谁每天把生活垃圾搬运走的？</h3>
-              <div><img src="who-carry-away-the-domestic-waste.png" class="img-reset"></div><!--960 * 450-->
-              <p>环卫单位的叔叔阿姨们。</p>
-              <audio src="explore.mp3" controls id="player"></audio>
-            </div>
-          </section>
-        </section>
-        <section data-transition="convex">
-          <section class="section-tp">
-            <h3>9. 如何搬运生活垃圾？</h3>
-            <img src="how-to-carry-domestic-waste.png" class="img-reset"><!--823 * 600 / 640 * 400-->
-          </section>
-          <section class="section-tpt">
-            <div>
-              <h3>9. 如何搬运生活垃圾？</h3>
-              <div><img src="how-to-carry-domestic-waste.png" class="img-reset"></div><!--960 * 450-->
-              <p>环卫叔叔阿姨们开着卡车，通过机械手臂把分类垃圾倒入车内，送往垃圾处理厂进行分类处理。<br>那么问题来了，你能帮助环卫叔叔阿姨构建一个垃圾搬运卡车模型吗？</p>
-              <audio src="explore.mp3" controls id="player"></audio>
-            </div>
-          </section>
+          <h3>2. 看看叉车的机械结构是什么样的。</h3>
+          <video controls src="forklift-structure.mp4"></video>
         </section>
         <!--废品即废旧物品，如生活垃圾、破旧无使用价值的物品、不能使用的物品等。-->
         <!--【什么是生活垃圾回收？】将可回收的垃圾进行处理，让其再次拥有使用价值。-->
         <section data-transition="convex">
-          <h3>二. 构建卡车模型（Construct）</h3>
-          <img src="construct.png" class="img-reset"><!--640 * 400-->
+          <h3>二. 构建叉车模型（Steer）</h3>
+          <img src="steer.png" class="img-reset"><!--640 * 400-->
         </section>
         <section data-transition="fade">
-          <img src="construct1.png"><!--940*685 / 950*693 / 960*700-->
+          <img src="steer-1.png"><!--940*685 / 950*693 / 960*700-->
         </section>
         <section data-transition="fade">
-          <img src="construct2.png">
+          <img src="steer-2.png">
         </section>
         <section data-transition="fade">
-          <img src="construct3.png">
+          <img src="steer-3.png">
         </section>
         <section data-transition="fade">
-          <img src="construct4.png">
+          <img src="steer-4.png">
         </section>
         <section data-transition="fade">
-          <img src="construct5.png">
+          <img src="steer-5.png">
         </section>
         <section data-transition="fade">
-          <img src="construct6.png">
+          <img src="steer-6.png">
         </section>
         <section data-transition="fade">
-          <img src="construct7.png">
+          <img src="steer-7.png">
         </section>
         <section data-transition="fade">
-          <img src="construct8.png">
+          <img src="steer-8.png">
         </section>
         <section data-transition="fade">
-          <img src="construct9.png">
+          <img src="steer-9.png">
         </section>
         <section data-transition="fade">
-          <img src="construct10.png">
+          <img src="steer-10.png">
         </section>
         <section data-transition="fade">
-          <img src="construct11.png">
+          <img src="steer-11.png">
         </section>
         <section data-transition="fade">
-          <img src="construct12.png">
+          <img src="steer-12.png">
         </section>
         <section data-transition="fade">
-          <img src="construct13.png">
+          <img src="steer-13.png">
         </section>
         <section data-transition="fade">
-          <img src="construct14.png">
+          <img src="steer-14.png">
         </section>
         <section data-transition="fade">
-          <img src="construct15.png">
+          <img src="steer-15.png">
         </section>
         <section data-transition="fade">
-          <img src="construct16.png">
+          <img src="steer-16.png">
         </section>
         <section data-transition="fade">
-          <img src="construct17.png">
+          <img src="steer-17.png">
         </section>
         <section data-transition="fade">
-          <img src="construct18.png">
+          <img src="steer-18.png">
         </section>
         <section data-transition="fade">
-          <img src="construct19.png">
+          <img src="steer-19.png">
         </section>
         <section data-transition="fade">
-          <img src="construct20.png">
+          <img src="steer-20.png">
         </section>
         <section data-transition="fade">
-          <img src="construct21.png">
+          <img src="steer-21.png">
         </section>
         <section data-transition="fade">
-          <img src="construct22.png">
+          <img src="steer-22.png">
         </section>
         <section data-transition="fade">
-          <img src="construct23.png">
+          <img src="steer-23.png">
         </section>
         <section data-transition="fade">
-          <img src="construct24.png">
+          <img src="steer-24.png">
         </section>
         <section data-transition="fade">
-          <img src="construct25.png">
+          <img src="steer-25.png">
         </section>
         <section data-transition="fade">
-          <img src="construct26.png">
+          <img src="steer-26.png">
         </section>
         <section data-transition="fade">
-          <img src="construct27.png">
+          <img src="steer-27.png">
         </section>
         <section data-transition="fade">
-          <img src="construct28.png">
+          <img src="steer-28.png">
         </section>
         <section data-transition="fade">
-          <img src="construct29.png">
+          <img src="steer-29.png">
         </section>
         <section data-transition="fade">
-          <img src="construct30.png">
+          <img src="steer-30.png">
         </section>
         <section data-transition="fade">
-          <img src="construct31.png">
+          <img src="steer-31.png">
         </section>
         <section data-transition="fade">
-          <img src="construct32.png">
+          <img src="steer-32.png">
         </section>
         <section data-transition="fade">
-          <img src="construct33.png">
+          <img src="steer-33.png">
         </section>
         <section data-transition="fade">
-          <img src="construct34.png">
+          <img src="steer-34.png">
         </section>
         <section data-transition="fade">
-          <img src="construct35.png">
+          <img src="steer-35.png">
         </section>
         <section data-transition="fade">
-          <img src="construct36.png">
+          <img src="steer-36.png">
         </section>
         <section data-transition="fade">
-          <img src="construct37.png">
+          <img src="steer-37.png">
         </section>
         <section data-transition="fade">
-          <img src="construct38.png">
+          <img src="steer-38.png">
+        </section>
+        <section data-transition="convex">
+          <h3>三. 构建机械手模型（Grab）</h3>
+          <img src="grab.png" class="img-reset"><!--640 * 400-->
         </section>
         <section data-transition="fade">
-          <img src="construct39.png">
+          <img src="grab-1.png"><!--940*685 / 950*693 / 960*700-->
         </section>
         <section data-transition="fade">
-          <img src="construct40.png">
+          <img src="grab-2.png">
         </section>
         <section data-transition="fade">
-          <img src="construct41.png">
+          <img src="grab-3.png">
         </section>
         <section data-transition="fade">
-          <img src="construct42.png">
+          <img src="grab-4.png">
         </section>
         <section data-transition="fade">
-          <img src="construct43.png">
+          <img src="grab-5.png">
         </section>
         <section data-transition="fade">
-          <img src="construct44.png">
+          <img src="grab-6.png">
         </section>
         <section data-transition="fade">
-          <img src="construct45.png">
+          <img src="grab-7.png">
         </section>
         <section data-transition="fade">
-          <img src="construct46.png">
+          <img src="grab-8.png">
         </section>
         <section data-transition="fade">
-          <img src="construct47.png">
+          <img src="grab-9.png">
         </section>
         <section data-transition="fade">
-          <img src="construct48.png">
+          <img src="grab-10.png">
+        </section>
+        <section data-transition="fade">
+          <img src="grab-11.png">
+        </section>
+        <section data-transition="fade">
+          <img src="grab-12.png">
+        </section>
+        <section data-transition="fade">
+          <img src="grab-13.png">
+        </section>
+        <section data-transition="fade">
+          <img src="grab-14.png">
+        </section>
+        <section data-transition="fade">
+          <img src="grab-15.png">
+        </section>
+        <section data-transition="fade">
+          <img src="grab-16.png">
+        </section>
+        <section data-transition="fade">
+          <img src="grab-17.png">
+        </section>
+        <section data-transition="fade">
+          <img src="grab-18.png">
+        </section>
+        <section data-transition="fade">
+          <img src="grab-19.png">
+        </section>
+        <section data-transition="fade">
+          <img src="grab-20.png">
+        </section>
+        <section data-transition="fade">
+          <img src="grab-21.png">
+        </section>
+        <section data-transition="fade">
+          <img src="grab-22.png">
+        </section>
+        <section data-transition="fade">
+          <img src="grab-23.png">
+        </section>
+        <section data-transition="fade">
+          <img src="grab-24.png">
+        </section>
+        <section data-transition="fade">
+          <img src="grab-25.png">
+        </section>
+        <section data-transition="fade">
+          <img src="grab-26.png">
+        </section>
+        <section data-transition="fade">
+          <img src="grab-27.png">
+        </section>
+        <section data-transition="fade">
+          <img src="grab-28.png">
+        </section>
+        <section data-transition="convex">
+          <h3>三. 构建移动模型（Motion）</h3>
+          <img src="motion.png" class="img-reset"><!--640 * 400-->
+        </section>
+        <section data-transition="fade">
+          <img src="motion-1.png"><!--940*685 / 950*693 / 960*700-->
+        </section>
+        <section data-transition="fade">
+          <img src="motion-2.png">
+        </section>
+        <section data-transition="fade">
+          <img src="motion-3.png">
+        </section>
+        <section data-transition="fade">
+          <img src="motion-4.png">
+        </section>
+        <section data-transition="fade">
+          <img src="motion-5.png">
+        </section>
+        <section data-transition="fade">
+          <img src="motion-6.png">
+        </section>
+        <section data-transition="fade">
+          <img src="motion-7.png">
+        </section>
+        <section data-transition="fade">
+          <img src="motion-8.png">
+        </section>
+        <section data-transition="fade">
+          <img src="motion-9.png">
+        </section>
+        <section data-transition="fade">
+          <img src="motion-10.png">
+        </section>
+        <section data-transition="fade">
+          <img src="motion-11.png">
+        </section>
+        <section data-transition="fade">
+          <img src="motion-12.png">
+        </section>
+        <section data-transition="fade">
+          <img src="motion-13.png">
+        </section>
+        <section data-transition="fade">
+          <img src="motion-14.png">
+        </section>
+        <section data-transition="fade">
+          <img src="motion-15.png">
         </section>
         <section class="section-tpt" data-transition="convex">
           <div>
@@ -388,12 +352,6 @@
           <p>1. 如何改变电动风扇的「转动速度」？</p>
           <p>2. 如何改变电动风扇的「转动方向」？</p>
           <p>3. 如何让电动风扇「停止转动」？</p>
-        </section>
-        <section class="section-text" data-transition="convex">
-          <h3>七. 3R 原则</h3>
-          <p>1.【减少（Reduce）】减少使用塑料袋，购物时携带购物袋。</p>
-          <p>2.【重复使用（Reuse）】塑料食品容器、玻璃罐、布袋可重复使用。</p>
-          <p>3.【循环利用（Recycle）】垃圾分类，便于垃圾处理；闲置不用的物品赠与他人；</p>
         </section>
       </div>
     </div>
