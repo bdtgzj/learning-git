@@ -37,6 +37,11 @@
   margin: 0 !important;
 }
 
+/* reveal.js - sky.css override */
+.reveal ol {
+  list-style-type: lower-latin; /* lower-alpha lower-latin lower-roman upper-alpha upper-latin upper-roman decimal-leading-zero */
+}
+
 /* plyr */
 .plyr__controls {
   width: 100%;

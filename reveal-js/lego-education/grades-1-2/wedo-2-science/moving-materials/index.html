@@ -34,6 +34,7 @@
   </head>
   <body>
     <!--目的：设计一个原型设备，能够安全、有效地移动某些物体。-->
+    <!--叉车资料http://www.zjhc.cn/hczt/e_cont.html-->
     <div class="reveal">
       <div class="slides">
         <section class="section-first" data-transition="convex">
@@ -64,13 +65,25 @@
           </section>
         </section>
         <section data-transition="convex">
-          <h3>2. 看看叉车的机械结构是什么样的。</h3>
+          <section class="section-tp">
+            <h3>2. 什么是叉车？</h3>
+            <img src="what-is-forklift.png" class="img-reset"><!--823 * 600 / 640 * 400-->
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>2. 什么是叉车？</h3>
+              <div><img src="what-is-forklift.png" class="img-reset"></div><!--960 * 450-->
+              <p>叉车是指对成件托盘货物进行装卸、堆垛[duī duǒ]和短距离运输作业的各种轮式搬运车辆。常用于仓储大型物件的运输，通常使用燃油机或者电池驱动。</p>
+              <audio src="explore.mp3" controls id="player"></audio>
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <h3>3. 叉车（Forklift）的机械结构是什么样的？</h3>
           <video controls src="forklift-structure.mp4"></video>
         </section>
-        <!--废品即废旧物品，如生活垃圾、破旧无使用价值的物品、不能使用的物品等。-->
-        <!--【什么是生活垃圾回收？】将可回收的垃圾进行处理，让其再次拥有使用价值。-->
         <section data-transition="convex">
-          <h3>二. 构建叉车模型（Steer）</h3>
+          <h3>二. 驱动模型启发（Steer）</h3>
           <img src="steer.png" class="img-reset"><!--640 * 400-->
         </section>
         <section data-transition="fade">
@@ -188,7 +201,7 @@
           <img src="steer-38.png">
         </section>
         <section data-transition="convex">
-          <h3>三. 构建机械手模型（Grab）</h3>
+          <h3>三. 机械手模型启发（Grab）</h3>
           <img src="grab.png" class="img-reset"><!--640 * 400-->
         </section>
         <section data-transition="fade">
@@ -276,7 +289,7 @@
           <img src="grab-28.png">
         </section>
         <section data-transition="convex">
-          <h3>三. 构建移动模型（Motion）</h3>
+          <h3>四. 移动模型启发（Motion）</h3>
           <img src="motion.png" class="img-reset"><!--640 * 400-->
         </section>
         <section data-transition="fade">
@@ -326,6 +339,15 @@
         </section>
         <section class="section-tpt" data-transition="convex">
           <div>
+            <h3>五. 构建完整叉车模型（Construct）</h3>
+            <div><img src="program.png"></div>
+            <p>同学们，发挥出你们的想象力，搭建出你们心中的叉车模型吧！</p>
+            <audio src="program.mp3" controls id="player"></audio>
+            <!---->
+          </div>
+        </section>
+        <section class="section-tpt" data-transition="convex">
+          <div>
             <h3>三. 连接机器人模型和电脑<br>（Connection）</h3>
             <div><img src="connection.jpg"></div>
             <p>1. 按下「智能集线器」上的绿色按钮。<br>2. 在 WeDo 软件中，按下智能集线器的名称，与之连接。</p>
@@ -352,6 +374,10 @@
           <p>1. 如何改变电动风扇的「转动速度」？</p>
           <p>2. 如何改变电动风扇的「转动方向」？</p>
           <p>3. 如何让电动风扇「停止转动」？</p>
+        </section>
+        <section class="section-text" data-transition="convex">
+          <h3>六. 分享（Share）</h3>
+          <p>同学们，展示你的模型、程序、创意吧！</p>
         </section>
       </div>
     </div>
