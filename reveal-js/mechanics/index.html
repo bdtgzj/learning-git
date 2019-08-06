@@ -1,0 +1,260 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>机械学（Mechanics）</title>
+    <!--http://localhost:8000/mechanics/-->
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/reveal.css">
+    <link rel="stylesheet" href="/css/theme/sky.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="/lib/css/monokai.css">
+
+    <!--material-design-icons-->
+    <link rel="stylesheet" href="/icon/material-design-icons/material-icons.css">
+
+    <!--plyr-->
+    <link rel="stylesheet" href="/plyr/plyr.css">
+
+    <!--custom-->
+    <link rel="stylesheet" href="/css/common.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '/css/print/pdf.css' : '/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <!--目的：让学生了解 WeDo 2.0 搭建颗粒，学习简单机械基本部件。-->
+    <!--参考：[WeDo 2.0 ToolBox 中英文 PDF](https://le-www-live-s.legocdn.com/sc/media/files/user-guides/wedo-2/toolbox/toolbox-zh-cn-v1-552cb750e538a7996fb139aedb4a9f91.pdf)-->
+    <!---->
+    <div class="reveal">
+      <div class="slides">
+        <section class="section-first" data-transition="convex">
+          <h2>机械学</h2>
+          <h3>（Mechanics）</h3>
+          <div>
+            <span><i class="material-icons md-48 md-dark">schedule</i>120+ 分钟</span>
+            <span><i class="material-icons md-48 md-dark">stars</i>初级</span>
+            <span><i class="material-icons md-48 md-dark">face</i>1-2 年级</span>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>一. 机械（Mechanics）</h3>
+            <div><img src="gear.png" class="img-reset"></div><!--960 * 450-->
+            <ol>
+              <li>【什么是机械？】机械就是“利用某种能量、具有某种运动规律、完成某种有意义的工作的装置”。</li>
+              <li>【利用某种能量】汽油发动机的运转利用汽油燃烧产生的“热能”；机器人的动作利用“电能”驱动安装在关节处的电机；风车或水车的旋转利用空气或水的“动能”。如果没有能量，机械是不会运动的。</li>
+              <li>【具有某种运动规律】运动规律是设计者事先设计的。如电风扇的运动规律是旋转。</li>
+              <li>【完成某种有意义的工作】如实现抓、举、旋转、移动等物理动作。</li>
+              <li>【减速齿轮】小齿轮驱动大齿轮，产生较小的旋转动力。</li>
+              <li>【齿轮在 WeDo 2.0 中的应用】行走、旋转、转向。</li>
+            </ol>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>二. 锥齿轮（Gear）</h3>
+            <div><img src="bevel-gear.png" class="img-reset"></div><!--960 * 450-->
+            <ol>
+              <li>【什么是锥齿轮？】锥齿轮带有尖角，它可以垂直啮合于另一个齿轮，改变轴心的旋转。</li>
+              <li>【锥齿轮在 WeDo 2.0 中的应用】左右摇摆、摇摆、推动、转向。</li>
+            </ol>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>三. 齿轮条（Rack）</h3>
+            <div><img src="bevel-gear.png" class="img-reset"></div><!--960 * 450-->
+            <ol>
+              <li>【什么是齿轮条？】齿轮条是一个齿条与圆形齿轮组合在一起的平面部件。</li>
+              <li>【齿轮条的作用】变齿轮的旋转方式为直线运动方式。</li>
+              <li>【齿轮条在 WeDo 2.0 中的应用】推动</li>
+            </ol>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>四. 螺旋齿轮（Worm Gear）</h3>
+            <div><img src="worm-gear.png" class="img-reset"></div><!--960 * 450-->
+            <ol>
+              <li>【什么是螺旋齿轮？】螺旋齿轮看似像螺丝，可以与齿轮啮合。螺旋齿轮是为了驱动普通齿轮而设计的，但齿轮不可以推动螺旋齿轮，这也是刹车的原理。。</li>
+              <li>【螺旋齿轮在 WeDo 2.0 中的应用】侧转。</li>
+            </ol>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>五. 支杆（Gear）</h3>
+            <div><img src="bevel-gear.png" class="img-reset"></div><!--960 * 450-->
+            <ol>
+              <li>【什么是锥齿轮？】锥齿轮带有尖角，它可以垂直啮合于另一个齿轮，改变轴心的旋转。</li>
+              <li>【锥齿轮在 WeDo 2.0 中的应用】左右摇摆、摇摆、推动、转向。</li>
+            </ol>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>六. 轮胎（Gear）</h3>
+            <div><img src="bevel-gear.png" class="img-reset"></div><!--960 * 450-->
+            <ol>
+              <li>【什么是锥齿轮？】锥齿轮带有尖角，它可以垂直啮合于另一个齿轮，改变轴心的旋转。</li>
+              <li>【锥齿轮在 WeDo 2.0 中的应用】左右摇摆、摇摆、推动、转向。</li>
+            </ol>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>七. 滑轮（Gear）</h3>
+            <div><img src="bevel-gear.png" class="img-reset"></div><!--960 * 450-->
+            <ol>
+              <li>【什么是锥齿轮？】锥齿轮带有尖角，它可以垂直啮合于另一个齿轮，改变轴心的旋转。</li>
+              <li>【锥齿轮在 WeDo 2.0 中的应用】左右摇摆、摇摆、推动、转向。</li>
+            </ol>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>八. 智能集线器（Gear）</h3>
+            <div><img src="bevel-gear.png" class="img-reset"></div><!--960 * 450-->
+            <ol>
+              <li>【什么是锥齿轮？】锥齿轮带有尖角，它可以垂直啮合于另一个齿轮，改变轴心的旋转。</li>
+              <li>【锥齿轮在 WeDo 2.0 中的应用】左右摇摆、摇摆、推动、转向。</li>
+            </ol>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>九. 中型马达（Gear）</h3>
+            <div><img src="bevel-gear.png" class="img-reset"></div><!--960 * 450-->
+            <ol>
+              <li>【什么是锥齿轮？】锥齿轮带有尖角，它可以垂直啮合于另一个齿轮，改变轴心的旋转。</li>
+              <li>【锥齿轮在 WeDo 2.0 中的应用】左右摇摆、摇摆、推动、转向。</li>
+            </ol>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>十. 倾斜传感器（Gear）</h3>
+            <div><img src="bevel-gear.png" class="img-reset"></div><!--960 * 450-->
+            <ol>
+              <li>【什么是锥齿轮？】锥齿轮带有尖角，它可以垂直啮合于另一个齿轮，改变轴心的旋转。</li>
+              <li>【锥齿轮在 WeDo 2.0 中的应用】左右摇摆、摇摆、推动、转向。</li>
+            </ol>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>十一. 运动传感器（Gear）</h3>
+            <div><img src="bevel-gear.png" class="img-reset"></div><!--960 * 450-->
+            <ol>
+              <li>【什么是锥齿轮？】锥齿轮带有尖角，它可以垂直啮合于另一个齿轮，改变轴心的旋转。</li>
+              <li>【锥齿轮在 WeDo 2.0 中的应用】左右摇摆、摇摆、推动、转向。</li>
+            </ol>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>十二. 建构组件（Gear）</h3>
+            <div><img src="bevel-gear.png" class="img-reset"></div><!--960 * 450-->
+            <ol>
+              <li>【什么是锥齿轮？】锥齿轮带有尖角，它可以垂直啮合于另一个齿轮，改变轴心的旋转。</li>
+              <li>【锥齿轮在 WeDo 2.0 中的应用】左右摇摆、摇摆、推动、转向。</li>
+            </ol>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>十三. 连接组件（Gear）</h3>
+            <div><img src="bevel-gear.png" class="img-reset"></div><!--960 * 450-->
+            <ol>
+              <li>【什么是锥齿轮？】锥齿轮带有尖角，它可以垂直啮合于另一个齿轮，改变轴心的旋转。</li>
+              <li>【锥齿轮在 WeDo 2.0 中的应用】左右摇摆、摇摆、推动、转向。</li>
+            </ol>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>十四. 移动组件（Gear）</h3>
+            <div><img src="bevel-gear.png" class="img-reset"></div><!--960 * 450-->
+            <ol>
+              <li>【什么是锥齿轮？】锥齿轮带有尖角，它可以垂直啮合于另一个齿轮，改变轴心的旋转。</li>
+              <li>【锥齿轮在 WeDo 2.0 中的应用】左右摇摆、摇摆、推动、转向。</li>
+            </ol>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>十五. 装饰组件（Gear）</h3>
+            <div><img src="bevel-gear.png" class="img-reset"></div><!--960 * 450-->
+            <ol>
+              <li>【什么是锥齿轮？】锥齿轮带有尖角，它可以垂直啮合于另一个齿轮，改变轴心的旋转。</li>
+              <li>【锥齿轮在 WeDo 2.0 中的应用】左右摇摆、摇摆、推动、转向。</li>
+            </ol>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>十六. 拆卸工具（Gear）</h3>
+            <div><img src="bevel-gear.png" class="img-reset"></div><!--960 * 450-->
+            <ol>
+              <li>【什么是锥齿轮？】锥齿轮带有尖角，它可以垂直啮合于另一个齿轮，改变轴心的旋转。</li>
+              <li>【锥齿轮在 WeDo 2.0 中的应用】左右摇摆、摇摆、推动、转向。</li>
+            </ol>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="/js/reveal.js"></script>
+    <script>
+      Reveal.initialize({
+        width: 960,
+	      height: 700,
+        controls: false,
+        hash: true,
+        keyboard: {
+          32: null
+        },
+        dependencies: [
+          { src: '/plugin/markdown/marked.js' },
+          { src: '/plugin/markdown/markdown.js' },
+          { src: '/plugin/notes/notes.js', async: true },
+          { src: '/plugin/highlight/highlight.js', async: true }
+        ]
+      });
+    </script>
+
+    <script src="/plyr/plyr.js"></script>
+    <script>
+      const players = Plyr.setup('#player', {
+        keyboard: { focused: false, global: false }
+      });
+    </script>
+  </body>
+</html>
