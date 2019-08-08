@@ -21,7 +21,7 @@ const users = [
 ];
 
 const siteConfig = {
-  title: '机械学', // Title for your website.
+  title: 'Mechanics', // Title for your website.
   tagline: 'A website for mechanics',
   url: 'https://mechanics.bdtgzj.com', // Your website URL
   baseUrl: '/', // Base URL for your project */
@@ -42,6 +42,7 @@ const siteConfig = {
     {doc: 'doc4', label: 'API'},
     {page: 'help', label: 'Help'},
     {blog: true, label: 'Blog'},
+    { languages: true },
   ],
 
   // If you have users set above, you add it here:
