@@ -17,6 +17,6 @@ files:
     translation: '/website/i18n/%locale%.json'
     languages_mapping: *anchor
   -
-    source: '/website/versioned_docs/**/*.md'
+    source: '/website/versioned_docs/**/*.md' # translate versioned_docs
     translation: '/website/translated_docs/%locale%/**/%original_file_name%'
     languages_mapping: *anchor
