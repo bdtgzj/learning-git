@@ -1,0 +1,13 @@
+{{ $url := "" }}
+{{ if (findRE "^/product/.*" .RelPermalink 1) }}
+  {{ $url = "/img/product.jpg" }}
+{{ else if (eq .RelPermalink "/about-us/") }}
+  {{ $url = "/img/about-us.jpg" }}
+{{ else if (findRE "^/news/.*" .RelPermalink 1) }}
+  {{ $url = "/img/news.jpg" }}
+{{ else if (eq .RelPermalink "/contact-us/") }}
+  {{ $url = "/img/contact-us.jpg" }}
+{{ else if (eq .RelPermalink "/hr/") }}
+  {{ $url = "/img/hr.jpg" }}
+{{ end }}
+<div class="container-fluid banner" style="background-image: url({{$url}})"></div>

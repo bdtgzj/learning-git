@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+    {{- partial "head.html" . -}}
+    <body>
+        {{- partial "header.html" . -}}
+        {{- block "main" . }}{{- end }}
+        {{ if not (eq .Page.RelPermalink "/") }}{{- partial "footer.html" . -}}{{ end }}
+    </body>
+</html>

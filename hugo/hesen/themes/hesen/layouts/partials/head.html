@@ -1,0 +1,36 @@
+<script>
+  var isIE = /*@cc_on!@*/false || !!document.documentMode;
+  if (isIE) {
+    var ua = window.navigator.userAgent;
+    var match = ua.match(/.*MSIE\ ([0-9]+)\./);
+    var ver = parseInt(match[1], 10);
+    if (ver < 10) {
+      alert('抱歉，请使用 IE 10+ 浏览器，或其他非 IE 浏览器！');
+    }
+  }
+</script>
+<head>
+  <meta charset="utf-8">
+  <!-- set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- set render engine for IE browser -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- set responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- seo -->
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="description" content="苏州赫森网络科技有限公司,打造">
+  <meta name="keywords" content="赫森,赫森网络,女装,CK女装">
+  <meta name="author" content="HeSen">
+  <title>赫森网络</title>
+  <!-- favicon -->
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <!-- css -->
+  <link rel="stylesheet" href='/css/bootstrap.min.css'>
+  <link rel="stylesheet" href='/css/common.css'>
+  <link rel="stylesheet" href='/css/content.css'>
+  <!-- js -->
+  <script src="/js/jquery-3.4.1.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+</head>

@@ -1,0 +1,51 @@
+/* Body */
+body {
+  /*padding-top: 3.5rem;*/
+}
+
+/* Nav */
+.navbar-bg-custom {
+  /*background-color: rgba(0, 0, 0, .5) !important; #464442 #4f4337 #514539 #0064dc*/
+  background-color: #00000085 !important;
+}
+
+.navbar-logo {
+  width: 1.875rem; /*30px*/
+  height: 1.875rem;
+}
+
+.navbar-logo-text {
+
+}
+
+/* Banner */
+.banner {
+  background: center center no-repeat;
+  height: 450px; /*28.125rem*/
+}
+
+/* Footer */
+footer {
+  background: #000;
+  font-size: .875rem;
+  color: #fff;
+  position: relative;
+}
+.footer-row {
+  background-color: #000000;
+  padding: 25px 25px 50px;
+}
+.footer-qr {
+  text-align: center;
+  white-space: nowrap;
+}
+.footer-qr img {
+  width: 99px;
+  height: 99px;
+  padding: 5px;
+  margin: 0 auto;
+}
+.footer-icp {
+  align-self: flex-end;
+  text-align: center;
+}

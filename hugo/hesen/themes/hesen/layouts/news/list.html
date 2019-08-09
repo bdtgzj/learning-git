@@ -1,0 +1,24 @@
+{{ define "main" }}
+  {{- partial "banner.html" . -}}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-auto p-0 my-3 mr-md-3">
+        <div class="card au-pic"><img src="news.jpg" alt="about-us"></div>
+      </div>
+      <div class="col-md my-3 pl-md-0">
+        <table class="table table-bordered table-hover">
+          <tbody>
+            {{ range .Pages.ByDate.Reverse }}
+            <tr>
+              <td><a href="{{.Permalink}}" class="text-decoration-none">{{.Title}}</a></td>
+              <td class="text-center">{{.Date.Format "2006-01-02"}}</td>
+            </tr>
+            {{ end }}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  {{- .Content -}}
+</div>
+{{ end }}

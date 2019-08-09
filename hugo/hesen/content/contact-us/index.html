@@ -1,0 +1,40 @@
+---
+title: "联系我们"
+date: 2019-06-14T20:20:15+08:00
+draft: false
+menu: 
+  main:
+    name: "联系我们"
+    title: "联系我们"
+    weight: 106
+---
+
+<div class="container">
+  <div class="row">
+    <div class="col-md p-0 m-3">
+      <div id="cu-map" class="card cu-map"></div>
+    </div>
+    <div class="col-md-auto p-0 m-3 ml-md-0 cu-col">
+      <div class="card bg-primary text-white p-3 cu-info">
+        <p>苏州赫森网络科技有限公司</p>
+        <p>固话：0512-89883888</p>
+        <p>手机：17768311588</p>
+        <p>邮箱：market@hesen.biz</p>
+        <p>称呼：李先生</p>
+        <p>地址：常熟市虞山镇莫干路72-74号</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=3aCPPzeROXGuhGDpp9YiOEqBfbpc8O3D"></script>
+<script type="text/javascript">
+  var map = new BMap.Map("cu-map");
+  var point = new BMap.Point(120.716337, 31.603606);
+  map.centerAndZoom(point, 17);
+  map.addControl(new BMap.NavigationControl());
+  var marker = new BMap.Marker(point);
+  map.addOverlay(marker);
+  var infoWindow = new BMap.InfoWindow("常熟市虞山镇莫干路72-74号", {title: "赫森网络，Ciens Kuica 服饰品牌集合店"});
+  map.openInfoWindow(infoWindow, map.getCenter());
+</script>
+

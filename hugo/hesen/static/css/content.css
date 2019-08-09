@@ -1,0 +1,86 @@
+/* homepage */
+#fullpage img {
+  width: 100%;
+}
+
+/* about-us */
+.au-pic {
+  width: 100%;
+}
+.au-info {
+  height: 100%;
+}
+
+/* news */
+.container-news p {
+ text-indent: 2rem;
+}
+
+/* product */
+.pl-card-img {
+  /*height: 350px;*/
+}
+.pl-card-text {
+  text-align: center;
+}
+.ps-container {
+  text-align: center;
+}
+.ps-container img {
+  width: 100%;
+  margin-bottom: 0.2rem;
+}
+
+/* hr */
+.hr {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+/* contact-us */
+.cu-map {
+  height: 500px;
+}
+.cu-info {
+  height: 100%;
+}
+
+/* responsive */
+@media (min-width: 576px) {
+
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 992px) {
+
+}
+
+@media (min-width: 1200px) {
+  
+}
+
+@media (max-width: 575.98px) {
+  
+}
+
+@media (max-width: 767.98px) {
+  /* contact-us */
+  .cu-col {
+    margin-top: 0 !important;
+  }
+  /* news */
+  .container-news img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 991.98px) {
+  
+}
+
+@media (max-width: 1199.98px) {
+  
+}

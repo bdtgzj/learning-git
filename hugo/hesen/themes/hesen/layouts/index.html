@@ -1,0 +1,18 @@
+{{ define "main" }}
+{{- .Content -}}
+<link rel="stylesheet" type="text/css" href='/css/jquery.fullpage.min.css'>
+<script src="/js/jquery.fullpage.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $("#fullpage").fullpage({
+      navigation: true,
+      navigationPosition: 'right',
+      scrollingSpeed: 700,
+      sectionsColor: ['#7BAABE', '#7BAABE', '#7BAABE', '#7BAABE', '#7BAABE', '#7BAABE', '#7BAABE', '#7BAABE', '#7BAABE', '#7BAABE'],
+      responsiveWidth: 576,
+      responsiveHeight: 0,
+		  afterResponsive: function(isResponsive){console.log('afterResponsive')},
+    });
+  });
+</script>
+{{ end }}

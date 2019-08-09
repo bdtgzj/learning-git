@@ -1,0 +1,25 @@
+<header>
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark navbar-bg-custom">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="/img/logo.png" class="d-inline-block align-top navbar-logo" alt="logo.png">
+      <span class="navbar-logo-text">赫森</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        {{ $currentPage := . }}
+        {{ range .Site.Menus.main }}
+          <li class="nav-item{{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{ end }}">
+            <a class="nav-link" href="{{ .URL }}">{{ .Name }}{{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}<span class="sr-only">(current)</span>{{ end }}</a>
+          </li>
+        {{ end }}
+      </ul>
+      <button class="btn btn-outline-warning btn-sm">官方旗舰店</button>
+    </div>
+  </div>
+  </nav>
+</header>
