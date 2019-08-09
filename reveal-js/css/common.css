@@ -18,14 +18,6 @@
 .table-reset td {
   font-size: 58%;
 }
-.table-reset tbody tr:nth-child(odd) td:nth-child(2), .table-reset tbody tr:nth-child(odd) td:nth-child(5) {
-  width: 150px;
-  text-align: center;
-}
-.table-reset td:nth-child(3n) {
-  width: 300px;
-
-}
 
 /* reveal.js - reveal.css override */
 .reveal .slides > section, .reveal .slides > section > section {
