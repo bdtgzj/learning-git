@@ -1,0 +1,17 @@
+{
+  "docs": {
+  },
+  "mechanicals": {
+    "什么是机械": [
+      "mechanics/what-is-machinery/what-is-machinery"
+    ],
+    "机械运动机构": [
+      "mechanics/mechanical-motion-mechanism/mechanical-mechanism"
+    ]
+  },
+  "electronics": {
+    "什么是电子": [
+      "electronics/what-is-electronics/what-is-electronics"
+    ]
+  }
+}
