@@ -3,8 +3,8 @@
   border: none !important;
   box-shadow: inherit !important;
   background: inherit !important;
-  max-width: inherit !important;
-  max-height: inherit !important;
+  /*max-width: inherit !important;*/
+  /*max-height: inherit !important;*/
 }
 
 /* grid */

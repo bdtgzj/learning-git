@@ -1,0 +1,510 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>米洛，科学漫游者（Milo, the Science Rover）</title>
+    <!--http://localhost:8000/lego-education/grades-3-5/wedo-2-science/milo-the-science-rover-->
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/reveal.css">
+    <link rel="stylesheet" href="/css/theme/sky.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="/lib/css/monokai.css">
+
+    <!--material-design-icons-->
+    <link rel="stylesheet" href="/icon/material-design-icons/material-icons.css">
+
+    <!--plyr-->
+    <link rel="stylesheet" href="/plyr/plyr.css">
+
+    <!--custom-->
+    <link rel="stylesheet" href="/css/common.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '/css/print/pdf.css' : '/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <!--目的：Discover ways that scientists and engineers can use rovers to explore places where humans cannot go.-->
+    <!--目的：设计一个原型，让濒临灭绝的（Endangered）动物能够安全地穿过道路或其他危险区域。-->
+    <!--参考：[Wildlife Crossing ┃ 向生命致敬的暖心设计](https://zhuanlan.zhihu.com/p/41181113)-->
+    <!--[Wildlife crossings stop roadkill. Why aren't there more?](https://www.youtube.com/watch?v=ND0D3bVbM7Y)-->
+    <!--[Wildlife crossing](https://en.wikipedia.org/wiki/Wildlife_crossing)-->
+    <!--[California Roadkill Observation System](https://www.wildlifecrossing.net/california/)-->
+    <!--[Wildlife crossing project with LEGO WeDo2.0](https://www.youtube.com/watch?v=MhQKpNMFnmM)-->
+    <div class="reveal">
+      <div class="slides">
+        <section class="section-first" data-transition="convex">
+          <h2>野生动物通道</h2>
+          <h3>（Wildlife Crossing）</h3>
+          <div>
+            <span><i class="material-icons md-48 md-dark">schedule</i>120+ 分钟</span>
+            <span><i class="material-icons md-48 md-dark">stars</i>高级（Advanced）</span>
+            <span><i class="material-icons md-48 md-dark">face</i>1-2 年级</span>
+          </div>
+        </section>
+        <section data-transition="convex">
+          <h3>一. 探究（Explore）</h3>
+          <video controls src="wildlife_crossings_stop_roadkill_why_arent_there_more_1080p.mp4"></video>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tp">
+            <h3>1. 什么是野生动物通道？</h3>
+            <img src="what-is-wildlife-crossings.jpg" class="img-reset"><!--960 * 600-->
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>1. 什么是野生动物通道？</h3>
+              <div><img src="what-is-wildlife-crossings.jpg" class="img-reset"></div><!--960 * 450-->
+              <p>野生动物通道是一个建筑体，可以让野生动物安全地通过人为屏障，故也叫“生命桥”。如地下通道、隧道、高架桥、立交桥等。</p>
+              <audio src="explore.mp3" controls id="player"></audio>
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tp">
+            <h3>2. 为什么需要野生动物通道？</h3>
+            <img src="why-need-a-wildlife-crossing.jpg" class="img-reset"><!--960 * 600-->
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>2. 为什么需要野生动物通道？</h3>
+              <div><img src="why-need-a-wildlife-crossing.jpg" class="img-reset"></div><!--960 * 450-->
+              <ol>
+                <li>人类经过了一个漫长的过程才意识到，或者说愿意认识到人类给动物的生活和生存所带来的灾难。</li>
+                <li>野生动物通道有助于避免车辆和动物之间的碰撞，这种碰撞除了杀死或伤害野生动物之外，还可能造成人身伤害和财产损失。</li>
+                <li>野生动物通道是栖息地保护的一种做法，连接栖息地，防止栖息地碎片化。</li>
+              </ol>
+              <audio src="explore.mp3" controls id="player"></audio>
+            </div>
+          </section>
+        </section>
+        <section class="section-tp">
+          <h3>3. 世界上 11 个暖心的生命桥设计</h3>
+          <img src="life-bridge.jpg" class="img-reset"><!--823 * 600 / 640 * 400-->
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>A. 荷兰——为生态平衡而设计</h3>
+            <div><img src="life-bridge-1.jpg" class="img-reset"></div><!--960 * 450-->
+            <p>荷兰作为世界上最早的一批为野生动物专门修建通道的国家，已创造出了600多座生命桥。这些桥在各地区物种间起到了纽带的作用，保证了地区的生态平衡，给欧洲大陆上许多濒临绝种的动物创造了生机，使他们能够安全地迁徙。</p>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>B. 澳大利亚——为红蟹而设计</h3>
+            <div><img src="life-bridge-2.jpg" class="img-reset"></div><!--960 * 450-->
+            <p>澳大利亚圣诞岛上当地人为红蟹专门造了天桥、围栏、暗渠等一系列专用设施，引导红蟹安全的通过公路，从雨林穿过城市到达海边进行交配和产卵。</p>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>C. 肯尼亚——为大象而设计</h3>
+            <div><img src="life-bridge-3.jpg" class="img-reset"></div><!--960 * 450-->
+            <p>肯尼亚为大象在其漫长的迁移过程中避开公路而设计的隧道，不仅能引导大象们避开公路，更重要的一点是让大象避开人类所居住的房屋和庄家地，避免两个物种间的冲突。</p>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>D. 日本——为乌龟而设计</h3>
+            <div><img src="life-bridge-4.jpg" class="img-reset"></div><!--960 * 450-->
+            <p>日本的森林公园和铁路运营公司联合推出了为乌龟而设计的渠道，阻止路过铁路沿线的乌龟被铁路道卡住而引发的悲剧（右下图）。</p>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h4>E. 新加坡——对生态廊道进行修补的生命桥</h4>
+            <div><img src="life-bridge-5.jpg" class="img-reset"></div><!--960 * 450-->
+            <p>新加坡在中央集水区和武吉知马自然保护区间架起一座生态桥，修复被公路切断的生态系统。生态桥跨六条车道、总长大概62米的绿色走道，方便了世代生活在两个自然保护区的一千多种动物，比如穿山甲、蜥蜴、松鼠、果子狸、蛇及各种昆虫等的活动。</p>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>F. 加拿大——班夫国家公园的绿桥</h3>
+            <div><img src="life-bridge-6.jpg" class="img-reset"></div><!--960 * 450-->
+            <p>在阿尔伯塔省过班夫国家公园的高速公路路段，有6个路桥通道和38个地下通道，重新连接了国家公园的两侧，大量的减少了车辆对动物的碰撞，并已被包括鹿、郊狼、狼、美洲狮和灰熊在内的物种使用了超过152,000次，而且桥上的灰熊和灰熊的遗传多样性也大大地增加了。</p>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>G. 巴西——为猴子而设计</h3>
+            <div><img src="life-bridge-7.jpg" class="img-reset"></div><!--960 * 450-->
+            <p>巴西用这种绳索，为居住在这一地区的各种各样的猴子提供方便，让它们在两个树木繁茂的地区之间移动，而不会受到迎面驶来的汽车的威胁。</p>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>H. 新西兰——为蓝企鹅而设计的隧道</h3>
+            <div><img src="life-bridge-8.jpg" class="img-reset"></div><!--960 * 450-->
+            <p>新西兰的阿玛鲁镇为当地的蓝企鹅设计了一条隧道，使它们不用再需要穿过港口旁的繁忙公路，去捕捉它们需要的鱼和带鱼回到巢穴。隧道同时能够使它们躲避汽车前灯和游客相机的闪光对它们造成的伤害。</p>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>I. 挪威——为蜜蜂而设计的高速公路</h3>
+            <div><img src="life-bridge-9.jpg" class="img-reset"></div><!--960 * 450-->
+            <p>在挪威发现的200多种野生蜜蜂中，有三分之一被认为是濒危物种。蜜蜂对全球食物链至关重要，所以挪威政府为蜜蜂设计了“高速公路设施”，方便蜜蜂安全地穿过挪威的首都而不受到干扰。</p>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>J. 美国——为鱼而设计的鱼梯</h3>
+            <div><img src="life-bridge-10.jpg" class="img-reset"></div><!--960 * 450-->
+            <p>美国为需要迁徙到产卵地的鱼类，如需要从海洋迁移到淡水（或反过来）的鲑鱼，设计了鱼梯，有效的减少了珍稀鱼类数量的减少。</p>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tpt">
+          <div>
+            <h3>K. 中国——铁路与野生动物共存的设计</h3>
+            <div><img src="life-bridge-11.jpg" class="img-reset"></div><!--960 * 450-->
+            <p>青藏铁路沿线为野生动物的通行采用了多种设计，包括桥梁下方通道、隧道、路基下方涵洞、警示标志与路面路基，以及专为水陆两栖动物设置的河流桥涵通道等。</p>
+            <audio src="explore.mp3" controls id="player"></audio>
+          </div>
+        </section>
+        <section class="section-tp">
+          <h3>4. 让我们来设计一个特定野生动物通道，一起来保护我们的生态环境吧！</h3>
+          <img src="design-a-wildlife-crossing.jpg" class="img-reset"><!--960 * 450-->
+        </section>
+        <section data-transition="convex">
+          <h3>二. 旋转模型启发（Spin）</h3>
+          <img src="spin.png" class="img-reset"><!--640 * 400-->
+        </section>
+        <section data-transition="fade">
+          <img src="spin-1.png"><!--940*685 / 950*693 / 960*700-->
+        </section>
+        <section data-transition="fade">
+          <img src="spin-2.png">
+        </section>
+        <section data-transition="fade">
+          <img src="spin-3.png">
+        </section>
+        <section data-transition="fade">
+          <img src="spin-4.png">
+        </section>
+        <section data-transition="fade">
+          <img src="spin-5.png">
+        </section>
+        <section data-transition="fade">
+          <img src="spin-6.png">
+        </section>
+        <section data-transition="fade">
+          <img src="spin-7.png">
+        </section>
+        <section data-transition="fade">
+          <img src="spin-8.png">
+        </section>
+        <section data-transition="fade">
+          <img src="spin-9.png">
+        </section>
+        <section data-transition="fade">
+          <img src="spin-10.png">
+        </section>
+        <section data-transition="fade">
+          <img src="spin-11.png">
+        </section>
+        <section data-transition="fade">
+          <img src="spin-12.png">
+        </section>
+        <section data-transition="fade">
+          <img src="spin-13.png">
+        </section>
+        <section data-transition="fade">
+          <img src="spin-14.png">
+        </section>
+        <section data-transition="fade">
+          <img src="spin-15.png">
+        </section>
+        <section data-transition="fade">
+          <img src="spin-16.png">
+        </section>
+        <section data-transition="fade">
+          <img src="spin-17.png">
+        </section>
+        <section data-transition="fade">
+          <img src="spin-18.png">
+        </section>
+        <section data-transition="fade">
+          <img src="spin-19.png">
+        </section>
+        <section data-transition="fade">
+          <img src="spin-20.png">
+        </section>
+        <section data-transition="fade">
+          <img src="spin-21.png">
+        </section>
+        <section data-transition="fade">
+          <img src="spin-22.png">
+        </section>
+        <section data-transition="fade">
+          <img src="spin-23.png">
+        </section>
+        <section data-transition="convex">
+          <h3>三. 旋转模型启发（Revolve）</h3>
+          <img src="revolve.png" class="img-reset"><!--640 * 400-->
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-1.png"><!--940*685 / 950*693 / 960*700-->
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-2.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-3.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-4.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-5.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-6.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-7.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-8.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-9.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-10.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-11.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-12.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-13.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-14.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-15.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-16.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-17.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-18.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-19.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-20.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-21.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-22.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-23.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-24.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-25.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-26.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-27.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-28.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-29.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-30.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-31.png">
+        </section>
+        <section data-transition="fade">
+          <img src="revolve-32.png">
+        </section>
+        <section data-transition="convex">
+          <h3>四. 弯曲模型启发（Flex）</h3>
+          <img src="flex.png" class="img-reset"><!--640 * 400-->
+        </section>
+        <section data-transition="fade">
+          <img src="flex-1.png"><!--940*685 / 950*693 / 960*700-->
+        </section>
+        <section data-transition="fade">
+          <img src="flex-2.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-3.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-4.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-5.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-6.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-7.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-8.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-9.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-10.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-11.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-12.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-13.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-14.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-15.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-16.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-17.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-18.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-19.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-20.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-21.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-22.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-23.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-24.png">
+        </section>
+        <section data-transition="fade">
+          <img src="flex-25.png">
+        </section>
+        <section class="section-tpt" data-transition="convex">
+          <div>
+            <h3>五. 构建完整野生动物通道模型（Construct）</h3>
+            <div><img src="design-a-wildlife-crossing.jpg"></div>
+            <p>同学们，发挥出你们的想象力，搭建出你们心中的野生动物通道模型吧！</p>
+            <audio src="program.mp3" controls id="player"></audio>
+            <!---->
+          </div>
+        </section>
+        <section class="section-tpt" data-transition="convex">
+          <div>
+            <h3>六. 连接机器人模型和电脑<br>（Connection）</h3>
+            <div><img src="connection.jpg"></div>
+            <p>1. 按下「智能集线器」上的绿色按钮。<br>2. 在 WeDo 软件中，按下智能集线器的名称，与之连接。</p>
+            <audio src="connection.mp3" controls id="player"></audio>
+            <!--1. 按下「智能集线器」上的绿色按钮。2. 在 WeDo 软件中，按下智能集线器的名称，与之连接。-->
+          </div>
+        </section>
+        <section class="section-tpt" data-transition="convex">
+          <div>
+            <h3>七. 给模型编程（Program）</h3>
+            <div><img src="program.png"></div>
+            <p>1.【启动块】运行程序。<br>2.【电机左转块】使电机逆时针旋转。<br>3.【电机定时块】让电机运行 1 秒。<br>4.【等待块】程序暂停 3 秒。<br>5.【音乐块】播放声音 14。<br>6.【电机功率块】以功率 4 启动电机。<br>7.【电机左转块】使电机顺时针旋转。<br>8.【电机定时块】让电机运行 5 秒。</p>
+            <audio src="program.mp3" controls id="player"></audio>
+            <!--1. 拖动黄色「运行程序模块」到屏幕。2. 拖动绿色「电动机程序模块」到屏幕。3. 修改「电动机程序模块」的转速。4.点击「运行程序模块」运行程序。-->
+          </div>
+        </section>
+        <section class="section-text" data-transition="convex">
+          <h3>八. 思考（Contemplate）</h3>
+          <p>1. 机器人模型是如何工作的？</p>
+          <p>2. 程序模块分别做了什么？</p>
+          <p>3. 怎么确保动物专门去走这条路？</p><!--简言之，通过长期观察，了解动物的习性，并进行适当的诱导。-->
+        </section>
+        <section class="section-text" data-transition="convex">
+          <h3>九. 扩展（Extend）</h3>
+          <p>1. 如何改变电动风扇的「转动速度」？</p>
+          <p>2. 如何改变电动风扇的「转动方向」？</p>
+          <p>3. 如何让电动风扇「停止转动」？</p>
+        </section>
+        <section class="section-text" data-transition="convex">
+          <h3>十. 分享（Share）</h3>
+          <p>同学们，展示你的模型、程序、创意吧！</p>
+        </section>
+      </div>
+    </div>
+
+    <script src="/js/reveal.js"></script>
+    <script>
+      Reveal.initialize({
+        width: 960,
+	      height: 700,
+        controls: false,
+        hash: true,
+        keyboard: {
+          32: null
+        },
+        dependencies: [
+          { src: '/plugin/markdown/marked.js' },
+          { src: '/plugin/markdown/markdown.js' },
+          { src: '/plugin/notes/notes.js', async: true },
+          { src: '/plugin/highlight/highlight.js', async: true }
+        ]
+      });
+    </script>
+
+    <script src="/plyr/plyr.js"></script>
+    <script>
+      const players = Plyr.setup('#player', {
+        keyboard: { focused: false, global: false }
+      });
+    </script>
+  </body>
+</html>
