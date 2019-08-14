@@ -3,8 +3,8 @@
   border: none !important;
   box-shadow: inherit !important;
   background: inherit !important;
-  /*max-width: inherit !important;*/
-  /*max-height: inherit !important;*/
+  max-width: inherit !important;
+  max-height: inherit !important;
 }
 
 /* grid */
@@ -89,11 +89,15 @@
   flex-direction: column;
   align-items: center;
 }
-.section-tpt > div > div {
+.section-tpt > div > div:nth-child(2) { /* pic */
+  flex: 1 1 0;
+  overflow: hidden;
+}
+.section-tpt > div > div:nth-child(2) img {
+  height: 100%;
+}
+.section-tpt > div > div:nth-child(4) { /* audio */
   width: 100%;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
 }
 .section-tpt p, .section-tpt li {
   text-align: justify;
