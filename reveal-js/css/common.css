@@ -65,7 +65,7 @@
 
 /* reveal.js - sky.css override */
 .reveal ol {
-  list-style-type: lower-latin; /* lower-alpha lower-latin lower-roman upper-alpha upper-latin upper-roman decimal-leading-zero */
+  list-style-type: decimal; /* lower-alpha lower-latin lower-roman upper-alpha upper-latin upper-roman decimal-leading-zero */
   list-style-position: inside;
   margin: 20px 0;
 }
