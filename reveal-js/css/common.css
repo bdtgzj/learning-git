@@ -112,7 +112,7 @@
 
 /* section-tp */
 .section-tp img {
-  max-height: 600px;
+  max-height: 600px !important;
 }
 
 /* section-text */
