@@ -119,3 +119,8 @@
 .section-text p {
   text-align: left;
 }
+
+/* section-tpt */
+.section-pic {
+  height: 100%;
+}
