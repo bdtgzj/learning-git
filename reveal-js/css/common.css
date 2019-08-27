@@ -6,6 +6,11 @@
   max-width: inherit !important;
   max-height: inherit !important;
 }
+.answer {
+  color: #a52a2a; /* brown */
+  display: inline-block;
+  text-indent: 29px;
+}
 
 /* grid */
 .grid-container {
