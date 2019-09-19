@@ -1,0 +1,288 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>让我们开始吧！（Let's Get Started）</title>
+    <!--http://localhost:8000/vex/iq/let-us-get-started-->
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/reveal.css">
+    <link rel="stylesheet" href="/css/theme/sky.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="/lib/css/monokai.css">
+
+    <!--material-design-icons-->
+    <link rel="stylesheet" href="/icon/material-design-icons/material-icons.css">
+
+    <!--plyr-->
+    <link rel="stylesheet" href="/plyr/plyr.css">
+
+    <!--custom-->
+    <link rel="stylesheet" href="/css/common.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '/css/print/pdf.css' : '/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <!--知识点：了解 VEX IQ Kit Content（套件包内容），包括：积木、遥控器（Controller）、Robot Brain-->
+    <!--能力点：发现问题、分析问题、解决问题；创造力；设计解决方案；沟通能力；-->
+    <!--动手实践：配对 Controller 和 Brain；使用量角器（Protractor）确定角梁（Angle Beam）类型；-->
+    <!--课程模板：课前预习、课中讲课、课中知识、课中问答、课中观察/讨论/预测/测量/测试/结论、课中练习、课尾总结、课尾展示、课尾扩展、课尾整理（拆解模型、分类存放到收纳盒，10 分钟）、课后练习、课后评价、创造-->
+    <!--课程制作方法：文字 > 插图 > 语音 > 视频-->
+    <!--[Let's Get Started](https://www.vexrobotics.com/vexiq/education/iq-curriculum/lets-get-started)-->
+    <div class="reveal">
+      <div class="slides">
+        <section class="section-first" data-transition="convex">
+          <h2>让我们开始吧！</h2>
+          <h3>（Let's Get Started）</h3>
+          <div>
+            <span><i class="material-icons md-48 md-dark">schedule</i>45-90 分钟</span>
+            <span><i class="material-icons md-48 md-dark">stars</i>初级（Beginner）</span>
+            <span><i class="material-icons md-48 md-dark">face</i>3-5 年级</span>
+          </div>
+        </section>
+        <section data-transition="convex" class="section-tpt">
+          <div>
+            <h3>一. VEX IQ 硬件</h3>
+            <div><img src="vex-iq-hardware.png" class="img-reset"></div><!--960 * 600-->
+            <p>VEX IQ 硬件简单、有趣、灵活、易于使用，非常适合用来探索 STEM。同学们脑中的任何创意，都可以尝试使用 VEX IQ 硬件构建出来。可构建非动力模型、动力机构、机器人等。</p>
+            <!--你能想象的都可以使用 VEX IQ 来构建。If you can imagine it, you can build it with VEX IQ.-->
+            <audio src="vex-iq-hardware.mp3" controls id="player"></audio>
+            <!---->
+          </div>
+        </section>
+        <section data-transition="fade">
+          <h3>二. 结构组件（Structural Parts）<br>（名称 - 尺寸 - 颜色 - 个数）</h3>
+        </section>
+        <section data-transition="fade">
+          <h3>1.1. 板型颗粒（Plate）</h3>
+          <div class="grid-container">
+            <div><img src="angular-plate.png" class="img-reset"><span>角板 - 1x2/2x2 - 白 - 2x</span></div>
+            <div><img src="plate-1x2.png" class="img-reset"><span>板 - 1x2 - 白 - 6x</span></div>
+            <div><img src="plate-1x4.png" class="img-reset"><span>板 - 1x4 - 白 - 4x</span></div>
+            <div><img src="plate-1x6.png" class="img-reset"><span>板 - 1x6 - 白 - 4x</span></div>
+            <div><img src="plate-1x12.png" class="img-reset"><span>板 - 1x12 - 白 - 2x</span></div>
+            <div><img src="plate-2x16.png" class="img-reset"><span>板 - 2x16 - 黑 - 2x</span></div>
+            <div><img src="frame-plate-4x4.png" class="img-reset"><span>框架板 - 4x4 - 灰 - 2x</span></div>
+            <div><img src="curved-plate.png" class="img-reset"><span>弧形板 - 1x4x2/3 - 蔚蓝 - 2x</span></div>
+            <div><img src="round-plate-4x4.png" class="img-reset"><span>圆板 - 4x4 - 蔚蓝 - 2x</span></div>
+          </div>
+        </section>
+        <section data-transition="fade">
+          <h3>1.1. 板型颗粒（Plate）</h3>
+          <div class="grid-container">
+            <div><img src="plate-4x6-4.png" class="img-reset"><span>板 - 4x6/4 - 柠檬绿 - 2x</span></div>
+            <div><img src="plate-with-holes-2x8.png" class="img-reset"><span>洞板 - 2x8 - 亮绿 - 2x</span></div>
+            <div><img src="plate-with-holes-2x4.png" class="img-reset"><span>洞板 - 2x4 - 亮橘 - 4x</span></div>
+            <div><img src="plate-with-holes-2x6.png" class="img-reset"><span>洞板 - 2x6 - 亮橘 - 4x</span></div>
+            <div><img src="plate-with-holes-2x3.png" class="img-reset"><span>洞板 - 2x3 - 灰 - 1x</span></div>
+            <div><img src="round-plate-1x1.png" class="img-reset"><span>圆板 - 1x1 - 黑 - 4x</span></div>
+            <div><img src="round-plate-2x2.png" class="img-reset"><span>圆板 - 2x2 - 亮绿 - 2x</span></div>
+            <div><img src="skid-plate-2x2.png" class="img-reset"><span>防滑板 - 2x2 - 黑 - 6x</span></div>
+            <div><img src="round-plate-with-1stud-2x2-white.png" class="img-reset"><span>单口镶嵌圆板 - 2x2 - 白 - 2x</span></div>
+            <div><img src="round-tile-with-hole-2x2-dark-gray.png" class="img-reset"><span>带洞圆板 - 2x2 - 深灰 - 2x</span></div>
+          </div>
+        </section>
+        <section data-transition="fade">
+          <h3>1.2. 砖型颗粒（Brick）</h3>
+          <div class="grid-container">
+            <div><img src="brick-1x2.png" class="img-reset"><span>砖 - 1x2 - 蔚蓝 - 6x</span></div>
+            <div><img src="brick-2x2.png" class="img-reset"><span>砖 - 2x2 - 蔚蓝 - 2x</span></div>
+            <div><img src="brick-1x4.png" class="img-reset"><span>砖 - 1x4 - 蔚蓝 - 2x</span></div>
+            <div><img src="brick-2x4.png" class="img-reset"><span>砖 - 2x4 - 蔚蓝 - 2x</span></div>
+            <div><img src="brick-2x4-orange.png" class="img-reset"><span>砖 - 2x4 - 亮橘 - 4x</span></div>
+            <div><img src="roof-brick.png" class="img-reset"><span>屋顶砖 - 1x2/45° - 黑 - 2x</span></div>
+            <div><img src="roof-brick-1x2x2.png" class="img-reset"><span>屋顶砖 - 1x2x2 - 灰 - 4x</span></div>
+            <div><img src="curved-brick-1x6.png" class="img-reset"><span>弧形砖 - 1x6 - 透明浅蓝 - 2x</span></div>
+            <div><img src="roof-brick-1x2x45-lime-green.png" class="img-reset"><span>屋顶砖 - 1x2/45° - 柠檬绿 - 4x</span></div>
+            <div><img src="inverted-roof-brick-1x3x25-lime-green.png" class="img-reset"><span>倒屋顶砖 - 1x3/25° - 柠檬绿 - 4x</span></div>
+            <div><img src="curved-brick-1x3-lime-green.png" class="img-reset"><span>弧形砖 - 1x3 - 柠檬绿 - 2x</span></div>
+            <div><img src="curved-brick-1x6-lime-green.png" class="img-reset"><span>弧形砖 - 1x6 - 柠檬绿 - 4x</span></div>
+          </div>
+        </section>
+        <section data-transition="fade">
+          <h3>1.2. 砖型颗粒（Brick）</h3>
+          <div class="grid-container">
+            <div><img src="roof-brick-1x2x23-bright-orange.png" class="img-reset"><span>屋顶砖 - 1x2x2/3 - 亮橘 - 4x</span></div>
+            <div><img src="inverted-roof-brick-1x2x45-bright-orange.png" class="img-reset"><span>倒屋顶砖 - 1x2/45° - 亮橘 - 4x</span></div>
+            <div><img src="roof-brick-1x3x25-bright-orange.png" class="img-reset"><span>屋顶砖 - 1x3/25° - 亮橘 - 4x</span></div>
+            <div><img src="brick-with-stud-on-side-1x1-white.png" class="img-reset"><span>单面镶嵌砖 - 1x1 - 白 - 2x</span></div>
+            <div><img src="brick-with-connector-peg-1x2-gray.png" class="img-reset"><span>衔接口砖 - 1x2 - 灰 - 4x</span></div>
+            <div><img src="brick-with-1-ball-joint-2x2-black.png" class="img-reset"><span>单边球砖 - 2x2 - 深灰 - 2x</span></div>
+            <div><img src="brick-with-2-ball-joint-2x2-black.png" class="img-reset"><span>双边球砖 - 2x2 - 黑 - 1x</span></div>
+            <div><img src="brick-with-ball-bearing-2x2-transparent-light-blue.png" class="img-reset"><span>嵌球砖 - 2x2 - 透明浅蓝 - 4x</span></div>
+            <div><img src="round-brick-2x2-transparent-light-blue.png" class="img-reset"><span>圆砖 - 2x2 - 透明浅蓝 - 4x</span></div>
+            <div><img src="round-brick-1x1-transparent-green.png" class="img-reset"><span>圆砖 - 1x1 - 透明绿 - 2x</span></div>
+            <div><img src="round-brick-1x1-transparent-yellow.png" class="img-reset"><span>圆砖 - 1x1 - 透明黄 - 2x</span></div>
+            <div><img src="round-brick-1x1-transparent-red.png" class="img-reset"><span>圆砖 - 1x1 - 透明红 - 2x</span></div>
+          </div>
+        </section>
+        <section data-transition="fade">
+          <h3>1.3. 瓦片颗粒（Tile）</h3>
+          <div class="grid-container">
+            <div><img src="tile-1x8-gray.png" class="img-reset"><span>瓦片 - 1x8 - 灰 - 4x</span></div>
+            <div><img src="tile-1x2-azure-blue.png" class="img-reset"><span>瓦片 - 1x2 - 蔚蓝 - 2x</span></div>
+          </div>
+        </section>
+        <section data-transition="fade">
+          <h3>1.4. 梁（Beam）</h3>
+          <div class="grid-container">
+            <div><img src="beam-7-modules-bright-green.png" class="img-reset"><span>梁 - 7 modules - 亮绿 - 2x</span></div>
+            <div><img src="angular-beam-3x5-modules-bright-green.png" class="img-reset"><span>角梁 - 3x5 modules - 亮绿 - 2x</span></div>
+            <div><img src="studded-beam-1x4-lime-green.png" class="img-reset"><span>镶嵌梁 - 1x4 - 柠檬绿 - 4x</span></div>
+            <div><img src="studded-beam-1x8-lime-green.png" class="img-reset"><span>镶嵌梁 - 1x8 - 柠檬绿 - 2x</span></div>
+            <div><img src="studded-beam-1x12-lime-green.png" class="img-reset"><span>镶嵌梁 - 1x12 - 柠檬绿 - 2x</span></div>
+            <div><img src="studded-beam-1x16-lime-green.png" class="img-reset"><span>镶嵌梁 - 1x16 - 柠檬绿 - 2x</span></div>
+            <div><img src="studded-beam-1x2-lime-green.png" class="img-reset"><span>镶嵌梁 - 1x2 - 柠檬绿 - 4x</span></div>
+            <div><img src="beam-with-plate.png" class="img-reset"><span>梁盘 - 2 模块 - 黑 - 4x</span></div>
+            <div><img src="studded-beam-with-crosshole-1x2-dark-gray.png" class="img-reset"><span>十字口镶嵌梁 - 1x2 - 深灰 - 4x</span></div>
+            <div><img src="rubber-beam-with-crossholes-2-modules-black.png" class="img-reset"><span>十字口梁 - 2 modules - 黑 - 2x</span></div>
+            </div>
+        </section>
+        <section data-transition="fade">
+          <h3>二. 连接组件（Connecting Parts）<br>（名称 - 尺寸 - 颜色 - 个数）</h3>
+        </section>
+        <section data-transition="fade">
+          <h3>2.1. 连接组件（Connecting Parts）</h3>
+          <div class="grid-container">
+            <div><img src="angular-block-1-0-white.png" class="img-reset"><span>角膜1 - 0° - 白 - 2x</span></div>
+            <div><img src="angular-block-3-157.5-azure-blue.png" class="img-reset"><span>角膜3 - 157.5° - 蔚蓝 - 2x</span></div>
+            <div><img src="angular-block-4-135-lime-green.png" class="img-reset"><span>角膜4 - 135° - 柠檬绿 - 2x</span></div>
+            <div><img src="bushing-1module-gray.png" class="img-reset"><span>套管 - 1 模块 - 灰 - 4x</span></div>
+            <div><img src="bushing-axle-extender-2module-gray.png" class="img-reset"><span>轴延长器套管 - 2 模块 - 灰 - 2x</span></div>
+            <div><img src="bushing-pulley-0.5module-yellow.png" class="img-reset"><span>滑轮套管 - 1/2 模块 - 黄 - 4x</span></div>
+            <div><img src="connector-peg-with-friction-2modules-black.png" class="img-reset"><span>带摩擦连接销 - 2 模块 - 黑 - 8x</span></div>
+            <div><img src="connector-peg-without-friction-axle-1module-beige.png" class="img-reset"><span>无摩擦轴连接销 - 1 模块 - 米黄 - 4x</span></div>
+            <div><img src="tube-2modules-bright-green.png" class="img-reset"><span>管子 - 2 模块 - 亮绿 - 2x</span></div>
+            <div><img src="ball-with-crosshole-bright-orange.png" class="img-reset"><span>十字口球 - 亮橘 - 4x</span></div>
+            <div><img src="bobbin-dark-gray.png" class="img-reset"><span>卷线轴 - 深灰 - 1x</span></div>
+            <div><img src="string-50cm-black.png" class="img-reset"><span>绳子 - 50cm - 黑 - 1x</span></div>
+            <div><img src="chain-16modules-dark-gray.png" class="img-reset"><span>链条 - 16 模块 - 深灰 - 2x</span></div>
+            <div><img src="bottom-for-turntable-4x4-black.png" class="img-reset"><span>转盘底部 - 4x4 - 黑 - 1x</span></div>
+          </div>
+        </section>
+        <section data-transition="fade">
+          <h3>三. 移动组件（Movement Parts）<br>（名称 - 尺寸 - 颜色 - 个数）</h3>
+        </section>
+        <section data-transition="fade">
+          <h3>3.1. 齿轮（Gear）</h3>
+          <div class="grid-container">
+            <div><img src="gear-8-tooth-dark-gray.png" class="img-reset"><span>齿轮 - 8 齿 - 深灰 - 4x</span></div>
+            <div><img src="gear-24-tooth-dark-gray.png" class="img-reset"><span>齿轮 - 24 齿 - 深灰 - 2x</span></div>
+            <div><img src="double-bevel-gear-12tooth-black.png" class="img-reset"><span>双锥齿轮 - 12 齿 - 黑 - 2x</span></div>
+            <div><img src="double-bevel-gear-20tooth-black.png" class="img-reset"><span>双锥齿轮 - 20 齿 - 黑 - 2x</span></div>
+            <div><img src="bevel-gear-20tooth-beige.png" class="img-reset"><span>锥齿轮 - 20 齿 - 米黄 - 2x</span></div>
+            <div><img src="worm-gear-gray.png" class="img-reset"><span>螺旋齿轮 - 灰 - 1x</span></div>
+            <div><img src="gear-rack-10tooth-white.png" class="img-reset"><span>齿轮条 - 10 齿 - 白 - 4x</span></div>
+            <div><img src="gear-block-transparent.png" class="img-reset"><span>齿轮模 - 透明 - 1x</span></div>
+          </div>
+        </section>
+        <section data-transition="fade">
+          <h3>3.2. 滑轮（Pulley）</h3>
+          <div class="grid-container">
+            <div><img src="hub-pulley-24x4mm-transparent-light-blue.png" class="img-reset"><span>滑轮 - 24x4mm - 透明浅蓝 - 6x</span></div>
+            <div><img src="hub-pulley-18x14mm-white.png" class="img-reset"><span>双槽滑轮 - 18x14mm - 白 - 6x</span></div>
+          </div>
+        </section>
+        <section data-transition="fade">
+          <h3>3.3. 轮胎（Tire）</h3>
+          <div class="grid-container">
+            <div><img src="tire-30.4x4mm-black.png" class="img-reset"><span>轮胎 - 30.4x4mm - 黑 - 2x</span></div>
+            <div><img src="tire-30.4x14mm-black.png" class="img-reset"><span>轮胎 - 30.4x14mm - 黑 - 4x</span></div>
+            <div><img src="tire-37x18mm-black.png" class="img-reset"><span>轮胎 - 37x18mm - 黑 - 2x</span></div>
+          </div>
+        </section>
+        <section data-transition="fade">
+          <h3>3.4. 轮轴（Axle）</h3>
+          <div class="grid-container">
+            <div><img src="axle-2modules-red.png" class="img-reset"><span>轮轴 - 2 模块 - 红 - 4x</span></div>
+            <div><img src="axle-3modules-gray.png" class="img-reset"><span>轮轴 - 3 模块 - 灰 - 4x</span></div>
+            <div><img src="axle-6modules-black.png" class="img-reset"><span>轮轴 - 6 模块 - 黑 - 2x</span></div>
+            <div><img src="axle-7modules-gray.png" class="img-reset"><span>轮轴 - 7 模块 - 灰 - 2x</span></div>
+            <div><img src="axle-10modules-black.png" class="img-reset"><span>轮轴 - 10 模块 - 黑 - 2x</span></div>
+            <div><img src="axle-with-stop-4modules-dark-gray.png" class="img-reset"><span>带帽轮轴 - 4 模块 - 深灰 - 4x</span></div>
+            <div><img src="connector-peg-with-axle-3modules-black.png" class="img-reset"><span>带栓轮轴 - 3 模块 - 黑 - 2x</span></div>
+          </div>
+        </section>
+        <section data-transition="fade">
+          <h3>3.5. 其他（Other）</h3>
+          <div class="grid-container">
+            <div><img src="belt-24mm-red.png" class="img-reset"><span>皮筋 - 24mm - 红 - 2x</span></div>
+            <div><img src="belt-33mm-yellow.png" class="img-reset"><span>皮筋 - 33mm - 黄 - 2x</span></div>
+            <div><img src="snowboard-bright-orange.png" class="img-reset"><span>滑雪板 - 亮橘 - 2x</span></div>
+          </div>
+        </section>
+        <section data-transition="fade">
+          <h3>四. 装饰组件（Decorative Parts）<br>（名称 - 尺寸 - 颜色 - 个数）</h3>
+        </section>
+        <section data-transition="fade">
+          <h3>4.1. 装饰组件（Decorative Parts）</h3>
+          <div class="grid-container">
+            <div><img src="antenna-white.png" class="img-reset"><span>天线 - 白 - 2x</span></div>
+            <div><img src="round-tile-with-eye-1x1-white.png" class="img-reset"><span>圆眼 - 1x1 - 白 - 2x</span></div>
+            <div><img src="round-tile-with-eye-2x2-white.png" class="img-reset"><span>圆眼 - 2x2 - 白 - 2x</span></div>
+            <div><img src="grass-1x1-bright-green.png" class="img-reset"><span>草 - 1x1 - 亮绿 - 2x</span></div>
+            <div><img src="leaves-2x2-bright-green.png" class="img-reset"><span>叶子 - 2x2 - 亮绿 - 1x</span></div>
+            <div><img src="flower-2x2-red.png" class="img-reset"><span>花 - 2x2 - 红 - 1x</span></div>
+          </div>
+        </section>
+        <section data-transition="fade">
+          <h3>五. 电子组件（Electronic Parts）<br>（名称 - 颜色 - 个数）</h3>
+        </section>
+        <section data-transition="fade">
+          <h3>5.1. 电子组件（Electronic Parts）</h3>
+          <div class="grid-container">
+            <div><img src="smarthub-white.png" class="img-reset"><span>智能集线器 - 白 - 1x</span></div>
+            <div><img src="medium-motor-white.png" class="img-reset"><span>中型电机 - 白 - 1x</span></div>
+            <div><img src="motion-sensor-white.png" class="img-reset"><span>运动传感器 - 白 - 1x</span></div>
+            <div><img src="tile-sensor-white.png" class="img-reset"><span>倾斜传感器 - 白 - 1x</span></div>
+          </div>
+        </section>
+        <section data-transition="fade">
+          <h3>六. 拆卸工具（Brick Separator）<br>（名称 - 颜色 - 个数）</h3>
+        </section>
+        <section data-transition="fade">
+          <h3>6.1. 拆卸工具（Brick Separator）</h3>
+          <div class="grid-container">
+            <div><img src="element-separator-orange.png" class="img-reset"><span>拆卸板 - 橘 - 1x</span></div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="/js/reveal.js"></script>
+    <script>
+      Reveal.initialize({
+        width: 960,
+	      height: 700,
+        controls: false,
+        hash: true,
+        keyboard: {
+          32: null
+        },
+        dependencies: [
+          { src: '/plugin/markdown/marked.js' },
+          { src: '/plugin/markdown/markdown.js' },
+          { src: '/plugin/notes/notes.js', async: true },
+          { src: '/plugin/highlight/highlight.js', async: true }
+        ]
+      });
+    </script>
+
+    <script src="/plyr/plyr.js"></script>
+    <script>
+      const players = Plyr.setup('#player', {
+        keyboard: { focused: false, global: false }
+      });
+    </script>
+  </body>
+</html>
