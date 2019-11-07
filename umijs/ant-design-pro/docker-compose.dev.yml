@@ -1,0 +1,22 @@
+version: '3.5'
+
+services:
+  xzl-administrator:
+    build: .
+    image: xzl-administrator
+    container_name: xzl-administrator
+    restart: always # no
+    ports:
+      - 7003:7003
+    volumes:
+      - type: bind
+        source: ./
+        target: /opt/administrator
+    command: npm run start
+    networks:
+      - xzl-bridge
+
+networks:
+  xzl-bridge:
+    name: xzl-bridge
+    external: true
