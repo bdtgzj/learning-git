@@ -23,7 +23,7 @@ start-prod:
 
 # xzl-administrator
 get-shell:
-	docker exec -it xzl-api-db bash
+	docker exec -it xzl-administator bash
 
 # test
 req:
