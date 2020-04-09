@@ -1,6 +1,9 @@
 install-reveal:
 	git clone https://github.com/hakimel/reveal.js.git
-	cd reveal.js && npm install --verbose
+	cd reveal.js
+#	PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true; npm install --verbose
+	set PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
+	npm install --verbose
 
 link-resource:
 	ln -s ~/Downloads/yxd/learning-git/reveal-js/* ~/Downloads/yxd/reveal.js/
