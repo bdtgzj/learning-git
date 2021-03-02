@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>第 1 课 飞行学校 - 你好，TT 无人机！</title>
+    <!--http://localhost:8000/dji/tt/01-hello-tt-->
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/reveal.css">
+    <link rel="stylesheet" href="/css/theme/sky.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="/lib/css/monokai.css">
+
+    <!--material-design-icons-->
+    <link rel="stylesheet" href="/icon/material-design-icons/material-icons.css">
+
+    <!--plyr-->
+    <link rel="stylesheet" href="/plyr/plyr.css">
+
+    <!--custom-->
+    <link rel="stylesheet" href="/css/common.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '/css/print/pdf.css' : '/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <!--知识点：UAV-->
+    <!--能力点：发现问题、分析问题、解决问题；创造力；设计解决方案；沟通能力；-->
+    <!--动手实践：无-->
+    <!--课程模板：课前预习、课中讲课、课中知识、课中问答、课中观察/讨论/预测/测量/测试/结论、课中练习、课尾总结、课尾展示、课尾扩展、课尾整理（拆解模型、分类存放到收纳盒，10 分钟）、课后练习、课后评价、创造-->
+    <!--课程制作方法：文字 > 插图 > 语音 > 视频-->
+    <!--[无人航空载具](https://zh.wikipedia.org/wiki/無人航空載具)-->
+    <!--[Unmanned aerial vehicle](https://en.wikipedia.org/wiki/Unmanned_aerial_vehicle)-->
+    <!--[无人机](https://baike.baidu.com/item/无人机/2175415)-->
+    <!--[小白入门：关于无人机结构组成，你知道多少？](https://weibo.com/ttarticle/p/show?id=2309404064841185820205)-->
+    <!---->
+    <div class="reveal">
+      <div class="slides">
+        <section class="section-first" data-transition="convex">
+          <h3>第 1 课 飞行学校 - 你好，TT 无人机！</h3><!--<h2></h2>-->
+          <h4>（Tello Talent 特洛创造力）</h4><!--<h3></h3>-->
+          <img src="tt.jpg">
+          <div>
+            <span><i class="material-icons md-48 md-dark">schedule</i>60 分钟</span>
+            <span><i class="material-icons md-48 md-dark">stars</i>初级（Beginner）</span>
+            <span><i class="material-icons md-48 md-dark">face</i>3-6 年级</span>
+          </div>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tp">
+            <h3>一. 什么是无人机？</h3>
+            <img src="what-is-uav.jpg" class="img-reset" style="width: 100%;"><!--960 * 600-->
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>一. 什么是无人机？（What is UAV?）</h3>
+              <div><img src="what-is-uav.jpg" class="img-reset"></div><!--960 * 600-->
+              <ol>
+                <!--同学们，欢饮来到飞行学校！-->
+                <li>【无人机】Unmanned Aerial Vehicle，不需要驾驶员登机驾驶的飞行器。</li>
+                <!--【类型】固定翼、多旋翼、垂直起降。-->
+                <!--【反无人机技术】使用「电磁干扰」或「入侵讯号」等手段来接管敌方无人机；传统的近防武器击落；-->
+                <!--【驾驶技术】遥控驾驶；导引驾驶；自动驾驶；-->
+                <li>【历史】源于军事需求，最早开发是在一战后（1918年），二战中作为无人靶机用于训练防空炮手，二战后用于侦察、武装作战等，现广泛用于商业应用。</li>
+              </ol>
+              <!---->
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tp">
+            <h3>二. 为什么需要无人机？（Why）</h3>
+            <img src="why-uav.png" class="img-reset"><!--960 * 600-->
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>二. 为什么需要无人机？（Why）</h3>
+              <div><img src="why-uav.png" class="img-reset"></div><!--960 * 600-->
+              <ol>
+                <li>【Why】替代人类执行危险的、无法完成的任务。</li>
+                <li>【特点】体积小、造价低、使用方便。</li>
+                <li>【军事应用】侦察、武装作战、训练等。</li>
+                <li>【商业应用】空中摄影、地理测绘、农业植保、物流运输、安防救援等。</li>
+              </ol>
+              <audio src="why-uav.mp3" controls id="player"></audio>
+              <!---->
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tp">
+            <h3>三. 为什么要学习无人机？</h3>
+            <img src="why-learning.jpg" class="img-reset">
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>三. 为什么要学习无人机？</h3>
+              <div><img src="why-learning.jpg" class="img-reset"></div>
+              <ol>
+                <li>【激发孩子对科技的兴趣】兴趣是最好的老师。</li>
+                <li>【人工智能时代的需求】在未来充满机器人、AI 的世界里，熟知科技技能让孩子更从容。</li>
+                <li>【提升孩子的逻辑思维能力】增强孩子做事的条理性；增强孩子的推理与判断、比较与分析、抽象与概括、归纳与演绎的能力。</li>
+                <li>【提升孩子的创造力】宽广的眼界，有助于提升孩子的创造力。</li>
+                <li>【提升孩子的解决问题的能力】基于项目的“做中学”教学方法，孩子只有解决项目中碰到的问题，才能完成项目</li>
+              </ol>
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex" class="section-tpt">
+          <div>
+            <h3>四. 认识 TT 无人机（Tello Talent）</h3>
+            <div><img src="tt.png" class="img-reset"></div><!--960 * 600-->
+            <!--
+            <ol>
+              <li>【机架】无人机的承载平台。</li>
+              <li>【飞控（飞行控制系统）】无人机的驾驶员，主要功能是自动保持飞机的正常飞行姿态，一般包括传感器、机载计算机和伺服作动设备三大部分。</li>
+              <li>【动力系统】主要包含电机、电调、螺旋桨、电池。</li>
+              <li>【通讯系统】无人机和遥控器通过 WIFI 通讯。</li>
+              <li>【遥控器】飞手操控无人机的工具。</li>
+              <li>【相机】用于空中拍摄。</li>
+              <li>【视觉定位系统】。</li>
+            </ul>
+            <audio src="what-is-robotics.mp3" controls id="player"></audio>
+            -->
+            <!---->
+          </div>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tp">
+            <h3>五. 无人机原理</h3>
+            <img src="principle.png" class="img-reset"><!--960 * 600-->
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>五. 无人机原理</h3>
+              <div><img src="principle.png" class="img-reset"></div><!--960 * 600-->
+              <ol>
+                <li>【竹蜻蜓】当「手的搓动」给了竹蜻蜓一个旋转的速度后就会产生升力，让竹蜻蜓起飞。</li>
+                <li>【无人机】当「电机的旋转」给了「螺旋桨」一个旋转的速度后就会产生升力，让无人机起飞。当无人机四个螺旋桨的升力之和等于无人机总重量时，无人机的升力与重力相平衡，无人机就可以悬停在空中了。调节无人机四个螺旋桨的转速，便可使无人上下左右前后移动。</li>
+              </ol>
+              <!---->
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex" class="section-tpt">
+          <div>
+            <h3>六. TT 无人机基本操作 </h3>
+            <div><img src="basic-operation.jpg" class="img-reset"></div><!--960 * 600-->
+            <ol>
+              <li>【准备遥控器】即「手机 + Tello App」，打开 Tello App。</li>
+              <li>【准备 TT 无人机】按一下电源按键，开启 TT，黄色指示灯会闪烁。</li>
+              <li>【连接遥控器和 TT】在 Tello App 上点击「连接」按钮，选择 Tello-xxxx 无线名，指示灯黄色慢闪且 App 中出现视频画面则表示连接成功。</li>
+              <li>【起飞】点击左上角「起飞」按键，TT 会自动起飞并悬停在空中。</li>
+              <li>【降落】点击左上角「降落」按键，TT 会自动降落到地面。</li>
+              <li>【移动】点击上下、左右、前后、平移等按钮，TT 会按指示移动。</li>
+            </ol>
+          </div>
+        </section>
+        <section data-transition="convex" class="section-tpt">
+          <div>
+            <h3>七. 拓展练习：弹跳飞行</h3>
+            <div><img src="extend.png" class="img-reset"></div><!--960 * 600-->
+            <ol>
+              <li>【起飞】让 TT 悬停在空中。</li>
+              <li>【运行弹跳模式】点击左上角「模式选择」按钮，选择「弹跳模式」，TT 自动在离起飞平面 0.5m 至 1.2m 之间上下弹跳。在感应到下方有物体时（如将手掌置于 TT 下方），TT 将上升小段高度并继续弹跳。。</li>
+              <li>【关闭弹跳模式】点击左上角「关闭」按钮，停止执行「弹跳模式」。</li>
+            </ol>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="/js/reveal.js"></script>
+    <script>
+      Reveal.initialize({
+        width: 960,
+	      height: 700,
+        controls: false,
+        hash: true,
+        keyboard: {
+          32: null
+        },
+        dependencies: [
+          { src: '/plugin/markdown/marked.js' },
+          { src: '/plugin/markdown/markdown.js' },
+          { src: '/plugin/notes/notes.js', async: true },
+          { src: '/plugin/highlight/highlight.js', async: true }
+        ]
+      });
+    </script>
+
+    <script src="/plyr/plyr.js"></script>
+    <script>
+      const players = Plyr.setup('#player', {
+        keyboard: { focused: false, global: false }
+      });
+    </script>
+  </body>
+</html>

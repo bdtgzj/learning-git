@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>机器人手臂（Robotic Arm）</title>
+    <!--http://localhost:8000/spike/robotic-arm-->
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/reveal.css">
+    <link rel="stylesheet" href="/css/theme/sky.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="/lib/css/monokai.css">
+
+    <!--material-design-icons-->
+    <link rel="stylesheet" href="/icon/material-design-icons/material-icons.css">
+
+    <!--plyr-->
+    <link rel="stylesheet" href="/plyr/plyr.css">
+
+    <!--custom-->
+    <link rel="stylesheet" href="/css/common.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '/css/print/pdf.css' : '/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <!--三观（认知）：陀螺仪、百度无人驾驶汽车。-->
+    <!--学力：工程师能力；科学家能力；学习习惯（课堂纪律/预习/复习）；学习方法（思维导图）；专注/细心/自主/独立思考；-->
+    <!--创新：个性化定义声音。-->
+    <!--协作：分配任务、协同完成；互相帮助；沟通表达；队长轮值；-->
+    <!--兴趣：任务明确、合作对抗、奖励机制（积分、同美国非看一考，而看平时）、反馈机制；-->
+    <!--知识：陀螺仪传感器控制圆圈、曲线、椭圆运动；编程让大脑发出声音；项目起名、保存项目；-->
+    <!--讨论：-->
+    <!--热点讨论：无人驾驶汽车；-->
+    <!--实践：练习移动；完成接力赛；-->
+    <!--输出：发现的问题、经验的总结；学生成果分享；-->
+    <!--反馈任务奖励：完成个人任务、团队任务奖励积分，积分可兑换礼品。-->
+    <!--课程模板：课前预习、课中讲课、课中知识、课中问答、课中观察/讨论/预测/测量/测试/结论、课中练习、课尾总结、课尾展示、课尾扩展、课尾整理（拆解模型、分类存放到收纳盒，10 分钟）、课后练习、课后评价、创造-->
+    <!--课程制作方法：文字 > 插图 > 语音 > 视频-->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!--[隔靴搔痒，百度无人驾驶把“出租车”做成了“公交车”](https://new.qq.com/rain/a/20201014A01ZF500)-->
+    <!---->
+    <div class="reveal">
+      <div class="slides">
+        <section class="section-first" data-transition="convex">
+          <h3>机器人手臂</h3><!--<h2></h2>-->
+          <h4>（Robotic Arm）</h4><!--<h3></h3>-->
+          <img src="task2.png">
+          <div>
+            <span><i class="material-icons md-48 md-dark">schedule</i>90 分钟</span>
+            <span><i class="material-icons md-48 md-dark">stars</i>初级（Beginner）</span>
+            <span><i class="material-icons md-48 md-dark">face</i>3-6 年级</span>
+          </div>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tpt">
+            <div>
+              <h3>一. 机器人手臂（Robotic Arm）</h3>
+              <div><img src="what.jpg"></div><!--960 * 600-->
+              <p></p>
+            </div>
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>一. 机器人手臂（Robotic Arm）</h3>
+              <div><img src="what.jpg"></div><!--960 * 600-->
+              <p>1. 【What】一个可编程的机械装置，用于模拟人类手臂动作。<br>2. 【Why】替代人类手臂完成特定任务。<br>3. 【应用】汽车制造、外科手术等。</p>
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tpt">
+            <div>
+              <h3>二. 任务一：武装机器臂</h3>
+              <div><img src="arm-weapon.jpeg"></div><!--960 * 600-->
+              <p>发挥想象，做一个武装机器臂，并通过程序控制，使武器可以横向扫射。</p>
+            </div>
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>二. 任务一：武装机器臂</h3>
+              <div><img src="arm-weapon.jpeg"></div><!--960 * 600-->
+              <p>发挥想象，做一个武装机器臂，并通过程序控制，使武器可以横向扫射。</p>
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tpt">
+            <div>
+              <h3>三. 任务二：扫地机器臂</h3>
+              <div><img src="arm-sweep.jpeg"></div><!--960 * 600-->
+              <p>发挥想象，做一个扫地机器臂，并执行绕方形场地打扫卫生的任务。</p>
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tpt">
+            <div>
+              <h3>四. 任务三：搬运机器臂</h3>
+              <div><img src="material/arm-car.jpg"></div><!--960 * 600-->
+              <p>如何把机器臂安装到小车上，并能通过程序控制机器臂的动作呢？</p>
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tpt">
+            <div>
+              <h3>这样？</h3>
+              <video controls src="material/arm-on-medium-motor.mp4"></video><!--960 * 600-->
+              <p>增加一个电机来控制机械臂，但我们可没有多余的电机！</p>
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tpt">
+            <div>
+              <h3>这样？</h3>
+              <video controls src="material/arm-on-large-motor.mp4"></video><!--960 * 600-->
+              <p>使用小车底部大型电机来控制机械臂，但方向不对了！如何调整方向呢？</p>
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tpt">
+            <div>
+              <h3>齿轮</h3>
+              <video controls src="material/arm-on-large-motor-with-wheel.mp4"></video><!--960 * 600-->
+              <p>通过 2 个齿轮的耦合来传递动能，并改变动能的方向。</p>
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tpt">
+            <div>
+              <h3>齿轮原理</h3>
+              <video controls src="double-conical-wheel-no-audio.mp4"></video><!--960 * 600-->
+              <p>双圆锥齿轮（Double Conical Wheel）的耦合可改变动能方向。</p>
+            </div>
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>齿轮原理</h3>
+              <video controls src="double-conical-wheel-no-audio.mp4"></video><!--960 * 600-->
+              <p>双圆锥齿轮（Double Conical Wheel）的耦合可改变动能方向。</p>
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tpt">
+            <div>
+              <h3>任务</h3>
+              <div><img src="task1.jpg"></div><!--960 * 600-->
+              <p>给小车添加机械臂，并通过程序控制机械臂以 45 度角上下运动 2 次。</p>
+            </div>
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>任务</h3>
+              <div><img src="task1-code.png"></div><!--960 * 600-->
+              <p>给小车添加机械臂，并通过程序控制机械臂以 45 度角上下运动 2 次。</p>
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tpt">
+            <div>
+              <h3>任务</h3>
+              <div><img src="task2.png"></div><!--960 * 600-->
+              <p>在小车前放置一块砖，让小车把砖往后移 80 厘米。</p>
+            </div>
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>任务</h3>
+              <div><img src="task2-code.png"></div><!--960 * 600-->
+              <p>在小车前放置一块砖，让小车把砖往后移 80 厘米。</p>
+            </div>
+          </section>
+        </section>
+        <section class="section-tpt" data-transition="convex">
+          <div>
+            <h3>五. 分享、奖励、提问</h3>
+            <div><img src="share.png"></div>
+            <p>1. 【分享】分享你的各种想法吧。<br>2. 【奖励】完成个人或团队任务，各奖励 10 分。<br>3. 【提问】每人必须至少提一个问题。</p>
+          </div>
+        </section>
+        <section class="section-tpt" data-transition="convex">
+          <div>
+            <h3>六. 拓展（Extend）</h3>
+            <div><img src="extend.png"></div>
+            <p>1. 【模型拓展】个性化改装模型。<br>2. 【编程拓展】个性化改写程序。如武器扫射时可发出声光。</p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="/js/reveal.js"></script>
+    <script>
+      Reveal.initialize({
+        width: 960,
+	      height: 700,
+        controls: false,
+        hash: true,
+        keyboard: {
+          32: null
+        },
+        dependencies: [
+          { src: '/plugin/markdown/marked.js' },
+          { src: '/plugin/markdown/markdown.js' },
+          { src: '/plugin/notes/notes.js', async: true },
+          { src: '/plugin/highlight/highlight.js', async: true }
+        ]
+      });
+    </script>
+
+    <script src="/plyr/plyr.js"></script>
+    <script>
+      const players = Plyr.setup('#player', {
+        keyboard: { focused: false, global: false }
+      });
+    </script>
+  </body>
+</html>

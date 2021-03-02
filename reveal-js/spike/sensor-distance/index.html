@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>距离传感器（Distance Sensor）</title>
+    <!--http://localhost:8000/spike/sensor-distance-->
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/reveal.css">
+    <link rel="stylesheet" href="/css/theme/sky.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="/lib/css/monokai.css">
+
+    <!--material-design-icons-->
+    <link rel="stylesheet" href="/icon/material-design-icons/material-icons.css">
+
+    <!--plyr-->
+    <link rel="stylesheet" href="/plyr/plyr.css">
+
+    <!--custom-->
+    <link rel="stylesheet" href="/css/common.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '/css/print/pdf.css' : '/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <!--三观（认知）：陀螺仪、百度无人驾驶汽车。-->
+    <!--学力：工程师能力；科学家能力；学习习惯（课堂纪律/预习/复习）；学习方法（思维导图）；专注/细心/自主/独立思考；-->
+    <!--创新：个性化定义声音。-->
+    <!--协作：分配任务、协同完成；互相帮助；沟通表达；队长轮值；-->
+    <!--兴趣：任务明确、合作对抗、奖励机制（积分、同美国非看一考，而看平时）、反馈机制；-->
+    <!--知识：陀螺仪传感器控制圆圈、曲线、椭圆运动；编程让大脑发出声音；项目起名、保存项目；-->
+    <!--讨论：-->
+    <!--热点讨论：无人驾驶汽车；-->
+    <!--实践：练习移动；完成接力赛；-->
+    <!--输出：发现的问题、经验的总结；学生成果分享；-->
+    <!--反馈任务奖励：完成个人任务、团队任务奖励积分，积分可兑换礼品。-->
+    <!--课程模板：课前预习、课中讲课、课中知识、课中问答、课中观察/讨论/预测/测量/测试/结论、课中练习、课尾总结、课尾展示、课尾扩展、课尾整理（拆解模型、分类存放到收纳盒，10 分钟）、课后练习、课后评价、创造-->
+    <!--课程制作方法：文字 > 插图 > 语音 > 视频-->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!--[隔靴搔痒，百度无人驾驶把“出租车”做成了“公交车”](https://new.qq.com/rain/a/20201014A01ZF500)-->
+    <!---->
+    <div class="reveal">
+      <div class="slides">
+        <section class="section-first" data-transition="convex">
+          <h3>距离传感器（Distance Sensor）</h3><!--<h2></h2>-->
+          <img src="model.jpg">
+          <div>
+            <span><i class="material-icons md-48 md-dark">schedule</i>90 分钟</span>
+            <span><i class="material-icons md-48 md-dark">stars</i>初级（Beginner）</span>
+            <span><i class="material-icons md-48 md-dark">face</i>3-6 年级</span>
+          </div>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tpt">
+            <div>
+              <h3>一. 传感器（Sensor）</h3>
+              <div><img src="types-of-sensor.png" class="img-reset"></div><!--960 * 600-->
+              <p></p>
+            </div>
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>一. 传感器（Sensor）</h3>
+              <div><img src="types-of-sensor.png"></div><!--640 * 466-->
+              <p>1.【What】一种检测装置，能感受到被测物体的信息，并把信息转换成电信号进行传输。<br>2.【Why】传感器类似人类的眼睛、耳朵、鼻子、舌头、身体，可以让机器人更像人类、更智能化。<br>3.【类型】光敏传感器（视觉）、声敏传感器（听觉）、气敏传感器（嗅觉）、化学传感器（味觉）、压敏/温敏/流体传感器（触觉）。</p>
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tpt">
+            <div>
+              <h3>二. 距离传感器（Distance Sensor）</h3>
+              <div><img src="distance-sensor-with-blue-bg.png" class="img-reset"></div><!--960 * 600-->
+              <p>超声波距离传感器；测距范围 5-200 厘米；圆眼上有 4 个可控制灯；</p>
+            </div>
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>二. 距离传感器（Distance Sensor）</h3>
+              <div><img src="distance-sensor-with-blue-bg.png"></div><!--640 * 466-->
+              <p>1.【What】能感受到与物体间的距离，如同眼睛能感受到前方物体一样。<br>2.【类型】超声波、激光、红外、雷达等。<br>3.【Lego 距离传感器】外形似眼睛；超声波测距；测距范围5-200厘米；快速测距范围5-30厘米；精度是毫米；距离误差正负2厘米，角度误差正负35度；<br>4.【应用】手机红外距离传感器、汽车倒车雷达传感器、测量地球到月球（38万公里）的激光距离传感器、无人汽车上的雷达传感器。</p><!--通过超声波监测与前方遮挡物的距离。-->
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tpt">
+            <div>
+              <h3>三. 测距原理</h3>
+              <div><img src="how-ultrasonic-sensors-work.gif" class="img-reset"></div><!--960 * 600-->
+              <p></p>
+            </div>
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>三. 测距原理</h3>
+              <div><img src="how-ultrasonic-sensors-work.gif"></div><!--640 * 466-->
+              <p>1. 【原理】使用超声波（采样频率 100Hz）测距，距离=(声波速度*间隔时间)/2。<br>2. 【流程】发射超声波->碰到遮挡物->超声波反射->接受超声波->计算距离</p><!--通过超声波监测与前方遮挡物的距离。-->
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tpt">
+            <div>
+              <h3>四. 任务一</h3>
+              <video controls src="task1.mp4"></video><!--960 * 600-->
+              <p>1.【模型】给小车添加距离传感器和机器手。<br>2.【程序】亮灯->向前运行小车->让小车在障碍物前15厘米处停止运行->熄灯</p>
+            </div>
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>四. 任务一</h3>
+              <div><img src="model.jpg"></div><!--960 * 600-->
+              <p></p>
+            </div>
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>四. 任务一</h3>
+              <div><img src="task1-program.png"></div><!--960 * 600-->
+              <p>1.【模型】给小车添加距离传感器和机器手。<br>2.【程序】亮灯->向前运行小车->让小车在障碍物前15厘米处停止运行->熄灯</p>
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tpt">
+            <div>
+              <h3>五. 任务二</h3>
+              <video controls src="task2.mp4"></video><!--960 * 600-->
+              <p>1.【程序】向前运行小车->当小车距离障碍物20厘米时亮灯、响喇叭、转弯->重复上面2个步骤</p>
+            </div>
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>五. 任务二</h3>
+              <div><img src="task2-program.png"></div><!--960 * 600-->
+              <p>1.【程序】向前运行小车->当小车距离障碍物20厘米时亮灯、响喇叭、转弯->重复上面2个步骤</p>
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tpt">
+            <div>
+              <h3>六. 任务三</h3>
+              <video controls src="task3.mp4"></video><!--960 * 600-->
+              <p>1.【模型】自由改装。<br>2.【程序】橄榄球运动，以小车拿着橄榄球到达对方营地为胜。</p>
+            </div>
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>六. 任务三</h3>
+              <div><img src="task3-program.png"></div><!--960 * 600-->
+              <p>1.【模型】自由改装。<br>2.【程序】橄榄球运动，以小车拿着橄榄球到达对方营地为胜。</p>
+            </div>
+          </section>
+        </section>
+        <section class="section-tpt" data-transition="convex">
+          <div>
+            <h3>七. 分享、奖励、提问</h3>
+            <div><img src="share.png"></div>
+            <p>1. 【分享】分享你的各种想法吧。<br>2. 【奖励】完成个人或团队任务，各奖励 10 分。<br>3. 【提问】每人必须至少提一个问题。</p>
+          </div>
+        </section>
+        <section class="section-tpt" data-transition="convex">
+          <div>
+            <h3>八. 拓展（Extend）</h3>
+            <div><img src="extend.png"></div>
+            <p>1. 【模型拓展】个性化改装模型。<br>2. 【编程拓展】个性化改写程序。</p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="/js/reveal.js"></script>
+    <script>
+      Reveal.initialize({
+        width: 960,
+	      height: 700,
+        controls: false,
+        hash: true,
+        keyboard: {
+          32: null
+        },
+        dependencies: [
+          { src: '/plugin/markdown/marked.js' },
+          { src: '/plugin/markdown/markdown.js' },
+          { src: '/plugin/notes/notes.js', async: true },
+          { src: '/plugin/highlight/highlight.js', async: true }
+        ]
+      });
+    </script>
+
+    <script src="/plyr/plyr.js"></script>
+    <script>
+      const players = Plyr.setup('#player', {
+        keyboard: { focused: false, global: false }
+      });
+    </script>
+  </body>
+</html>

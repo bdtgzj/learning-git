@@ -11,6 +11,9 @@
   display: inline-block;
   text-indent: 29px;
 }
+.xzl-center {
+  text-align: center !important;
+}
 
 /* grid */
 .grid-container {
@@ -58,6 +61,11 @@
   align-items: center;
 }
 
+/* sky.css override*/
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+  text-transform: inherit;
+}
+
 /* reveal override */
 .reveal {
   font-family: "Monaco", "Courier", monospace;
@@ -93,6 +101,9 @@
 .section-first span {
   display: flex;
 }
+.section-first img {
+  max-height: 360px !important;
+}
 
 /* section-tpt */
 .section-tpt > div {
@@ -122,6 +133,7 @@
 
 /* section-tp */
 .section-tp img {
+  max-width: 960px !important;
   max-height: 600px !important;
 }
 
@@ -170,4 +182,10 @@
 .grid-container-4c > div {
   text-align: left;
   font-weight: bolder;
+}
+
+/* discuss */
+.reveal iframe {
+  width: 960px;
+  height: 600px;
 }

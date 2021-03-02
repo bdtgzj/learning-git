@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>第 2 课 首飞任务 - 机场巡逻</title>
+    <!--http://localhost:8000/dji/tt/02-airport-patrol-->
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/reveal.css">
+    <link rel="stylesheet" href="/css/theme/sky.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="/lib/css/monokai.css">
+
+    <!--material-design-icons-->
+    <link rel="stylesheet" href="/icon/material-design-icons/material-icons.css">
+
+    <!--plyr-->
+    <link rel="stylesheet" href="/plyr/plyr.css">
+
+    <!--custom-->
+    <link rel="stylesheet" href="/css/common.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '/css/print/pdf.css' : '/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <!--知识点：无人机安全飞行的相关法律法规、飞行前中后的安全飞行要求-->
+    <!--能力点：发现问题、分析问题、解决问题；创造力；设计解决方案；沟通能力；-->
+    <!--动手实践：功能操控（上升、下降、左偏航、右偏航、左侧移、右侧移）、在第三视角下控制无人机、尝试多种飞行条件下调整飞行姿态-->
+    <!--课程模板：课前预习、课中讲课、课中知识、课中问答、课中观察/讨论/预测/测量/测试/结论、课中练习、课尾总结、课尾展示、课尾扩展、课尾整理（拆解模型、分类存放到收纳盒，10 分钟）、课后练习、课后评价、创造-->
+    <!--课程制作方法：文字 > 插图 > 语音 > 视频-->
+    <!--[无人航空载具](https://zh.wikipedia.org/wiki/無人航空載具)-->
+    <!--[Unmanned aerial vehicle](https://en.wikipedia.org/wiki/Unmanned_aerial_vehicle)-->
+    <!--[无人机](https://baike.baidu.com/item/无人机/2175415)-->
+    <!--[小白入门：关于无人机结构组成，你知道多少？](https://weibo.com/ttarticle/p/show?id=2309404064841185820205)-->
+    <!---->
+    <div class="reveal">
+      <div class="slides">
+        <section class="section-first" data-transition="convex">
+          <h3>第 2 课 首飞任务 - 机场巡逻</h3><!--<h2></h2>-->
+          <h4>（Airport Patrol）</h4><!--<h3></h3>-->
+          <div>
+            <span><i class="material-icons md-48 md-dark">schedule</i>45 分钟</span>
+            <span><i class="material-icons md-48 md-dark">stars</i>初级（Beginner）</span>
+            <span><i class="material-icons md-48 md-dark">face</i>3-6 年级</span>
+          </div>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tp">
+            <h3>一. 安全（Safety）</h3>
+            <img src="safety.jpg" class="img-reset"><!--960 * 600-->
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>一. 安全（Safety）</h3>
+              <div><img src="safety.jpg" class="img-reset"></div><!--960 * 600-->
+              <ol>
+                <li>【勿贴近高速旋转的螺旋桨】以免割伤。</li>
+                <li>【勿触摸机身底部】发热部件，以免烫伤。</li>
+                <li>【电池】使用标配电池，勿使电池正负极短路。</li>
+                <li>【14 岁以下孩子】不能单独使用，需在成人陪同下使用。</li>
+                <li>【儿童】不能接触。</li>
+              </ol>
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tp">
+            <h3>二. 法律法规</h3>
+            <img src="law.jpg" class="img-reset"><!--960 * 600-->
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>二. 法律法规（Law）</h3>
+              <div><img src="law.jpg" class="img-reset"></div><!--960 * 600-->
+              <ol>
+                <!---->
+                <li>禁止在载人飞行器附件飞行。</li>
+                <li>禁止在人口或建筑物密集地区使用飞行器，如城市、体育馆、展会、演唱会等。</li>
+                <li>禁飞区包括：交通要道、政府大楼、军事设施、机场、发电站、水电站、边境线、监狱、主要城市。</li>
+                <li>禁止在超过限定高度的空域飞行。</li>
+                <li>确保飞行器在您的视距范围内飞行。</li>
+                <li>禁止使用飞行器搭载任何违法危险物品。</li>
+                <li>在飞行前务必获取相关部分颁发的许可证。</li>
+                <li>清楚了解飞行活动类别（如娱乐、公务、商务等），可咨询当地法务工作者。</li>
+                <li>使用飞行器进行拍摄时，务必尊重他人隐私权。在某些国家拍摄即侵犯他人权利。</li>
+                <li>禁止使用飞行器进行任何未经授权的监视活动，如对他人、团体、活动、表演、展会、楼宇进行监视。</li>
+              </ol>
+              <audio src="what-is-uav.mp3" controls id="player"></audio>
+              <!---->
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tp">
+            <h3>三. 飞行限制（Restriction）</h3>
+            <img src="restriction.jpg" class="img-reset"><!--960 * 600-->
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>三. 飞行限制（Restriction）</h3>
+              <div><img src="restriction.jpg" class="img-reset"></div><!--960 * 600-->
+              <ol>
+                <li>保持飞行高度在 10m 以下，飞行时远离任何高大建筑物。</li>
+                <li>视觉定位系统使用高度为 0.3-30m，适合在室内以及室外无风环境下飞行。</li>
+                <li>视觉定位系统容易受光照强度、物体表面纹理情况所影响，在视觉定位系统失效时，飞行器会自动切换到「姿态模式」，所以以下场景需谨慎使用。低空（0.5m 以下）快速飞行时，视觉定位系统可能会无法定位；纯色表面（如纯黑、纯白、纯红、纯绿）；特别暗（光照小于 300 lux）或特别亮（光照大于 10000 lux）的物体表面；纹理特别稀疏的表面；纹理重复度很高的物体表面（如颜色相同的小格子砖）；细小的障碍物；飞行器速度不宜过快，如离地 1m 处飞行速度不可超过 5m/s；</li>
+                <li>当飞行器飞行高度大于 6m 时，若视觉定位系统失效超过 3s，飞行器会触发失效保护并开始降落，降落过程中若视觉定位系统恢复则飞行器会在当前位置保持悬停。</li>
+                <li>如 Tello App 提示视觉定位系统在当前环境下无法正常工作（如光线太暗），请勿起飞。</li>
+              </ol>
+              <audio src="why-uav.mp3" controls id="player"></audio>
+              <!---->
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tp">
+            <h3>四. 移动操作练习（Move）</h3>
+            <img src="basic-operation.jpg" class="img-reset"><!--960 * 600-->
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>TT 无人机基本操作 </h3>
+              <div><img src="basic-operation.jpg" class="img-reset"></div><!--960 * 600-->
+              <ol>
+                <li>【准备遥控器】即「手机 + Tello App」，打开 Tello App。</li>
+                <li>【准备 TT 无人机】按一下电源按键，开启 TT，黄色指示灯会闪烁。</li>
+                <li>【连接遥控器和 TT】在 Tello App 上点击「连接」按钮，选择 Tello-xxxx 无线名，指示灯黄色慢闪且 App 中出现视频画面则表示连接成功。</li>
+                <li>【起飞】点击左上角「起飞」按键，TT 会自动起飞并悬停在空中。</li>
+                <li>【降落】点击左上角「降落」按键，TT 会自动降落到地面。</li>
+                <li>【移动】点击上下、左右、前后、平移等按钮，TT 会按指示移动。</li>
+              </ol>
+              <!---->
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tp">
+            <h3>五. 第三人称视角（Third Perspective）</h3>
+            <img src="view.jpg" class="img-reset"><!--960 * 600-->
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>五. 第三人称视角（Third Perspective） </h3>
+              <div><img src="view.jpg" class="img-reset"></div><!--960 * 600-->
+              <ol>
+                <li>【第一人称视角】屏幕上不出现玩家所控制的游戏主角，而是表现为主角的视野。如反恐精英、绝地求生。</li><!--看着「遥控器」上的视频操控。-->
+                <li>【第三人称视角】以旁观者的视角观察场景与主角的动作。视角通常处于玩家所控制的游戏单位的上方，所以也被称为「上帝视角」。</li><!--看着「无人机」操控。-->
+              </ol>
+              <!---->
+            </div>
+          </section>
+        </section>
+        <section data-transition="convex">
+          <section class="section-tp">
+            <h3>六. 机场巡逻（Airport Patrol）</h3>
+            <img src="airport-patrol.jpg" class="img-reset"><!--960 * 600-->
+          </section>
+          <section class="section-tpt">
+            <div>
+              <h3>六. 机场巡逻（Airport Patrol）</h3>
+              <div><img src="airport-patrol.jpg" class="img-reset"></div><!--960 * 600-->
+              <ol>
+                <li>【What】即「手机 + Tello App」，打开 Tello App。</li>
+                <li>【Why】点击上下、左右、前后、平移等按钮，TT 会按指示移动。</li>
+                <li>【How】按一下电源按键，开启 TT，黄色指示灯会闪烁。</li>
+              </ol>
+              <!---->
+            </div>
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script src="/js/reveal.js"></script>
+    <script>
+      Reveal.initialize({
+        width: 960,
+	      height: 700,
+        controls: false,
+        hash: true,
+        keyboard: {
+          32: null
+        },
+        dependencies: [
+          { src: '/plugin/markdown/marked.js' },
+          { src: '/plugin/markdown/markdown.js' },
+          { src: '/plugin/notes/notes.js', async: true },
+          { src: '/plugin/highlight/highlight.js', async: true }
+        ]
+      });
+    </script>
+
+    <script src="/plyr/plyr.js"></script>
+    <script>
+      const players = Plyr.setup('#player', {
+        keyboard: { focused: false, global: false }
+      });
+    </script>
+  </body>
+</html>
